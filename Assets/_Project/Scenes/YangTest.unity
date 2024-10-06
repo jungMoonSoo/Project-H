@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 853060076}
   - component: {fileID: 853060075}
   - component: {fileID: 853060074}
+  - component: {fileID: 853060080}
   m_Layer: 0
   m_Name: Lancer (1)
   m_TagString: Untagged
@@ -247,9 +248,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  unitSize: 1
-  heightRatio: 0.5
   enemy: 1
   moveSpeed: 2
   state: 0
@@ -384,6 +382,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &853060080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 853060073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104792be83acd2c4eb7dfeac7f1d28c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  unitSize: 1
+  heightRatio: 0.5
+  moveSpeed: 2
+  target: {fileID: 0}
+  unit: {fileID: 0}
 --- !u!1 &1237828577
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,6 +414,7 @@ GameObject:
   - component: {fileID: 1237828580}
   - component: {fileID: 1237828579}
   - component: {fileID: 1237828578}
+  - component: {fileID: 1237828584}
   m_Layer: 0
   m_Name: Lancer (4)
   m_TagString: Untagged
@@ -417,9 +434,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  unitSize: 1
-  heightRatio: 0.5
   enemy: 0
   moveSpeed: 2
   state: 0
@@ -554,6 +568,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1237828584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237828577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104792be83acd2c4eb7dfeac7f1d28c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  unitSize: 1
+  heightRatio: 0.5
+  moveSpeed: 2
+  target: {fileID: 0}
+  unit: {fileID: 0}
 --- !u!1 &1323188194
 GameObject:
   m_ObjectHideFlags: 0
@@ -618,6 +650,7 @@ GameObject:
   - component: {fileID: 1457895162}
   - component: {fileID: 1457895161}
   - component: {fileID: 1457895160}
+  - component: {fileID: 1457895166}
   m_Layer: 0
   m_Name: Lancer
   m_TagString: Untagged
@@ -637,9 +670,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  unitSize: 1
-  heightRatio: 0.5
   enemy: 1
   moveSpeed: 2
   state: 0
@@ -774,6 +804,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1457895166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1457895159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104792be83acd2c4eb7dfeac7f1d28c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  unitSize: 1
+  heightRatio: 0.5
+  moveSpeed: 2
+  target: {fileID: 0}
+  unit: {fileID: 0}
 --- !u!1 &1527715257
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,6 +836,7 @@ GameObject:
   - component: {fileID: 1527715260}
   - component: {fileID: 1527715259}
   - component: {fileID: 1527715258}
+  - component: {fileID: 1527715264}
   m_Layer: 0
   m_Name: Lancer (3)
   m_TagString: Untagged
@@ -807,9 +856,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  unitSize: 1
-  heightRatio: 0.5
   enemy: 0
   moveSpeed: 2
   state: 0
@@ -944,6 +990,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1527715264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1527715257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104792be83acd2c4eb7dfeac7f1d28c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  unitSize: 1
+  heightRatio: 0.5
+  moveSpeed: 2
+  target: {fileID: 0}
+  unit: {fileID: 0}
 --- !u!1 &1810194727
 GameObject:
   m_ObjectHideFlags: 0
@@ -958,6 +1022,7 @@ GameObject:
   - component: {fileID: 1810194730}
   - component: {fileID: 1810194729}
   - component: {fileID: 1810194728}
+  - component: {fileID: 1810194734}
   m_Layer: 0
   m_Name: Lancer (2)
   m_TagString: Untagged
@@ -977,9 +1042,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 3
-  unitSize: 1
-  heightRatio: 0.5
   enemy: 0
   moveSpeed: 2
   state: 0
@@ -1114,6 +1176,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1810194734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810194727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 104792be83acd2c4eb7dfeac7f1d28c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackRange: 3
+  unitSize: 1
+  heightRatio: 0.5
+  moveSpeed: 2
+  target: {fileID: 0}
+  unit: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

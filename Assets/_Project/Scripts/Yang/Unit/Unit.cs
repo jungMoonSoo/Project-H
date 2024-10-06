@@ -5,10 +5,6 @@ namespace Yang
 {
     public class Unit : MonoBehaviour
     {
-        public float attackRange;
-        public float unitSize;
-        public float heightRatio;
-
         public bool enemy;
         public float moveSpeed;
 
@@ -22,13 +18,17 @@ namespace Yang
         private float checkDist;
         private float checkClosetDist;
 
-        private UnitManager manager;
         private Animator animator;
+        private PathFinding pathFinding;
+
+        private UnitManager manager;
 
         public void Init(UnitManager _manager)
         {
             manager = _manager;
+
             TryGetComponent(out animator);
+            TryGetComponent(out pathFinding);
         }
 
         private void Update()
@@ -61,7 +61,7 @@ namespace Yang
         private void SetTarget(bool _enemy)
         {
             if (target == null) checkClosetDist = float.MaxValue;
-            else checkClosetDist = OnEllipse(transform.position, target, attackRange, target.unitSize);
+            else checkClosetDist = pathFinding.OnHitEllipse(transform.position, target.pathFinding);
 
             if (checkClosetDist <= 1) return;
 
@@ -69,7 +69,7 @@ namespace Yang
             {
                 if (manager.units[i] != this && manager.units[i].enemy == !_enemy)
                 {
-                    checkDist = OnEllipse(transform.position, manager.units[i], attackRange, manager.units[i].unitSize);
+                    checkDist = pathFinding.OnAttackEllipse(transform.position, manager.units[i].pathFinding);
 
                     if (checkDist < checkClosetDist)
                     {
@@ -94,16 +94,28 @@ namespace Yang
             hit = false;
             movePos = Vector3.zero;
 
-            if (OnEllipse(transform.position, target, attackRange, target.unitSize) <= 1)
+            if (pathFinding.OnAttackEllipse(transform.position, target.pathFinding) <= 1)
             {
-                if (OnEllipse(transform.position, target, unitSize, target.unitSize) <= 1) movePos = AroundTarget(target);
+                if (pathFinding.OnHitEllipse(transform.position, target.pathFinding) <= 1)
+                {
+                    movePos = pathFinding.AroundTarget(target.pathFinding);
+
+                    state = UnitState.Move;
+                    hit = true;
+                }
                 else state = UnitState.Attack;
             }
             else
             {
                 for (int i = 0; i < manager.units.Count; i++)
                 {
-                    if (manager.units[i] != this && OnEllipse(transform.position, manager.units[i], unitSize, manager.units[i].unitSize) <= 1) movePos += AroundTarget(manager.units[i]);
+                    if (manager.units[i] != this && pathFinding.OnHitEllipse(transform.position, manager.units[i].pathFinding) <= 1)
+                    {
+                        movePos += pathFinding.AroundTarget(manager.units[i].pathFinding);
+
+                        state = UnitState.Move;
+                        hit = true;
+                    }
                 }
 
                 if (movePos == Vector3.zero) movePos = moveSpeed * Time.deltaTime * (target.transform.position - transform.position).normalized;
@@ -129,41 +141,18 @@ namespace Yang
 
             animator.Play("Attack");
 
-            if (OnEllipse(transform.position, target, unitSize, target.unitSize) <= 1)
+            if (pathFinding.OnHitEllipse(transform.position, target.pathFinding) <= 1)
             {
                 state = UnitState.Move;
 
                 return;
             }
 
-            if (OnEllipse(transform.position, target, attackRange, target.unitSize) <= 1) Debug.Log("Attack the target!");
+            if (pathFinding.OnAttackEllipse(transform.position, target.pathFinding) <= 1) Debug.Log("Attack the target!");
             else state = UnitState.Move;
 
             if (target.transform.position.x < transform.position.x) transform.localScale = new Vector3(1, 1, 1);
             else if (target.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        private Vector3 AroundTarget(Unit _target)
-        {
-            Vector3 _movePos = moveSpeed * Time.deltaTime * (transform.position - _target.transform.position).normalized;
-        
-            Vector3 _rightTurn = Quaternion.Euler(0, 0, -90) * _movePos;
-            Vector3 _leftTurn = Quaternion.Euler(0, 0, 90) * _movePos;
-
-            if (OnEllipse(_rightTurn, _target, unitSize, _target.unitSize) > 1) _movePos += _rightTurn;
-            else if (OnEllipse(_leftTurn, _target, unitSize, _target.unitSize) > 1) _movePos += _leftTurn;
-        
-            state = UnitState.Move;
-            hit = true;
-        
-            return _movePos;
-        }
-
-        private float OnEllipse(Vector3 _pos, Unit _target, float _range, float _targetRange)
-        {
-            Vector2 delta = _target.transform.position - _pos;
-
-            return Mathf.Pow(delta.x / (_range + _targetRange), 2) + Mathf.Pow(delta.y / (_range * heightRatio + _targetRange * _target.heightRatio), 2);
         }
     }
 
