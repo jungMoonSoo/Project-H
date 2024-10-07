@@ -13,7 +13,7 @@ namespace Yang
         public Unit target;
 
         private bool onEllipse;
-        private Unit onFllipseTarget;
+        private Unit onEllipseTarget;
         private Vector3 movePos;
 
         private float checkDist;
@@ -94,11 +94,11 @@ namespace Yang
 
             if (onEllipse)
             {
-                if (pathFinding.OnHitEllipse(transform.position, onFllipseTarget.pathFinding) > 1.1f) onEllipse = false;
+                if (pathFinding.OnHitEllipse(transform.position, onEllipseTarget.pathFinding) > 1.1f) onEllipse = false;
             }
             else
             {
-                onEllipse = OnEllipse();
+                onEllipse = OnEllipseEnter();
 
                 if (pathFinding.OnAttackEllipse(transform.position, target.pathFinding) <= 1) state = UnitState.Attack;
 
@@ -120,7 +120,7 @@ namespace Yang
 
             animator.Play("Attack");
 
-            if (OnEllipse())
+            if (OnEllipseEnter())
             {
                 state = UnitState.Move;
 
@@ -140,7 +140,7 @@ namespace Yang
             else if (target.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        private bool OnEllipse()
+        private bool OnEllipseEnter()
         {
             movePos = moveSpeed * (target.transform.position - transform.position).normalized;
 
@@ -148,7 +148,7 @@ namespace Yang
             {
                 if (manager.units[i] != this && pathFinding.OnHitEllipse(transform.position + movePos, manager.units[i].pathFinding) <= 1)
                 {
-                    onFllipseTarget = manager.units[i];
+                    onEllipseTarget = manager.units[i];
                     movePos = pathFinding.AroundTarget(manager.units[i].pathFinding, movePos);
 
                     state = UnitState.Move;
@@ -165,25 +165,7 @@ namespace Yang
         {
             Gizmos.color = Color.gray;
 
-            Vector2 endPoint = transform.position + movePos.normalized * 5;
-
-            Gizmos.DrawLine(transform.position, endPoint);
-
-            DrawArrow(endPoint, movePos.normalized);
-        }
-
-        private void DrawArrow(Vector2 position, Vector2 direction)
-        {
-            // 화살표의 크기
-            float arrowSize = 0.2f;
-
-            // 화살표 끝 좌표
-            Vector2 right = position + direction * arrowSize;
-            Vector2 left = position - direction * arrowSize;
-
-            // 화살표 머리 부분을 그리기 위한 기즈모 선
-            Gizmos.DrawLine(position, right);
-            Gizmos.DrawLine(position, left);
+            Gizmos.DrawLine(transform.position, transform.position + movePos.normalized * 5);
         }
 #endif
     }
