@@ -93,6 +93,7 @@ public class Unit : MonoBehaviour
         if (onEllipse)
         {
             if (ellipseCollider.OnHitEllipse(transform.position, onEllipseTarget.ellipseCollider) > 1.1f) onEllipse = false;
+            else movePos = moveSpeed * (transform.position - onEllipseTarget.transform.position).normalized;
         }
         else
         {
