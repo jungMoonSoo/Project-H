@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public bool enemy;
+    public bool isAlly;
+    public bool notMove;
+
     public float moveSpeed;
 
     public UnitState state;
-
-    public Unit target;
 
     private bool onEllipse;
     private Unit onEllipseTarget;
@@ -20,21 +20,21 @@ public class Unit : MonoBehaviour
     private Animator animator;
     private EllipseCollider ellipseCollider;
 
-    private UnitManager manager;
+    private Unit target;
 
-    public void Init(UnitManager _manager)
+    private void Start()
     {
-        manager = _manager;
-
         TryGetComponent(out animator);
         TryGetComponent(out ellipseCollider);
+
+        ellipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
     }
 
     private void FixedUpdate()
     {
-        if (manager == null) return;
+        SetTarget(isAlly);
 
-        SetTarget(enemy);
+        if (target == null) state = UnitState.Idle;
 
         switch (state)
         {
@@ -56,24 +56,25 @@ public class Unit : MonoBehaviour
                 break;
         }
     }
-
-    private void SetTarget(bool _enemy)
+    
+    private void SetTarget(bool _isAlly)
     {
         if (target == null) checkClosetDist = float.MaxValue;
-        else checkClosetDist = ellipseCollider.OnHitEllipse(transform.position, target.ellipseCollider);
+        else checkClosetDist = ellipseCollider.OnEllipseEnter(transform.position, target.ellipseCollider, EllipseNum.Unit, EllipseNum.Unit);
 
         if (checkClosetDist <= 1) return;
 
-        for (int i = 0; i < manager.units.Count; i++)
+        for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
-            if (manager.units[i] != this && manager.units[i].enemy == !_enemy)
+            if (UnitManager.Instance.units[i] != this && UnitManager.Instance.units[i].isAlly == !_isAlly)
             {
-                checkDist = ellipseCollider.OnAttackEllipse(transform.position, manager.units[i].ellipseCollider);
+                checkDist = ellipseCollider.OnEllipseEnter(transform.position, UnitManager.Instance.units[i].ellipseCollider, EllipseNum.Attack, EllipseNum.Unit);
 
                 if (checkDist < checkClosetDist)
                 {
                     checkClosetDist = checkDist;
-                    target = manager.units[i];
+
+                    target = UnitManager.Instance.units[i];
                 }
             }
         }
@@ -81,36 +82,33 @@ public class Unit : MonoBehaviour
 
     private void Move()
     {
-        if (target == null)
-        {
-            state = UnitState.Idle;
-
-            return;
-        }
-
-        animator.Play("Walk");
-
         if (onEllipse)
         {
-            if (ellipseCollider.OnHitEllipse(transform.position, onEllipseTarget.ellipseCollider) > 1.1f) onEllipse = false;
-            else movePos = moveSpeed * (transform.position - onEllipseTarget.transform.position).normalized;
+            if (ellipseCollider.OnEllipseEnter(transform.position, onEllipseTarget.ellipseCollider, EllipseNum.Unit, EllipseNum.Unit) > 1.1f) onEllipse = false;
+            else movePos = ellipseCollider.TransAreaPos(movePos + moveSpeed * (transform.position - onEllipseTarget.transform.position).normalized);
         }
         else
         {
             onEllipse = OnEllipseEnter();
 
-            if (ellipseCollider.OnAttackEllipse(transform.position, target.ellipseCollider) <= 1) state = UnitState.Attack;
+            if (movePos == Vector3.zero) state = UnitState.Attack;
 
             if (movePos.x < 0) transform.localScale = new Vector3(1, 1, 1);
             else if (movePos.x > 0) transform.localScale = new Vector3(-1, 1, 1);
         }
+
+        if (notMove) return;
+
+        animator.Play("Walk");
 
         transform.position = Vector2.MoveTowards(transform.position, transform.position + movePos, moveSpeed);
     }
 
     private void Attack()
     {
-        if (target == null)
+        if (OnEllipseEnter()) return;
+
+        if (movePos != Vector3.zero)
         {
             state = UnitState.Idle;
 
@@ -118,15 +116,6 @@ public class Unit : MonoBehaviour
         }
 
         animator.Play("Attack");
-
-        if (OnEllipseEnter()) return;
-
-        if (ellipseCollider.OnAttackEllipse(transform.position, target.ellipseCollider) > 1)
-        {
-            state = UnitState.Move;
-
-            return;
-        }
 
         Debug.Log("Attack the target!");
 
@@ -136,20 +125,23 @@ public class Unit : MonoBehaviour
 
     private bool OnEllipseEnter()
     {
-        movePos = moveSpeed * (target.transform.position - transform.position).normalized;
+        if (ellipseCollider.OnEllipseEnter(transform.position, target.ellipseCollider, EllipseNum.Attack, EllipseNum.Unit) <= 1) movePos = Vector3.zero;
+        else movePos = ellipseCollider.TransAreaPos(moveSpeed * (target.transform.position - transform.position).normalized);
 
-        for (int i = 0; i < manager.units.Count; i++)
+        for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
-            if (manager.units[i] != this && ellipseCollider.OnHitEllipse(transform.position + movePos, manager.units[i].ellipseCollider) <= 1)
+            if (UnitManager.Instance.units[i] != this && ellipseCollider.OnEllipseEnter(transform.position + movePos, UnitManager.Instance.units[i].ellipseCollider, EllipseNum.Unit, EllipseNum.Unit) <= 1)
             {
-                onEllipseTarget = manager.units[i];
-                movePos = ellipseCollider.AroundTarget(manager.units[i].ellipseCollider, movePos);
+                onEllipseTarget = UnitManager.Instance.units[i];
+                movePos = ellipseCollider.AroundTarget(movePos, UnitManager.Instance.units[i].ellipseCollider, moveSpeed);
 
                 state = UnitState.Move;
 
                 return true;
             }
         }
+
+        movePos = ellipseCollider.TransAreaPos(movePos);
 
         return false;
     }
