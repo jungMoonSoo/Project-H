@@ -22,13 +22,13 @@ public class EllipseCollider : MonoBehaviour
         Vector3 _rightTurn = TransAreaPos(Quaternion.Euler(0, 0, -90) * _pos);
         Vector3 _leftTurn = TransAreaPos(Quaternion.Euler(0, 0, 90) * _pos);
 
-        if (OnEllipseEnter(transform.position + _rightTurn, _target, EllipseNum.Unit, EllipseNum.Unit) > 1) return _rightTurn;
-        if (OnEllipseEnter(transform.position + _leftTurn, _target, EllipseNum.Unit, EllipseNum.Unit) > 1) return _leftTurn;
+        if (OnEllipseEnter(transform.position + _rightTurn, _target, EllipseType.Unit, EllipseType.Unit) > 1) return _rightTurn;
+        if (OnEllipseEnter(transform.position + _leftTurn, _target, EllipseType.Unit, EllipseType.Unit) > 1) return _leftTurn;
 
         return TransAreaPos(_pos + _speed * (transform.position - _target.transform.position).normalized);
     }
 
-    public float OnEllipseEnter(Vector3 _pos, EllipseCollider _target, EllipseNum _num, EllipseNum _targetNum)
+    public float OnEllipseEnter(Vector3 _pos, EllipseCollider _target, EllipseType _num, EllipseType _targetNum)
     {
         _pos = _target.transform.position - _pos;
 
@@ -89,10 +89,4 @@ public class EllipseCollider : MonoBehaviour
         return _pos + new Vector2(Mathf.Cos(_angle) * _radiusX, Mathf.Sin(_angle) * _radiusY);
     }
 #endif
-}
-
-public enum EllipseNum
-{
-    Unit,
-    Attack
 }

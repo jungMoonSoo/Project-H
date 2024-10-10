@@ -6,160 +6,104 @@ public class Unit : MonoBehaviour
     public bool isAlly;
     public bool notMove;
 
-    public float moveSpeed;
+    public UnitStatus status;
+    public UnitStateBase stateBase;
 
-    public UnitState state;
+    public LerpSprite hpBar = new();
 
-    private bool onEllipse;
-    private Unit onEllipseTarget;
-    private Vector3 movePos;
+    public Animator Animator { get; set; }
+    public EllipseCollider EllipseCollider { get; set; }
 
-    private float checkDist;
-    private float checkClosetDist;
+    private UnitState state;
+    private Vector3 existingPos;
 
-    private Animator animator;
-    private EllipseCollider ellipseCollider;
-
-    private Unit target;
+    private readonly LerpAction lerpAction = new();
 
     private void Start()
     {
-        TryGetComponent(out animator);
-        TryGetComponent(out ellipseCollider);
+        Animator = GetComponent<Animator>();
+        EllipseCollider = GetComponent<EllipseCollider>();
 
-        ellipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
+        EllipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
+
+        state = UnitState.Idle;
+        stateBase = stateBase = new UnitState_Idle(this);
+
+        status.hp[0].SetBind(HpBind);
     }
 
     private void FixedUpdate()
     {
-        SetTarget(isAlly);
+        lerpAction.actions?.Invoke();
 
-        if (target == null) state = UnitState.Idle;
+        stateBase.SetTarget(isAlly);
+
+        stateBase.OnUpdate();
+    }
+
+    public void StateChange(UnitState _state)
+    {
+        if (state == _state) return;
+
+        stateBase.OnExit();
+
+        state = _state;
 
         switch (state)
         {
             case UnitState.Idle:
-                animator.Play("Idle");
-
-                if (target != null) state = UnitState.Move;
+                stateBase = new UnitState_Idle(this);
                 break;
 
             case UnitState.Move:
-                Move();
+                stateBase = new UnitState_Move(this);
                 break;
 
             case UnitState.Attack:
-                Attack();
+                stateBase = new UnitState_Attack(this);
                 break;
 
             case UnitState.Die:
+                stateBase = new UnitState_Die(this);
                 break;
         }
-    }
-    
-    private void SetTarget(bool _isAlly)
-    {
-        if (target == null) checkClosetDist = float.MaxValue;
-        else checkClosetDist = ellipseCollider.OnEllipseEnter(transform.position, target.ellipseCollider, EllipseNum.Unit, EllipseNum.Unit);
 
-        if (checkClosetDist <= 1) return;
-
-        for (int i = 0; i < UnitManager.Instance.units.Count; i++)
-        {
-            if (UnitManager.Instance.units[i] != this && UnitManager.Instance.units[i].isAlly == !_isAlly)
-            {
-                checkDist = ellipseCollider.OnEllipseEnter(transform.position, UnitManager.Instance.units[i].ellipseCollider, EllipseNum.Attack, EllipseNum.Unit);
-
-                if (checkDist < checkClosetDist)
-                {
-                    checkClosetDist = checkDist;
-
-                    target = UnitManager.Instance.units[i];
-                }
-            }
-        }
+        stateBase.OnEnter();
     }
 
-    private void Move()
+    public void SetPos(Vector2 _pos)
     {
-        if (onEllipse)
-        {
-            if (ellipseCollider.OnEllipseEnter(transform.position, onEllipseTarget.ellipseCollider, EllipseNum.Unit, EllipseNum.Unit) > 1.1f) onEllipse = false;
-            else movePos = ellipseCollider.TransAreaPos(movePos + moveSpeed * (transform.position - onEllipseTarget.transform.position).normalized);
-        }
-        else
-        {
-            onEllipse = OnEllipseEnter();
+        existingPos = _pos;
 
-            if (movePos == Vector3.zero) state = UnitState.Attack;
-
-            if (movePos.x < 0) transform.localScale = new Vector3(1, 1, 1);
-            else if (movePos.x > 0) transform.localScale = new Vector3(-1, 1, 1);
-        }
-
-        if (notMove) return;
-
-        animator.Play("Walk");
-
-        transform.position = Vector2.MoveTowards(transform.position, transform.position + movePos, moveSpeed);
+        ReturnPos();
     }
 
-    private void Attack()
+    public void ReturnPos()
     {
-        if (OnEllipseEnter()) return;
-
-        if (movePos != Vector3.zero)
-        {
-            state = UnitState.Idle;
-
-            return;
-        }
-
-        animator.Play("Attack");
-
-        Debug.Log("Attack the target!");
-
-        if (target.transform.position.x < transform.position.x) transform.localScale = new Vector3(1, 1, 1);
-        else if (target.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+        transform.position = existingPos;
     }
 
-    private bool OnEllipseEnter()
+    // 바인딩
+    private void HpBind(ref int _current, int _change)
     {
-        if (ellipseCollider.OnEllipseEnter(transform.position, target.ellipseCollider, EllipseNum.Attack, EllipseNum.Unit) <= 1) movePos = Vector3.zero;
-        else movePos = ellipseCollider.TransAreaPos(moveSpeed * (target.transform.position - transform.position).normalized);
+        if (_change < 0) _change = 0;
+        else if (_change > status.hp[1].Data) _change = status.hp[1].Data;
 
-        for (int i = 0; i < UnitManager.Instance.units.Count; i++)
-        {
-            if (UnitManager.Instance.units[i] != this && ellipseCollider.OnEllipseEnter(transform.position + movePos, UnitManager.Instance.units[i].ellipseCollider, EllipseNum.Unit, EllipseNum.Unit) <= 1)
-            {
-                onEllipseTarget = UnitManager.Instance.units[i];
-                movePos = ellipseCollider.AroundTarget(movePos, UnitManager.Instance.units[i].ellipseCollider, moveSpeed);
+        _current = _change;
 
-                state = UnitState.Move;
+        hpBar.SetData(lerpAction, (float)_current / status.hp[1].Data);
 
-                return true;
-            }
-        }
-
-        movePos = ellipseCollider.TransAreaPos(movePos);
-
-        return false;
+        // if (_current == 0) Die();
     }
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
+        if (stateBase == null) return;
+
         Gizmos.color = Color.gray;
 
-        Gizmos.DrawLine(transform.position, transform.position + movePos.normalized * 5);
+        Gizmos.DrawLine(transform.position, transform.position + stateBase.GetMovePos() * 5);
     }
 #endif
-}
-
-public enum UnitState
-{
-    Idle,
-    Move,
-    Attack,
-    Die
 }
