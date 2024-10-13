@@ -1,4 +1,4 @@
-public interface ISkill
+public interface IPlayerSkill
 {
     public void Use();
     public void BeginUse();

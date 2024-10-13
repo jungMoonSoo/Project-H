@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillBase
+public class PlayerSkillBase
 {
     public virtual void BeginUse()
     {

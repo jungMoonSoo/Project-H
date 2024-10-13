@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestSkill : SkillBase, ISkill
+public class TestPlayerSkill : PlayerSkillBase, IPlayerSkill
 {
     public void Use()
     {
