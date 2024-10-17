@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlly: 1
   notMove: 0
-  state: 0
+  unitSize: {x: 0, y: 0, z: 0}
   status:
     hp:
     - data: 100

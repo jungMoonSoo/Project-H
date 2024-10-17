@@ -20,8 +20,8 @@ public class UnitState_Move : UnitStateBase
     {
         if (onEllipse)
         {
-            if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, onTarget.EllipseCollider, EllipseType.Unit, EllipseType.Unit) > 1.1f) onEllipse = false;
-            else movePos = unit.EllipseCollider.TransAreaPos(movePos + unit.status.moveSpeed.Data * (unit.transform.position - onTarget.transform.position).normalized);
+            if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, onTarget.EllipseCollider, EllipseType.Unit, EllipseType.Unit) > 1.5f) onEllipse = false;
+            else movePos = unit.EllipseCollider.TransAreaPos(movePos + GetMoveVector(unit.transform, onTarget.transform));
         }
         else
         {
@@ -29,8 +29,7 @@ public class UnitState_Move : UnitStateBase
 
             if (movePos == Vector3.zero) unit.StateChange(UnitState.Attack);
 
-            if (movePos.x < 0) unit.transform.localScale = new Vector3(1, 1, 1);
-            else if (movePos.x > 0) unit.transform.localScale = new Vector3(-1, 1, 1);
+            Flip(movePos.x, 0);
         }
 
         if (unit.notMove) return;

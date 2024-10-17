@@ -51,7 +51,7 @@ public abstract class UnitStateBase
     protected bool OnEllipseEnter()
     {
         if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1) movePos = Vector3.zero;
-        else movePos = unit.EllipseCollider.TransAreaPos(unit.status.moveSpeed.Data * (target.transform.position - unit.transform.position).normalized);
+        else movePos = unit.EllipseCollider.TransAreaPos(GetMoveVector(target.transform, unit.transform));
 
         for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
@@ -69,6 +69,17 @@ public abstract class UnitStateBase
         movePos = unit.EllipseCollider.TransAreaPos(movePos);
 
         return false;
+    }
+
+    protected Vector3 GetMoveVector(Transform _from, Transform _to)
+    {
+        return unit.status.moveSpeed.Data * (_from.position - _to.position).normalized;
+    }
+
+    protected void Flip(float _target, float _this)
+    {
+        if (_target < _this) unit.transform.rotation = Quaternion.Euler(0, 0, 0);
+        else if (_target > _this) unit.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
 #if UNITY_EDITOR

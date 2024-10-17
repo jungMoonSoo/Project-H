@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Unit : MonoBehaviour
@@ -18,6 +19,24 @@ public class Unit : MonoBehaviour
     private Vector3 existingPos;
 
     private readonly LerpAction lerpAction = new();
+
+    private void OnEnable()
+    {
+#if UNITY_EDITOR
+        if (EditorApplication.isPlaying) UnitManager.Instance.units.Add(this);
+#else
+        UnitManager.Instance.units.Add(this);
+#endif
+    }
+
+    private void OnDisable()
+    {
+#if UNITY_EDITOR
+        if (EditorApplication.isPlaying) UnitManager.Instance.units.Remove(this);
+#else
+        UnitManager.Instance.units.Remove(this);
+#endif
+    }
 
     private void Start()
     {

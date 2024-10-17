@@ -5,6 +5,7 @@ using UnityEngine;
 public class UnitState_Attack : UnitStateBase
 {
     private bool attack;
+    private AnimatorStateInfo state;
 
     public UnitState_Attack(Unit _unit) : base(_unit)
     {
@@ -29,11 +30,11 @@ public class UnitState_Attack : UnitStateBase
 
         unit.Animator.Play("Attack");
 
-        AnimatorStateInfo _state = unit.Animator.GetCurrentAnimatorStateInfo(0);
+        state = unit.Animator.GetCurrentAnimatorStateInfo(0);
 
-        if (_state.IsName("Attack"))
+        if (state.IsName("Attack"))
         {
-            if (_state.normalizedTime % 1 > 0.3f)
+            if (state.normalizedTime % 1 > 0.3f)
             {
                 if (!attack)
                 {
@@ -45,8 +46,7 @@ public class UnitState_Attack : UnitStateBase
             else attack = false;
         }
 
-        if (target.transform.position.x < unit.transform.position.x) unit.transform.localScale = new Vector3(1, 1, 1);
-        else if (target.transform.position.x > unit.transform.position.x) unit.transform.localScale = new Vector3(-1, 1, 1);
+        Flip(target.transform.position.x, unit.transform.position.x);
     }
 
     public override void OnExit()

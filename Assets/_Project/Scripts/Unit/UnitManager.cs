@@ -9,11 +9,6 @@ public class UnitManager : Singleton<UnitManager>
     public Vector2 mapPos;
     public Vector2 mapSize;
 
-    private void Awake()
-    {
-        units.AddRange(FindObjectsOfType<Unit>());
-    }
-
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {

@@ -1,0 +1,151 @@
+Nun2.png
+size:374,1746
+filter:Linear,Linear
+pma:true
+scale:0.5
+Back_hair
+bounds:170,189,183,78
+Body_Cross
+bounds:316,378,56,77
+rotate:180
+Book-Back_cover
+bounds:66,1423,231,26
+rotate:90
+Book-cover_3
+bounds:32,1422,232,32
+rotate:90
+Book_Shelf
+bounds:85,1434,23,37
+Book_cover_2
+bounds:178,1094,153,157
+Book_pages
+bounds:94,1522,222,32
+rotate:90
+Book_sole page
+bounds:2,684,219,112
+Cape_left backside
+bounds:213,667,186,116
+rotate:270
+Cape_neck
+bounds:34,1665,62,53
+rotate:90
+Corset
+bounds:288,978,110,78
+rotate:270
+Dress2
+bounds:128,1455,289,199
+rotate:90
+Face
+bounds:103,1252,213,222
+Head_cross1
+bounds:331,761,37,58
+Head_cross2
+bounds:301,267,41,73
+Left eyebrow
+bounds:321,254,44,11
+Left foot_calf
+bounds:128,1672,72,46
+rotate:270
+Left_Thigh
+bounds:299,528,60,165
+rotate:180
+Left_arm1
+bounds:199,51,101,45
+Left_arm1_act
+bounds:7,1318,86,69
+Left_arm2
+bounds:2,50,72,114
+rotate:180
+Left_cape
+bounds:115,70,91,104
+rotate:90
+Left_eyeblank
+bounds:176,1721,40,23
+Left_eyelid
+bounds:314,3,54,26
+offsets:0,5,54,31
+Left_eyelid0
+bounds:110,1460,31,11
+Left_eyelid2
+bounds:35,1710,9,17
+offsets:0,2,10,19
+Left_eyepupil
+bounds:269,27,21,22
+Left_hair part1
+bounds:151,265,98,132
+rotate:270
+Left_hair part2
+bounds:8,147,76,244
+rotate:270
+Left_hair part3
+bounds:176,342,86,169
+rotate:90
+Left_hand
+bounds:2,9,67,39
+Left_hand_act
+bounds:331,687,72,40
+rotate:90
+Left_long
+bounds:2,371,114,352
+rotate:270
+Left_uppercalf
+bounds:315,1253,46,156
+Middle hair
+bounds:259,825,89,151
+Mouth
+bounds:33,1656,40,7
+Nose
+bounds:72,1735,12,9
+Right arm_1
+bounds:302,22,97,51
+rotate:90
+Right eyebrow
+bounds:45,1403,68,11
+Right_Thigh
+bounds:2,226,59,167
+rotate:90
+Right_arm2
+bounds:75,21,51,128
+rotate:270
+Right_cape
+bounds:63,284,111,109
+rotate:180
+Right_eyeblank
+bounds:304,162,53,25
+Right_eyelid
+bounds:98,8,61,24
+offsets:1,2,62,26
+Right_eyelid0
+bounds:29,1734,42,10
+Right_eyelid2
+bounds:128,1536,11,16
+offsets:0,0,13,16
+Right_eyepupil
+bounds:71,5,25,27
+Right_hair part1
+bounds:2,491,118,141
+rotate:270
+Right_hair part2
+bounds:40,578,120,250
+rotate:90
+Right_hand
+bounds:84,1473,75,41
+Right_long
+bounds:2,1384,42,360
+Right_uppercalf
+bounds:200,120,51,158
+rotate:90
+Riht foot_heels
+bounds:205,2,47,62
+rotate:90
+UpperBody
+bounds:193,470,116,112
+rotate:270
+Veil_Left_backside
+bounds:2,990,158,225
+rotate:270
+Veil_Right_backside
+bounds:2,1117,200,174
+rotate:90
+Veil_upper part
+bounds:2,798,298,294

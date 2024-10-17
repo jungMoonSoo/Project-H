@@ -17,7 +17,7 @@ public class EllipseCollider : MonoBehaviour
 
     public Vector3 AroundTarget(Vector3 _pos, EllipseCollider _target, float _speed)
     {
-        if (transform.position == _target.transform.position) return Random.Range(0, _speed) * Vector3.up;
+        if (transform.position == _target.transform.position) return TransAreaPos(Random.Range(0, _speed) * Vector3.up);
 
         Vector3 _rightTurn = TransAreaPos(Quaternion.Euler(0, 0, -90) * _pos);
         Vector3 _leftTurn = TransAreaPos(Quaternion.Euler(0, 0, 90) * _pos);
