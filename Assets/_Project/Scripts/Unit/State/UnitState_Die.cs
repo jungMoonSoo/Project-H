@@ -11,7 +11,9 @@ public class UnitState_Die : UnitStateBase
 
     public override void OnEnter()
     {
+        UnitManager.Instance.units.Remove(unit);
 
+        unit.Animator.Play("Idle");
     }
 
     public override void OnUpdate()

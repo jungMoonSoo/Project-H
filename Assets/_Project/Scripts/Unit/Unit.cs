@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,6 +6,8 @@ public class Unit : MonoBehaviour
 {
     public bool isAlly;
     public bool notMove;
+
+    public Action skills;
 
     public UnitStatus status;
     public UnitStateBase stateBase;
@@ -18,7 +20,7 @@ public class Unit : MonoBehaviour
     private UnitState state;
     private Vector3 existingPos;
 
-    private readonly LerpAction lerpAction = new();
+    private readonly UnitBind unitBind = new();
 
     private void OnEnable()
     {
@@ -48,15 +50,14 @@ public class Unit : MonoBehaviour
         state = UnitState.Idle;
         stateBase = stateBase = new UnitState_Idle(this);
 
-        status.hp[0].SetBind(HpBind);
+        unitBind.Init(this);
     }
 
     private void FixedUpdate()
     {
-        lerpAction.actions?.Invoke();
+        unitBind.Action();
 
-        stateBase.SetTarget(isAlly);
-
+        stateBase.SetTarget();
         stateBase.OnUpdate();
     }
 
@@ -100,19 +101,9 @@ public class Unit : MonoBehaviour
     public void ReturnPos()
     {
         transform.position = existingPos;
-    }
 
-    // 바인딩
-    private void HpBind(ref int _current, int _change)
-    {
-        if (_change < 0) _change = 0;
-        else if (_change > status.hp[1].Data) _change = status.hp[1].Data;
-
-        _current = _change;
-
-        hpBar.SetData(lerpAction, (float)_current / status.hp[1].Data);
-
-        // if (_current == 0) Die();
+        if (isAlly) transform.rotation = Quaternion.Euler(0, 180, 0);
+        else transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
 #if UNITY_EDITOR

@@ -23,8 +23,12 @@ public abstract class UnitStateBase
     public abstract void OnUpdate();
     public abstract void OnExit();
 
-    public void SetTarget(bool _isAlly)
+    public void SetTarget()
     {
+        target = null;
+
+        if (!UnitManager.Instance.isPlay) return;
+
         if (target == null) checkClosetDist = float.MaxValue;
         else checkClosetDist = unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Unit, EllipseType.Unit);
 
@@ -32,7 +36,7 @@ public abstract class UnitStateBase
 
         for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
-            if (UnitManager.Instance.units[i] != unit && UnitManager.Instance.units[i].isAlly == !_isAlly)
+            if (UnitManager.Instance.units[i].isAlly == !unit.isAlly)
             {
                 checkDist = unit.EllipseCollider.OnEllipseEnter(unit.transform.position, UnitManager.Instance.units[i].EllipseCollider, EllipseType.Attack, EllipseType.Unit);
 
@@ -45,20 +49,20 @@ public abstract class UnitStateBase
             }
         }
 
-        if (target == null) unit.StateChange(UnitState.Idle);
+        if (target == null) UnitManager.Instance.End();
     }
 
     protected bool OnEllipseEnter()
     {
         if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1) movePos = Vector3.zero;
-        else movePos = unit.EllipseCollider.TransAreaPos(GetMoveVector(target.transform, unit.transform));
+        else movePos = GetMoveVector(target.transform, unit.transform);
 
         for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
             if (UnitManager.Instance.units[i] != unit && unit.EllipseCollider.OnEllipseEnter(unit.transform.position + movePos, UnitManager.Instance.units[i].EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1)
             {
                 onTarget = UnitManager.Instance.units[i];
-                movePos = unit.EllipseCollider.AroundTarget(movePos, UnitManager.Instance.units[i].EllipseCollider, unit.status.moveSpeed.Data);
+                movePos = unit.EllipseCollider.AroundTarget(movePos, onTarget.EllipseCollider, unit.status.moveSpeed.Data);
 
                 unit.StateChange(UnitState.Move);
 

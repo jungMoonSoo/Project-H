@@ -1,5 +1,6 @@
 public enum EllipseType
 {
     Unit,
-    Attack
+    Attack,
+    Skill
 }

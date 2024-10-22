@@ -167,7 +167,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isAlly: 1
   notMove: 0
-  unitSize: {x: 0, y: 0, z: 0}
   status:
     hp:
     - data: 100
@@ -179,6 +178,8 @@ MonoBehaviour:
       data: 0.04
     atk:
       data: 10
+    atkAnimPoint:
+      data: 0.3
   hpBar:
     sprite: {fileID: 5523169504309909608}
     maxSize: 2

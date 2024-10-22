@@ -6,8 +6,21 @@ public class UnitManager : Singleton<UnitManager>
 {
     public List<Unit> units = new();
 
+    public bool isPlay;
+
     public Vector2 mapPos;
     public Vector2 mapSize;
+
+    public void End()
+    {
+        if (!isPlay) return;
+
+        isPlay = false;
+
+        for (int i = 0; i < units.Count; i++) units[i].ReturnPos();
+
+        Debug.Log("End");
+    }
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

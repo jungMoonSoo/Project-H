@@ -16,9 +16,14 @@ public class UnitState_Idle : UnitStateBase
 
     public override void OnUpdate()
     {
-        unit.Animator.Play("Idle");
+        if (target != null)
+        {
+            unit.StateChange(UnitState.Move);
 
-        if (target != null) unit.StateChange(UnitState.Move);
+            return;
+        }
+
+        unit.Animator.Play("Idle");
     }
 
     public override void OnExit()

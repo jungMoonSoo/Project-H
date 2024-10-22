@@ -18,6 +18,20 @@ public class UnitState_Move : UnitStateBase
 
     public override void OnUpdate()
     {
+        if (target == null)
+        {
+            unit.StateChange(UnitState.Idle);
+
+            return;
+        }
+
+        if (unit.notMove)
+        {
+            if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1) unit.StateChange(UnitState.Attack);
+
+            return;
+        }
+
         if (onEllipse)
         {
             if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, onTarget.EllipseCollider, EllipseType.Unit, EllipseType.Unit) > 1.5f) onEllipse = false;
@@ -31,8 +45,6 @@ public class UnitState_Move : UnitStateBase
 
             Flip(movePos.x, 0);
         }
-
-        if (unit.notMove) return;
 
         unit.Animator.Play("Walk");
 

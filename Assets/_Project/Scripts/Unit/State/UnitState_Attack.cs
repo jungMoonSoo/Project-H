@@ -19,9 +19,7 @@ public class UnitState_Attack : UnitStateBase
 
     public override void OnUpdate()
     {
-        if (OnEllipseEnter()) return;
-
-        if (movePos != Vector3.zero)
+        if (target == null || unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) > 1)
         {
             unit.StateChange(UnitState.Idle);
 
@@ -34,11 +32,16 @@ public class UnitState_Attack : UnitStateBase
 
         if (state.IsName("Attack"))
         {
-            if (state.normalizedTime % 1 > 0.3f)
+            if (state.normalizedTime % 1 > unit.status.atkAnimPoint.Data)
             {
                 if (!attack)
                 {
-                    target.status.hp[0].Data -= unit.status.atk.Data;
+                    if (Attack())
+                    {
+                        target.status.hp[0].Data -= unit.status.atk.Data;
+                        target.status.mp[0].Data += unit.status.mpRegen.Data;
+                    }
+                    else target.status.mp[0].Data += (int)(unit.status.mpRegen.Data * 0.5f);
 
                     attack = true;
                 }
@@ -52,5 +55,12 @@ public class UnitState_Attack : UnitStateBase
     public override void OnExit()
     {
 
+    }
+
+    private bool Attack()
+    {
+
+
+        return true;
     }
 }
