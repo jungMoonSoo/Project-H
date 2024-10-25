@@ -7,13 +7,13 @@ public class Unit : MonoBehaviour
     public bool isAlly;
     public bool notMove;
 
-    public Action skills;
-
     public UnitStatus status;
     public UnitStateBase stateBase;
+    public UnitSkillBase[] skills;
 
     public LerpSprite hpBar = new();
 
+    public int SkillNum { get; set; }
     public Animator Animator { get; set; }
     public EllipseCollider EllipseCollider { get; set; }
 
@@ -25,7 +25,7 @@ public class Unit : MonoBehaviour
     private void OnEnable()
     {
 #if UNITY_EDITOR
-        if (EditorApplication.isPlaying) UnitManager.Instance.units.Add(this);
+        if (gameObject.scene.isLoaded) UnitManager.Instance.units.Add(this);
 #else
         UnitManager.Instance.units.Add(this);
 #endif
@@ -34,7 +34,7 @@ public class Unit : MonoBehaviour
     private void OnDisable()
     {
 #if UNITY_EDITOR
-        if (EditorApplication.isPlaying) UnitManager.Instance.units.Remove(this);
+        if (gameObject.scene.isLoaded) UnitManager.Instance.units.Remove(this);
 #else
         UnitManager.Instance.units.Remove(this);
 #endif
@@ -81,6 +81,10 @@ public class Unit : MonoBehaviour
 
             case UnitState.Attack:
                 stateBase = new UnitState_Attack(this);
+                break;
+
+            case UnitState.Skill:
+                stateBase = new UnitState_Skill(this);
                 break;
 
             case UnitState.Die:

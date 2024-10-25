@@ -42,7 +42,7 @@ public class UnitBind
 
         if (_current == unit.status.mp[1].Data)
         {
-            unit.skills?.Invoke();
+            unit.StateChange(UnitState.Skill);
 
             _current = 0;
         }

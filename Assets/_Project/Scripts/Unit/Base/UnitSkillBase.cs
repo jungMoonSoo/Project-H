@@ -6,14 +6,13 @@ public abstract class UnitSkillBase : MonoBehaviour
 {
     protected Unit unit;
 
+    public float skillAttackPoint;
+
     protected readonly List<Unit> targets = new();
 
-    private void Start()
+    public void Awake()
     {
         TryGetComponent(out unit);
-
-        unit.skills -= OnUseSkill;
-        unit.skills += OnUseSkill;
     }
 
     public abstract void OnUseSkill();
