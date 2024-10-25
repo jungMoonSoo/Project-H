@@ -23,7 +23,7 @@ public class UnitState_Idle : UnitStateBase
             return;
         }
 
-        unit.Animator.Play("Idle");
+        unit.Animator.Play("Idle_" + unit.StateNum);
     }
 
     public override void OnExit()

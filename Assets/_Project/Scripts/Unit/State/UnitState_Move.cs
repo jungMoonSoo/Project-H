@@ -46,7 +46,7 @@ public class UnitState_Move : UnitStateBase
             Flip(movePos.x, 0);
         }
 
-        unit.Animator.Play("Walk");
+        unit.Animator.Play("Walk_" + unit.StateNum);
 
         unit.transform.position = Vector2.MoveTowards(unit.transform.position, unit.transform.position + movePos, unit.status.moveSpeed.Data);
     }

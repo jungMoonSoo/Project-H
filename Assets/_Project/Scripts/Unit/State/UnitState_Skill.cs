@@ -19,19 +19,19 @@ public class UnitState_Skill : UnitStateBase
 
     public override void OnUpdate()
     {
-        if (unit.skills.Length < unit.SkillNum + 1) return;
+        if (unit.skills.Length < unit.StateNum + 1) return;
 
-        unit.Animator.Play("Skill_" + unit.SkillNum);
+        unit.Animator.Play("Skill_" + unit.StateNum);
 
         state = unit.Animator.GetCurrentAnimatorStateInfo(0);
 
-        if (state.IsName("Skill_" + unit.SkillNum))
+        if (state.IsName("Skill_" + unit.StateNum))
         {
-            if (state.normalizedTime > unit.skills[unit.SkillNum].skillAttackPoint)
+            if (state.normalizedTime > unit.skills[unit.StateNum].skillAttackPoint)
             {
                 if (!attack)
                 {
-                    unit.skills[unit.SkillNum].OnUseSkill();
+                    unit.skills[unit.StateNum].OnUseSkill();
 
                     if (Attack()) target.status.hp[0].Data -= unit.status.atk.Data;
 

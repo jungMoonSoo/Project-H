@@ -26,11 +26,11 @@ public class UnitState_Attack : UnitStateBase
             return;
         }
 
-        unit.Animator.Play("Attack");
+        unit.Animator.Play("Attack_" + unit.StateNum);
 
         state = unit.Animator.GetCurrentAnimatorStateInfo(0);
 
-        if (state.IsName("Attack"))
+        if (state.IsName("Attack_" + unit.StateNum))
         {
             if (state.normalizedTime % 1 > unit.status.atkAnimPoint.Data)
             {

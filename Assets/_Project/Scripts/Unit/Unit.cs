@@ -1,4 +1,3 @@
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class Unit : MonoBehaviour
 
     public LerpSprite hpBar = new();
 
-    public int SkillNum { get; set; }
+    public int StateNum { get; set; }
     public Animator Animator { get; set; }
     public EllipseCollider EllipseCollider { get; set; }
 
@@ -25,7 +24,7 @@ public class Unit : MonoBehaviour
     private void OnEnable()
     {
 #if UNITY_EDITOR
-        if (gameObject.scene.isLoaded) UnitManager.Instance.units.Add(this);
+        if (EditorApplication.isPlaying) UnitManager.Instance.units.Add(this);
 #else
         UnitManager.Instance.units.Add(this);
 #endif
@@ -61,13 +60,14 @@ public class Unit : MonoBehaviour
         stateBase.OnUpdate();
     }
 
-    public void StateChange(UnitState _state)
+    public void StateChange(UnitState _state, int _stateNum = 0)
     {
         if (state == _state) return;
 
         stateBase.OnExit();
 
         state = _state;
+        StateNum = _stateNum;
 
         switch (state)
         {

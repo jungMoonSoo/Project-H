@@ -1393,7 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
-  isPlay: 0
+  isPlay: 1
   mapPos: {x: 0, y: -0.2}
   mapSize: {x: 18, y: 5.8}
 --- !u!1001 &4728303724328694399

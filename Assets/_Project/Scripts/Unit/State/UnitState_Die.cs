@@ -13,12 +13,14 @@ public class UnitState_Die : UnitStateBase
     {
         UnitManager.Instance.units.Remove(unit);
 
-        unit.Animator.Play("Idle");
+        unit.Animator.Play("Idle_" + unit.StateNum);
     }
 
     public override void OnUpdate()
     {
+        unit.gameObject.SetActive(false);
 
+        unit.StateChange(UnitState.Idle);
     }
 
     public override void OnExit()
