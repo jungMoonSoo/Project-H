@@ -7,31 +7,34 @@ using UnityEngine.UI;
 public class LobbyManager : Singleton<LobbyManager>
 {
     //버튼을 설정하기 위해 설정 
-    [SerializeField] Button RecruitButton;
-    [SerializeField] Button EnhanceButton;
-    [SerializeField] Button RecoverButton;
-    [SerializeField] Button MissionButton;
-    [SerializeField] Button StoreButton;
-    [SerializeField] Button FleidButton;
-    [SerializeField] Button PassButton;
+    [SerializeField] Button recruitButton;
+    [SerializeField] Button enhanceButton;
+    [SerializeField] Button recoverButton;
+    [SerializeField] Button missionButton;
+    [SerializeField] Button storeButton;
+    [SerializeField] Button fleidButton;
+    [SerializeField] Button passButton;
+
+    [SerializeField] GameObject lobby;
+    [SerializeField] GameObject recreit;
 
     //버튼 셋팅 
     public void SettingButton() 
     {
-        RecruitButton.onClick.AddListener(Recruit);
-        EnhanceButton.onClick.AddListener(Enhance);
-        RecoverButton.onClick.AddListener(Recover);
-        MissionButton.onClick.AddListener(Mission);
-        StoreButton.onClick.AddListener(Store);
-        FleidButton.onClick.AddListener(Fleid);
-        PassButton.onClick.AddListener(Pass);
-
-
+        recruitButton.onClick.AddListener(Recruit);
+        enhanceButton.onClick.AddListener(Enhance);
+        recoverButton.onClick.AddListener(Recover);
+        missionButton.onClick.AddListener(Mission);
+        storeButton.onClick.AddListener(Store);
+        fleidButton.onClick.AddListener(Fleid);
+        passButton.onClick.AddListener(Pass);
     }
 
     void Recruit()
     {
         Debug.Log("모집");
+        lobby.SetActive(false);
+        recreit.SetActive(true);
     }
 
     void Enhance()
