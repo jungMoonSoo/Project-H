@@ -12,9 +12,9 @@ public class Unit : MonoBehaviour
 
     public LerpSprite hpBar = new();
 
-    public int StateNum { get; set; }
-    public Animator Animator { get; set; }
-    public EllipseCollider EllipseCollider { get; set; }
+    public int StateNum { get; private set; }
+    public Animator Animator { get; private set; }
+    public EllipseCollider EllipseCollider { get; private set; }
 
     private UnitState state;
     private Vector3 existingPos;
@@ -47,15 +47,13 @@ public class Unit : MonoBehaviour
         EllipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
 
         state = UnitState.Idle;
-        stateBase = stateBase = new UnitState_Idle(this);
+        stateBase = new UnitState_Idle(this, stateBase);
 
         unitBind.Init(this);
     }
 
     private void FixedUpdate()
     {
-        unitBind.Action();
-
         stateBase.SetTarget();
         stateBase.OnUpdate();
     }
@@ -72,23 +70,23 @@ public class Unit : MonoBehaviour
         switch (state)
         {
             case UnitState.Idle:
-                stateBase = new UnitState_Idle(this);
+                stateBase = new UnitState_Idle(this, stateBase);
                 break;
 
             case UnitState.Move:
-                stateBase = new UnitState_Move(this);
+                stateBase = new UnitState_Move(this, stateBase);
                 break;
 
             case UnitState.Attack:
-                stateBase = new UnitState_Attack(this);
+                stateBase = new UnitState_Attack(this, stateBase);
                 break;
 
             case UnitState.Skill:
-                stateBase = new UnitState_Skill(this);
+                stateBase = new UnitState_Skill(this, stateBase);
                 break;
 
             case UnitState.Die:
-                stateBase = new UnitState_Die(this);
+                stateBase = new UnitState_Die(this, stateBase);
                 break;
         }
 

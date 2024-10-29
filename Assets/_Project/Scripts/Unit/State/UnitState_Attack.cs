@@ -7,7 +7,7 @@ public class UnitState_Attack : UnitStateBase
     private bool attack;
     private AnimatorStateInfo state;
 
-    public UnitState_Attack(Unit _unit) : base(_unit)
+    public UnitState_Attack(Unit _unit, UnitStateBase _base) : base(_unit, _base)
     {
 
     }
@@ -19,7 +19,7 @@ public class UnitState_Attack : UnitStateBase
 
     public override void OnUpdate()
     {
-        if (target == null || unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) > 1)
+        if (target == null)
         {
             unit.StateChange(UnitState.Idle);
 
@@ -32,7 +32,8 @@ public class UnitState_Attack : UnitStateBase
 
         if (state.IsName("Attack_" + unit.StateNum))
         {
-            if (state.normalizedTime % 1 > unit.status.atkAnimPoint.Data)
+            if (state.normalizedTime % 1 > 0.9f) unit.StateChange(UnitState.Idle);
+            else if (state.normalizedTime % 1 > unit.status.atkAnimPoint.Data)
             {
                 if (!attack)
                 {
@@ -46,7 +47,6 @@ public class UnitState_Attack : UnitStateBase
                     attack = true;
                 }
             }
-            else attack = false;
         }
 
         Flip(target.transform.position.x, unit.transform.position.x);

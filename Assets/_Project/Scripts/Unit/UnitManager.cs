@@ -11,6 +11,13 @@ public class UnitManager : Singleton<UnitManager>
     public Vector2 mapPos;
     public Vector2 mapSize;
 
+    public readonly LerpAction lerpAction = new();
+
+    private void FixedUpdate()
+    {
+        lerpAction.actions?.Invoke();
+    }
+
     public void End()
     {
         if (!isPlay) return;

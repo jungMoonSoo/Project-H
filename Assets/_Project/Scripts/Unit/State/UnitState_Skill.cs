@@ -7,14 +7,14 @@ public class UnitState_Skill : UnitStateBase
     private bool attack;
     private AnimatorStateInfo state;
 
-    public UnitState_Skill(Unit _unit) : base(_unit)
+    public UnitState_Skill(Unit _unit, UnitStateBase _base) : base(_unit, _base)
     {
 
     }
 
     public override void OnEnter()
     {
-
+        unit.status.mp[0].Data = 0;
     }
 
     public override void OnUpdate()

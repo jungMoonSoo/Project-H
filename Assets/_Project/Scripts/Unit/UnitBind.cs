@@ -2,21 +2,14 @@ public class UnitBind
 {
     private Unit unit;
 
-    private readonly LerpAction lerpAction = new();
-
     public void Init(Unit _unit)
     {
         unit = _unit;
 
-        unit.hpBar.action = lerpAction;
+        unit.hpBar.action = UnitManager.Instance.lerpAction;
 
         unit.status.hp[0].SetBind(HpBind);
         unit.status.mp[0].SetBind(MpBind);
-    }
-
-    public void Action()
-    {
-        lerpAction.actions?.Invoke();
     }
 
     private void HpBind(ref int _current, int _change)
@@ -40,13 +33,6 @@ public class UnitBind
 
         _current = _change;
 
-        if (_current == unit.status.mp[1].Data)
-        {
-            unit.StateChange(UnitState.Skill);
-
-            _current = 0;
-        }
-
-        // mpBar.SetData(lerpAction, (float)_current / status.mp[1].Data);
+        // mpBar.SetData((float)_current / status.mp[1].Data);
     }
 }

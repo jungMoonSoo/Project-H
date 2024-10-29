@@ -7,16 +7,28 @@ public abstract class UnitStateBase
     protected Unit unit;
 
     protected Unit target;
-    protected Unit onTarget;
-
     protected Vector3 movePos;
+
+    protected Unit onTarget;
+    protected bool onEllipse;
 
     protected float checkDist;
     protected float checkClosetDist;
 
-    public UnitStateBase(Unit _unit)
+    public UnitStateBase(Unit _unit, UnitStateBase _base)
     {
         unit = _unit;
+
+        if (_base == null) return;
+
+        target = _base.target;
+        movePos = _base.movePos;
+
+        onTarget = _base.onTarget;
+        onEllipse = _base.onEllipse;
+
+        checkDist = _base.checkDist;
+        checkClosetDist = _base.checkClosetDist;
     }
 
     public abstract void OnEnter();

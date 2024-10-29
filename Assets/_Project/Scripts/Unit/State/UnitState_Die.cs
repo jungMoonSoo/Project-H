@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitState_Die : UnitStateBase
 {
-    public UnitState_Die(Unit _unit) : base(_unit)
+    public UnitState_Die(Unit _unit, UnitStateBase _base) : base(_unit, _base)
     {
 
     }

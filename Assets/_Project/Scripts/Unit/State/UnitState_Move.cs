@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class UnitState_Move : UnitStateBase
 {
-    private bool onEllipse;
-
-    public UnitState_Move(Unit _unit) : base(_unit)
+    public UnitState_Move(Unit _unit, UnitStateBase _base) : base(_unit, _base)
     {
 
     }
@@ -18,16 +16,9 @@ public class UnitState_Move : UnitStateBase
 
     public override void OnUpdate()
     {
-        if (target == null)
+        if (target == null || unit.notMove)
         {
             unit.StateChange(UnitState.Idle);
-
-            return;
-        }
-
-        if (unit.notMove)
-        {
-            if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1) unit.StateChange(UnitState.Attack);
 
             return;
         }
@@ -41,14 +32,13 @@ public class UnitState_Move : UnitStateBase
         {
             onEllipse = OnEllipseEnter();
 
-            if (movePos == Vector3.zero) unit.StateChange(UnitState.Attack);
-
             Flip(movePos.x, 0);
         }
 
         unit.Animator.Play("Walk_" + unit.StateNum);
-
         unit.transform.position = Vector2.MoveTowards(unit.transform.position, unit.transform.position + movePos, unit.status.moveSpeed.Data);
+
+        unit.StateChange(UnitState.Idle);
     }
 
     public override void OnExit()
