@@ -27,13 +27,12 @@ public class UnitState_Skill : UnitStateBase
 
         if (state.IsName("Skill_" + unit.StateNum))
         {
-            if (state.normalizedTime > unit.skills[unit.StateNum].skillAttackPoint)
+            if (state.normalizedTime >= 1f) unit.StateChange(UnitState.Idle);
+            else if (state.normalizedTime > unit.skills[unit.StateNum].skillAttackPoint)
             {
                 if (!attack)
                 {
                     unit.skills[unit.StateNum].OnUseSkill();
-
-                    if (Attack()) target.status.hp[0].Data -= unit.status.atk.Data;
 
                     attack = true;
                 }
@@ -41,20 +40,11 @@ public class UnitState_Skill : UnitStateBase
             else attack = false;
         }
 
-        if (state.normalizedTime >= 1f) unit.StateChange(UnitState.Idle);
-
         Flip(target.transform.position.x, unit.transform.position.x);
     }
 
     public override void OnExit()
     {
 
-    }
-
-    private bool Attack()
-    {
-
-
-        return true;
     }
 }

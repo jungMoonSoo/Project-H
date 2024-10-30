@@ -27,7 +27,6 @@ public class UnitState_Idle : UnitStateBase
 
         if (!UnitManager.Instance.isPlay) return;
 
-
         if (unit.status.mp[0].Data == unit.status.mp[1].Data)
         {
             unit.StateChange(UnitState.Skill);
