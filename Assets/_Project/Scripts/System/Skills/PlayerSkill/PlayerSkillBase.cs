@@ -24,16 +24,15 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
 
     public virtual bool IsCooled
     {
-        get => lastUse.AddSeconds(CoolDown) > DateTime.Now;
+        get;
+        private set;
     }
 
-    private DateTime lastUse = DateTime.MinValue;
     private Transform areaEffectTrans = null;
     private Vector3 lastDragedPosition = Vector3.zero;
 
     public virtual void Execute()
     {
-        lastUse = DateTime.Now;
         StartCoroutine(nameof(StartCoolDown));
         OnSkill(lastDragedPosition);
     }
@@ -74,8 +73,10 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
 
     protected virtual IEnumerator StartCoolDown()
     {
+        IsCooled = true;
         BeginCoolDown();
         yield return new WaitForSeconds(CoolDown);
+        IsCooled = false;
         AfterCoolDown();
     }
 

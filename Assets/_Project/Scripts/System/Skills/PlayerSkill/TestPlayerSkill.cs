@@ -23,7 +23,6 @@ public class TestPlayerSkill : PlayerSkillBase
 
     protected override void OnSkill(Vector3 position)
     {
-        Logger.Debug("플레이어 스킬 테스트", position);
         Instantiate(skillEffectPrefab, position, Quaternion.identity);
     }
     protected override void CooledSkill()
