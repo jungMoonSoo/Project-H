@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class InGameManager : Singleton<InGameManager>
 {
+    public Camera MainCamera;
+    public RectTransform SkillGroup;
     private readonly List<PauseType> pauseList = new();
 
     /// <summary>
@@ -69,5 +73,21 @@ public class InGameManager : Singleton<InGameManager>
             pauseList.Add(PauseType.OpenMenu);
         }
         CheckPause();
+    }
+
+    public void TestSkill()
+    {
+        /*if(!Action)
+        {
+            if (skill.SkillRequire.CheckRequire(null))
+            {
+                Action = true;
+                skill.SkillPrepare.Begin(null);
+            }
+        }
+        else
+        {
+            skill.SkillPrepare.End(null);
+        }*/
     }
 }

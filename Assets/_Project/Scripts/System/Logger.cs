@@ -9,26 +9,26 @@ public static class Logger
 
 
 
-    public static void Debug(string log, params object[] args)
+    public static void Debug(object log, params object[] args)
     {
         Log(log, LogType.Debug, args);
     }
-    public static void Info(string log, params object[] args)
+    public static void Info(object log, params object[] args)
     {
         Log(log, LogType.Info, args);
     }
-    public static void Warning(string log, params object[] args)
+    public static void Warning(object log, params object[] args)
     {
         Log(log, LogType.Warning, args);
     }
-    public static void Error(string log, params object[] args)
+    public static void Error(object log, params object[] args)
     {
         Log(log, LogType.Error, args);
     }
 
 
 
-    private static void Log(string log, LogType type, params object[] args)
+    private static void Log(object log, LogType type, params object[] args)
     {
         stringBuilder.Clear();
         stringBuilder.Append($"{GetLogInfo(type)} - ");
@@ -40,7 +40,18 @@ public static class Logger
             stringBuilder.Append(']');
         }
 
-        UnityEngine.Debug.Log(stringBuilder.ToString());
+        switch(type)
+        {
+            case LogType.Debug:
+                UnityEngine.Debug.Log(stringBuilder.ToString());
+                break;
+            case LogType.Warning:
+                UnityEngine.Debug.LogWarning(stringBuilder.ToString());
+                break;
+            case LogType.Error:
+                UnityEngine.Debug.LogError(stringBuilder.ToString());
+                break;
+        }
     }
     private static string GetLogInfo(LogType type)
     {
@@ -48,7 +59,7 @@ public static class Logger
         StackFrame stackFrame = new StackTrace().GetFrame(3);
         MethodBase callingMethod = stackFrame.GetMethod();
 
-        return $"{time.ToString("yyyy-MM-dd HH:mm:ss")}\t[{type.ToString()}]\t[{callingMethod.DeclaringType.Name}]::[{callingMethod.Name}]";
+        return $"{time.ToString("yyyy-MM-dd HH:mm:ss")}\t[{type.ToString()}] [{callingMethod.DeclaringType.Name}]::[{callingMethod.Name}]";
     }
 }
 
