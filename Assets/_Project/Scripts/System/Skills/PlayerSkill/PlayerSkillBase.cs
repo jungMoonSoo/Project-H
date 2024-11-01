@@ -13,15 +13,10 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
     {
         get;
     }
-    public abstract Camera MainCamera
-    {
-        get;
-    }
     public abstract float CoolDown
     {
         get;
     }
-
     public virtual bool IsCooled
     {
         get;
@@ -52,9 +47,9 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
             CooledSkill();
         }
     }
-    public virtual void OnDrag(Vector2 position)
+    public virtual void OnDrag(Vector3 position)
     {
-        lastDragedPosition = MainCamera.ScreenToWorldPoint(position) + new Vector3(0, 0, 1);
+        lastDragedPosition = position + new Vector3(0, 0, 1);
         if (areaEffectTrans != null)
         {
             areaEffectTrans.position = lastDragedPosition;
@@ -71,7 +66,11 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
 
 
 
-    protected virtual IEnumerator StartCoolDown()
+    /// <summary>
+    /// 쿨타임 구현용 Coroutine Method
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator StartCoolDown()
     {
         IsCooled = true;
         BeginCoolDown();
@@ -84,9 +83,24 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
 
 
 
+    /// <summary>
+    /// 스킬 동작 부분
+    /// </summary>
+    /// <param name="position">스킬 사용 위치</param>
     protected abstract void OnSkill(Vector3 position);
+    /// <summary>
+    /// 스킬 쿨타임 때 요청 시
+    /// </summary>
     protected abstract void CooledSkill();
 
+    /// <summary>
+    /// 쿨타임 전 동작<br/>
+    /// UI 변경에 사용하기 위함
+    /// </summary>
     protected abstract void BeginCoolDown();
+    /// <summary>
+    /// 쿨타임 종료 동작<br/>
+    /// UI 변경에 사용하기 위함
+    /// </summary>
     protected abstract void AfterCoolDown();
 }

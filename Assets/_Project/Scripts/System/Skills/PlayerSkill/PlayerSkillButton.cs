@@ -38,7 +38,7 @@ public class PlayerSkillButton: Button, IDragHandler, IBeginDragHandler, IEndDra
     {
         if (isUsing)
         {
-            PlayerSkill.OnDrag(eventData.position);
+            PlayerSkill.OnDrag(InGameManager.Instance.MainCamera.ScreenToWorldPoint(eventData.position));
         }
     }
 

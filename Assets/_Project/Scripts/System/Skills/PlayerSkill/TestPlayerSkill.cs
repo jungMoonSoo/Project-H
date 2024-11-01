@@ -15,7 +15,6 @@ public class TestPlayerSkill : PlayerSkillBase
 
 
 
-    public override Camera MainCamera => InGameManager.Instance.MainCamera;
     public override GameObject AreaEffect => areaEffectPrefab;
     public override GameObject SkillEffect => skillEffectPrefab;
     public override float CoolDown => coolDown;
