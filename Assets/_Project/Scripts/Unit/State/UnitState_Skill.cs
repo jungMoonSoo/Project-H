@@ -32,7 +32,7 @@ public class UnitState_Skill : UnitStateBase
             {
                 if (!attack)
                 {
-                    unit.skills[unit.StateNum].OnUseSkill();
+                    unit.skills[unit.StateNum].Execute();
 
                     attack = true;
                 }

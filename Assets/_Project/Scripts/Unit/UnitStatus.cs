@@ -8,10 +8,10 @@ public class UnitStatus
     public BindData<int>[] hp = new BindData<int>[2];
     public BindData<int>[] mp = new BindData<int>[2];
 
-    public BindData<int> mpRegen = new();
+    public int mpRegen;
 
-    public BindData<float> moveSpeed = new();
+    public float moveSpeed;
 
-    public BindData<int> atk = new();
-    public BindData<float> atkAnimPoint = new();
+    public int atk;
+    [Range(0f, 1f)]public float atkAnimPoint;
 }

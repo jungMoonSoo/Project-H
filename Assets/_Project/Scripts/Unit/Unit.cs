@@ -54,7 +54,6 @@ public class Unit : MonoBehaviour
 
     private void FixedUpdate()
     {
-        stateBase.SetTarget();
         stateBase.OnUpdate();
     }
 

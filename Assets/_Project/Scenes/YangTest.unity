@@ -454,11 +454,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 408193235041528853, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5
+      value: 8.7
       objectReference: {fileID: 0}
     - target: {fileID: 408193235041528853, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.66
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: 408193235041528853, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -498,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: notMove
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: status.hp.Array.data[0].data
@@ -1766,8 +1766,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: status.atk
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: status.atk.data
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: status.moveSpeed
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: status.atkAnimPoint
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4443345353531930916, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: status.hp.Array.data[0].data
@@ -3093,7 +3105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   units: []
-  isPlay: 1
+  isPlay: 0
   mapPos: {x: 0, y: -0.2}
   mapSize: {x: 18, y: 5.67}
 --- !u!1001 &4728303724328694399

@@ -17,7 +17,7 @@ public class UnitBind
         if (_change < 0) _change = 0;
         else if (_change > unit.status.hp[1].Data) _change = unit.status.hp[1].Data;
 
-        if (_current > _change) unit.status.mp[0].Data += (int)(unit.status.mpRegen.Data * 0.5f); // 마나 회복
+        if (_current > _change) unit.status.mp[0].Data += (int)(unit.status.mpRegen * 0.5f); // 마나 회복
 
         _current = _change;
 

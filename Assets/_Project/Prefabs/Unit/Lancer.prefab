@@ -165,7 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlly: 1
+  isAlly: 0
   notMove: 0
   status:
     hp:
@@ -174,12 +174,11 @@ MonoBehaviour:
     mp:
     - data: 0
     - data: 100
-    moveSpeed:
-      data: 0.04
-    atk:
-      data: 10
-    atkAnimPoint:
-      data: 0.3
+    mpRegen: 0
+    moveSpeed: 0.04
+    atk: 10
+    atkAnimPoint: 0.3
+  skills: []
   hpBar:
     sprite: {fileID: 5523169504309909608}
     maxSize: 2
