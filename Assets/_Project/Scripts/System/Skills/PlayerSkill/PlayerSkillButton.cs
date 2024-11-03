@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class PlayerSkillButton: Button, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    private Camera MainCamera
+    {
+        get => Camera.main;
+    }
     private IPlayerSkill PlayerSkill
     {
         get
@@ -38,7 +42,7 @@ public class PlayerSkillButton: Button, IDragHandler, IBeginDragHandler, IEndDra
     {
         if (isUsing)
         {
-            PlayerSkill.OnDrag(InGameManager.Instance.MainCamera.ScreenToWorldPoint(eventData.position));
+            PlayerSkill.OnDrag(MainCamera.ScreenToWorldPoint(eventData.position));
         }
     }
 
