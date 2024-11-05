@@ -4,14 +4,13 @@ using UnityEngine.UI;
 
 public class TestPlayerSkill : PlayerSkillBase
 {
-    [SerializeField]
-    private GameObject areaEffectPrefab;
-    [SerializeField]
-    private GameObject skillEffectPrefab;
-    [SerializeField]
-    private float coolDown;
-    [SerializeField]
-    private Text testText;
+    [Header("이펙트 Prefabs")]
+    [SerializeField] private GameObject areaEffectPrefab;
+    [SerializeField] private GameObject skillEffectPrefab;
+
+    [Header("기타 설정")]
+    [SerializeField] private float coolDown;
+    [SerializeField] private Text testText;
 
 
 

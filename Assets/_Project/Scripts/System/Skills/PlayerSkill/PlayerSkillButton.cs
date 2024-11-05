@@ -1,35 +1,58 @@
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class PlayerSkillButton: Button, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class PlayerSkillButton: MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [SerializeField]
+    private RectTransform skillGroup;
+    [SerializeField]
+    private PlayerSkillBase playerSkill;
+
+    private bool isUsing = false;
+
+
+
     private Camera MainCamera
     {
         get => Camera.main;
     }
-    private IPlayerSkill PlayerSkill
+    private RectTransform SkillGroup
     {
         get
         {
-            if(_PlayerSkill == null)
+            if(skillGroup == null)
             {
-                _PlayerSkill = GetComponent<IPlayerSkill>();
-                if (_PlayerSkill == null)
-                {
-                    Logger.Warning("스킬 버튼 조건이 완벽하지 않음.", name, _PlayerSkill);
-                }
+                skillGroup = transform.parent.GetComponent<RectTransform>();
             }
-            return _PlayerSkill;
+            return skillGroup;
         }
     }
-    private IPlayerSkill _PlayerSkill = null;
+    private PlayerSkillBase PlayerSkill
+    {
+        get
+        {
+            if(playerSkill == null)
+            {
+                playerSkill = GetComponent<PlayerSkillBase>();
+                if (playerSkill == null)
+                {
+                    Logger.Warning("스킬 버튼 조건이 완벽하지 않음.", name, playerSkill);
+                }
+            }
+            return playerSkill;
+        }
+    }
 
-    private bool isUsing = false;
 
-    public void OnBeginDrag(PointerEventData eventData)
+
+    private void OnClick()
+    {
+        //playerSkill.OnSelect();
+    }
+
+
+
+    private void OnSelect()
     {
         if (!PlayerSkill.IsCooled)
         {
@@ -37,21 +60,19 @@ public class PlayerSkillButton: Button, IDragHandler, IBeginDragHandler, IEndDra
         }
         PlayerSkill?.OnSelect();
     }
-
-    public void OnDrag(PointerEventData eventData)
+    private void OnMove(Vector2 screenPos)
     {
         if (isUsing)
         {
-            PlayerSkill.OnDrag(MainCamera.ScreenToWorldPoint(eventData.position));
+            PlayerSkill.OnDrag(MainCamera.ScreenToWorldPoint(screenPos));
         }
     }
-
-    public void OnEndDrag(PointerEventData eventData)
+    private void OnComplete(Vector2 screenPos)
     {
         if (isUsing)
         {
             isUsing = false;
-            if (!RectTransformUtility.RectangleContainsScreenPoint(InGameManager.Instance.SkillGroup, eventData.position))
+            if (!RectTransformUtility.RectangleContainsScreenPoint(SkillGroup, screenPos))
             {
                 PlayerSkill?.Execute();
             }
@@ -59,8 +80,22 @@ public class PlayerSkillButton: Button, IDragHandler, IBeginDragHandler, IEndDra
         }
     }
 
-    private void OnClick()
+
+
+    #region ◇ UI Events ◇
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        //playerSkill.OnSelect();
+        OnSelect();
     }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        OnMove(eventData.position);
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        OnComplete(eventData.position);
+    }
+    #endregion
 }

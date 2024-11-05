@@ -81,8 +81,7 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
 
 
 
-
-
+    #region ◇ 추상화 메소드 ◇
     /// <summary>
     /// 스킬 동작 부분
     /// </summary>
@@ -103,4 +102,5 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
     /// UI 변경에 사용하기 위함
     /// </summary>
     protected abstract void AfterCoolDown();
+    #endregion
 }

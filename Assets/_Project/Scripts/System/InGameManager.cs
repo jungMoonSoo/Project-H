@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class InGameManager : Singleton<InGameManager>
 {
-    public RectTransform SkillGroup;
     private readonly List<PauseType> pauseList = new();
 
     /// <summary>
