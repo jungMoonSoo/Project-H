@@ -14,13 +14,11 @@ public class UnitState_Skill : UnitStateBase
 
     public override void OnEnter()
     {
-        unit.status.mp[0].Data = 0;
+        unit.Status.mp[0].Data = 0;
     }
 
     public override void OnUpdate()
     {
-        if (unit.skills.Length < unit.StateNum + 1) return;
-
         unit.Animator.Play("Skill_" + unit.StateNum);
 
         state = unit.Animator.GetCurrentAnimatorStateInfo(0);
@@ -28,11 +26,11 @@ public class UnitState_Skill : UnitStateBase
         if (state.IsName("Skill_" + unit.StateNum))
         {
             if (state.normalizedTime >= 1f) unit.StateChange(UnitState.Idle);
-            else if (state.normalizedTime > unit.skills[unit.StateNum].skillAttackPoint)
+            else if (state.normalizedTime > unit.Skills[unit.StateNum].skillAttackPoint)
             {
                 if (!attack)
                 {
-                    unit.skills[unit.StateNum].Execute();
+                    unit.Skills[unit.StateNum].Execute();
 
                     attack = true;
                 }

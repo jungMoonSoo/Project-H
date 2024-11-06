@@ -30,7 +30,7 @@ public class UnitState_Idle : UnitStateBase
 
         if (!UnitManager.Instance.isPlay) return;
 
-        if (unit.status.mp[0].Data == unit.status.mp[1].Data)
+        if (unit.CheckSkill())
         {
             unit.StateChange(UnitState.Skill);
 
@@ -107,7 +107,7 @@ public class UnitState_Idle : UnitStateBase
             if (UnitManager.Instance.units[i] != unit && unit.EllipseCollider.OnEllipseEnter(unit.transform.position + movePos, UnitManager.Instance.units[i].EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1)
             {
                 onTarget = UnitManager.Instance.units[i];
-                movePos = unit.EllipseCollider.AroundTarget(movePos, onTarget.EllipseCollider, unit.status.moveSpeed);
+                movePos = unit.EllipseCollider.AroundTarget(movePos, onTarget.EllipseCollider, unit.Status.moveSpeed);
 
                 return true;
             }
@@ -120,6 +120,6 @@ public class UnitState_Idle : UnitStateBase
 
     private Vector3 GetMoveVector(Transform _from, Transform _to)
     {
-        return unit.status.moveSpeed * (_from.position - _to.position).normalized;
+        return unit.Status.moveSpeed * (_from.position - _to.position).normalized;
     }
 }

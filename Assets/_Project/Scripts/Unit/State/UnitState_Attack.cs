@@ -33,16 +33,16 @@ public class UnitState_Attack : UnitStateBase
         if (state.IsName("Attack_" + unit.StateNum))
         {
             if (state.normalizedTime % 1 > 0.9f) unit.StateChange(UnitState.Idle);
-            else if (state.normalizedTime % 1 > unit.status.atkAnimPoint)
+            else if (state.normalizedTime % 1 > unit.Status.atkAnimPoint)
             {
                 if (!attack)
                 {
                     if (Attack())
                     {
-                        target.status.hp[0].Data -= unit.status.atk;
-                        target.status.mp[0].Data += unit.status.mpRegen;
+                        target.Status.hp[0].Data -= unit.Status.atk;
+                        target.Status.mp[0].Data += unit.Status.mpRegen;
                     }
-                    else target.status.mp[0].Data += (int)(unit.status.mpRegen * 0.5f);
+                    else target.Status.mp[0].Data += (int)(unit.Status.mpRegen * 0.5f);
 
                     attack = true;
                 }

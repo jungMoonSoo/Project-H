@@ -10,7 +10,7 @@ public class UnitSkill_Heal : UnitSkillBase
 
         for (int i = 0; i < targets.Count; i++)
         {
-            targets[i].status.hp[0].Data += 100;
+            targets[i].Status.hp[0].Data += 100;
         }
     }
 

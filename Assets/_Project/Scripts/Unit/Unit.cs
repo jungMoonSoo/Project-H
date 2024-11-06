@@ -1,23 +1,37 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Unit : MonoBehaviour
+public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkills
 {
     public bool isAlly;
     public bool notMove;
 
-    public UnitStatus status;
-    public UnitStateBase stateBase;
-    public UnitSkillBase[] skills;
-
-    public LerpSprite hpBar = new();
-
-    public int StateNum { get; private set; }
-    public Animator Animator { get; private set; }
-    public EllipseCollider EllipseCollider { get; private set; }
-
-    private UnitState state;
     private Vector3 existingPos;
+
+    private int stateNum;
+    private UnitState state;
+    private UnitStateBase stateBase;
+    private Animator animator;
+
+    [SerializeField] public UnitStatus status; // private으로 변경 예정
+    [SerializeField] private LerpSprite hpBar;
+
+    private readonly List<UnitSkillBase> skills = new();
+
+    public Vector3 ExistingPos => existingPos;
+
+    public int StateNum => stateNum;
+    public UnitState State => state;
+    public UnitStateBase StateBase => stateBase;
+    public Animator Animator => animator;
+
+    public UnitStatus Status => status;
+    public LerpSprite HpBar => hpBar;
+
+    public List<UnitSkillBase> Skills => skills;
+
+    public EllipseCollider EllipseCollider { get; private set; }
 
     private readonly UnitBind unitBind = new();
 
@@ -41,9 +55,9 @@ public class Unit : MonoBehaviour
 
     private void Start()
     {
-        Animator = GetComponent<Animator>();
-        EllipseCollider = GetComponent<EllipseCollider>();
+        animator = GetComponent<Animator>();
 
+        EllipseCollider = GetComponent<EllipseCollider>();
         EllipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
 
         state = UnitState.Idle;
@@ -64,7 +78,7 @@ public class Unit : MonoBehaviour
         stateBase.OnExit();
 
         state = _state;
-        StateNum = _stateNum;
+        stateNum = _stateNum;
 
         switch (state)
         {
@@ -96,15 +110,28 @@ public class Unit : MonoBehaviour
     {
         existingPos = _pos;
 
-        ReturnPos();
+        ReturnToPos();
     }
 
-    public void ReturnPos()
+    public void ReturnToPos()
     {
         transform.position = existingPos;
 
         if (isAlly) transform.rotation = Quaternion.Euler(0, 180, 0);
         else transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
+
+    public void SetHp(int _value)
+    {
+        Status.hp[0].Data -= _value;
+    }
+
+    public bool CheckSkill()
+    {
+        if (Skills.Count < StateNum + 1) return false;
+        if (Status.mp[0].Data != Status.mp[1].Data) return false;
+
+        return true;
     }
 
 #if UNITY_EDITOR

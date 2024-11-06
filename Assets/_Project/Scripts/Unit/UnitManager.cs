@@ -24,7 +24,7 @@ public class UnitManager : Singleton<UnitManager>
 
         isPlay = false;
 
-        for (int i = 0; i < units.Count; i++) units[i].ReturnPos();
+        for (int i = 0; i < units.Count; i++) units[i].ReturnToPos();
 
         Debug.Log("End");
     }

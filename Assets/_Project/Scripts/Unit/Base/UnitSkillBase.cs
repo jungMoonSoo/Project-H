@@ -8,7 +8,7 @@ public abstract class UnitSkillBase : MonoBehaviour, IUnitSkill
 
     [Range(0f, 1f)] public float skillAttackPoint;
 
-    public int ManaCost => unit.status.mp[0].Data;
+    public int ManaCost => unit.Status.mp[0].Data;
 
     protected readonly List<Unit> targets = new();
 
