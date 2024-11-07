@@ -14,7 +14,7 @@ public class UnitState_Skill : UnitStateBase
 
     public override void OnEnter()
     {
-        unit.Status.mp[0].Data = 0;
+
     }
 
     public override void OnUpdate()

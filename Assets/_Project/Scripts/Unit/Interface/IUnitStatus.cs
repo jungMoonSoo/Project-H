@@ -8,6 +8,6 @@ public interface IUnitStatus
 
     public LerpSprite HpBar { get; }
 
-    public void OnDamage(int _value);
-    public void OnHeal(int _value);
+    public bool OnDamage(int _value);
+    public bool OnHeal(int _value);
 }

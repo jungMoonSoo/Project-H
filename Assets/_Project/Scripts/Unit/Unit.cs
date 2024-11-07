@@ -121,18 +121,23 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
         else transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    public void OnDamage(int _value)
+    public bool OnDamage(int _value)
     {
-        if (_value < 0) return;
+        if (_value < 0) return false;
 
         Status.hp[0].Data -= _value;
+        Status.mp[0].Data += (int)(Status.mpRegen * 0.5f);
+
+        return true;
     }
 
-    public void OnHeal(int _value)
+    public bool OnHeal(int _value)
     {
-        if (_value < 0) return;
+        if (_value < 0) return false;
 
         Status.hp[0].Data += _value;
+
+        return true;
     }
 
     public bool CheckSkill()

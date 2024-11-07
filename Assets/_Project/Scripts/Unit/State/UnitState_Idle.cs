@@ -32,6 +32,7 @@ public class UnitState_Idle : UnitStateBase
 
         if (unit.CheckSkill())
         {
+            unit.Status.mp[0].Data = 0;
             unit.StateChange(UnitState.Skill);
 
             return;
