@@ -29,12 +29,6 @@ public abstract class UnitStateBase
     public abstract void OnUpdate();
     public abstract void OnExit();
 
-    protected void Flip(float _target, float _this)
-    {
-        if (_target < _this) unit.transform.rotation = Quaternion.Euler(0, 0, 0);
-        else if (_target > _this) unit.transform.rotation = Quaternion.Euler(0, 180, 0);
-    }
-
 #if UNITY_EDITOR
     public Vector3 GetMovePos()
     {

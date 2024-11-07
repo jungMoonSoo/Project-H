@@ -49,6 +49,8 @@ public class UnitState_Idle : UnitStateBase
 
             if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1)
             {
+                Flip(target.transform.position.x, unit.transform.position.x);
+
                 if (unit.notMove) unit.StateChange(UnitState.Attack);
                 else if (!onEllipse) unit.StateChange(UnitState.Attack);
 
@@ -64,7 +66,12 @@ public class UnitState_Idle : UnitStateBase
 
             return;
         }
-        else unit.StateChange(UnitState.Move);
+        else
+        {
+            Flip(target.transform.position.x, unit.transform.position.x);
+
+            unit.StateChange(UnitState.Move);
+        }
     }
 
     public override void OnExit()
@@ -122,5 +129,10 @@ public class UnitState_Idle : UnitStateBase
     private Vector3 GetMoveVector(Transform _from, Transform _to)
     {
         return unit.Status.moveSpeed * (_from.position - _to.position).normalized;
+    }
+
+    private void Flip(float _rightForce, float _leftForce)
+    {
+        unit.transform.rotation = Quaternion.Euler(0, _rightForce < _leftForce ? 0 : 180, 0);
     }
 }

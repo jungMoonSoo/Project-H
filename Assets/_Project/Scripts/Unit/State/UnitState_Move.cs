@@ -16,13 +16,6 @@ public class UnitState_Move : UnitStateBase
 
     public override void OnUpdate()
     {
-        if (target == null || unit.notMove)
-        {
-            unit.StateChange(UnitState.Idle);
-
-            return;
-        }
-
         unit.Animator.Play("Walk_" + unit.StateNum);
         unit.transform.position = Vector2.MoveTowards(unit.transform.position, unit.transform.position + movePos, unit.Status.moveSpeed);
 

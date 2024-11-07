@@ -44,19 +44,10 @@ public class UnitState_Attack : UnitStateBase
                 }
             }
         }
-
-        Flip(target.transform.position.x, unit.transform.position.x);
     }
 
     public override void OnExit()
     {
 
-    }
-
-    private bool Attack()
-    {
-
-
-        return true;
     }
 }

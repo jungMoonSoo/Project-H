@@ -37,8 +37,6 @@ public class UnitState_Skill : UnitStateBase
             }
             else attack = false;
         }
-
-        Flip(target.transform.position.x, unit.transform.position.x);
     }
 
     public override void OnExit()
