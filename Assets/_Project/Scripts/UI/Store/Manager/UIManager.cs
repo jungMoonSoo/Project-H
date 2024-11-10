@@ -8,7 +8,7 @@ public class UIManager : Singleton<UIManager>
 {
     private void Start()
     {
-        LobbyManager lm = LobbyManager.Instance;
+        StoreLobbyManager lm = StoreLobbyManager.Instance;
         lm.SettingButton();
     }
 }

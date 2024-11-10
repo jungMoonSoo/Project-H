@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LobbyManager : Singleton<LobbyManager>
+public class StoreLobbyManager : Singleton<StoreLobbyManager>
 {
     //버튼을 설정하기 위해 설정 
     [SerializeField] Button recruitButton;
