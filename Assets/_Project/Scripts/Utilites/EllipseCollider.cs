@@ -9,12 +9,24 @@ public class EllipseCollider : MonoBehaviour
     private Vector2 areaPos;
     private Vector2 areaSize;
 
+    /// <summary>
+    /// 충돌체의 활동 영역 설정, TransAreaPos 메서드 호출시
+    /// 범위를 벗어난 충돌체의 경우 범위 내부로 이동하는 벡터 반환
+    /// </summary>
+    /// <param name="_areaPos">중심 좌표</param>
+    /// <param name="_areaSize">크기</param>
     public void SetArea(Vector2 _areaPos, Vector2 _areaSize)
     {
         areaPos = _areaPos;
         areaSize = _areaSize;
     }
 
+    /// <summary>
+    /// 특정 타겟과 충돌하지 않는 진행 방향에 수직이 되는 벡터 반환
+    /// </summary>
+    /// <param name="_pos">진행 방향</param>
+    /// <param name="_target">회피할 타겟</param>
+    /// <param name="_speed">이동 속도</param>
     public Vector3 AroundTarget(Vector3 _pos, EllipseCollider _target, float _speed)
     {
         if (transform.position == _target.transform.position) return TransAreaPos(Random.Range(0, _speed) * Vector3.up);
@@ -28,6 +40,14 @@ public class EllipseCollider : MonoBehaviour
         return TransAreaPos(_pos + _speed * (transform.position - _target.transform.position).normalized);
     }
 
+    /// <summary>
+    /// 특정 타겟과의 거리 반환, 1보다 작거나 같은 경우 충돌중
+    /// EllipseType는 상단에 선언 되어있는 ranges의 인덱스입니다.
+    /// </summary>
+    /// <param name="_pos">충돌체의 중심 좌표</param>
+    /// <param name="_target">검사할 타겟</param>
+    /// <param name="_num">충돌체 타입</param>
+    /// <param name="_targetNum">타겟의 충돌체 타입</param>
     public float OnEllipseEnter(Vector3 _pos, EllipseCollider _target, EllipseType _num, EllipseType _targetNum)
     {
         _pos = _target.transform.position - _pos;
@@ -35,6 +55,10 @@ public class EllipseCollider : MonoBehaviour
         return Mathf.Pow(_pos.x / (ranges[(int)_num].x + _target.ranges[(int)_targetNum].x), 2) + Mathf.Pow(_pos.y / (ranges[(int)_num].y + _target.ranges[(int)_targetNum].y), 2);
     }
 
+    /// <summary>
+    /// 범위를 벗어난 좌표를 범위 내부의 좌표로 변환
+    /// </summary>
+    /// <param name="_pos">확인할 좌표</param>
     public Vector2 TransAreaPos(Vector3 _pos)
     {
         float _dist = (areaPos.x - areaSize.x * 0.5f) - (transform.position.x + _pos.x - ranges[0].x);
@@ -65,28 +89,8 @@ public class EllipseCollider : MonoBehaviour
         for (int i = 0; i < ranges.Count; i++)
         {
             Gizmos.color = colors[i];
-            DrawEllipse(ranges[i].x, ranges[i].y, 50);
+            GizmosDrawer.DrawEllipse(transform.position, ranges[i], 50, colors[i]);
         }
-    }
-
-    private void DrawEllipse(float _radiusX, float _radiusY, int _segments)
-    {
-        Vector2 _previousPoint = GetEllipsePoint(transform.position, 0, _radiusX, _radiusY);
-        Vector2 _currentPoint;
-
-        for (int i = 1; i <= _segments; i++)
-        {
-            _currentPoint = GetEllipsePoint(transform.position, i * Mathf.PI * 2 / _segments, _radiusX, _radiusY);
-
-            Gizmos.DrawLine(_previousPoint, _currentPoint);
-
-            _previousPoint = _currentPoint;
-        }
-    }
-
-    private Vector2 GetEllipsePoint(Vector2 _pos, float _angle, float _radiusX, float _radiusY)
-    {
-        return _pos + new Vector2(Mathf.Cos(_angle) * _radiusX, Mathf.Sin(_angle) * _radiusY);
     }
 #endif
 }
