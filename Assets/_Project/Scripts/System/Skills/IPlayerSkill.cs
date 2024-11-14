@@ -26,6 +26,14 @@ public interface IPlayerSkill: ISkill
     }
 
     /// <summary>
+    /// 쿨다운 이벤트
+    /// </summary>
+    public IPlayerSkillCooldown SkillCooldown
+    {
+        get;
+    }
+
+    /// <summary>
     /// 스킬 사용을 위해 선택받았을 때 동작 Method
     /// </summary>
     public void OnSelect();

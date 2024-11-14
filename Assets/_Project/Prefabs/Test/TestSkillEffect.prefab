@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1864552910881745590}
   - component: {fileID: 4060839593722334466}
   - component: {fileID: 8725352649813965007}
+  - component: {fileID: -3288519351340120514}
   m_Layer: 0
   m_Name: TestSkillEffect
   m_TagString: Untagged
@@ -120,3 +121,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 80
+--- !u!114 &-3288519351340120514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4562016250341179540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92e1537278008ae4ab98224245166f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ranges: []

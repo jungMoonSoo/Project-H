@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TestSkillEffect : SkillObjectBase
 {
@@ -8,10 +9,10 @@ public class TestSkillEffect : SkillObjectBase
 
     public override void ApplyEffect()
     {
-        Unit[] units = GameObject.FindObjectsOfType<Unit>();
+        Unit[] units = GetEnterUnits();
         foreach (Unit unit in units)
         {
-            unit.status.hp[0].Data -= (int)Influence;
+            unit.OnDamage((int)Influence);
         }
 
         Destroy(gameObject);

@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
 {
@@ -40,6 +40,8 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
             if(AreaEffect != null)
             {
                 areaEffectTrans = Instantiate(AreaEffect).transform;
+                PlayerSkillArea skillArea = areaEffectTrans.GetComponent<PlayerSkillArea>();
+                SettingPlayerSkillArea(skillArea);
             }
         }
         else
@@ -73,15 +75,23 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
     private IEnumerator StartCoolDown()
     {
         IsCooled = true;
-        BeginCoolDown();
+        SkillCooldown?.BeginCoolDown(CoolDown);
         yield return new WaitForSeconds(CoolDown);
         IsCooled = false;
-        AfterCoolDown();
+        SkillCooldown?.AfterCoolDown();
     }
 
 
 
-    #region ◇ 추상화 메소드 ◇
+    #region ◇ 추상화 부분 ◇
+    /// <summary>
+    /// 스킬 쿨타임 UI 조작 인터페이스
+    /// </summary>
+    public abstract IPlayerSkillCooldown SkillCooldown
+    {
+        get;
+    }
+
     /// <summary>
     /// 스킬 동작 부분
     /// </summary>
@@ -91,16 +101,10 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
     /// 스킬 쿨타임 때 요청 시
     /// </summary>
     protected abstract void CooledSkill();
-
     /// <summary>
-    /// 쿨타임 전 동작<br/>
-    /// UI 변경에 사용하기 위함
+    /// 플레이어 스킬 아레아 확인용 스크립트에 수정이 필요할 때 사용하는 Method
     /// </summary>
-    protected abstract void BeginCoolDown();
-    /// <summary>
-    /// 쿨타임 종료 동작<br/>
-    /// UI 변경에 사용하기 위함
-    /// </summary>
-    protected abstract void AfterCoolDown();
+    /// <param name="skillArea"></param>
+    protected abstract void SettingPlayerSkillArea(PlayerSkillArea skillArea);
     #endregion
 }
