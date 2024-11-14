@@ -90,8 +90,7 @@ public class TileManager : MonoBehaviour
     {
         if (selectTile[0] != null)
         {
-            if (selectTile[0].unit != null) selectTile[0].unit.ReturnToPos();
-
+            selectTile[0].unit?.ReturnToPos();
             selectTile[0] = null;
         }
 

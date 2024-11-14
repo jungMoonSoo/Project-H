@@ -121,15 +121,40 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
         else transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
-    public bool OnDamage(int _value)
+    public bool OnDamage(bool _active, int _acc, int _atk, int _skp, int _cri, int _crp, int _fd)
     {
-        if (_value < 0) return false;
+        if (_atk < 0) return false;
 
-        Status.hp[0].Data -= _value;
+        int _acci = 0; // 추가 명중률
+        int _atki = 0; // 추가 공격력
+        int _crii = 0; // 추가 치명타 확률
+
+        int _dodi = 0; // 추가 회피율
+        int _cai = 0; // 추가 치명타 저항률
+        int _crpi = 0; // 추가 치명타 확률
+        int _defi = 0; // 추가 방어력
+
+        if (Random.Range(0, 101) > (_acc + _acci) - (Status.dod + _dodi)) return false; // 명중 여부 확인
+
+        float _dmg = (_atk + (_atk * _atki) + _atki) * (_skp * 0.01f);
+
+        if (!_active && Random.Range(0, 101) < (_cri + _crii) - (Status.ca + _cai)) _dmg *= (_crp + _crpi) * 0.01f; // 치명타 여부 확인
+
+        float _def = Status.def + (_defi * 0.01f) + _defi;
+
+        _dmg *= 1 - _def / (_def + UnitManager.Instance.DM);
+        _dmg += _fd; // 고정피해
+
+        Status.hp[0].Data -= (int)_dmg;
         Status.mp[0].Data += (int)(Status.mpRegen * 0.5f);
 
         return true;
     }
+
+    public bool OnDamage(bool _active, UnitStatus _status, int _fd) => OnDamage(_active, _status.acc, _status.atk, _status.skp, _status.cri, _status.crp, _fd);
+
+    [System.Obsolete("계산식 추가로 더 이상 사용하지 않습니다.")]
+    public bool OnDamage(int _dmg) => false;
 
     public bool OnHeal(int _value)
     {
