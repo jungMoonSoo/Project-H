@@ -30,9 +30,6 @@ public abstract class UnitStateBase
     public abstract void OnExit();
 
 #if UNITY_EDITOR
-    public Vector3 GetMovePos()
-    {
-        return movePos;
-    }
+    public Vector3 GetMovePos() => movePos;
 #endif
 }

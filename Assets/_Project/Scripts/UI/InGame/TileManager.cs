@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -8,14 +9,15 @@ public class TileManager : MonoBehaviour
     public List<Tile> enemyTiles;
 
     private TouchInfo info;
-    private Unit selectUnit;
+    private Unit selectedUnit;
 
-    private readonly Tile[] selectTile = new Tile[2];
+    private Tile selectedTile;
+    private Tile targetTile;
 
     private void Start()
     {
-        for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].IsAlly = true;
-        for (int i = 0; i < enemyTiles.Count; i++) enemyTiles[i].IsAlly = false;
+        for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].Init(true);
+        for (int i = 0; i < enemyTiles.Count; i++) enemyTiles[i].Init(false);
     }
 
     private void Update()
@@ -28,73 +30,80 @@ public class TileManager : MonoBehaviour
 
     public void ToggleTile()
     {
-        for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].SetActive(!UnitManager.Instance.isPlay);
-        for (int i = 0; i < enemyTiles.Count; i++) enemyTiles[i].SetActive(!UnitManager.Instance.isPlay);
+        SetTileActiveState(!UnitManager.Instance.isPlay);
+    }
+
+    private void SetTileActiveState(bool _isActive)
+    {
+        for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].SetActive(_isActive);
+        for (int i = 0; i < enemyTiles.Count; i++) enemyTiles[i].SetActive(_isActive);
     }
 
     private void CheckTouch()
     {
         info = TouchSystem.Instance.GetTouch(0);
 
-        if (info.phase == TouchPhase.Began)
-        {
-            if (info.gameObject == null) return;
-
-            info.gameObject.TryGetComponent(out selectTile[0]);
-
-            if (selectTile[0] == null) return;
-            if (selectTile[0].unit == null) return;
-            if (!selectTile[0].IsAlly) return;
-
-            selectUnit = selectTile[1].unit;
-
-            selectTile[0] = selectTile[1];
-            selectTile[1] = null;
-        }
-        else if (info.phase == TouchPhase.Ended || info.phase == TouchPhase.Canceled)
-        {
-            if (selectTile[0] == null) return;
-
-            if (info.gameObject != null)
-            {
-                info.gameObject.TryGetComponent(out selectTile[1]);
-
-                if (selectTile[1] != null)
-                {
-                    if (selectTile[1].IsAlly)
-                    {
-                        selectTile[0].unit = selectTile[1].unit;
-                        selectTile[1].unit = selectUnit;
-
-                        selectUnit = null;
-
-                        if (selectTile[0].unit != null) selectTile[0].unit.SetPos(selectTile[0].transform.position);
-
-                        selectTile[1].unit.SetPos(selectTile[1].transform.position);
-                    }
-                }
-            }
-
-            ReturnUnit();
-        }
+        if (info.phase == TouchPhase.Began) HandleTouchBegan();
+        else if (info.phase == TouchPhase.Ended || info.phase == TouchPhase.Canceled) HandleTouchEnded();
     }
 
+    private void HandleTouchBegan()
+    {
+        if (info.gameObject == null) return;
+
+        info.gameObject.TryGetComponent(out selectedTile);
+
+        if (selectedTile == null || selectedTile.unit == null || !selectedTile.IsAlly) return;
+
+        selectedUnit = selectedTile.unit;
+        selectedTile = null;
+    }
+
+    // 터치 종료 처리
+    private void HandleTouchEnded()
+    {
+        if (selectedTile == null) return;
+
+        if (info.gameObject != null)
+        {
+            info.gameObject.TryGetComponent(out targetTile);
+
+            if (targetTile != null && targetTile.IsAlly) SwapUnits();
+        }
+
+        ReturnUnit();
+    }
+
+    // 유닛 교환 처리
+    private void SwapUnits()
+    {
+        selectedTile.unit = targetTile.unit;
+        targetTile.unit = selectedUnit;
+
+        selectedUnit = null;
+
+        selectedTile.unit?.SetPos(selectedTile.transform.position);
+        targetTile.unit?.SetPos(targetTile.transform.position);
+    }
+
+    // 유닛 드래그
     private void DragUnit()
     {
-        if (selectUnit == null) return;
+        if (selectedUnit == null) return;
 
-        selectUnit.transform.position = info.pos;
+        selectedUnit.transform.position = info.pos;
     }
 
+    // 유닛 원위치 반환
     private void ReturnUnit()
     {
-        if (selectTile[0] != null)
+        if (selectedTile != null)
         {
-            selectTile[0].unit?.ReturnToPos();
-            selectTile[0] = null;
+            selectedTile.unit?.ReturnToPos();
+            selectedTile = null;
         }
 
-        selectTile[1] = null;
-        selectUnit = null;
+        targetTile = null;
+        selectedUnit = null;
     }
 }
