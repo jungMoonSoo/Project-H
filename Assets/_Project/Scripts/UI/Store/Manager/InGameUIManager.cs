@@ -9,7 +9,13 @@ public class InGameUIManager : Singleton<InGameUIManager>
     float gameSpeed = 1;                    //배속
     int stage = 1;                          //스테이지 정보
 
+    bool isUnitStorageOpening = false;      //유닛 배낭이 열였는지
+    bool isItemStorageOpening = false;      //아이템 배낭이 열렸는지
+
     [SerializeField] Slider hpSlider;       //Hp 슬라이더
+
+    [SerializeField] GameObject unitStorage;
+    [SerializeField] GameObject itemStorage;
 
     public void Option()    //옵션창 띄우기
     {
@@ -81,6 +87,34 @@ public class InGameUIManager : Singleton<InGameUIManager>
         {
             Debug.Log("1배속을 합니다.");
             gameSpeed = 1;
+        }
+    }
+
+    public void UnitStorageOpenClose() //유닛 배낭 열고 닫기
+    {
+        if (!isUnitStorageOpening)
+        {
+            unitStorage.SetActive(true);
+            isUnitStorageOpening = true;
+        }
+        else
+        {
+            unitStorage.SetActive(false);
+            isUnitStorageOpening = false;
+        }
+    }
+
+    public void ItemStorageOpenClose() //아이템 배낭 열고 닫기
+    {
+        if (!isItemStorageOpening)
+        {
+            itemStorage.SetActive(true);
+            isItemStorageOpening = true;
+        }
+        else
+        {
+            itemStorage.SetActive(false);
+            isItemStorageOpening = false;
         }
     }
 }

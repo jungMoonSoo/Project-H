@@ -6,7 +6,6 @@ using Debug = UnityEngine.Debug;
 
 public class LobbyManager : Singleton<LobbyManager>
 {
-
     public void EnergyPay() //에너지 구매창으로 이동?
     {
         Debug.Log("에너지 추가 구매");
