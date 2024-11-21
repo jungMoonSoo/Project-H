@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TileManager : MonoBehaviour
@@ -10,6 +9,8 @@ public class TileManager : MonoBehaviour
 
     private TouchInfo info;
     private Unit selectedUnit;
+
+    private bool storage;
 
     private Tile selectedTile;
     private Tile targetTile;
@@ -33,6 +34,14 @@ public class TileManager : MonoBehaviour
         SetTileActiveState(!UnitManager.Instance.isPlay);
     }
 
+    public void SelectStorageUnit(Unit _unit, Vector2 _pos)
+    {
+        // _pos위치에 유닛 생성 필요
+
+        selectedUnit = _unit;
+        storage = true;
+    }
+
     private void SetTileActiveState(bool _isActive)
     {
         for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].SetActive(_isActive);
@@ -53,16 +62,15 @@ public class TileManager : MonoBehaviour
 
         info.gameObject.TryGetComponent(out selectedTile);
 
-        if (selectedTile == null || selectedTile.unit == null || !selectedTile.IsAlly) return;
+        if (selectedTile == null || selectedTile.Unit == null || !selectedTile.IsAlly) return;
 
-        selectedUnit = selectedTile.unit;
-        selectedTile = null;
+        selectedUnit = selectedTile.Unit;
     }
 
     // 터치 종료 처리
     private void HandleTouchEnded()
     {
-        if (selectedTile == null) return;
+        if (selectedUnit == null) return;
 
         if (info.gameObject != null)
         {
@@ -77,13 +85,17 @@ public class TileManager : MonoBehaviour
     // 유닛 교환 처리
     private void SwapUnits()
     {
-        selectedTile.unit = targetTile.unit;
-        targetTile.unit = selectedUnit;
+        if (storage)
+        {
+            // 유닛 제거 및 보관함에 유닛 이미지 생성 필요
+
+            targetTile.Unit.gameObject.SetActive(false);
+        }
+        else selectedTile.SetUnit(targetTile.Unit);
+
+        targetTile.SetUnit(selectedUnit);
 
         selectedUnit = null;
-
-        selectedTile.unit?.SetPos(selectedTile.transform.position);
-        targetTile.unit?.SetPos(targetTile.transform.position);
     }
 
     // 유닛 드래그
@@ -99,7 +111,7 @@ public class TileManager : MonoBehaviour
     {
         if (selectedTile != null)
         {
-            selectedTile.unit?.ReturnToPos();
+            selectedTile.ReturnPos();
             selectedTile = null;
         }
 

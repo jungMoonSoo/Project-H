@@ -67,7 +67,7 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
         stateManager.StateBase.OnUpdate();
     }
 
-    public void SetPos(Vector2 pos) => posManager.SetPos(pos);
+    public void SetPos(Vector2 _pos) => posManager.SetPos(_pos);
 
     public void ReturnToPos() => posManager.ReturnToPos();
 

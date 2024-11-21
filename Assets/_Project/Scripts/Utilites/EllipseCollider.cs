@@ -81,7 +81,6 @@ public class EllipseCollider : MonoBehaviour
     }
 
 #if UNITY_EDITOR
-
     private readonly List<Color> colors = new() { Color.green, Color.red, Color.gray };
 
     private void OnDrawGizmos()

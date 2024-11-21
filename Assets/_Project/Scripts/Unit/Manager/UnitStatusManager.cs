@@ -15,7 +15,8 @@ public class UnitStatusManager : IUnitStatus
         Status = _status;
         HpBar = _hpBar;
     }
-    public bool OnDamage(bool isActive, int _acc, int _atk, int _skp, int _cri, int _crp, int _fd)
+
+    public bool OnDamage(bool _isActive, int _acc, int _atk, int _skp, int _cri, int _crp, int _fd)
     {
         if (_atk < 0) return false;
 
@@ -30,7 +31,7 @@ public class UnitStatusManager : IUnitStatus
 
         float _dmg = CalculateDamage(_atk, _skp);
 
-        _dmg = ApplyCriticalDamage(isActive, _cri + _crii, _crp + _crpi, _dmg);
+        _dmg = ApplyCriticalDamage(_isActive, _cri + _crii, _crp + _crpi, _dmg);
         _dmg = ApplyDefense(_dmg);
 
         _dmg += _fd; // 고정피해
@@ -49,24 +50,24 @@ public class UnitStatusManager : IUnitStatus
         return (_atk + (_atk * _atki) + _atki) * (_skp * 0.01f);
     }
 
-    private float ApplyCriticalDamage(bool isActive, int _cri, int _crp, float damage)
+    private float ApplyCriticalDamage(bool _isActive, int _cri, int _crp, float _dmg)
     {
         int _cai = 0; // 추가 치명타 저항률
 
-        if (!isActive && Random.Range(0, 101) < _cri - (Status.ca + _cai)) damage *= _crp * 0.01f;
+        if (!_isActive && Random.Range(0, 101) < _cri - (Status.ca + _cai)) _dmg *= _crp * 0.01f;
 
-        return damage;
+        return _dmg;
     }
 
-    private float ApplyDefense(float damage)
+    private float ApplyDefense(float _dmg)
     {
         int _defi = 0; // 추가 방어력
         float _def = Status.def + (_defi * 0.01f) + _defi;
 
-        return damage * (1 - _def / (_def + UnitManager.Instance.DM));
+        return _dmg * (1 - _def / (_def + UnitManager.Instance.DM));
     }
 
-    public bool OnDamage(bool _isActive, UnitStatus _targetStatus, int _flatDamage) => OnDamage(_isActive, _targetStatus.acc, _targetStatus.atk, _targetStatus.skp, _targetStatus.cri, _targetStatus.crp, _flatDamage);
+    public bool OnDamage(bool _isActive, UnitStatus _targetStatus, int _fd) => OnDamage(_isActive, _targetStatus.acc, _targetStatus.atk, _targetStatus.skp, _targetStatus.cri, _targetStatus.crp, _fd);
 
     public bool OnHeal(int _healAmount)
     {
