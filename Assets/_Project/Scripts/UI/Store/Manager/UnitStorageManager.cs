@@ -75,4 +75,9 @@ public class UnitStorageManager : Singleton<UnitStorageManager>
             Debug.Log("해당 칸에 데이터가 없습니다.");
         }
     } 
+
+    public void CloseUnitInfo()//창 닫기
+    {
+        unitInfo.SetActive(false);
+    }
 }

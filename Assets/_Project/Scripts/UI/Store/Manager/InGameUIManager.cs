@@ -3,6 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class TestLeaderSkill //리더스킬 테스트
+{
+    string test;
+    public TestLeaderSkill(string _test)
+    {
+        test = _test;
+    }
+
+    public void LeaderSkillUse()
+    {
+        Debug.Log($"{test} 스킬을 사용하였습니다.");
+    }
+}
 public class InGameUIManager : Singleton<InGameUIManager>
 {
     bool isAutoUsing = false;               //Auto 플레이를 하는지 아닌
@@ -17,41 +30,31 @@ public class InGameUIManager : Singleton<InGameUIManager>
     [SerializeField] GameObject unitStorage;
     [SerializeField] GameObject itemStorage;
 
+    //리더 스킬
+    TestLeaderSkill[] leaderSkillSlot = new TestLeaderSkill[3];
+
+
+    private void Start()
+    {
+        leaderSkillSlot[0] = new TestLeaderSkill("1번");
+    }
     public void Option()    //옵션창 띄우기
     {
         Debug.Log("옵션창 열기");
     }
 
-    public void SkillLock1()    //1번 스킬 잠금 
+    public void LeaderSkillLock(int num)
     {
-        Debug.Log("Skill 1번이 잠겨있습니다.");
+        Debug.Log($"Skill {num}번이 잠겨있습니다.");
     }
 
-    public void SkillLock2()    //2번 스킬 잠금 
+    public void LeaderSkillUse(int num)
     {
-        Debug.Log("Skill 2번이 잠겨있습니다.");
+        if (leaderSkillSlot[num - 1] != null)
+        {
+            leaderSkillSlot[num - 1].LeaderSkillUse();
+        }
     }
-
-    public void SkillLock3()    //3번 스킬 잠금 
-    {
-        Debug.Log("Skill 3번이 잠겨있습니다.");
-    }
-
-    public void LeaderSkill1()  //1번 리더 스킬
-    {
-        Debug.Log("Leader Skill 1번을 사용하였습니다");
-    }
-
-    public void LeaderSkill2()  //2번 리더 스킬
-    {
-        Debug.Log("Leader Skill 2번을 사용하였습니다");
-    }
-
-    public void LeaderSkill3()  //3번 리더 스킬
-    {
-        Debug.Log("Leader Skill 3번을 사용하였습니다");
-    }
-
     public void GameStartButton()   //게임 시작 버튼
     {
         Debug.Log("Game Start!!");
