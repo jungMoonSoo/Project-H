@@ -37,7 +37,7 @@ public class UnitState_Attack : UnitStateBase
             {
                 if (!attack)
                 {
-                    if (target.OnDamage(false, unit.Status, 0)) unit.Status.mp[0].Data += unit.Status.mpRegen;
+                    if (target.OnDamage(false, unit.Status.damageStatus, 0)) unit.Status.mp[0].Data += unit.Status.mpRegen;
                     else unit.Status.mp[0].Data += (int)(unit.Status.mpRegen * 0.5f);
 
                     attack = true;
