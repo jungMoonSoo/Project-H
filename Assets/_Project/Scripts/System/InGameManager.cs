@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class InGameManager : Singleton<InGameManager>
 {
+    [SerializeField] public Transform PlayerTransform;
+
     private readonly List<PauseType> pauseList = new();
 
     /// <summary>

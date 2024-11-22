@@ -2,27 +2,15 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RadialSkillCooldown: IPlayerSkillCooldown
+public class FillingSkillCooldown: IPlayerSkillCooldown
 {
     private Image grayMask = null;
     private Text timeText = null;
 
-    public RadialSkillCooldown(Image grayMask, Text timeText)
+    public FillingSkillCooldown(Image grayMask, Text timeText)
     {
         this.grayMask = grayMask;
         this.timeText = timeText;
-    }
-
-    private async Task OnUpdate(float second)
-    {
-        float cnt = second;
-        while(cnt >= 0)
-        {
-            timeText.text = string.Format("{0:0.0}", cnt);
-            grayMask.fillAmount = cnt / second;
-            cnt -= Time.deltaTime;
-            await Task.Yield();
-        }
     }
 
     public void BeginCoolDown(float second)
@@ -34,5 +22,17 @@ public class RadialSkillCooldown: IPlayerSkillCooldown
     public void AfterCoolDown()
     {
         grayMask.gameObject.SetActive(false);
+    }
+
+    private async Task OnUpdate(float second)
+    {
+        float cnt = second;
+        while (cnt >= 0)
+        {
+            timeText.text = string.Format("{0:0.0}", cnt);
+            grayMask.fillAmount = cnt / second;
+            cnt -= Time.deltaTime;
+            await Task.Yield();
+        }
     }
 }

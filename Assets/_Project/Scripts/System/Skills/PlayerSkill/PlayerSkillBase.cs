@@ -23,8 +23,17 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
         private set;
     }
 
-    private Transform areaEffectTrans = null;
+    protected abstract ISkillArea SkillArea
+    {
+        get;
+    }
+    protected abstract Sprite SkillAreaSprite
+    {
+        get;
+    }
+
     private Vector3 lastDragedPosition = Vector3.zero;
+    private GameObject skillAreaObject = null;
 
     public virtual void Execute()
     {
@@ -37,12 +46,12 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
         if (!IsCooled)
         {
             InGameManager.Instance.PauseGame(PauseType.UseSkill);
-            if(AreaEffect != null)
-            {
-                areaEffectTrans = Instantiate(AreaEffect).transform;
-                PlayerSkillArea skillArea = areaEffectTrans.GetComponent<PlayerSkillArea>();
-                SettingPlayerSkillArea(skillArea);
-            }
+            if (AreaEffect == null) return;
+            
+            skillAreaObject = Instantiate(AreaEffect);
+            SkillArea.GameObject = skillAreaObject;
+            SkillArea.SetSprite(SkillAreaSprite);
+            SetAreaSize(SkillArea);
         }
         else
         {
@@ -52,18 +61,18 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
     public virtual void OnDrag(Vector3 position)
     {
         lastDragedPosition = position + new Vector3(0, 0, 1);
-        if (areaEffectTrans != null)
+        if (skillAreaObject != null)
         {
-            areaEffectTrans.position = lastDragedPosition;
+            SkillArea.SetPosition(lastDragedPosition);
         }
     }
     public virtual void EndAction()
     {
         InGameManager.Instance.ResumeGame(PauseType.UseSkill);
-        if(areaEffectTrans != null)
-        {
-            Destroy(areaEffectTrans.gameObject);
-        }
+        if (skillAreaObject == null) return;
+        
+        Destroy(skillAreaObject);
+        skillAreaObject = null;
     }
 
 
@@ -105,6 +114,6 @@ public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
     /// 플레이어 스킬 아레아 확인용 스크립트에 수정이 필요할 때 사용하는 Method
     /// </summary>
     /// <param name="skillArea"></param>
-    protected abstract void SettingPlayerSkillArea(PlayerSkillArea skillArea);
+    protected abstract void SetAreaSize(ISkillArea skillArea);
     #endregion
 }
