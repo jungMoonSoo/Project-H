@@ -34,10 +34,9 @@ public class TileManager : MonoBehaviour
         SetTileActiveState(!UnitManager.Instance.isPlay);
     }
 
-    public void SelectStorageUnit(UnitStatus _unitStatus, Vector2 _pos)
+    public void SelectStorageUnit(Unit _unit, Vector2 _pos)
     {
         // _pos위치에 유닛 생성 필요
-        Unit _unit = new();
 
         selectedUnit = _unit;
         storage = true;
@@ -91,8 +90,6 @@ public class TileManager : MonoBehaviour
             // 유닛 제거 및 보관함에 유닛 이미지 생성 필요
 
             targetTile.Unit.gameObject.SetActive(false);
-
-            storage = false;
         }
         else selectedTile.SetUnit(targetTile.Unit);
 

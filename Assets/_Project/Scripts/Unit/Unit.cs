@@ -73,7 +73,9 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
 
     public void StateChange(UnitState _newState, int _stateNum = 0) => stateManager.StateChange(_newState, _stateNum);
 
-    public bool OnDamage(bool _isActive, DamageStatus _targetStatus, int _fd) => statusManager.OnDamage(_isActive, _targetStatus, _fd);
+    public bool OnDamage(bool _isActive, int _acc, int _atk, int _skp, int _cri, int _crp, int _fd) => statusManager.OnDamage(_isActive, _acc, _atk, _skp, _cri, _crp, _fd);
+
+    public bool OnDamage(bool _isActive, UnitStatus _targetStatus, int _fd) => statusManager.OnDamage(_isActive, _targetStatus, _fd);
 
     [System.Obsolete("계산식 추가로 더 이상 사용하지 않습니다.")]
     public bool OnDamage(int _damage) => true;

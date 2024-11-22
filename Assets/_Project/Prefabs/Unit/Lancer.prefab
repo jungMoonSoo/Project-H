@@ -178,16 +178,7 @@ MonoBehaviour:
     moveSpeed: 0.04
     atk: 10
     atkAnimPoint: 0.3
-    damageStatus:
-      atk: 10
-      acc: 0
-      crp: 0
-      cri: 0
-      skp: 0
-      edi: 0
-      def: 0
-      dod: 0
-      ca: 0
+  skills: []
   hpBar:
     sprite: {fileID: 5523169504309909608}
     maxSize: 2
