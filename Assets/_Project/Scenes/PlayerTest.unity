@@ -360,6 +360,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7162345228426232806, guid: 6542c717ec52ed24d8fe711625087c66, type: 3}
+      propertyPath: skillEffectPrefab
+      value: 
+      objectReference: {fileID: 4562016250341179540, guid: ece2d27cc46cbde4f8c9c3448e22e280, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
