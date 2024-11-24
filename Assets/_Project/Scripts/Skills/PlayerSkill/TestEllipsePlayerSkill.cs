@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class TestEllipsePlayerSkill : PlayerSkillBase
 {
+    [Header("성능")]
+    [SerializeField] private float damage = 5;
+
     [Header("UI")]
     [SerializeField] private Image skillMaskImage;
     [SerializeField] private Text skillTimerText;
@@ -42,8 +45,11 @@ public class TestEllipsePlayerSkill : PlayerSkillBase
 
     protected override void OnSkill(Vector3 position)
     {
-        GameObject g = Instantiate(skillEffectPrefab, position, Quaternion.identity);
-        g.GetComponent<SkillObjectBase>().EffectRange = effectRange;
+        GameObject g = Instantiate(skillEffectPrefab);
+        SkillObjectBase skillEffect = g.GetComponent<SkillObjectBase>();
+        skillEffect.EffectRange = effectRange;
+        skillEffect.Influence = damage;
+        skillEffect.SetPosition(position);
     }
     protected override void SetAreaSize(ISkillArea skillArea)
     {

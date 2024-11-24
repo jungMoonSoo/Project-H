@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TestLinearSkillEffect : SkillObjectBase
@@ -8,21 +9,34 @@ public class TestLinearSkillEffect : SkillObjectBase
     {
         get;
         set;
-    }
+    } = 2f;
+
+    public int HitCount
+    {
+        get;
+        set;
+    } = 1;
     
-    private readonly List<Unit> unitList = new(128);
-    
+    private readonly List<Unit> hitUnits = new();
     private EllipseCollider ellipseCollider = null;
 
     public override void ApplyEffect()
     {
-        Unit[] units = Targets;
+        Unit[] units = Targets.Where(x => !hitUnits.Contains(x)).ToArray();
         foreach (Unit unit in units)
         {
             unit.OnDamage((int)Influence);
         }
 
-        Destroy(gameObject);
+
+        if (HitCount > 0)
+        {
+            hitUnits.AddRange(units);
+            if (hitUnits.Count >= HitCount)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 
     public override void SetPosition(Vector2 position)
@@ -33,29 +47,18 @@ public class TestLinearSkillEffect : SkillObjectBase
     public override Unit[] GetTargets()
     {
         SetCollider();
-        unitList.Clear();
-        Unit[] units = GameObject.FindObjectsOfType<Unit>();
-        foreach (Unit unit in units)
-        {
-            if(ellipseCollider.OnEllipseEnter(transform.position, unit.EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1f)
-            {
-                unitList.Add(unit);
-            }
-        }
-
-        return unitList.ToArray();
+        return UnitManager.Instance.units.Where(x => ellipseCollider.OnEllipseEnter(transform.position, x.EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1f).ToArray();
     }
 
     private void SetCollider()
     {
-        if (ellipseCollider == null)
+        if (ellipseCollider != null) return; // 콜라이더가 없을 때, 생성하는 Method임.
+        
+        ellipseCollider = GetComponent<EllipseCollider>();
+        if (ellipseCollider != null)
         {
-            ellipseCollider = GetComponent<EllipseCollider>();
-            if (ellipseCollider != null)
-            {
-                ellipseCollider.ranges = new List<Vector2>() { EffectRange * 0.5f };
-                ellipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
-            }
+            ellipseCollider.ranges = new List<Vector2>() { EffectRange * 0.5f };
+            ellipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
         }
     }
 
@@ -67,7 +70,6 @@ public class TestLinearSkillEffect : SkillObjectBase
             if (Targets.Length > 0)
             {
                 ApplyEffect();
-                break;
             }
 
             yield return null;

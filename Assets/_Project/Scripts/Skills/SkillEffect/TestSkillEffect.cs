@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TestSkillEffect : SkillObjectBase
 {
-    private readonly List<Unit> unitList = new(128);
-    
     private EllipseCollider ellipseCollider = null;
 
     public override void ApplyEffect()
@@ -27,17 +26,7 @@ public class TestSkillEffect : SkillObjectBase
     public override Unit[] GetTargets()
     {
         SetCollider();
-        unitList.Clear();
-        Unit[] units = GameObject.FindObjectsOfType<Unit>();
-        foreach (Unit unit in units)
-        {
-            if(ellipseCollider.OnEllipseEnter(transform.position, unit.EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1f)
-            {
-                unitList.Add(unit);
-            }
-        }
-
-        return unitList.ToArray();
+        return UnitManager.Instance.units.Where(x => ellipseCollider.OnEllipseEnter(transform.position, x.EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1f).ToArray();
     }
 
     private void SetCollider()
