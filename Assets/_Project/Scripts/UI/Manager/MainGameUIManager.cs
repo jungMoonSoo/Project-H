@@ -32,10 +32,6 @@ public class MainGameUIManager : Singleton<MainGameUIManager>
 
     public void LeaderSkillUse(int num)//리더스킬 적용 부분
     {
-        if (LeaderSkillSlot[num - 1] != null)
-        {
-            skillSlotObj[num - 1].GetComponent<PlayerSkillButton>().playerSkillEquip(LeaderSkillSlot[num - 1]);
-        }
     }
     public void GameStartButton()   //게임 시작 버튼
     {
