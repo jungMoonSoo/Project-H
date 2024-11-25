@@ -3,20 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestLeaderSkill //리더스킬 테스트
-{
-    string test;
-    public TestLeaderSkill(string _test)
-    {
-        test = _test;
-    }
-
-    public void LeaderSkillUse()
-    {
-        Debug.Log($"{test} 스킬을 사용하였습니다.");
-    }
-}
-public class InGameUIManager : Singleton<InGameUIManager>
+public class MainGameUIManager : Singleton<MainGameUIManager>
 {
     bool isAutoUsing = false;               //Auto 플레이를 하는지 아닌
     float gameSpeed = 1;                    //배속
@@ -30,14 +17,9 @@ public class InGameUIManager : Singleton<InGameUIManager>
     [SerializeField] GameObject unitStorage;
     [SerializeField] GameObject itemStorage;
 
-    //리더 스킬
-    TestLeaderSkill[] leaderSkillSlot = new TestLeaderSkill[3];
-
-
-    private void Start()
-    {
-        leaderSkillSlot[0] = new TestLeaderSkill("1번");
-    }
+    [Header("Skill 착용")]
+    [SerializeField] PlayerSkillBase[] LeaderSkillSlot;//스킬 종류 착용
+    [SerializeField] GameObject[] skillSlotObj;        //스킬 오브젝트
     public void Option()    //옵션창 띄우기
     {
         Debug.Log("옵션창 열기");
@@ -48,11 +30,11 @@ public class InGameUIManager : Singleton<InGameUIManager>
         Debug.Log($"Skill {num}번이 잠겨있습니다.");
     }
 
-    public void LeaderSkillUse(int num)
+    public void LeaderSkillUse(int num)//리더스킬 적용 부분
     {
-        if (leaderSkillSlot[num - 1] != null)
+        if (LeaderSkillSlot[num - 1] != null)
         {
-            leaderSkillSlot[num - 1].LeaderSkillUse();
+            skillSlotObj[num - 1].GetComponent<PlayerSkillButton>().playerSkillEquip(LeaderSkillSlot[num - 1]);
         }
     }
     public void GameStartButton()   //게임 시작 버튼

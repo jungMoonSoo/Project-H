@@ -18,6 +18,11 @@ public class StoreLobbyManager : Singleton<StoreLobbyManager>
     [SerializeField] GameObject lobby;
     [SerializeField] GameObject recreit;
 
+
+    private void Start()
+    {
+        SettingButton();
+    }
     //버튼 셋팅 
     public void SettingButton() 
     {

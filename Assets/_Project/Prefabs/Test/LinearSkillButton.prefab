@@ -104,6 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc841b74b6c8c7d48a015d1b51ad3b1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  speed: 1
+  hitCount: 1
   skillMaskImage: {fileID: 4039140556668102712}
   skillTimerText: {fileID: 7443306140189924748}
   areaEffectPrefab: {fileID: 8292844415845989797, guid: e93e3672803949d41a8ae0fd55732ea6, type: 3}
@@ -182,7 +185,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0.0010165568
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -265,4 +268,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 0.0
