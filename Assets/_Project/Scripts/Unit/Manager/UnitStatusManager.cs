@@ -27,7 +27,7 @@ public class UnitStatusManager : IUnitStatus
         int _dodi = 0; // 추가 회피율
 
         // 명중 체크
-        if (Random.Range(0, 101) > (_targetDmgStatus.acc + _acci) - (Status.damageStatus.dod + _dodi)) return false;
+        if (Random.Range(0, 101) > (_targetDmgStatus.acc + _acci) - (Status.guardStatus.dod + _dodi)) return false;
 
         float _dmg = CalculateDamage(_targetDmgStatus.atk, _targetDmgStatus.skp);
 
@@ -54,7 +54,7 @@ public class UnitStatusManager : IUnitStatus
     {
         int _cai = 0; // 추가 치명타 저항률
 
-        if (!_isActive && Random.Range(0, 101) < _cri - (Status.damageStatus.ca + _cai)) _dmg *= _crp * 0.01f;
+        if (!_isActive && Random.Range(0, 101) < _cri - (Status.guardStatus.ca + _cai)) _dmg *= _crp * 0.01f;
 
         return _dmg;
     }
@@ -62,7 +62,7 @@ public class UnitStatusManager : IUnitStatus
     private float ApplyDefense(float _dmg)
     {
         int _defi = 0; // 추가 방어력
-        float _def = Status.damageStatus.def + (_defi * 0.01f) + _defi;
+        float _def = Status.guardStatus.def + (_defi * 0.01f) + _defi;
 
         return _dmg * (1 - _def / (_def + UnitManager.Instance.DM));
     }

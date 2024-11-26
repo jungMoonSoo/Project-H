@@ -15,4 +15,5 @@ public class UnitStatus
     [Range(0f, 1f)]public float atkAnimPoint; // 애니메이션 공격 적용 지점
 
     public DamageStatus damageStatus;
+    public GuardStatus guardStatus;
 }

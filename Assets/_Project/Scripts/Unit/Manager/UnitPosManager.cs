@@ -6,12 +6,12 @@ public class UnitPosManager : IUnitPos
 {
     private Vector3 existingPos;
 
-    private readonly bool isAlly;
+    private readonly UnitType unitType;
     private readonly Transform unitTrans;
 
-    public UnitPosManager(Transform _transform, bool _isAlly)
+    public UnitPosManager(Transform _transform, UnitType _unitType)
     {
-        isAlly = _isAlly;
+        unitType = _unitType;
         unitTrans = _transform;
     }
 
@@ -27,6 +27,16 @@ public class UnitPosManager : IUnitPos
     public void ReturnToPos()
     {
         unitTrans.position = existingPos;
-        unitTrans.rotation = isAlly ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+
+        switch (unitType)
+        {
+            case UnitType.Ally:
+                unitTrans.rotation = Quaternion.Euler(0, 180, 0);
+                break;
+
+            case UnitType.Enemy:
+                unitTrans.rotation = Quaternion.Euler(0, 0, 0);
+                break;
+        }
     }
 }

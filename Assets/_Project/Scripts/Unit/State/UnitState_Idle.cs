@@ -115,7 +115,7 @@ public class UnitState_Idle : UnitStateBase
 
         for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
-            if (UnitManager.Instance.units[i].isAlly == unit.isAlly) continue;
+            if (UnitManager.Instance.units[i].unitType == unit.unitType) continue;
 
             checkDist = unit.EllipseCollider.OnEllipseEnter(unit.transform.position, UnitManager.Instance.units[i].EllipseCollider, EllipseType.Attack, EllipseType.Unit);
 

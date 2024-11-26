@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkills
 {
-    public bool isAlly;
+    public UnitType unitType;
     public bool notMove;
 
+    private UnitStateBase stateBase;
+
     private UnitPosManager posManager;
-    private UnitStateManager stateManager;
     private UnitStatusManager statusManager;
     private UnitSkillManager skillManager;
 
@@ -19,10 +20,10 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
 
     public Vector3 ExistingPos => posManager.ExistingPos;
 
-    public int StateNum => stateManager.StateNum;
-    public UnitState State => stateManager.State;
-    public UnitStateBase StateBase => stateManager.StateBase;
-    public Animator Animator => stateManager.Animator;
+    public int StateNum { get; private set; }
+    public UnitState State { get; private set; }
+    public UnitStateBase StateBase => stateBase;
+    public Animator Animator { get; private set; }
 
     public UnitStatus Status => statusManager.Status;
     public LerpSprite HpBar => statusManager.HpBar;
@@ -51,27 +52,47 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
 
     private void Start()
     {
-        stateManager = new UnitStateManager(this, GetComponent<Animator>());
-        posManager = new UnitPosManager(transform, isAlly);
+        posManager = new UnitPosManager(transform, unitType);
         statusManager = new UnitStatusManager(this, status, hpBar);
         skillManager = new UnitSkillManager(this, skills);
 
         EllipseCollider = GetComponent<EllipseCollider>();
         EllipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
 
-        stateManager.StateChange(UnitState.Idle); // 초기 상태 설정
+        Animator = GetComponent<Animator>();
+        StateChange(UnitState.Idle); // 초기 상태 설정
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        stateManager.StateBase.OnUpdate();
+        StateBase.OnUpdate();
+    }
+
+    public void StateChange(UnitState _newState, int _stateNum = 0)
+    {
+        if (State == _newState) return;
+
+        StateBase?.OnExit();
+
+        State = _newState;
+        StateNum = _stateNum;
+
+        stateBase = _newState switch
+        {
+            UnitState.Idle => new UnitState_Idle(this, StateBase),
+            UnitState.Move => new UnitState_Move(this, StateBase),
+            UnitState.Attack => new UnitState_Attack(this, StateBase),
+            UnitState.Skill => new UnitState_Skill(this, StateBase),
+            UnitState.Die => new UnitState_Die(this, StateBase),
+            _ => StateBase
+        };
+
+        StateBase.OnEnter();
     }
 
     public void SetPos(Vector2 _pos) => posManager.SetPos(_pos);
 
     public void ReturnToPos() => posManager.ReturnToPos();
-
-    public void StateChange(UnitState _newState, int _stateNum = 0) => stateManager.StateChange(_newState, _stateNum);
 
     public bool OnDamage(bool _isActive, DamageStatus _targetStatus, int _fd) => statusManager.OnDamage(_isActive, _targetStatus, _fd);
 
