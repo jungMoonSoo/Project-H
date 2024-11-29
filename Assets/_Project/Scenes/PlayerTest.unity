@@ -131,6 +131,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 88722575}
+  - component: {fileID: 88722576}
   m_Layer: 0
   m_Name: IdleState
   m_TagString: Untagged
@@ -153,6 +154,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1489656798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &88722576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 88722574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178260de0ebd4e39b93a1505fee6634f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &213014582
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 259098841}
+  - component: {fileID: 259098842}
   m_Layer: 0
   m_Name: MoveState
   m_TagString: Untagged
@@ -262,6 +276,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1489656798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &259098842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259098840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601002fefe3948e5801b1a3ee3858579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &329464729
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,7 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 0, b: 0, a: 1}
   Center: {x: 0, y: 0}
-  Size: {x: 4, y: 2}
+  Size: {x: 7, y: 3.5}
 --- !u!1 &1103362330
 GameObject:
   m_ObjectHideFlags: 0
@@ -726,6 +752,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1129566644}
+  - component: {fileID: 1129566645}
   m_Layer: 0
   m_Name: SkillState
   m_TagString: Untagged
@@ -748,6 +775,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1489656798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1129566645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129566643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81d7c31f9c344269c1100b75f0df788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1184332950
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1314161545}
+  - component: {fileID: 1314161546}
   m_Layer: 0
   m_Name: AttackState
   m_TagString: Untagged
@@ -863,6 +903,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1489656798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314161546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314161544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1489656797
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1783369680}
+  - component: {fileID: 1783369681}
   m_Layer: 0
   m_Name: DieState
   m_TagString: Untagged
@@ -1144,6 +1197,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1489656798}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1783369681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1783369679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e62415e4b1443a081a6c23918c0ab59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1857673274
 GameObject:
   m_ObjectHideFlags: 0
@@ -1399,6 +1464,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3752702159745478541, guid: 55349a84cd52e194e87fbbc37e5840dc, type: 3}
+      propertyPath: Owner
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3880484450219752300, guid: 55349a84cd52e194e87fbbc37e5840dc, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1658,7 +1727,7 @@ MonoBehaviour:
   unitCollider: {fileID: 1103362332}
   attackCollider: {fileID: 1497578136}
   skillCollider: {fileID: 970139125}
-  Owner: 1
+  Owner: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

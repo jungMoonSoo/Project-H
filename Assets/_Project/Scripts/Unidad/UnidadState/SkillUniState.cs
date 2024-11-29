@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IdleUniState: MonoBehaviour, IUnidadState
+public class SkillUniState: MonoBehaviour, IUnidadState
 {
     public Unidad Unit
     {
@@ -15,7 +15,7 @@ public class IdleUniState: MonoBehaviour, IUnidadState
 
     public void OnEnter()
     {
-        Animator.Play("Idle_0");
+        Animator.Play("Skill _0");
     }
 
     public void OnUpdate()

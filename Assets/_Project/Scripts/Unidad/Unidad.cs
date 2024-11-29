@@ -50,6 +50,11 @@ public class Unidad : MonoBehaviour
             { UnitState.Skill, skillState.GetComponent<IUnidadState>() },
             { UnitState.Die, dieState.GetComponent<IUnidadState>() },
         };
+        foreach (IUnidadState state in states.Values)
+        {
+            state.Unit = this;
+            state.Animator = animator;
+        }
         
         StateChange(UnitState.Idle);
     }
@@ -71,7 +76,7 @@ public class Unidad : MonoBehaviour
 
             if (nowState != newState)
             {
-                nowState.OnExit();
+                nowState?.OnExit();
                 nowState = newState;
                 nowState.OnEnter();
             }
