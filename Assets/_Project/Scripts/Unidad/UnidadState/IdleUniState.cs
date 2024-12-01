@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class IdleUniState: MonoBehaviour, IUnidadState
@@ -20,7 +21,10 @@ public class IdleUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        
+        if (GameObject.FindObjectsOfType<Unidad>().Where(x => Unit.Owner != x.Owner).Count() > 0)
+        {
+            Unit.StateChange(UnitState.Move);
+        }
     }
 
     public void OnExit()

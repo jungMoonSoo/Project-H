@@ -13,16 +13,16 @@ public class Unidad : MonoBehaviour
     
     [Header("Colliders")]
     [SerializeField] public NewEllipseCollider unitCollider;
-    [SerializeField] private NewEllipseCollider attackCollider;
-    [SerializeField] private NewEllipseCollider skillCollider;
+    [SerializeField] public NewEllipseCollider attackCollider;
+    [SerializeField] public NewEllipseCollider skillCollider;
+    
+    [Header("Settings")]
+    [SerializeField] public UnitType Owner = UnitType.Enemy;
 
-    public UnitType Owner = UnitType.Enemy;
-
+    
     private Animator animator = null;
-    private IUnidadTargeting unidadTargeting = null;
 
     private IUnidadState nowState = null;
-    private bool hasState = false;
     
     private Dictionary<UnitState, IUnidadState> states = new();
 
@@ -40,7 +40,6 @@ public class Unidad : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        unidadTargeting = GetComponent<IUnidadTargeting>();
 
         states = new()
         {
@@ -61,10 +60,7 @@ public class Unidad : MonoBehaviour
 
     void Update()
     {
-        if (hasState)
-        {
-            nowState.OnUpdate();
-        }
+        nowState?.OnUpdate();
     }
     #endregion
 
@@ -72,14 +68,9 @@ public class Unidad : MonoBehaviour
     {
         if (states.TryGetValue(state, out IUnidadState newState))
         {
-            hasState = true;
-
-            if (nowState != newState)
-            {
-                nowState?.OnExit();
-                nowState = newState;
-                nowState.OnEnter();
-            }
+            nowState?.OnExit();
+            nowState = newState;
+            nowState.OnEnter();
         }
     }
 }
