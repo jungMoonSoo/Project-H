@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour, IUnitPos, IUnitMove, IUnitState, IUnitStatus, IUnitSkills
 {
-    public bool test = false;
-
     public UnitType unitType;
     public bool notMove;
 

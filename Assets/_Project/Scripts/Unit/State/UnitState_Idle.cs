@@ -123,8 +123,6 @@ public class UnitState_Idle : UnitStateBase
                 onTarget = UnitManager.Instance.units[i];
                 MovePos = unit.EllipseCollider.AroundTarget(MovePos, onTarget.EllipseCollider, unit.Status.moveSpeed);
 
-                if (unit.test) Debug.Log("Hit : " + onTarget.name);
-
                 return true;
             }
         }

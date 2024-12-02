@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f95f8a3649a32049813d0e3d51c6829, type: 3}
+  m_Name: TwohanSwordWarrior
+  m_EditorClassIdentifier: 
+  hp:
+  - data: 100
+  - data: 100
+  mp:
+  - data: 0
+  - data: 100
+  mpRegen: 0
+  moveSpeed: 2
+  atkAnimPoint: 0.3
+  damageStatus:
+    atk: 10
+    acc: 0
+    crp: 0
+    cri: 0
+    skp: 0
+    edi: 0
+  guardStatus:
+    def: 0
+    dod: 0
+    ca: 0
