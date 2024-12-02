@@ -30,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204960096591996738}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -165,29 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5dd1694a542c3c4f885c795cd0c18ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isAlly: 0
+  unitType: 0
   notMove: 0
-  status:
-    hp:
-    - data: 100
-    - data: 100
-    mp:
-    - data: 0
-    - data: 100
-    mpRegen: 0
-    moveSpeed: 0.04
-    atk: 10
-    atkAnimPoint: 0.3
-    damageStatus:
-      atk: 10
-      acc: 0
-      crp: 0
-      cri: 0
-      skp: 0
-      edi: 0
-      def: 0
-      dod: 0
-      ca: 0
+  status: {fileID: 11400000, guid: 6892f5da4ec456643a362d818dec41ed, type: 2}
   hpBar:
     sprite: {fileID: 5523169504309909608}
     maxSize: 2

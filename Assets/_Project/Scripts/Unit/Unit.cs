@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkills
+public class Unit : MonoBehaviour, IUnitPos, IUnitMove, IUnitState, IUnitStatus, IUnitSkills
 {
+    public bool test = false;
+
     public UnitType unitType;
     public bool notMove;
 
@@ -17,20 +19,22 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
     [SerializeField] private LerpSprite hpBar;
 
     private readonly List<UnitSkillBase> skills = new();
+    private readonly Dictionary<UnitState, UnitStateBase> unitStates = new();
 
     public Vector3 ExistingPos => posManager.ExistingPos;
 
     public int StateNum { get; private set; }
     public UnitState State { get; private set; }
-    public UnitStateBase StateBase => stateBase;
     public Animator Animator { get; private set; }
+
+    public Unit Target { get; set; }
+    public Vector3 MovePos { get; set; }
+    public EllipseCollider EllipseCollider { get; private set; }
 
     public UnitStatus Status => statusManager.Status;
     public LerpSprite HpBar => statusManager.HpBar;
 
     public List<UnitSkillBase> Skills => skillManager.Skills;
-
-    public EllipseCollider EllipseCollider { get; private set; }
 
     private void OnEnable()
     {
@@ -60,34 +64,32 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
         EllipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
 
         Animator = GetComponent<Animator>();
-        StateChange(UnitState.Idle); // 초기 상태 설정
+
+        unitStates.Add(UnitState.Idle, new UnitState_Idle(this));
+        unitStates.Add(UnitState.Move, new UnitState_Move(this));
+        unitStates.Add(UnitState.Attack, new UnitState_Attack(this));
+        unitStates.Add(UnitState.Skill, new UnitState_Skill(this));
+        unitStates.Add(UnitState.Die, new UnitState_Die(this));
+
+        stateBase = unitStates[UnitState.Idle]; // 초기 상태 설정
     }
 
     private void Update()
     {
-        StateBase.OnUpdate();
+        stateBase.OnUpdate();
     }
 
     public void StateChange(UnitState _newState, int _stateNum = 0)
     {
         if (State == _newState) return;
 
-        StateBase?.OnExit();
+        stateBase.OnExit();
 
         State = _newState;
         StateNum = _stateNum;
+        stateBase = unitStates[_newState];
 
-        stateBase = _newState switch
-        {
-            UnitState.Idle => new UnitState_Idle(this, StateBase),
-            UnitState.Move => new UnitState_Move(this, StateBase),
-            UnitState.Attack => new UnitState_Attack(this, StateBase),
-            UnitState.Skill => new UnitState_Skill(this, StateBase),
-            UnitState.Die => new UnitState_Die(this, StateBase),
-            _ => StateBase
-        };
-
-        StateBase.OnEnter();
+        stateBase.OnEnter();
     }
 
     public void SetPos(Vector2 _pos) => posManager.SetPos(_pos);
@@ -110,7 +112,7 @@ public class Unit : MonoBehaviour, IUnitPos, IUnitState, IUnitStatus, IUnitSkill
         
         Gizmos.color = Color.gray;
         
-        Gizmos.DrawLine(transform.position, transform.position + StateBase.GetMovePos().normalized * 3);
+        Gizmos.DrawLine(transform.position, transform.position + MovePos.normalized * 3);
     }
 #endif
 }

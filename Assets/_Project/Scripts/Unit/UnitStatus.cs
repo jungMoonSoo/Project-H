@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class UnitStatus
+[CreateAssetMenu(menuName = "Scriptable Object/Unit Status")]
+public class UnitStatus : ScriptableObject
 {
     public BindData<int>[] hp = new BindData<int>[2]; // 체력
     public BindData<int>[] mp = new BindData<int>[2]; // 마력

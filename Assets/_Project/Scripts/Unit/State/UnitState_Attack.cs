@@ -7,7 +7,7 @@ public class UnitState_Attack : UnitStateBase
     private bool attack;
     private AnimatorStateInfo state;
 
-    public UnitState_Attack(Unit _unit, UnitStateBase _base) : base(_unit, _base)
+    public UnitState_Attack(Unit _unit) : base(_unit)
     {
 
     }
@@ -19,7 +19,7 @@ public class UnitState_Attack : UnitStateBase
 
     public override void OnUpdate()
     {
-        if (target == null)
+        if (unit.Target == null)
         {
             unit.StateChange(UnitState.Idle);
 
@@ -37,7 +37,7 @@ public class UnitState_Attack : UnitStateBase
             {
                 if (!attack)
                 {
-                    if (target.OnDamage(false, unit.Status.damageStatus, 0)) unit.Status.mp[0].Data += unit.Status.mpRegen;
+                    if (unit.Target.OnDamage(false, unit.Status.damageStatus, 0)) unit.Status.mp[0].Data += unit.Status.mpRegen;
                     else unit.Status.mp[0].Data += (int)(unit.Status.mpRegen * 0.5f);
 
                     attack = true;

@@ -85,11 +85,7 @@ public class EllipseCollider : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        for (int i = 0; i < ranges.Count; i++)
-        {
-            Gizmos.color = colors[i];
-            GizmosDrawer.DrawEllipse(transform.position, ranges[i], 50, colors[i]);
-        }
+        for (int i = 0; i < ranges.Count; i++) GizmosDrawer.DrawEllipse(transform.position, ranges[i], 50, colors[i]);
     }
 #endif
 }

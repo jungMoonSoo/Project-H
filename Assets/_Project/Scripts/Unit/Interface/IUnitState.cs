@@ -6,7 +6,6 @@ public interface IUnitState
 {
     public int StateNum { get; }
     public UnitState State { get; }
-    public UnitStateBase StateBase { get; }
 
     public Animator Animator { get; }
 

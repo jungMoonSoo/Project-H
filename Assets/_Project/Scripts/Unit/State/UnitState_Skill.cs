@@ -7,7 +7,7 @@ public class UnitState_Skill : UnitStateBase
     private bool attack;
     private AnimatorStateInfo state;
 
-    public UnitState_Skill(Unit _unit, UnitStateBase _base) : base(_unit, _base)
+    public UnitState_Skill(Unit _unit) : base(_unit)
     {
 
     }

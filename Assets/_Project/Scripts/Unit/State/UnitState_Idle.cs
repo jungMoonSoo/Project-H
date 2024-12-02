@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class UnitState_Idle : UnitStateBase
 {
+    private Unit onTarget;
+    private bool onEllipse;
+
     private float checkDist;
     private float checkClosestDist;
 
-    public UnitState_Idle(Unit _unit, UnitStateBase _base) : base(_unit, _base)
+    private Vector3 MovePos
+    {
+        get => unit.MovePos;
+        set => unit.MovePos = value.normalized;
+    }
+
+    public UnitState_Idle(Unit _unit) : base(_unit)
     {
 
     }
@@ -21,17 +30,16 @@ public class UnitState_Idle : UnitStateBase
     {
         SetTarget();
 
-        if (target == null)
+        if (unit.Target == null)
         {
-            PlayIdleAnimation();
+            PlayIdleAnim();
 
             return;
         }
 
         if (!UnitManager.Instance.isPlay) return;
 
-        HandleSkillActivation();
-        HandleMovement();
+        if (!HandleUseSkill()) HandleMovement();
     }
 
     public override void OnExit()
@@ -39,75 +47,94 @@ public class UnitState_Idle : UnitStateBase
 
     }
 
-    private void PlayIdleAnimation() => unit.Animator.Play($"Idle_{unit.StateNum}");
+    private void PlayIdleAnim() => unit.Animator.Play($"Idle_{unit.StateNum}");
 
-    private void HandleSkillActivation()
+    private bool HandleUseSkill()
     {
         if (unit.CheckSkill())
         {
             unit.Status.mp[0].Data = 0;
             unit.StateChange(UnitState.Skill);
+
+            return true;
         }
+
+        return false;
     }
 
     private void HandleMovement()
     {
-        if (onEllipse) HandleEllipseMovement();
-        else if (CheckEllipseEnter()) return;
+        if (onEllipse) HandleOnEllipseMove();
+        else if (CheckAttackable()) return;
 
-        if (unit.notMove) PlayIdleAnimation();
+        if (unit.notMove) PlayIdleAnim();
         else
         {
-            Flip(target.transform.position.x, unit.transform.position.x);
+            Flip(unit.Target.transform.position.x, unit.transform.position.x);
             unit.StateChange(UnitState.Move);
         }
     }
 
-    private void HandleEllipseMovement()
+    private void HandleOnEllipseMove()
     {
         if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, onTarget.EllipseCollider, EllipseType.Unit, EllipseType.Unit) > 1.5f) onEllipse = false;
-        else movePos = unit.EllipseCollider.TransAreaPos(movePos + CalculateMoveVector(unit.transform, onTarget.transform));
+        else MovePos = unit.EllipseCollider.TransAreaPos(MovePos + CalculateMoveVector(unit.transform, onTarget.transform));
+    }
+
+    private bool CheckAttackable()
+    {
+        onEllipse = CheckEllipseEnter();
+
+        Vector3 _transPos = unit.EllipseCollider.TransAreaPos(MovePos);
+
+        if (MovePos != _transPos)
+        {
+            MovePos = _transPos;
+
+            return false;
+        }
+
+        if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, unit.Target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1)
+        {
+            Flip(unit.Target.transform.position.x, unit.transform.position.x);
+
+            if (unit.notMove) unit.StateChange(UnitState.Attack);
+            else if (!onEllipse) unit.StateChange(UnitState.Attack);
+
+            return true;
+        }
+
+        Flip(MovePos.x, 0);
+
+        return false;
     }
 
     private bool CheckEllipseEnter()
     {
-        onEllipse = false;
-
-        if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1) movePos = Vector3.zero;
-        else movePos = CalculateMoveVector(target.transform, unit.transform);
+        if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, unit.Target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1) MovePos = Vector3.zero;
+        else MovePos = CalculateMoveVector(unit.Target.transform, unit.transform);
 
         for (int i = 0; i < UnitManager.Instance.units.Count; i++)
         {
             if (UnitManager.Instance.units[i] == unit) continue;
 
-            if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position + movePos, UnitManager.Instance.units[i].EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1)
+            if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position + MovePos, UnitManager.Instance.units[i].EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1)
             {
                 onTarget = UnitManager.Instance.units[i];
-                movePos = unit.EllipseCollider.AroundTarget(movePos, onTarget.EllipseCollider, unit.Status.moveSpeed);
-                onEllipse = true;
+                MovePos = unit.EllipseCollider.AroundTarget(MovePos, onTarget.EllipseCollider, unit.Status.moveSpeed);
 
-                break;
+                if (unit.test) Debug.Log("Hit : " + onTarget.name);
+
+                return true;
             }
         }
-
-        if (!onEllipse) movePos = unit.EllipseCollider.TransAreaPos(movePos);
-
-        if (unit.EllipseCollider.OnEllipseEnter(unit.transform.position, target.EllipseCollider, EllipseType.Attack, EllipseType.Unit) <= 1)
-        {
-            Flip(target.transform.position.x, unit.transform.position.x);
-            TransitionToAttackState();
-
-            return true;
-        }
-
-        Flip(movePos.x, 0);
 
         return false;
     }
 
     private void SetTarget()
     {
-        target = null;
+        unit.Target = null;
 
         if (!UnitManager.Instance.isPlay) return;
 
@@ -122,16 +149,11 @@ public class UnitState_Idle : UnitStateBase
             if (checkDist < checkClosestDist)
             {
                 checkClosestDist = checkDist;
-                target = UnitManager.Instance.units[i];
+                unit.Target = UnitManager.Instance.units[i];
             }
         }
 
-        if (target == null) UnitManager.Instance.End();
-    }
-
-    private void TransitionToAttackState()
-    {
-        if (unit.notMove || !onEllipse) unit.StateChange(UnitState.Attack);
+        if (unit.Target == null) UnitManager.Instance.End();
     }
 
     private Vector3 CalculateMoveVector(Transform _from, Transform _to) => unit.Status.moveSpeed * (_from.position - _to.position).normalized;
