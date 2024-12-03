@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IPlayerSkill: ISkill
+public interface IActionSkill: ISkill
 {
     /// <summary>
     /// 스킬 드래그 위치 표시용 이펙트 오브젝트

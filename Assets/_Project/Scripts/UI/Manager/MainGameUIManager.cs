@@ -18,7 +18,7 @@ public class MainGameUIManager : Singleton<MainGameUIManager>
     [SerializeField] GameObject itemStorage;
 
     [Header("Skill 착용")]
-    [SerializeField] PlayerSkillBase[] LeaderSkillSlot;//스킬 종류 착용
+    [SerializeField] ActionSkillBase[] LeaderSkillSlot;//스킬 종류 착용
     [SerializeField] GameObject[] skillSlotObj;        //스킬 오브젝트
     public void Option()    //옵션창 띄우기
     {

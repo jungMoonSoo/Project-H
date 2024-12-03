@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class PlayerSkillBase: MonoBehaviour, IPlayerSkill
+public abstract class ActionSkillBase: MonoBehaviour, IActionSkill
 {
     public abstract GameObject AreaEffect
     {

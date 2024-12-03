@@ -42,14 +42,14 @@ public static class Logger
 
         switch(type)
         {
-            case LogType.Debug:
-                UnityEngine.Debug.Log(stringBuilder.ToString());
-                break;
             case LogType.Warning:
                 UnityEngine.Debug.LogWarning(stringBuilder.ToString());
                 break;
             case LogType.Error:
                 UnityEngine.Debug.LogError(stringBuilder.ToString());
+                break;
+            default:
+                UnityEngine.Debug.Log(stringBuilder.ToString());
                 break;
         }
     }
@@ -59,7 +59,7 @@ public static class Logger
         StackFrame stackFrame = new StackTrace().GetFrame(3);
         MethodBase callingMethod = stackFrame.GetMethod();
 
-        return $"{time.ToString("yyyy-MM-dd HH:mm:ss")}\t[{type.ToString()}] [{callingMethod.DeclaringType.Name}]::[{callingMethod.Name}]";
+        return $"{time:yyyy-MM-dd HH:mm:ss}\t[{type.ToString()}] [{callingMethod.DeclaringType.Name}]::[{callingMethod.Name}]";
     }
 }
 

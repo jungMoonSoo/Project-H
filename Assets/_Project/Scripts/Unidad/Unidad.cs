@@ -73,4 +73,9 @@ public class Unidad : MonoBehaviour
             nowState.OnEnter();
         }
     }
+
+    public void OnDamage()
+    {
+        
+    }
 }

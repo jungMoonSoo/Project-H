@@ -6,10 +6,7 @@ public class PlayerSkillButton: MonoBehaviour, IDragHandler, IBeginDragHandler, 
     [SerializeField]
     private RectTransform skillGroup;
     [SerializeField]
-    private PlayerSkillBase playerSkill;
-
-    private bool isUsing = false;
-
+    private ActionSkillBase playerSkill;
 
 
     private Camera MainCamera
@@ -27,13 +24,13 @@ public class PlayerSkillButton: MonoBehaviour, IDragHandler, IBeginDragHandler, 
             return skillGroup;
         }
     }
-    private PlayerSkillBase PlayerSkill
+    private ActionSkillBase PlayerSkill
     {
         get
         {
             if(playerSkill == null)
             {
-                playerSkill = GetComponent<PlayerSkillBase>();
+                playerSkill = GetComponent<ActionSkillBase>();
                 if (playerSkill == null)
                 {
                     Logger.Warning("스킬 버튼 조건이 완벽하지 않음.", name, playerSkill);
@@ -42,16 +39,11 @@ public class PlayerSkillButton: MonoBehaviour, IDragHandler, IBeginDragHandler, 
             return playerSkill;
         }
     }
+    
 
+    private bool isUsing = false;
 
-
-    private void OnClick()
-    {
-        //playerSkill.OnSelect();
-    }
-
-
-
+    
     private void OnSelect()
     {
         if (!PlayerSkill.IsCooled)
@@ -80,6 +72,11 @@ public class PlayerSkillButton: MonoBehaviour, IDragHandler, IBeginDragHandler, 
         }
     }
 
+    
+    private void OnClick()
+    {
+        //playerSkill.OnSelect();
+    }
 
 
     #region ◇ UI Events ◇

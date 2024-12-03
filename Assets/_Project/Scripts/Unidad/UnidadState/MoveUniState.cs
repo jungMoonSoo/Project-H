@@ -39,6 +39,10 @@ public class MoveUniState: MonoBehaviour, IUnidadState
                 Unit.StateChange(UnitState.Attack);
             }
         }
+        else
+        {
+            Unit.StateChange(UnitState.Idle);
+        }
     }
 
     public void OnExit()
