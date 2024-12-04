@@ -17,5 +17,5 @@ public interface ISkillObject
     /// </summary>
     public void ApplyEffect();
     public void SetPosition(Vector2 position);
-    public Unit[] GetTargets();
+    public Unidad[] GetTargets();
 }

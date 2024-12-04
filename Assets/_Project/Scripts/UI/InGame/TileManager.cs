@@ -8,7 +8,7 @@ public class TileManager : MonoBehaviour
     public List<Tile> enemyTiles;
 
     private TouchInfo info;
-    private Unit selectedUnit;
+    private Unidad selectedUnit;
 
     private bool storage;
 
@@ -37,7 +37,7 @@ public class TileManager : MonoBehaviour
     public void SelectStorageUnit(UnitStatus _unitStatus, Vector2 _pos)
     {
         // _pos위치에 유닛 생성 필요
-        Unit _unit = new();
+        Unidad _unit = new();
 
         selectedUnit = _unit;
         storage = true;

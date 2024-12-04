@@ -30,7 +30,7 @@ public class TestEllipseActionSkill : ActionSkillBase
     protected override Sprite SkillAreaSprite => skillAreaSprite;
     #endregion
 
-    private readonly List<Unit> unitList = new(); 
+    private readonly List<Unidad> unitList = new(); 
 
     private IPlayerSkillCooldown _SkillCooldown = null;
     private ISkillArea _SkillArea = null;

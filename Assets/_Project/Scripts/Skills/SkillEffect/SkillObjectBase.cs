@@ -13,10 +13,10 @@ public abstract class SkillObjectBase: MonoBehaviour, ISkillObject
         get;
         set;
     }
-    protected virtual Unit[] Targets => GetTargets();
+    protected virtual Unidad[] Targets => GetTargets();
 
 
     public abstract void ApplyEffect();
     public abstract void SetPosition(Vector2 position);
-    public abstract Unit[] GetTargets();
+    public abstract Unidad[] GetTargets();
 }

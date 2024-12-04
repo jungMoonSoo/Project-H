@@ -512,6 +512,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412243147}
     m_Modifications:
+    - target: {fileID: -2268433611331193402, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: Owner
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 204960096591996738, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_Name
       value: Lancer (4)
@@ -1315,6 +1319,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412243147}
     m_Modifications:
+    - target: {fileID: -2268433611331193402, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: Owner
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 204960096591996738, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_Name
       value: Lancer (1)
@@ -1905,6 +1913,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412243147}
     m_Modifications:
+    - target: {fileID: -2268433611331193402, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: Owner
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 204960096591996738, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_Name
       value: Lancer
@@ -2033,6 +2045,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412243147}
     m_Modifications:
+    - target: {fileID: -2268433611331193402, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: Owner
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 204960096591996738, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_Name
       value: Lancer (2)
@@ -3332,6 +3348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1412243147}
     m_Modifications:
+    - target: {fileID: -2268433611331193402, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+      propertyPath: Owner
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 204960096591996738, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
       propertyPath: m_Name
       value: Lancer (3)

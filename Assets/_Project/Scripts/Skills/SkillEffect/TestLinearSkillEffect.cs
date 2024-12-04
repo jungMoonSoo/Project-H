@@ -17,15 +17,15 @@ public class TestLinearSkillEffect : SkillObjectBase
         set;
     } = 1;
     
-    private readonly List<Unit> hitUnits = new();
-    private EllipseCollider ellipseCollider = null;
+    private readonly List<Unidad> hitUnits = new();
+    private NewEllipseCollider ellipseCollider = null;
 
     public override void ApplyEffect()
     {
-        Unit[] units = Targets.Where(x => !hitUnits.Contains(x)).ToArray();
-        foreach (Unit unit in units)
+        Unidad[] units = Targets.Where(x => !hitUnits.Contains(x)).ToArray();
+        foreach (Unidad unit in units)
         {
-            unit.OnDamage((int)Influence);
+            // unit.OnDamage((int)Influence);
         }
 
 
@@ -44,22 +44,17 @@ public class TestLinearSkillEffect : SkillObjectBase
         StartCoroutine(MoveSkill(position));
     }
 
-    public override Unit[] GetTargets()
+    public override Unidad[] GetTargets()
     {
         SetCollider();
-        return UnitManager.Instance.units.Where(x => ellipseCollider.OnEllipseEnter(transform.position, x.EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1f).ToArray();
+        return UnitManager.Instance.units.Where(x => ellipseCollider.OnEllipseEnter(x.skillCollider)).ToArray();
     }
 
     private void SetCollider()
     {
         if (ellipseCollider != null) return; // 콜라이더가 없을 때, 생성하는 Method임.
         
-        ellipseCollider = GetComponent<EllipseCollider>();
-        if (ellipseCollider != null)
-        {
-            ellipseCollider.ranges = new List<Vector2>() { EffectRange * 0.5f };
-            ellipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
-        }
+        ellipseCollider = GetComponent<NewEllipseCollider>();
     }
 
     private IEnumerator MoveSkill(Vector2 position)

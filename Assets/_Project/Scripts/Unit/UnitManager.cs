@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitManager : Singleton<UnitManager>
 {
-    public List<Unit> units = new();
+    public List<Unidad> units = new();
 
     public bool isPlay;
 
@@ -25,9 +25,30 @@ public class UnitManager : Singleton<UnitManager>
 
         isPlay = false;
 
-        for (int i = 0; i < units.Count; i++) units[i].ReturnToPos();
+        // for (int i = 0; i < units.Count; i++) units[i].ReturnToPos();
 
         Debug.Log("End");
+    }
+
+    public Vector2 TransAreaPos(Vector3 _pos, Vector2 _colliderSize)
+    {
+        float _dist = (mapPos.x - mapSize.x * 0.5f) - (transform.position.x + _pos.x - _colliderSize.x);
+
+        if (_dist > 0) _pos.x += _dist;
+
+        _dist = (mapPos.x + mapSize.x * 0.5f) - (transform.position.x + _pos.x + _colliderSize.x);
+
+        if (_dist < 0) _pos.x += _dist;
+
+        _dist = (mapPos.y - mapSize.y * 0.5f) - (transform.position.y + _pos.y - _colliderSize.y);
+
+        if (_dist > 0) _pos.y += _dist;
+
+        _dist = (mapPos.y + mapSize.y * 0.5f) - (transform.position.y + _pos.y + _colliderSize.y);
+
+        if (_dist < 0) _pos.y += _dist;
+
+        return _pos;
     }
 
 #if UNITY_EDITOR

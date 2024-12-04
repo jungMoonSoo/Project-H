@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class TestSkillEffect : SkillObjectBase
 {
-    private EllipseCollider ellipseCollider = null;
+    private NewEllipseCollider ellipseCollider = null;
 
     public override void ApplyEffect()
     {
-        Unit[] units = Targets;
-        foreach (Unit unit in units)
+        Unidad[] units = Targets;
+        foreach (Unidad unit in units)
         {
-            unit.OnDamage((int)Influence);
+            // unit.OnDamage((int)Influence);
         }
 
         Destroy(gameObject);
@@ -23,22 +23,17 @@ public class TestSkillEffect : SkillObjectBase
         transform.position = position;
     }
 
-    public override Unit[] GetTargets()
+    public override Unidad[] GetTargets()
     {
         SetCollider();
-        return UnitManager.Instance.units.Where(x => ellipseCollider.OnEllipseEnter(transform.position, x.EllipseCollider, EllipseType.Unit, EllipseType.Unit) <= 1f).ToArray();
+        return UnitManager.Instance.units.Where(x => ellipseCollider.OnEllipseEnter(x.skillCollider)).ToArray();
     }
 
     private void SetCollider()
     {
         if (ellipseCollider == null)
         {
-            ellipseCollider = GetComponent<EllipseCollider>();
-            if (ellipseCollider != null)
-            {
-                ellipseCollider.ranges = new List<Vector2>() { EffectRange * 0.5f };
-                ellipseCollider.SetArea(UnitManager.Instance.mapPos, UnitManager.Instance.mapSize);
-            }
+            ellipseCollider = GetComponent<NewEllipseCollider>();
         }
     }
 }
