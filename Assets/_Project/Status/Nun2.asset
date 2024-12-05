@@ -12,12 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f95f8a3649a32049813d0e3d51c6829, type: 3}
   m_Name: Nun2
   m_EditorClassIdentifier: 
-  hp:
-  - data: 100
-  - data: 100
-  mp:
-  - data: 0
-  - data: 100
+  maxHp: 100
+  maxMp: 100
   mpRegen: 0
   moveSpeed: 2
   atkAnimPoint: 0.3

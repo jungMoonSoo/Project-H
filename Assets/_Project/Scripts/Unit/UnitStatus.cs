@@ -5,8 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Scriptable Object/Unit Status")]
 public class UnitStatus : ScriptableObject
 {
-    public BindData<int>[] hp = new BindData<int>[2]; // 체력
-    public BindData<int>[] mp = new BindData<int>[2]; // 마력
+    public int maxHp;
+    public int maxMp;
 
     public int mpRegen; // 마나 회복 계수
 
