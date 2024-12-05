@@ -32,7 +32,7 @@ public abstract class ActionSkillBase: MonoBehaviour, IActionSkill
         get;
     }
 
-    private Vector3 lastDragedPosition = Vector3.zero;
+    private Vector3 lastDragedPosition = Vector3.zero; 
     private GameObject skillAreaObject = null;
 
     public virtual void Execute()

@@ -24,7 +24,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        Unidad[] enemys = GameObject.FindObjectsOfType<Unidad>().Where(x => Unit.Owner != x.Owner).ToArray();
+        Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).ToArray();
         if (enemys.Length > 0)
         {
             Unidad target = enemys[0];

@@ -21,7 +21,7 @@ public class IdleUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        if (GameObject.FindObjectsOfType<Unidad>().Where(x => Unit.Owner != x.Owner).Count() > 0)
+        if (UnidadManager.Instance.unidades.Count(x => Unit.Owner != x.Owner) > 0)
         {
             Unit.StateChange(UnitState.Move);
         }

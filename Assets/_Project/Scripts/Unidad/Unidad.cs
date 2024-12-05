@@ -29,12 +29,12 @@ public class Unidad : MonoBehaviour
     #region ◇ Unity Events ◇
     void OnEnable()
     {
-        //UnitManager.Instance.units.Add(this);
+        UnidadManager.Instance.unidades.Add(this);
     }
 
     void OnDisable()
     {
-        //UnitManager.Instance.units.Remove(this);
+        UnidadManager.Instance.unidades.Remove(this);
     }
     
     void Start()
