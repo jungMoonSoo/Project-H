@@ -12,10 +12,8 @@ public class UnidadStatus : ScriptableObject
     [Range(0.5f, 5f)] public float attackSpeed;
 
     [Header("공격 스테이터스")]
-    public float physicalDamage;
-    public float magicDamage;
+    public AttackStatus attackStatus;
     
     [Header("방어 스테이터스")]
-    public float physicalDefense;
-    public float magicDefense;
+    public DefenceStatus defenceStatus;
 }

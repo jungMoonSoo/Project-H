@@ -2585,8 +2585,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1857673277}
   - component: {fileID: 1857673276}
-  - component: {fileID: 1857673275}
   - component: {fileID: 1857673278}
+  - component: {fileID: 1857673275}
   m_Layer: 0
   m_Name: Local Manager
   m_TagString: Untagged
