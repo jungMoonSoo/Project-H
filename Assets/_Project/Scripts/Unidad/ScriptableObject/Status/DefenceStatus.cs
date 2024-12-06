@@ -4,19 +4,23 @@ using UnityEngine;
 [Serializable]
 public class DefenceStatus
 {
-    public float physicalDefence;
-    public float magicDefence;
+    [Header("방어 수치")]
+    [Range(0, int.MaxValue)] public int physicalDefence;
+    [Range(0, int.MaxValue)] public int magicDefence;
 
+    [Header("크리티컬 저항률")]
     public float physicalCriticalResistance;
     public float magicCriticalResistance;
 
-    public float dodgeProbability;
+    [Header("회피율")]
+    [Range(0, 80f)] public float dodgeProbability = 5;
 
     [Header("속성 보너스")]
-    public float fireResistanceBonus;
-    public float waterResistanceBonus;
-    public float airResistanceBonus;
-    public float earthResistanceBonus;
-    public float lightResistanceBonus;
-    public float darkResistanceBonus;
+    [Range(0, 80f)] public float fireResistanceBonus = 0f;
+    [Range(0, 80f)] public float waterResistanceBonus = 0f;
+    [Range(0, 80f)] public float airResistanceBonus = 0f;
+    [Range(0, 80f)] public float earthResistanceBonus = 0f;
+    
+    [Range(0, 80f)] public float lightResistanceBonus = 0f;
+    [Range(0, 80f)] public float darkResistanceBonus = 0f;
 }

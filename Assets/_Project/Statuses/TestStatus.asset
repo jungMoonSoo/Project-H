@@ -16,7 +16,29 @@ MonoBehaviour:
   maxMana: 0
   moveSpeed: 0.25
   attackSpeed: 0.5
-  physicalDamage: 0
-  magicDamage: 0
-  physicalDefense: 0
-  magicDefense: 0
+  attackStatus:
+    physicalDamage: 0
+    magicDamage: 0
+    physicalCriticalDamage: 0
+    magicCriticalDamage: 0
+    physicalCriticalProbability: 0
+    magicCriticalProbability: 0
+    accuracy: 100
+    fireDamageBonus: 0
+    waterDamageBonus: 0
+    airDamageBonus: 0
+    earthDamageBonus: 0
+    lightDamageBonus: 0
+    darkDamageBonus: 0
+  defenceStatus:
+    physicalDefence: 0
+    magicDefence: 0
+    physicalCriticalResistance: 0
+    magicCriticalResistance: 0
+    dodgeProbability: 5
+    fireResistanceBonus: 0
+    waterResistanceBonus: 0
+    airResistanceBonus: 0
+    earthResistanceBonus: 0
+    lightResistanceBonus: 0
+    darkResistanceBonus: 0
