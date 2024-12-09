@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b399a808fa8774190645441f631627, type: 3}
+  m_Name: Blacksmith
+  m_EditorClassIdentifier: 
+  id: 0
+  unidadPrefab: {fileID: 2864249801598382004, guid: deb676234eb8065438ec581f1a97530d, type: 3}
+  skillPrefab: {fileID: 0}
+  maxHitpoint: 0
+  maxMana: 0
+  moveSpeed: 2
+  attackSpeed: 0.5
+  attackStatus:
+    physicalDamage: 0
+    magicDamage: 0
+    physicalCriticalDamage: 0
+    magicCriticalDamage: 0
+    physicalCriticalProbability: 0
+    magicCriticalProbability: 0
+    accuracy: 100
+    fireDamageBonus: 0
+    waterDamageBonus: 0
+    airDamageBonus: 0
+    earthDamageBonus: 0
+    lightDamageBonus: 0
+    darkDamageBonus: 0
+  defenceStatus:
+    physicalDefence: 0
+    magicDefence: 0
+    physicalCriticalResistance: 0
+    magicCriticalResistance: 0
+    dodgeProbability: 5
+    fireResistanceBonus: 0
+    waterResistanceBonus: 0
+    airResistanceBonus: 0
+    earthResistanceBonus: 0
+    lightResistanceBonus: 0
+    darkResistanceBonus: 0

@@ -34,7 +34,7 @@ public class TileManager : MonoBehaviour
         SetTileActiveState(!UnitManager.Instance.isPlay);
     }
 
-    public void SelectStorageUnit(UnitStatus _unitStatus, Vector2 _pos)
+    public void SelectStorageUnit(Vector2 _pos)
     {
         // _pos위치에 유닛 생성 필요
         Unidad _unit = new();

@@ -11,7 +11,6 @@ public class UnitManager : Singleton<UnitManager>
     public Vector2 mapPos;
     public Vector2 mapSize;
 
-    public readonly int DM = 0; // 방어 계수
     public readonly LerpAction lerpAction = new();
 
     private void FixedUpdate()

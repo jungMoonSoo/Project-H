@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class AttackUniState: MonoBehaviour, IUnidadState
 {
+    [Header("Settings")]
+    [SerializeField] private float atkAnimPoint = 0.3f;
+
+    private bool attack;
+
     public Unidad Unit
     {
         get;
@@ -13,13 +18,6 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         get;
         set;
     }
-    public float AtkAnimPoint
-    {
-        get;
-        set;
-    }
-
-    private bool attack;
 
     public void OnEnter()
     {
@@ -28,7 +26,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        Unidad[] enemys = GameObject.FindObjectsOfType<Unidad>().Where(x => Unit.Owner != x.Owner).ToArray();
+        Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).ToArray();
         if (enemys.Length > 0)
         {
             Unidad target = enemys[0];
@@ -42,7 +40,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
                 if (state.IsName("Attack_0"))
                 {
-                    if (state.normalizedTime % 1 > AtkAnimPoint)
+                    if (state.normalizedTime % 1 > atkAnimPoint)
                     {
                         if (!attack)
                         {
