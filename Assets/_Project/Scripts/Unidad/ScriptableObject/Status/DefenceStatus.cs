@@ -5,8 +5,8 @@ using UnityEngine;
 public class DefenceStatus
 {
     [Header("방어 수치")]
-    [Range(0, int.MaxValue)] public int physicalDefence;
-    [Range(0, int.MaxValue)] public int magicDefence;
+    public int physicalDefence;
+    public int magicDefence;
 
     [Header("크리티컬 저항률")]
     public float physicalCriticalResistance;

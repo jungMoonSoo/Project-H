@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Unidad : MonoBehaviour
 {
+    [SerializeField] private uint id;
+    
     [Header("States")]
     [SerializeField] private GameObject idleState;
     [SerializeField] private GameObject moveState;
@@ -19,11 +21,13 @@ public class Unidad : MonoBehaviour
     [Header("Settings")]
     [SerializeField] public UnitType Owner = UnitType.Enemy;
 
+
+    public UnidadStatus Status => UnidadManager.Instance.GetStatus(id);
+
     
     private Animator animator = null;
-
     private IUnidadState nowState = null;
-    
+    private StatusManager statusManager = null;
     private Dictionary<UnitState, IUnidadState> states = new();
 
     #region ◇ Unity Events ◇
@@ -39,6 +43,7 @@ public class Unidad : MonoBehaviour
     
     void Start()
     {
+        statusManager = new StatusManager(this);
         animator = GetComponent<Animator>();
 
         states = new()
@@ -74,8 +79,6 @@ public class Unidad : MonoBehaviour
         }
     }
 
-    public void OnDamage()
-    {
-        
-    }
+    public void OnDamage(int damage) => statusManager?.OnDamage(damage);
+    public void OnHeal(int heal) => statusManager?.OnHeal(heal);
 }

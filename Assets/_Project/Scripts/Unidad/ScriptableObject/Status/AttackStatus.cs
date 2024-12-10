@@ -5,12 +5,12 @@ using UnityEngine;
 public class AttackStatus
 {
     [Header("공격력")]
-    [Range(0, int.MaxValue)] public int physicalDamage;
-    [Range(0, int.MaxValue)] public int magicDamage;
+    public int physicalDamage;
+    public int magicDamage;
     
     [Header("치명타 추가피해")]
-    [Range(0, float.MaxValue)] public float physicalCriticalDamage;
-    [Range(0, float.MaxValue)] public float magicCriticalDamage;
+    public float physicalCriticalDamage;
+    public float magicCriticalDamage;
 
     [Header("치명타 확률")]
     public float physicalCriticalProbability;
@@ -20,10 +20,10 @@ public class AttackStatus
     [Range(70, 150)] public float accuracy = 100f;
 
     [Header("속성 보너스")]
-    [Range(0, float.MaxValue)] public float fireDamageBonus;
-    [Range(0, float.MaxValue)] public float waterDamageBonus;
-    [Range(0, float.MaxValue)] public float airDamageBonus;
-    [Range(0, float.MaxValue)] public float earthDamageBonus;
-    [Range(0, float.MaxValue)] public float lightDamageBonus;
-    [Range(0, float.MaxValue)] public float darkDamageBonus;
+    public float fireDamageBonus;
+    public float waterDamageBonus;
+    public float airDamageBonus;
+    public float earthDamageBonus;
+    public float lightDamageBonus;
+    public float darkDamageBonus;
 }

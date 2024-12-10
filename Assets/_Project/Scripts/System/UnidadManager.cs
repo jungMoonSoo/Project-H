@@ -1,20 +1,29 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UnidadManager : Singleton<UnidadManager>
 {
-    public List<Unidad> unidades = new();
+    [SerializeField] private UnidadStatus[] unidadStatuses;
+    [SerializeField] private UnidadStatus defaultStatus;
     
-    // Start is called before the first frame update
+    
+    [NonSerialized] public List<Unidad> unidades = new();
+
+    private Dictionary<uint, UnidadStatus> unidadDict = new();
+    
+    
     void Start()
     {
-        
+        foreach (UnidadStatus status in unidadStatuses)
+        {
+            unidadDict.Add(status.id, status);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public UnidadStatus GetStatus(uint id)
     {
-        
+        return unidadDict.GetValueOrDefault(id, defaultStatus);
     }
 }
