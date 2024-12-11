@@ -20,7 +20,6 @@ public class DefenceStatus
     [Range(0, 80f)] public float waterResistanceBonus = 0f;
     [Range(0, 80f)] public float airResistanceBonus = 0f;
     [Range(0, 80f)] public float earthResistanceBonus = 0f;
-    
     [Range(0, 80f)] public float lightResistanceBonus = 0f;
     [Range(0, 80f)] public float darkResistanceBonus = 0f;
 }

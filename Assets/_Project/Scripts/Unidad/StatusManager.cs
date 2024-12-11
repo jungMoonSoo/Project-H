@@ -10,7 +10,6 @@ public class StatusManager
     [SerializeField] public int mana;
 
     #region ◇ Parameters ◇
-
     private UnidadStatus Status => unidad.Status;
     
     #region ◇◇ 기타 스테이터스 ◇◇
@@ -38,6 +37,33 @@ public class StatusManager
     public float EarthDamageBonus => Status.attackStatus.earthDamageBonus;
     public float LightDamageBonus => Status.attackStatus.lightDamageBonus;
     public float DarkDamageBonus => Status.attackStatus.darkDamageBonus;
+    
+    public AttackStatus AttackStatus
+    {
+        get
+        {
+            attackStatus.physicalDamage = PhysicalDamage;
+            attackStatus.magicDamage = MagicDamage;
+        
+            attackStatus.physicalCriticalDamage = PhysicalCriticalDamage;
+            attackStatus.magicCriticalDamage = MagicCriticalDamage;
+        
+            attackStatus.physicalCriticalProbability = PhysicalCriticalProbability;
+            attackStatus.magicCriticalProbability = PhysicalCriticalProbability;
+        
+            attackStatus.accuracy = Accuracy;
+        
+            attackStatus.fireDamageBonus = FireDamageBonus;
+            attackStatus.waterDamageBonus = WaterDamageBonus;
+            attackStatus.airDamageBonus = AirDamageBonus;
+            attackStatus.earthDamageBonus = EarthDamageBonus;
+            attackStatus.lightDamageBonus = LightDamageBonus;
+            attackStatus.darkDamageBonus = DarkDamageBonus;
+        
+        
+            return attackStatus;
+        }
+    }
     #endregion
     
     #region ◇◇ 방어 스테이터스 ◇◇
@@ -56,10 +82,36 @@ public class StatusManager
     
     public float LightResistanceBonus => Status.defenceStatus.lightResistanceBonus;
     public float DarkResistanceBonus => Status.defenceStatus.darkResistanceBonus;
+    
+    public DefenceStatus DefenceStatus
+    {
+        get
+        {
+            defenceStatus.physicalDefence = PhysicalDefence;
+            defenceStatus.magicDefence = MagicDefence;
+            
+            defenceStatus.physicalCriticalResistance = PhysicalCriticalResistance;
+            defenceStatus.magicCriticalResistance = MagicCriticalResistance;
+            
+            defenceStatus.dodgeProbability = DodgeProbability;
+            
+            defenceStatus.fireResistanceBonus = FireResistanceBonus;
+            defenceStatus.waterResistanceBonus = WaterResistanceBonus;
+            defenceStatus.airResistanceBonus = AirResistanceBonus;
+            defenceStatus.earthResistanceBonus = EarthResistanceBonus;
+            defenceStatus.lightResistanceBonus = LightResistanceBonus;
+            defenceStatus.darkResistanceBonus = DarkResistanceBonus;
+            
+            
+            return defenceStatus;
+        }
+    }
     #endregion
     #endregion
 
     public Action DieEvent = null;
+    private AttackStatus attackStatus = new();
+    private DefenceStatus defenceStatus = new();
     
     
     public StatusManager(Unidad unidad) => this.unidad = unidad;

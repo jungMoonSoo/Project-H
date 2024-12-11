@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b399a808fa8774190645441f631627, type: 3}
   m_Name: TestStatus
   m_EditorClassIdentifier: 
+  id: 0
+  unidadPrefab: {fileID: 0}
+  skillPrefab: {fileID: 0}
   maxHitpoint: 0
   maxMana: 0
   moveSpeed: 0.25

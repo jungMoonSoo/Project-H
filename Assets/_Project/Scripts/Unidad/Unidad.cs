@@ -23,6 +23,9 @@ public class Unidad : MonoBehaviour
 
 
     public UnidadStatus Status => UnidadManager.Instance.GetStatus(id);
+    
+    public AttackStatus NowAttackStatus => statusManager.AttackStatus;
+    public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
 
     
     private Animator animator = null;
@@ -69,6 +72,7 @@ public class Unidad : MonoBehaviour
     }
     #endregion
 
+    
     public void StateChange(UnitState state)
     {
         if (states.TryGetValue(state, out IUnidadState newState))

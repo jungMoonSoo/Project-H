@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkAnimPoint: 0.3
 --- !u!1 &88722574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,6 +1829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkAnimPoint: 0.3
 --- !u!1 &1369007471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,6 +1863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   idleState: {fileID: 1289211972}
   moveState: {fileID: 469672518}
   attackState: {fileID: 72000766}
@@ -2646,7 +2649,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc631ab88548a5d479521c52a6d9951a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unidades: []
+  unidadStatuses: []
+  defaultStatus: {fileID: 11400000, guid: f73de598515a0c04e901ee1977ee019c, type: 2}
 --- !u!224 &2051900809 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3107029129679063919, guid: 6542c717ec52ed24d8fe711625087c66, type: 3}
@@ -3101,6 +3105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   idleState: {fileID: 88722574}
   moveState: {fileID: 259098840}
   attackState: {fileID: 1314161544}
