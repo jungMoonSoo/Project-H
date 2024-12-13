@@ -23,15 +23,15 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        if (UnitManager.Instance.isPlay) return;
-
-        CheckTouch();
-        DragUnit();
+        // if (StageManager.Instance.isPlay) return;
+        // 
+        // CheckTouch();
+        // DragUnit();
     }
 
     public void ToggleTile()
     {
-        SetTileActiveState(!UnitManager.Instance.isPlay);
+        SetTileActiveState(false);
     }
 
     public void SelectStorageUnit(Vector2 _pos)

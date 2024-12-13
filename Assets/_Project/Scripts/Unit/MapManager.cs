@@ -2,32 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitManager : Singleton<UnitManager>
+public class MapManager : Singleton<MapManager>
 {
-    public bool isPlay;
-
     public Vector2 mapPos;
     public Vector2 mapSize;
 
-    public readonly LerpAction lerpAction = new();
-
-    private void FixedUpdate()
-    {
-        lerpAction.actions?.Invoke();
-    }
-
-    public void End()
-    {
-        if (!isPlay) return;
-
-        isPlay = false;
-
-        // for (int i = 0; i < units.Count; i++) units[i].ReturnToPos();
-
-        Debug.Log("End");
-    }
-
-    public Vector2 TransArea(Vector3 _pos, Vector2 _colliderSize)
+    public Vector2 ClampPositionToMap(Vector3 _pos, Vector2 _colliderSize)
     {
         float _dist = (mapPos.x - mapSize.x * 0.5f) - (_pos.x - _colliderSize.x);
 

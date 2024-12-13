@@ -1763,6 +1763,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1088808265}
   - component: {fileID: 1088808264}
+  - component: {fileID: 1088808266}
   m_Layer: 0
   m_Name: 1Stage_StageTypecopy
   m_TagString: Untagged
@@ -1838,6 +1839,20 @@ Transform:
   - {fileID: 1581851563}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1088808266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088808263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96cfd69ac55e9134cace0d42e416e50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapPos: {x: 0, y: -0.2}
+  mapSize: {x: 18, y: 5.8}
 --- !u!1 &1185609140 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7962572913241165374, guid: 4b6b710013d0e4b4ea8db0b012958f7d, type: 3}
@@ -3449,7 +3464,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2145259195}
-  - component: {fileID: 2145259196}
   - component: {fileID: 2145259199}
   - component: {fileID: 2145259197}
   - component: {fileID: 2145259198}
@@ -3475,22 +3489,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2145259196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2145259194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c2c14a67e2bb74e92ab5ded280577a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  units: []
-  isPlay: 0
-  mapPos: {x: 0, y: -0.2}
-  mapSize: {x: 18, y: 5.67}
 --- !u!114 &2145259197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3561,7 +3559,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc631ab88548a5d479521c52a6d9951a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unidades: []
+  unidadStatuses: []
+  defaultStatus: {fileID: 0}
 --- !u!1001 &4728303724328694399
 PrefabInstance:
   m_ObjectHideFlags: 0

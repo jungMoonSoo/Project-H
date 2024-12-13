@@ -27,16 +27,26 @@ public class MoveUniState: MonoBehaviour, IUnidadState
         Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).ToArray();
         if (enemys.Length > 0)
         {
-            Unidad target = enemys[0];
-            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
+            Vector2 _movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Size);
+
+            if ((Vector2)Unit.transform.position != _movePos)
             {
-                Vector2 direction = target.unitCollider.transform.position - transform.position;
-                Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
-                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, _movePos, moveSpeed * Time.deltaTime);
             }
             else
             {
-                Unit.StateChange(UnitState.Attack);
+                Unidad target = enemys[0];
+
+                if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
+                {
+                    Vector2 direction = target.unitCollider.transform.position - transform.position;
+                    Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
+                    Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    Unit.StateChange(UnitState.Attack);
+                }
             }
         }
         else
