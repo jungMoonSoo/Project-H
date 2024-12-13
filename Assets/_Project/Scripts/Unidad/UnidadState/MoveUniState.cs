@@ -27,7 +27,10 @@ public class MoveUniState: MonoBehaviour, IUnidadState
         Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).ToArray();
         if (enemys.Length > 0)
         {
-            Vector2 _movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Size);
+            // TODO
+            //  유닛이 적을 바라보지 않고 움직이는 경우가 종종 보임. 수정이 필요함.
+            //  적이 사거리에 들어왔을 때, 공격하지 않고 완전히 달라붙는 경우 보임.
+            Vector2 _movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.size);
 
             if ((Vector2)Unit.transform.position != _movePos)
             {

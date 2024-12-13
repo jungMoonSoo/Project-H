@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   idleState: {fileID: 3020184914559160953}
   moveState: {fileID: 673365236246937113}
   attackState: {fileID: 6345049695416848401}
@@ -515,8 +516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 0, a: 1}
-  Center: {x: 0, y: 0}
-  Size: {x: 2, y: 1}
+  center: {x: 0, y: 0}
+  size: {x: 2, y: 1}
 --- !u!1 &6114930658884205441
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,8 +563,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 1, g: 0, b: 0, a: 1}
-  Center: {x: 0, y: 0}
-  Size: {x: 6, y: 3}
+  center: {x: 0, y: 0}
+  size: {x: 6, y: 3}
 --- !u!1 &6345049695416848401
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,6 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  atkAnimPoint: 0.3
 --- !u!1 &7580006317664848572
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,8 +655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 0, b: 0, a: 1}
-  Center: {x: 0, y: 0}
-  Size: {x: 7, y: 3.5}
+  center: {x: 0, y: 0}
+  size: {x: 7, y: 3.5}
 --- !u!1 &7774091916954405746
 GameObject:
   m_ObjectHideFlags: 0

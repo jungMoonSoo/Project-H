@@ -18,7 +18,7 @@ public class TestLinearSkillEffect : SkillObjectBase
     } = 1;
     
     private readonly List<Unidad> hitUnits = new();
-    private NewEllipseCollider ellipseCollider = null;
+    private EllipseCollider ellipseCollider = null;
 
     public override void ApplyEffect()
     {
@@ -54,7 +54,7 @@ public class TestLinearSkillEffect : SkillObjectBase
     {
         if (ellipseCollider != null) return; // 콜라이더가 없을 때, 생성하는 Method임.
         
-        ellipseCollider = GetComponent<NewEllipseCollider>();
+        ellipseCollider = GetComponent<EllipseCollider>();
     }
 
     private IEnumerator MoveSkill(Vector2 position)

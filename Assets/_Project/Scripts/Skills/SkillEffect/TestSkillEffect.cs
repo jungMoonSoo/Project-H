@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class TestSkillEffect : SkillObjectBase
 {
-    private NewEllipseCollider ellipseCollider = null;
+    private EllipseCollider ellipseCollider = null;
 
     public override void ApplyEffect()
     {
@@ -33,7 +33,7 @@ public class TestSkillEffect : SkillObjectBase
     {
         if (ellipseCollider == null)
         {
-            ellipseCollider = GetComponent<NewEllipseCollider>();
+            ellipseCollider = GetComponent<EllipseCollider>();
         }
     }
 }

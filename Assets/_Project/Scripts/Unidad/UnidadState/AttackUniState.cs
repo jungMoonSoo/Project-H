@@ -44,7 +44,9 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                     {
                         if (!attack)
                         {
-                            Unit.OnDamage((int)StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null));
+                            // TODO: 대미지 크리티컬, 회피 등의 판단 후 DamageType을 바꿔서 넣어줘야 할 것 같음.
+                            int damage = (int)StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null);
+                            target.OnDamage(damage, DamageType.Normal);
                             attack = true;
                         }
                     }

@@ -14,9 +14,9 @@ public class Unidad : MonoBehaviour
     [SerializeField] private GameObject dieState;
     
     [Header("Colliders")]
-    [SerializeField] public NewEllipseCollider unitCollider;
-    [SerializeField] public NewEllipseCollider attackCollider;
-    [SerializeField] public NewEllipseCollider skillCollider;
+    [SerializeField] public EllipseCollider unitCollider;
+    [SerializeField] public EllipseCollider attackCollider;
+    [SerializeField] public EllipseCollider skillCollider;
     
     [Header("Settings")]
     [SerializeField] public UnitType Owner = UnitType.Enemy;
@@ -83,6 +83,19 @@ public class Unidad : MonoBehaviour
         }
     }
 
-    public void OnDamage(int damage) => statusManager?.OnDamage(damage);
-    public void OnHeal(int heal) => statusManager?.OnHeal(heal);
+    public void OnDamage(int damage, DamageType damageType)
+    {
+        // TODO
+        //  대미지 UI 생성은 맞는 쪽에서.
+        //  데미지를 입히기 전에 UI를 생성해야 함.
+        //  힐과는 달리, 데미지는 유닛이 사라질 수 있기 때문.
+        statusManager?.OnDamage(damage);
+    }
+
+    public void OnHeal(int heal, DamageType healType)
+    {
+        // TODO
+        //  힐 UI 생성은 받은 쪽에서.
+        statusManager?.OnHeal(heal);        
+    }
 }
