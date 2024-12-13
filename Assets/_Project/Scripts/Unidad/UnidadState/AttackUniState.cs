@@ -44,7 +44,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                     {
                         if (!attack)
                         {
-                            // TODO: 실제 공격
+                            Unit.OnDamage((int)StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null));
                             attack = true;
                         }
                     }

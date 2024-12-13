@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class UnitManager : Singleton<UnitManager>
 {
-    public List<Unidad> units = new();
-
     public bool isPlay;
 
     public Vector2 mapPos;

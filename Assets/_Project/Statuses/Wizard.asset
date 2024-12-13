@@ -15,13 +15,13 @@ MonoBehaviour:
   id: 0
   unidadPrefab: {fileID: 5351865268343234963, guid: 4e6ae399d84a083499c5e87f65535273, type: 3}
   skillPrefab: {fileID: 0}
-  maxHitpoint: 0
+  maxHitpoint: 100
   maxMana: 0
   moveSpeed: 2
   attackSpeed: 0.5
   attackStatus:
-    physicalDamage: 0
-    magicDamage: 0
+    physicalDamage: 10
+    magicDamage: 10
     physicalCriticalDamage: 0
     magicCriticalDamage: 0
     physicalCriticalProbability: 0
