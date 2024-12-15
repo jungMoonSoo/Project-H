@@ -7,6 +7,7 @@ public class Unidad : MonoBehaviour
     [SerializeField] private uint id;
     
     [Header("States")]
+    // State Script가 있는 GameObject들
     [SerializeField] private GameObject idleState;
     [SerializeField] private GameObject moveState;
     [SerializeField] private GameObject attackState;
@@ -14,11 +15,17 @@ public class Unidad : MonoBehaviour
     [SerializeField] private GameObject dieState;
     
     [Header("Colliders")]
-    [SerializeField] public EllipseCollider unitCollider;
+    // Collider Script가 있는 GameObject들
+    [SerializeField] public EllipseCollider unitCollider; // 
     [SerializeField] public EllipseCollider attackCollider;
     [SerializeField] public EllipseCollider skillCollider;
     
+    [Header("Positions")]
+    // Damage UI를 띄울 위치
+    [SerializeField] private Transform damageUiPosition; // 
+    
     [Header("Settings")]
+    // Unit 종류
     [SerializeField] public UnitType Owner = UnitType.Enemy;
 
 
@@ -26,6 +33,8 @@ public class Unidad : MonoBehaviour
     
     public AttackStatus NowAttackStatus => statusManager.AttackStatus;
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
+    
+    public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
 
     
     private Animator animator = null;
@@ -85,7 +94,7 @@ public class Unidad : MonoBehaviour
 
     public void OnDamage(int damage, DamageType damageType)
     {
-        TextPopupManager.Instance.PopupDamage(damage.ToString(), transform.position);
+        TextPopupManager.Instance.PopupDamage(damage.ToString(), DamageUiPosition.position);
 
         statusManager?.OnDamage(damage);
     }

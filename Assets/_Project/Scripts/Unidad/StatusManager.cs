@@ -7,7 +7,7 @@ public class StatusManager
     private Unidad unidad = null;
 
     [SerializeField] public int hitpoint;
-    [SerializeField] public int mana;
+    [SerializeField] public int mana; 
 
     #region ◇ Parameters ◇
     private UnidadStatus Status => unidad.Status;
