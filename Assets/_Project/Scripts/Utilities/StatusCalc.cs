@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class StatusCalc
 {
-    private const float DM = 1000f;
+    private const float DM = 1f;
 
     public static CallbackValueInfo<DamageType> CalculateFinalDamage(AttackStatus _attackStatus, DefenceStatus _defenceStatus, float _skillCoefficient, float _additionalDamage, bool _isMagicAttack, string _attackElement)
     {
@@ -43,7 +43,7 @@ public static class StatusCalc
 
         _hitChance = Mathf.Clamp(_hitChance, 0f, 100f);
 
-        return Random.Range(1, 101) <= _hitChance;
+        return Random.Range(1, 101) > _hitChance;
     }
 
     private static float CalculateBaseDamage(int _damage, float _skillCoefficient)
@@ -106,7 +106,7 @@ public static class StatusCalc
 
         _criticalChance = Mathf.Clamp(_criticalChance, 0f, 100f);
 
-        return Random.Range(1, 101) > _criticalChance;
+        return Random.Range(1, 101) <= _criticalChance;
     }
 
     public static int GetHeal(int _healAmount)

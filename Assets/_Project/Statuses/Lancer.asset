@@ -22,26 +22,26 @@ MonoBehaviour:
   attackStatus:
     physicalDamage: 10
     magicDamage: 10
-    physicalCriticalDamage: 0
-    magicCriticalDamage: 0
+    physicalCriticalDamage: 100
+    magicCriticalDamage: 100
     physicalCriticalProbability: 0
     magicCriticalProbability: 0
     accuracy: 100
-    fireDamageBonus: 0
-    waterDamageBonus: 0
-    airDamageBonus: 0
-    earthDamageBonus: 0
-    lightDamageBonus: 0
-    darkDamageBonus: 0
+    fireDamageBonus: 80
+    waterDamageBonus: 80
+    airDamageBonus: 80
+    earthDamageBonus: 80
+    lightDamageBonus: 80
+    darkDamageBonus: 80
   defenceStatus:
-    physicalDefence: 0
-    magicDefence: 0
+    physicalDefence: 1
+    magicDefence: 1
     physicalCriticalResistance: 0
     magicCriticalResistance: 0
     dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
+    fireResistanceBonus: 80
+    waterResistanceBonus: 80
+    airResistanceBonus: 80
+    earthResistanceBonus: 80
+    lightResistanceBonus: 80
+    darkResistanceBonus: 80
