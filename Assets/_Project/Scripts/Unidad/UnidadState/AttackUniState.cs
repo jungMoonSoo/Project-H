@@ -26,10 +26,15 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).ToArray();
+        Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).OrderBy(unit => Vector3.Distance(unit.transform.position, transform.position)).ToArray();
+
         if (enemys.Length > 0)
         {
             Unidad target = enemys[0];
+            Vector2 direction = target.unitCollider.transform.position - transform.position;
+
+            Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
+
             if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
             {
                 Unit.StateChange(UnitState.Move);
@@ -44,9 +49,9 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                     {
                         if (!attack)
                         {
-                            // TODO: 대미지 크리티컬, 회피 등의 판단 후 DamageType을 바꿔서 넣어줘야 할 것 같음.
-                            int damage = (int)StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null);
-                            target.OnDamage(damage, DamageType.Normal);
+                            CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null);
+                            target.OnDamage(callback.value, callback.type);
+
                             attack = true;
                         }
                     }

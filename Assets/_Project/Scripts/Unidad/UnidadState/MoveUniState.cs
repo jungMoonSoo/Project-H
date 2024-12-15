@@ -24,12 +24,10 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).ToArray();
+        Unidad[] enemys = UnidadManager.Instance.unidades.Where(x => Unit.Owner != x.Owner).OrderBy(unit => Vector3.Distance(unit.transform.position, transform.position)).ToArray();
+
         if (enemys.Length > 0)
         {
-            // TODO
-            //  유닛이 적을 바라보지 않고 움직이는 경우가 종종 보임. 수정이 필요함.
-            //  적이 사거리에 들어왔을 때, 공격하지 않고 완전히 달라붙는 경우 보임.
             Vector2 _movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.size);
 
             if ((Vector2)Unit.transform.position != _movePos)
@@ -43,6 +41,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
                 if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
                 {
                     Vector2 direction = target.unitCollider.transform.position - transform.position;
+
                     Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
                     Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, moveSpeed * Time.deltaTime);
                 }

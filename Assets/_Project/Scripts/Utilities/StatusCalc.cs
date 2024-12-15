@@ -6,9 +6,9 @@ public static class StatusCalc
 {
     private const float DM = 1000f;
 
-    public static float CalculateFinalDamage(AttackStatus _attackStatus, DefenceStatus _defenceStatus, float _skillCoefficient, float _additionalDamage, bool _isMagicAttack, string _attackElement)
+    public static CallbackValueInfo<DamageType> CalculateFinalDamage(AttackStatus _attackStatus, DefenceStatus _defenceStatus, float _skillCoefficient, float _additionalDamage, bool _isMagicAttack, string _attackElement)
     {
-        if (IsDodge(_attackStatus.accuracy, _defenceStatus.dodgeProbability)) return 0f;
+        if (IsDodge(_attackStatus.accuracy, _defenceStatus.dodgeProbability)) return new CallbackValueInfo<DamageType>(DamageType.Miss, 0);
 
         bool _isCriticalHit;
         float _baseDamage, _damageReductionPercentage, _attributeDamagePercentage, _criticalDamagePercentage;
@@ -34,7 +34,7 @@ public static class StatusCalc
 
         float finalDamage = (_baseDamage * _damageReductionPercentage * _attributeDamagePercentage * (_criticalDamagePercentage / 100f)) + _additionalDamage;
 
-        return finalDamage;
+        return new CallbackValueInfo<DamageType>(_isCriticalHit ? DamageType.Critical : DamageType.Normal, (int)finalDamage);
     }
 
     private static bool IsDodge(float _accuracy, float _dodgeProbability)

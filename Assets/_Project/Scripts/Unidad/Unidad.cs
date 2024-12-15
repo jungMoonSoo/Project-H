@@ -85,17 +85,15 @@ public class Unidad : MonoBehaviour
 
     public void OnDamage(int damage, DamageType damageType)
     {
-        // TODO
-        //  대미지 UI 생성은 맞는 쪽에서.
-        //  데미지를 입히기 전에 UI를 생성해야 함.
-        //  힐과는 달리, 데미지는 유닛이 사라질 수 있기 때문.
+        TextPopupManager.Instance.PopupDamage(damage.ToString(), transform.position);
+
         statusManager?.OnDamage(damage);
     }
 
     public void OnHeal(int heal, DamageType healType)
     {
-        // TODO
-        //  힐 UI 생성은 받은 쪽에서.
+        TextPopupManager.Instance.PopupHeal(heal.ToString(), transform.position);
+
         statusManager?.OnHeal(heal);        
     }
 }
