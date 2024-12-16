@@ -11,6 +11,30 @@ public class TouchSystem : Singleton<TouchSystem>
         mainCamera = Camera.main;
     }
 
+#if UNITY_EDITOR
+    public TouchInfo GetTouch(int _index)
+    {
+        TouchInfo _info = new();
+
+        if (Input.GetMouseButton(_index))
+        {
+            _info.phase = Input.GetMouseButtonDown(_index) ? TouchPhase.Began : TouchPhase.Moved;
+            _info.count = _index + 1;
+        }
+
+        if (_info.count > _index)
+        {
+            _info.pos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+
+            RaycastHit2D _hit = Physics2D.Raycast(_info.pos, Vector2.zero);
+
+            if (_hit.collider != null) _info.gameObject = _hit.collider.gameObject;
+        }
+        else _info.phase = TouchPhase.Ended;
+
+        return _info;
+    }
+#else
     public TouchInfo GetTouch(int _index)
     {
         TouchInfo _info = new() { count = Input.touchCount };
@@ -29,4 +53,5 @@ public class TouchSystem : Singleton<TouchSystem>
 
         return _info;
     }
+#endif
 }

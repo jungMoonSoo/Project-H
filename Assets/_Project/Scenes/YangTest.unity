@@ -3673,6 +3673,7 @@ GameObject:
   - component: {fileID: 2145259197}
   - component: {fileID: 2145259198}
   - component: {fileID: 2145259200}
+  - component: {fileID: 2145259201}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -3788,6 +3789,22 @@ MonoBehaviour:
   onHealColor:
     serializedVersion: 2
     rgba: 16711680
+--- !u!114 &2145259201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145259194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc238e2037c0b04abbf2047b8a9ae03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawn: 0
+  spawnPoint_Ally: {fileID: 1412243147}
+  spawnPoint_Enemy: {fileID: 2121170513}
+  tileManager: {fileID: 2145259197}
 --- !u!1001 &4728303724328694399
 PrefabInstance:
   m_ObjectHideFlags: 0

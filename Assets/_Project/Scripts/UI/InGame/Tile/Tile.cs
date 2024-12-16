@@ -5,31 +5,21 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public Unidad Unit { get; private set; }
-    public bool IsAlly { get; private set; }
+    public bool IsSelectable { get; private set; }
 
-    public void Init(bool _isAlly)
-    {
-        IsAlly = _isAlly;
-    }
+    public void Init(bool _isSelectable) => IsSelectable = _isSelectable;
 
     public void SetUnit(Unidad _unit)
     {
         Unit = _unit;
 
-        if (_unit == null) return;
-
-        // _unit.SetPos(transform.position);
+        if (Unit != null) ReturnPos();
     }
 
     public void ReturnPos()
     {
-        if (Unit == null) return;
-
-        // Unit.ReturnToPos();
+        if (Unit != null) Unit.transform.position = transform.position;
     }
 
-    public void SetActive(bool _active)
-    {
-        gameObject.SetActive(_active);
-    }
+    public void SetActive(bool _value) => gameObject.SetActive(_value);
 }
