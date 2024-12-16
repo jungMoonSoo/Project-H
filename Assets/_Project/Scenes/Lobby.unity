@@ -215,7 +215,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: PickUpWindow
           m_Mode: 1
@@ -282,7 +282,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: GameStart
           m_Mode: 1
@@ -1014,7 +1014,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: StoreWindow
           m_Mode: 1
@@ -1147,7 +1147,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: GoldPay
         m_Mode: 1
@@ -2240,7 +2240,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: LockTwo
           m_Mode: 1
@@ -2512,7 +2512,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: MassegeWindow
         m_Mode: 1
@@ -2907,7 +2907,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: LockOne
           m_Mode: 1
@@ -3116,7 +3116,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: AdveristingWindow
         m_Mode: 1
@@ -3452,7 +3452,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: ColleagueWindow
           m_Mode: 1
@@ -3585,7 +3585,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: AlarmWindow
         m_Mode: 1
@@ -4101,7 +4101,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: QeustWindow
         m_Mode: 1
@@ -5030,7 +5030,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: LeaderWindow
           m_Mode: 1
@@ -5202,7 +5202,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: EventWindow
         m_Mode: 1
@@ -5335,7 +5335,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: EnergyPay
         m_Mode: 1
@@ -5468,7 +5468,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: DiamondPay
         m_Mode: 1
@@ -5601,7 +5601,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: MassegeWindow
         m_Mode: 1
@@ -5726,54 +5726,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839974609}
   m_CullTransparentMesh: 1
---- !u!1 &1866864159
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1866864161}
-  - component: {fileID: 1866864160}
-  m_Layer: 5
-  m_Name: Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1866864160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866864159}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f3be2d2465433641810a195c1cfcdee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!224 &1866864161
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1866864159}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1280, y: 720}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1872547258
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,7 +5950,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1866864160}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
         m_MethodName: AnnouncementWindow
         m_Mode: 1
@@ -6336,7 +6288,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1866864160}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: LobbyButtonManager, Assembly-CSharp
           m_MethodName: PickUpWindow
           m_Mode: 1
@@ -6507,5 +6459,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 1660635654}
   - {fileID: 1519651798}
-  - {fileID: 1866864161}
   - {fileID: 1128091396}
