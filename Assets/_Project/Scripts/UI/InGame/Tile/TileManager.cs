@@ -23,10 +23,10 @@ public class TileManager : MonoBehaviour
 
     private void Update()
     {
-        // if (StageManager.Instance.isPlay) return;
-        // 
-        // CheckTouch();
-        // DragUnit();
+        // 시작 여부 확인 필요
+
+        CheckTouch();
+        DragUnit();
     }
 
     public void ToggleTile()
@@ -55,6 +55,7 @@ public class TileManager : MonoBehaviour
 
         if (info.phase == TouchPhase.Began) HandleTouchBegan();
         else if (info.phase == TouchPhase.Ended || info.phase == TouchPhase.Canceled) HandleTouchEnded();
+        else HandleTouchMoved();
     }
 
     private void HandleTouchBegan()
@@ -63,22 +64,24 @@ public class TileManager : MonoBehaviour
 
         info.gameObject.TryGetComponent(out selectedTile);
 
-        if (selectedTile == null || selectedTile.Unit == null || !selectedTile.IsAlly) return;
+        if (selectedTile == null || selectedTile.Unit == null || !selectedTile.IsSelectable) return;
 
         selectedUnit = selectedTile.Unit;
+    }
+
+    private void HandleTouchMoved()
+    {
+        if (selectedUnit == null) return;
+        if (info.gameObject == null) return;
+        if (targetTile != null && info.gameObject == targetTile.gameObject) return;
+
+        info.gameObject.TryGetComponent(out targetTile);
     }
 
     // 터치 종료 처리
     private void HandleTouchEnded()
     {
-        if (selectedUnit == null) return;
-
-        if (info.gameObject != null)
-        {
-            info.gameObject.TryGetComponent(out targetTile);
-
-            if (targetTile != null && targetTile.IsAlly) SwapUnits();
-        }
+        if (targetTile != null && targetTile.IsSelectable) SwapUnits();
 
         ReturnUnit();
     }
