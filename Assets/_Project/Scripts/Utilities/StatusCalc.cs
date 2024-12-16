@@ -34,7 +34,7 @@ public static class StatusCalc
 
         float finalDamage = (_baseDamage * _damageReductionPercentage * _attributeDamagePercentage * (_criticalDamagePercentage / 100f)) + _additionalDamage;
 
-        return new CallbackValueInfo<DamageType>(_isCriticalHit ? DamageType.Critical : DamageType.Normal, (int)finalDamage);
+        return new CallbackValueInfo<DamageType>(_isCriticalHit ? DamageType.Critical : DamageType.Normal, finalDamage);
     }
 
     private static bool IsDodge(float _accuracy, float _dodgeProbability)

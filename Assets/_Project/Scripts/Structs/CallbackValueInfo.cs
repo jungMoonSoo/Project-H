@@ -5,9 +5,9 @@ using UnityEngine;
 public struct CallbackValueInfo<T>
 {
     public T type;
-    public int value;
+    public float value;
 
-    public CallbackValueInfo(T _type, int _value)
+    public CallbackValueInfo(T _type, float _value)
     {
         type = _type;
         value = _value;
