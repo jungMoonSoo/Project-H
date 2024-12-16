@@ -290,9 +290,89 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551791251}
     m_Modifications:
+    - target: {fileID: 1345561314930658489, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345561314930658489, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345561314930658489, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345561314930658489, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757833076373656436, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757833076373656436, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757833076373656436, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757833076373656436, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4394711722739589548, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
       propertyPath: m_Name
       value: Standard Core Field UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508262459172201642, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508262459172201642, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508262459172201642, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5508262459172201642, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822466749240628447, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822466749240628447, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822466749240628447, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5822466749240628447, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6413872845733496527, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6413872845733496527, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6413872845733496527, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6413872845733496527, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7524376301628821073, guid: 59cdd576bc489054f8f8c9a596320aa5, type: 3}
       propertyPath: m_Pivot.x
