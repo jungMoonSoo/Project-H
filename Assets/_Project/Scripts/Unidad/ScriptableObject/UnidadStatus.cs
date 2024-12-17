@@ -12,8 +12,8 @@ public class UnidadStatus : ScriptableObject
     public GameObject skillPrefab;
     
     [Header("기본 스테이터스")]
-    public int maxHitpoint;
-    public int maxMana;
+    public int maxHp = 100;
+    public int maxMp = 100;
     [Range(0.25f, float.MaxValue)] public float moveSpeed;
     [Range(0.5f, 5f)] public float attackSpeed;
 

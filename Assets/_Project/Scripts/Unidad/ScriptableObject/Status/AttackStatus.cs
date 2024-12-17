@@ -20,10 +20,10 @@ public class AttackStatus
     [Range(70, 150)] public float accuracy = 100f;
 
     [Header("속성 보너스")]
-    public float fireDamageBonus;
-    public float waterDamageBonus;
-    public float airDamageBonus;
-    public float earthDamageBonus;
-    public float lightDamageBonus;
-    public float darkDamageBonus;
+    public float fireDamageBonus = 80f;
+    public float waterDamageBonus = 80f;
+    public float airDamageBonus = 80f;
+    public float earthDamageBonus = 80f;
+    public float lightDamageBonus = 80f;
+    public float darkDamageBonus = 80f;
 }

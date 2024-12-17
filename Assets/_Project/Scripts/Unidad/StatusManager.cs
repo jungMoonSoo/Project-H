@@ -6,15 +6,15 @@ public class StatusManager
 {
     private Unidad unidad = null;
 
-    [SerializeField] public int hitpoint;
-    [SerializeField] public int mana; 
+    [SerializeField] public int hp;
+    [SerializeField] public int mp;
 
     #region ◇ Parameters ◇
     private UnidadStatus Status => unidad.Status;
     
     #region ◇◇ 기타 스테이터스 ◇◇
-    public int MaxHitPoint => Status.maxHitpoint;
-    public int MaxMana => Status.maxMana;
+    public int MaxHp => Status.maxHp;
+    public int MaxMp => Status.maxMp;
     public float MoveSpeed => Status.moveSpeed;
     public float AttackSpeed => Status.attackSpeed;
     #endregion
@@ -119,8 +119,8 @@ public class StatusManager
     
     public void OnDamage(int damage)
     {
-        hitpoint -= damage;
-        if (hitpoint <= 0)
+        hp -= damage;
+        if (hp <= 0)
         {
             DieEvent?.Invoke();
         }
@@ -128,10 +128,10 @@ public class StatusManager
 
     public void OnHeal(int heal)
     {
-        hitpoint += heal;
-        if (hitpoint > MaxHitPoint)
+        hp += heal;
+        if (hp > MaxHp)
         {
-            hitpoint = MaxHitPoint;
+            hp = MaxHp;
         }
     }
 }
