@@ -56,7 +56,7 @@ public class Unidad : MonoBehaviour
     void Start()
     {
         statusManager = new StatusManager(this);
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
 
         states = new()
         {
