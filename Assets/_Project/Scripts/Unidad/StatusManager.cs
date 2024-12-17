@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -20,23 +21,23 @@ public class StatusManager
     #endregion
     
     #region ◇◇ 공격 스테이터스 ◇◇
-    public int PhysicalDamage => Status.attackStatus.physicalDamage;
-    public int MagicDamage => Status.attackStatus.magicDamage;
+    public int PhysicalDamage => Status.attackStatus.physicalDamage + AttackStatusEffect.physicalDamage;
+    public int MagicDamage => Status.attackStatus.magicDamage + AttackStatusEffect.magicDamage;
     
-    public float PhysicalCriticalDamage => Status.attackStatus.physicalCriticalDamage;
-    public float MagicCriticalDamage => Status.attackStatus.magicCriticalDamage;
+    public float PhysicalCriticalDamage => Status.attackStatus.physicalCriticalDamage + AttackStatusEffect.physicalCriticalDamage;
+    public float MagicCriticalDamage => Status.attackStatus.magicCriticalDamage + AttackStatusEffect.magicCriticalDamage;
     
-    public float PhysicalCriticalProbability => Status.attackStatus.physicalCriticalProbability;
-    public float MagicCriticalProbability => Status.attackStatus.magicCriticalProbability;
+    public float PhysicalCriticalProbability => Status.attackStatus.physicalCriticalProbability + AttackStatusEffect.physicalCriticalProbability;
+    public float MagicCriticalProbability => Status.attackStatus.magicCriticalProbability + AttackStatusEffect.magicCriticalProbability;
     
-    public float Accuracy => Status.attackStatus.accuracy;
+    public float Accuracy => Status.attackStatus.accuracy + AttackStatusEffect.accuracy;
     
-    public float FireDamageBonus => Status.attackStatus.fireDamageBonus;
-    public float WaterDamageBonus => Status.attackStatus.waterDamageBonus;
-    public float AirDamageBonus => Status.attackStatus.airDamageBonus;
-    public float EarthDamageBonus => Status.attackStatus.earthDamageBonus;
-    public float LightDamageBonus => Status.attackStatus.lightDamageBonus;
-    public float DarkDamageBonus => Status.attackStatus.darkDamageBonus;
+    public float FireDamageBonus => Status.attackStatus.fireDamageBonus + AttackStatusEffect.fireDamageBonus;
+    public float WaterDamageBonus => Status.attackStatus.waterDamageBonus + AttackStatusEffect.waterDamageBonus;
+    public float AirDamageBonus => Status.attackStatus.airDamageBonus + AttackStatusEffect.airDamageBonus;
+    public float EarthDamageBonus => Status.attackStatus.earthDamageBonus + AttackStatusEffect.earthDamageBonus;
+    public float LightDamageBonus => Status.attackStatus.lightDamageBonus + AttackStatusEffect.lightDamageBonus;
+    public float DarkDamageBonus => Status.attackStatus.darkDamageBonus + AttackStatusEffect.darkDamageBonus;
     
     public AttackStatus AttackStatus
     {
@@ -67,21 +68,21 @@ public class StatusManager
     #endregion
     
     #region ◇◇ 방어 스테이터스 ◇◇
-    public int PhysicalDefence => Status.defenceStatus.physicalDefence;
-    public int MagicDefence => Status.defenceStatus.magicDefence;
+    public int PhysicalDefence => Status.defenceStatus.physicalDefence + DefenceStatusEffect.physicalDefence;
+    public int MagicDefence => Status.defenceStatus.magicDefence + DefenceStatusEffect.magicDefence;
 
-    public float PhysicalCriticalResistance => Status.defenceStatus.physicalCriticalResistance;
-    public float MagicCriticalResistance => Status.defenceStatus.magicCriticalResistance;
+    public float PhysicalCriticalResistance => Status.defenceStatus.physicalCriticalResistance + DefenceStatusEffect.physicalCriticalResistance;
+    public float MagicCriticalResistance => Status.defenceStatus.magicCriticalResistance + DefenceStatusEffect.magicCriticalResistance;
 
-    public float DodgeProbability => Status.defenceStatus.dodgeProbability;
+    public float DodgeProbability => Status.defenceStatus.dodgeProbability + DefenceStatusEffect.dodgeProbability;
 
-    public float FireResistanceBonus => Status.defenceStatus.fireResistanceBonus;
-    public float WaterResistanceBonus => Status.defenceStatus.waterResistanceBonus;
-    public float AirResistanceBonus => Status.defenceStatus.airResistanceBonus;
-    public float EarthResistanceBonus => Status.defenceStatus.earthResistanceBonus;
+    public float FireResistanceBonus => Status.defenceStatus.fireResistanceBonus + DefenceStatusEffect.fireResistanceBonus;
+    public float WaterResistanceBonus => Status.defenceStatus.waterResistanceBonus + DefenceStatusEffect.waterResistanceBonus;
+    public float AirResistanceBonus => Status.defenceStatus.airResistanceBonus + DefenceStatusEffect.airResistanceBonus;
+    public float EarthResistanceBonus => Status.defenceStatus.earthResistanceBonus + DefenceStatusEffect.earthResistanceBonus;
     
-    public float LightResistanceBonus => Status.defenceStatus.lightResistanceBonus;
-    public float DarkResistanceBonus => Status.defenceStatus.darkResistanceBonus;
+    public float LightResistanceBonus => Status.defenceStatus.lightResistanceBonus + DefenceStatusEffect.lightResistanceBonus;
+    public float DarkResistanceBonus => Status.defenceStatus.darkResistanceBonus + DefenceStatusEffect.darkResistanceBonus;
     
     public DefenceStatus DefenceStatus
     {
@@ -112,8 +113,20 @@ public class StatusManager
     public Action DieEvent = null;
     private AttackStatus attackStatus = new();
     private DefenceStatus defenceStatus = new();
-    
-    
+
+    #region ◇◇ 이펙트 스테이터스 ◇◇
+    public AttackStatus AttackStatusEffect => attackStatusEffect;
+    public DefenceStatus DefenceStatusEffect => defenceStatusEffect;
+
+    public List<IStatusEffect> StatusEffects => statusEffects;
+
+    private readonly AttackStatus attackStatusEffect = new();
+    private readonly DefenceStatus defenceStatusEffect = new();
+
+    private readonly List<IStatusEffect> statusEffects = new();
+    #endregion
+
+
     public StatusManager(Unidad unidad) => this.unidad = unidad;
 
     

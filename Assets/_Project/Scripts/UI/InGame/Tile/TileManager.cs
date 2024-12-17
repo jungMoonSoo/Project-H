@@ -10,8 +10,6 @@ public class TileManager : MonoBehaviour
     private TouchInfo info;
     private Unidad selectedUnit;
 
-    private bool storage;
-
     private Tile selectedTile;
     private Tile targetTile;
 
@@ -32,15 +30,6 @@ public class TileManager : MonoBehaviour
     public void ToggleTile()
     {
         SetTileActiveState(false);
-    }
-
-    public void SelectStorageUnit(Vector2 _pos)
-    {
-        // _pos위치에 유닛 생성 필요
-        Unidad _unit = new();
-
-        selectedUnit = _unit;
-        storage = true;
     }
 
     private void SetTileActiveState(bool _isActive)
@@ -78,7 +67,6 @@ public class TileManager : MonoBehaviour
         info.gameObject.TryGetComponent(out targetTile);
     }
 
-    // 터치 종료 처리
     private void HandleTouchEnded()
     {
         if (targetTile != null && targetTile.IsSelectable) SwapUnits();
@@ -86,19 +74,9 @@ public class TileManager : MonoBehaviour
         ReturnUnit();
     }
 
-    // 유닛 교환 처리
     private void SwapUnits()
     {
-        if (storage)
-        {
-            // 유닛 제거 및 보관함에 유닛 이미지 생성 필요
-
-            targetTile.Unit.gameObject.SetActive(false);
-
-            storage = false;
-        }
-        else selectedTile.SetUnit(targetTile.Unit);
-
+        selectedTile.SetUnit(targetTile.Unit);
         targetTile.SetUnit(selectedUnit);
 
         selectedUnit = null;
