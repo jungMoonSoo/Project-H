@@ -42,18 +42,14 @@ public static class CsvReader
         // 후처리, 코드로 바꿨던 문자들을 다시 재정리
         foreach (string[] strArray in result)
         {
-            sb.Clear();
             for (int j = 0; j < strArray.Length; j++)
             {
                 strArray[j] = strArray[j].Replace(QUOTE_CODE, "\"");
                 strArray[j] = strArray[j].Replace(COMMA_CODE, ",");
                 strArray[j] = strArray[j].Replace(ENTER_CODE, "\n");
-                sb.Append(strArray[j]);
-                sb.Append(",");
             }
-            Debug.Log(sb.ToString());
         }
         
-        return null;
+        return result;
     }
 }
