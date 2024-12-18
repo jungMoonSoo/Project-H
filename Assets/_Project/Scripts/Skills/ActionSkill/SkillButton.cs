@@ -13,29 +13,21 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (!ActionSkillManager.Instance.IsUsingSkill)
-        {
-            ActionSkillManager.Instance.SelectSkill(ActionSkill);
-            Debug.Log("Click");
-        }
+        OnSelect();
     }
-
     public void OnBeginDrag(PointerEventData eventData)
     {
+        OnSelect();
+    }
+    public void OnDrag(PointerEventData eventData) {}
+    public void OnEndDrag(PointerEventData eventData) {}
+
+    private void OnSelect()
+    {
         if (!ActionSkillManager.Instance.IsUsingSkill)
         {
             ActionSkillManager.Instance.SelectSkill(ActionSkill);
-            Debug.Log("Begin Drag");
+            Debug.Log("Select Skill");
         }
-    }
-
-    public void OnDrag(PointerEventData eventData)
-    {
-        
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        
     }
 }
