@@ -23,6 +23,7 @@ public class Unidad : MonoBehaviour
     [Header("Positions")]
     // Damage UI를 띄울 위치
     [SerializeField] private Transform damageUiPosition; // 
+    [SerializeField] private Transform statusUiPosition; // 
     
     [Header("Settings")]
     // Unit 종류
@@ -35,8 +36,11 @@ public class Unidad : MonoBehaviour
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
     
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
+    public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
 
-    
+    public UnidadStatusBar statusBar;
+
+
     private Animator animator = null;
     private IUnidadState nowState = null;
     private StatusManager statusManager = null;
@@ -81,7 +85,6 @@ public class Unidad : MonoBehaviour
     }
     #endregion
 
-    
     public void StateChange(UnitState state)
     {
         if (states.TryGetValue(state, out IUnidadState newState))
@@ -106,9 +109,9 @@ public class Unidad : MonoBehaviour
         statusManager?.OnHeal(heal);        
     }
 
-    public void AddStatusEffect(IStatusEffect _effect, int _time) => _effect.Apply(statusManager, _time);
+    public void AddUnitModifier(IUnitModifier _modifier, int _time) => _modifier.Apply(statusManager, _time);
 
-    public void OnStatusEffect(IStatusEffect _effect, int _time) => _effect.Check(_time - statusManager.StatusEffects[_effect]);
+    public void OnUnitModifier(IUnitModifier _modifier, int _time) => _modifier.Check(_time - statusManager.UnitModifiers[_modifier]);
 
-    public void RemoveStatusEffect(IStatusEffect _effect) => _effect.Remove();
+    public void RemoveUnitModifier(IUnitModifier _modifier) => _modifier.Remove();
 }

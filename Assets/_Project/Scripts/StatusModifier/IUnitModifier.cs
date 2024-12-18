@@ -1,4 +1,4 @@
-public interface IStatusEffect
+public interface IUnitModifier
 {
     public int Id { get; }
 

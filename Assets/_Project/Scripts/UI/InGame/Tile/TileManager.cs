@@ -33,6 +33,8 @@ public class TileManager : MonoBehaviour
         {
             case TouchPhase.Began:
                 selectedTile = GetTile(_info.gameObject);
+
+                if (selectedTile != null && selectedTile.Unit == null) selectedTile = null;
                 break;
 
             case TouchPhase.Ended:
