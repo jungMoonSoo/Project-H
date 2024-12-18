@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,8 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     [SerializeField] GameObject StandardCoreFieldUi;
     [SerializeField] Text stageNumber;
     [SerializeField] Text unitNumber;
+    [Header("TEST")]
+    [SerializeField] GameObject managers;
 
     // 스테이지 정보 -를 기준으로 앞 뒤 숫자를 받아옴
     int frontStageNumber = 1;
@@ -36,7 +39,6 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         stageNumber.text = $"{frontStageNumber} - {backStageNumber}";
     }
     
-
     public void UnitDeployTextUpdate(int num) //배치 수 업데이트 함수 
     {
         currentUnitNumber = num;
@@ -48,5 +50,10 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         Debug.Log("[Unit Deployment Manager]  게임에 입장하셨습니다. ");
         unitDeploymentManger.SetActive(false);
         StandardCoreFieldUi.SetActive(true);
+    }
+
+    public void BlocksmithButton()
+    {
+        managers.GetComponent<SpawnTest>().Spawn(UnidadManager.Instance.GetStatus(0), 0, true);
     }
 }
