@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnidadHpBar : MonoBehaviour
+public class UnidadStatusBar : MonoBehaviour
 {
-    private Slider hpBar;
+    private Slider statusBar;
     private Transform barTrans;
 
     private Camera cam;
@@ -14,14 +14,14 @@ public class UnidadHpBar : MonoBehaviour
     {
         cam = Camera.main;
 
-        TryGetComponent(out hpBar);
+        TryGetComponent(out statusBar);
     }
 
     private void Update() => FallowUnit();
 
     public void Init(Transform _barTrans) => barTrans = _barTrans;
 
-    public void SetBar(float _value) => hpBar.value = _value;
+    public void SetBar(float _value) => statusBar.value = _value;
 
     private void FallowUnit() => transform.position = cam.WorldToScreenPoint(barTrans.position);
 }

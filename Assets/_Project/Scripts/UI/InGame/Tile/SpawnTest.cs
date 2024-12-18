@@ -11,7 +11,7 @@ public class SpawnTest : MonoBehaviour
 
     public TileManager tileManager;
 
-    public UnidadHpBar unidadHpBar;
+    public UnidadStatusBar unidadHpBar;
     public Transform hpBarParent;
 
     private void Update()
@@ -41,7 +41,7 @@ public class SpawnTest : MonoBehaviour
         }
 
         Unidad _unit = Instantiate(_unidadStatus.unidadPrefab, _parent).GetComponent<Unidad>();
-        UnidadHpBar _hpBar = Instantiate(unidadHpBar, hpBarParent);
+        UnidadStatusBar _hpBar = Instantiate(unidadHpBar, hpBarParent);
 
         _tiles[_tileId].SetUnit(_unit);
         _hpBar.Init(_unit.transform);
