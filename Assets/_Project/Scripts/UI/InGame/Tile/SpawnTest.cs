@@ -24,7 +24,14 @@ public class SpawnTest : MonoBehaviour
 
     private void Spawn(UnidadStatus _unidadStatus, int _tileId, bool _ally)
     {
-        Unidad _unit;
+        Unidad _unit = tileManager.allyTiles[_tileId].Unit;
+
+        if (_unit != null)
+        {
+            if (tileManager.allyTiles.Count > _tileId + 1) Spawn(_unidadStatus, _tileId + 1, true);
+
+            return;
+        }
 
         if (_ally)
         {

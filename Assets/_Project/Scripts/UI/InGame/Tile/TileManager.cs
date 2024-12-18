@@ -4,33 +4,24 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    public List<Tile> allyTiles;
-    public List<Tile> enemyTiles;
+    public List<TileHandle> allyTiles;
+    public List<TileHandle> enemyTiles;
 
     private TouchInfo info;
-    private Unidad selectedUnit;
 
-    private Tile selectedTile;
-    private Tile targetTile;
-
-    private void Start()
-    {
-        for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].Init(true);
-        for (int i = 0; i < enemyTiles.Count; i++) enemyTiles[i].Init(false);
-    }
+    private TileHandle selectedTile;
+    private TileHandle targetTile;
 
     private void Update()
     {
         // 시작 여부 확인 필요
 
         CheckTouch();
-        DragUnit();
+
+        if (selectedTile != null) selectedTile.SetUnitPos(info.pos);
     }
 
-    public void ToggleTile()
-    {
-        SetTileActiveState(false);
-    }
+    public void ToggleTile() => SetTileActiveState(false);
 
     private void SetTileActiveState(bool _isActive)
     {
@@ -42,64 +33,40 @@ public class TileManager : MonoBehaviour
     {
         info = TouchSystem.Instance.GetTouch(0);
 
-        if (info.phase == TouchPhase.Began) HandleTouchBegan();
-        else if (info.phase == TouchPhase.Ended || info.phase == TouchPhase.Canceled) HandleTouchEnded();
-        else HandleTouchMoved();
-    }
-
-    private void HandleTouchBegan()
-    {
-        if (info.gameObject == null) return;
-
-        info.gameObject.TryGetComponent(out selectedTile);
-
-        if (selectedTile == null || selectedTile.Unit == null || !selectedTile.IsSelectable) return;
-
-        selectedUnit = selectedTile.Unit;
-    }
-
-    private void HandleTouchMoved()
-    {
-        if (selectedUnit == null) return;
-        if (info.gameObject == null) return;
-        if (targetTile != null && info.gameObject == targetTile.gameObject) return;
-
-        info.gameObject.TryGetComponent(out targetTile);
-    }
-
-    private void HandleTouchEnded()
-    {
-        if (targetTile != null && targetTile.IsSelectable) SwapUnits();
-
-        ReturnUnit();
-    }
-
-    private void SwapUnits()
-    {
-        selectedTile.SetUnit(targetTile.Unit);
-        targetTile.SetUnit(selectedUnit);
-
-        selectedUnit = null;
-    }
-
-    // 유닛 드래그
-    private void DragUnit()
-    {
-        if (selectedUnit == null) return;
-
-        selectedUnit.transform.position = info.pos;
-    }
-
-    // 유닛 원위치 반환
-    private void ReturnUnit()
-    {
-        if (selectedTile != null)
+        switch (info.phase)
         {
-            selectedTile.ReturnPos();
-            selectedTile = null;
-        }
+            case TouchPhase.Began:
+                selectedTile = GetTile(info.gameObject);
+                break;
 
+            case TouchPhase.Ended:
+            case TouchPhase.Canceled:
+                if (selectedTile != null) TouchEnded();
+                break;
+
+            default:
+                targetTile = GetTile(info.gameObject);
+                break;
+        }
+    }
+
+    private TileHandle GetTile(GameObject _target)
+    {
+        if (_target == null) return null;
+
+        _target.TryGetComponent(out TileHandle _tile);
+
+        if (_tile != null && !_tile.IsSelectable) _tile = null;
+
+        return _tile;
+    }
+
+    private void TouchEnded()
+    {
+        if (targetTile != null) selectedTile.SwapUnits(targetTile);
+        else selectedTile.ReturnPos();
+
+        selectedTile = null;
         targetTile = null;
-        selectedUnit = null;
     }
 }
