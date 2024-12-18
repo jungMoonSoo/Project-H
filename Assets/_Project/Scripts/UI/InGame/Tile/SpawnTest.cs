@@ -22,28 +22,25 @@ public class SpawnTest : MonoBehaviour
         Spawn(_unidadStatus, 0, true);
     }
 
-    private void Spawn(UnidadStatus _unidadStatus, int _tileId, bool _ally)
+    public void Spawn(UnidadStatus _unidadStatus, int _tileId, bool _ally)
     {
-        Unidad _unit = tileManager.allyTiles[_tileId].Unit;
+        if (_ally) Spawn(_unidadStatus, _tileId, tileManager.allyTiles, spawnPoint_Ally);
+        else Spawn(_unidadStatus, _tileId, tileManager.enemyTiles, spawnPoint_Enemy);
+    }
 
-        if (_unit != null)
+    private void Spawn(UnidadStatus _unidadStatus, int _tileId, List<TileHandle> _tiles, Transform _parent)
+    {
+        Unidad _unit;
+
+        if (_tiles[_tileId].Unit != null)
         {
-            if (tileManager.allyTiles.Count > _tileId + 1) Spawn(_unidadStatus, _tileId + 1, true);
+            if (_tiles.Count > _tileId + 1) Spawn(_unidadStatus, _tileId + 1, _tiles, _parent);
 
             return;
         }
 
-        if (_ally)
-        {
-            _unit = Instantiate(_unidadStatus.unidadPrefab, spawnPoint_Ally).GetComponent<Unidad>();
+        _unit = Instantiate(_unidadStatus.unidadPrefab, _parent).GetComponent<Unidad>();
 
-            tileManager.allyTiles[_tileId].SetUnit(_unit);
-        }
-        else
-        {
-            _unit = Instantiate(_unidadStatus.unidadPrefab, spawnPoint_Enemy).GetComponent<Unidad>();
-
-            tileManager.enemyTiles[_tileId].SetUnit(_unit);
-        }
+        _tiles[_tileId].SetUnit(_unit);
     }
 }
