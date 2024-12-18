@@ -83,6 +83,11 @@ public class Unidad : MonoBehaviour
     {
         nowState?.OnUpdate();
     }
+
+    private void OnDestroy()
+    {
+        if (statusBar != null) Destroy(statusBar);
+    }
     #endregion
 
     public void StateChange(UnitState state)
