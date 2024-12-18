@@ -7,8 +7,6 @@ public class TileManager : MonoBehaviour
     public List<TileHandle> allyTiles;
     public List<TileHandle> enemyTiles;
 
-    private TouchInfo info;
-
     private TileHandle selectedTile;
     private TileHandle targetTile;
 
@@ -17,8 +15,6 @@ public class TileManager : MonoBehaviour
         // 시작 여부 확인 필요
 
         CheckTouch();
-
-        if (selectedTile != null) selectedTile.SetUnitPos(info.pos);
     }
 
     public void ToggleTile() => SetTileActiveState(false);
@@ -31,12 +27,12 @@ public class TileManager : MonoBehaviour
 
     private void CheckTouch()
     {
-        info = TouchSystem.Instance.GetTouch(0);
+        TouchInfo _info = TouchSystem.Instance.GetTouch(0);
 
-        switch (info.phase)
+        switch (_info.phase)
         {
             case TouchPhase.Began:
-                selectedTile = GetTile(info.gameObject);
+                selectedTile = GetTile(_info.gameObject);
                 break;
 
             case TouchPhase.Ended:
@@ -45,7 +41,9 @@ public class TileManager : MonoBehaviour
                 break;
 
             default:
-                targetTile = GetTile(info.gameObject);
+                targetTile = GetTile(_info.gameObject);
+
+                if (selectedTile != null) selectedTile.SetUnitPos(_info.pos);
                 break;
         }
     }

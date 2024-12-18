@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/Buff", fileName = "NewBuffEffect")]
+[CreateAssetMenu(menuName = "StatusEffect/Buff", fileName = "NewBuff")]
 public class BuffEffect : ScriptableObject, IStatusEffect
 {
     [SerializeField] private int id;
@@ -18,11 +18,11 @@ public class BuffEffect : ScriptableObject, IStatusEffect
 
     public StatusManager Status { get; private set; }
 
-    public void Apply(StatusManager _status)
+    public void Apply(StatusManager _status, int _time)
     {
         Status = _status;
 
-        Status.StatusEffects.Add(this);
+        Status.StatusEffects.Add(this, _time);
 
         SetStatus(true);
     }

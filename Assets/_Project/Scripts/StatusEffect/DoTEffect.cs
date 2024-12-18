@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Effect/DoT", fileName = "NewDoTEffect")]
+[CreateAssetMenu(menuName = "StatusEffect/DoT", fileName = "NewDoT")]
 public class DoTEffect : ScriptableObject, IStatusEffect
 {
     [SerializeField] private int id;
@@ -16,11 +16,11 @@ public class DoTEffect : ScriptableObject, IStatusEffect
 
     public StatusManager Status { get; private set; }
 
-    public void Apply(StatusManager _status)
+    public void Apply(StatusManager _status, int _time)
     {
         Status = _status;
 
-        Status.StatusEffects.Add(this);
+        Status.StatusEffects.Add(this, _time);
     }
 
     public void Check(int _count)

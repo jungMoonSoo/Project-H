@@ -118,12 +118,12 @@ public class StatusManager
     public AttackStatus AttackStatusEffect => attackStatusEffect;
     public DefenceStatus DefenceStatusEffect => defenceStatusEffect;
 
-    public List<IStatusEffect> StatusEffects => statusEffects;
+    public Dictionary<IStatusEffect, int> StatusEffects => statusEffects;
 
     private readonly AttackStatus attackStatusEffect = new();
     private readonly DefenceStatus defenceStatusEffect = new();
 
-    private readonly List<IStatusEffect> statusEffects = new();
+    private readonly Dictionary<IStatusEffect, int> statusEffects = new();
     #endregion
 
 

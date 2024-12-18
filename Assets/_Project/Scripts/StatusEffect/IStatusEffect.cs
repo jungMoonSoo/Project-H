@@ -6,7 +6,7 @@ public interface IStatusEffect
 
     public StatusManager Status { get; }
 
-    public void Apply(StatusManager _status);
+    public void Apply(StatusManager _status, int _time);
     public void Check(int _duration);
     public void Remove();
 }
