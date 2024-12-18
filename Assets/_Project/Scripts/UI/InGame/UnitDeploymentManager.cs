@@ -52,8 +52,29 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         StandardCoreFieldUi.SetActive(true);
     }
 
-    public void BlocksmithButton()
+    //Unidad Manager에서 Unidad Statuses 배열 오류  ==> 1이상 부터는 인식을 못함 
+    public void BlocksmithButton() //대장장이 버튼 
     {
-        managers.GetComponent<SpawnTest>().Spawn(UnidadManager.Instance.GetStatus(0), 0, true);
+        managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(0), 0, true);
+    }
+    
+    public void AlchemyButton()//물약이 버튼
+    {
+        managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(1), 0, true);
+    }
+
+    public void Nun2Button() //수녀 버튼
+    {
+        managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(2), 0, true);
+    } 
+
+    public void Cowardly_KinghtButton() //갑옷 
+    {
+        managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(3), 0, true);
+    }
+
+    public void TA001Buttton() //번개궁수
+    {
+        managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(4), 0, true);
     }
 }
