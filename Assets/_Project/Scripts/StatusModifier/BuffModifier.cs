@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StatusModifier/Buff", fileName = "NewBuff")]
-public class BuffModifier : ScriptableObject, IStatusModifier
+[CreateAssetMenu(menuName = "UnitModifier/Buff", fileName = "NewBuff")]
+public class BuffModifier : ScriptableObject, IUnitModifier
 {
     [SerializeField] private int id;
 
@@ -22,7 +22,7 @@ public class BuffModifier : ScriptableObject, IStatusModifier
     {
         Status = _status;
 
-        Status.StatusModifiers.Add(this, _time);
+        Status.UnitModifiers.Add(this, _time);
 
         SetStatus(true);
     }
@@ -34,7 +34,7 @@ public class BuffModifier : ScriptableObject, IStatusModifier
 
     public void Remove()
     {
-        Status.StatusModifiers.Remove(this);
+        Status.UnitModifiers.Remove(this);
 
         SetStatus(false);
     }
@@ -47,42 +47,42 @@ public class BuffModifier : ScriptableObject, IStatusModifier
 
     private void SetAttackStatus(int _value)
     {
-        Status.AttackStatusModifier.magicCriticalProbability += attackStatus.magicCriticalProbability * _value;
-        Status.AttackStatusModifier.physicalDamage += attackStatus.physicalDamage * _value;
-        Status.AttackStatusModifier.magicDamage += attackStatus.magicDamage * _value;
+        Status.AttackUnitModifier.magicCriticalProbability += attackStatus.magicCriticalProbability * _value;
+        Status.AttackUnitModifier.physicalDamage += attackStatus.physicalDamage * _value;
+        Status.AttackUnitModifier.magicDamage += attackStatus.magicDamage * _value;
 
-        Status.AttackStatusModifier.physicalCriticalDamage += attackStatus.physicalCriticalDamage * _value;
-        Status.AttackStatusModifier.magicCriticalDamage += attackStatus.magicCriticalDamage * _value;
+        Status.AttackUnitModifier.physicalCriticalDamage += attackStatus.physicalCriticalDamage * _value;
+        Status.AttackUnitModifier.magicCriticalDamage += attackStatus.magicCriticalDamage * _value;
 
-        Status.AttackStatusModifier.physicalCriticalProbability += attackStatus.physicalCriticalProbability * _value;
-        Status.AttackStatusModifier.magicCriticalProbability += attackStatus.magicCriticalProbability * _value;
+        Status.AttackUnitModifier.physicalCriticalProbability += attackStatus.physicalCriticalProbability * _value;
+        Status.AttackUnitModifier.magicCriticalProbability += attackStatus.magicCriticalProbability * _value;
 
-        Status.AttackStatusModifier.accuracy += attackStatus.accuracy * _value;
+        Status.AttackUnitModifier.accuracy += attackStatus.accuracy * _value;
 
-        Status.AttackStatusModifier.fireDamageBonus += attackStatus.fireDamageBonus * _value;
-        Status.AttackStatusModifier.waterDamageBonus += attackStatus.waterDamageBonus * _value;
-        Status.AttackStatusModifier.airDamageBonus += attackStatus.airDamageBonus * _value;
-        Status.AttackStatusModifier.earthDamageBonus += attackStatus.earthDamageBonus * _value;
-        Status.AttackStatusModifier.lightDamageBonus += attackStatus.lightDamageBonus * _value;
-        Status.AttackStatusModifier.darkDamageBonus += attackStatus.darkDamageBonus * _value;
+        Status.AttackUnitModifier.fireDamageBonus += attackStatus.fireDamageBonus * _value;
+        Status.AttackUnitModifier.waterDamageBonus += attackStatus.waterDamageBonus * _value;
+        Status.AttackUnitModifier.airDamageBonus += attackStatus.airDamageBonus * _value;
+        Status.AttackUnitModifier.earthDamageBonus += attackStatus.earthDamageBonus * _value;
+        Status.AttackUnitModifier.lightDamageBonus += attackStatus.lightDamageBonus * _value;
+        Status.AttackUnitModifier.darkDamageBonus += attackStatus.darkDamageBonus * _value;
     }
 
     private void SetDefenceStatus(int _value)
     {
-        Status.DefenceStatusModifier.physicalDefence += defenceStatus.physicalDefence * _value;
-        Status.DefenceStatusModifier.magicDefence += defenceStatus.magicDefence * _value;
+        Status.DefenceUnitModifier.physicalDefence += defenceStatus.physicalDefence * _value;
+        Status.DefenceUnitModifier.magicDefence += defenceStatus.magicDefence * _value;
 
-        Status.DefenceStatusModifier.physicalCriticalResistance += defenceStatus.physicalCriticalResistance * _value;
-        Status.DefenceStatusModifier.magicCriticalResistance += defenceStatus.magicCriticalResistance * _value;
+        Status.DefenceUnitModifier.physicalCriticalResistance += defenceStatus.physicalCriticalResistance * _value;
+        Status.DefenceUnitModifier.magicCriticalResistance += defenceStatus.magicCriticalResistance * _value;
 
-        Status.DefenceStatusModifier.dodgeProbability += defenceStatus.dodgeProbability * _value;
+        Status.DefenceUnitModifier.dodgeProbability += defenceStatus.dodgeProbability * _value;
 
-        Status.DefenceStatusModifier.fireResistanceBonus += defenceStatus.fireResistanceBonus * _value;
-        Status.DefenceStatusModifier.waterResistanceBonus += defenceStatus.waterResistanceBonus * _value;
-        Status.DefenceStatusModifier.airResistanceBonus += defenceStatus.airResistanceBonus * _value;
-        Status.DefenceStatusModifier.earthResistanceBonus += defenceStatus.earthResistanceBonus * _value;
+        Status.DefenceUnitModifier.fireResistanceBonus += defenceStatus.fireResistanceBonus * _value;
+        Status.DefenceUnitModifier.waterResistanceBonus += defenceStatus.waterResistanceBonus * _value;
+        Status.DefenceUnitModifier.airResistanceBonus += defenceStatus.airResistanceBonus * _value;
+        Status.DefenceUnitModifier.earthResistanceBonus += defenceStatus.earthResistanceBonus * _value;
 
-        Status.DefenceStatusModifier.lightResistanceBonus += defenceStatus.lightResistanceBonus * _value;
-        Status.DefenceStatusModifier.darkResistanceBonus += defenceStatus.darkResistanceBonus * _value;
+        Status.DefenceUnitModifier.lightResistanceBonus += defenceStatus.lightResistanceBonus * _value;
+        Status.DefenceUnitModifier.darkResistanceBonus += defenceStatus.darkResistanceBonus * _value;
     }
 }

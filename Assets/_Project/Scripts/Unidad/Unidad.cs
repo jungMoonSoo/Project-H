@@ -106,9 +106,9 @@ public class Unidad : MonoBehaviour
         statusManager?.OnHeal(heal);        
     }
 
-    public void AddStatusModifier(IStatusModifier _modifier, int _time) => _modifier.Apply(statusManager, _time);
+    public void AddUnitModifier(IUnitModifier _modifier, int _time) => _modifier.Apply(statusManager, _time);
 
-    public void OnStatusModifier(IStatusModifier _modifier, int _time) => _modifier.Check(_time - statusManager.StatusModifiers[_modifier]);
+    public void OnUnitModifier(IUnitModifier _modifier, int _time) => _modifier.Check(_time - statusManager.UnitModifiers[_modifier]);
 
-    public void RemoveStatusModifier(IStatusModifier _modifier) => _modifier.Remove();
+    public void RemoveUnitModifier(IUnitModifier _modifier) => _modifier.Remove();
 }

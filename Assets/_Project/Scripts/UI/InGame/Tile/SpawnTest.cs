@@ -11,6 +11,9 @@ public class SpawnTest : MonoBehaviour
 
     public TileManager tileManager;
 
+    public UnidadHpBar unidadHpBar;
+    public Transform hpBarParent;
+
     private void Update()
     {
         if (!spawn) return;
@@ -30,8 +33,6 @@ public class SpawnTest : MonoBehaviour
 
     private void Spawn(UnidadStatus _unidadStatus, int _tileId, List<TileHandle> _tiles, Transform _parent)
     {
-        Unidad _unit;
-
         if (_tiles[_tileId].Unit != null)
         {
             if (_tiles.Count > _tileId + 1) Spawn(_unidadStatus, _tileId + 1, _tiles, _parent);
@@ -39,8 +40,10 @@ public class SpawnTest : MonoBehaviour
             return;
         }
 
-        _unit = Instantiate(_unidadStatus.unidadPrefab, _parent).GetComponent<Unidad>();
+        Unidad _unit = Instantiate(_unidadStatus.unidadPrefab, _parent).GetComponent<Unidad>();
+        UnidadHpBar _hpBar = Instantiate(unidadHpBar, hpBarParent);
 
         _tiles[_tileId].SetUnit(_unit);
+        _hpBar.Init(_unit.transform);
     }
 }

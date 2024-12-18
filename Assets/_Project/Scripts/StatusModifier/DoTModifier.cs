@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StatusModifier/DoT", fileName = "NewDoT")]
-public class DoTModifier : ScriptableObject, IStatusModifier
+[CreateAssetMenu(menuName = "UnitModifier/DoT", fileName = "NewDoT")]
+public class DoTModifier : ScriptableObject, IUnitModifier
 {
     [SerializeField] private int id;
 
@@ -20,7 +20,7 @@ public class DoTModifier : ScriptableObject, IStatusModifier
     {
         Status = _status;
 
-        Status.StatusModifiers.Add(this, _time);
+        Status.UnitModifiers.Add(this, _time);
     }
 
     public void Check(int _count)
@@ -32,6 +32,6 @@ public class DoTModifier : ScriptableObject, IStatusModifier
 
     public void Remove()
     {
-        Status.StatusModifiers.Remove(this);
+        Status.UnitModifiers.Remove(this);
     }
 }

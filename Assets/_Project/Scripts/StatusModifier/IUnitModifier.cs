@@ -1,4 +1,4 @@
-public interface IStatusModifier
+public interface IUnitModifier
 {
     public int Id { get; }
 
