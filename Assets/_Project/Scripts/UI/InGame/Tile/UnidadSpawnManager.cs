@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnTest : MonoBehaviour
+public class UnidadSpawnManager : MonoBehaviour
 {
+    [Header("테스트")]
     public bool spawnAlly;
     public bool spawnEnemy;
 
+    [Header("스폰 정보")]
     public Transform spawnPoint_Ally;
     public Transform spawnPoint_Enemy;
 
     public TileManager tileManager;
 
+    [Header("스테이터스 바")]
     public UnidadStatusBar unidadHpBar;
     public Transform hpBarParent;
 
@@ -35,6 +38,8 @@ public class SpawnTest : MonoBehaviour
             Spawn(_unidadStatus, 0, false);
         }
     }
+
+    public void SpawnAllyUnit(uint _unitId) => Spawn(UnidadManager.Instance.GetStatus(_unitId), 0, true);
 
     public void Spawn(UnidadStatus _unidadStatus, int _tileId, bool _ally)
     {
