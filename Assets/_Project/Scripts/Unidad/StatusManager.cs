@@ -10,6 +10,8 @@ public class StatusManager
     [SerializeField] public int hp;
     [SerializeField] public int mp;
 
+    private UnidadStatusBar StatusBar => unidad.statusBar;
+
     #region ◇ Parameters ◇
     private UnidadStatus Status => unidad.Status;
     
@@ -108,13 +110,8 @@ public class StatusManager
         }
     }
     #endregion
-    #endregion
 
-    public Action DieEvent = null;
-    private AttackStatus attackStatus = new();
-    private DefenceStatus defenceStatus = new();
-
-    #region ◇◇ 이펙트 스테이터스 ◇◇
+    #region ◇◇ 변동 스테이터스 ◇◇
     public AttackStatus AttackUnitModifier => attackStatusModifier;
     public DefenceStatus DefenceUnitModifier => defenceStatusModifier;
 
@@ -126,13 +123,25 @@ public class StatusManager
     private readonly Dictionary<IUnitModifier, int> statusModifiers = new();
     #endregion
 
+    #endregion
 
-    public StatusManager(Unidad unidad) => this.unidad = unidad;
+    public Action DieEvent = null;
+    private AttackStatus attackStatus = new();
+    private DefenceStatus defenceStatus = new();
 
+    public StatusManager(Unidad unidad)
+    {
+        this.unidad = unidad;
+
+        hp = MaxHp;
+    }
     
     public void OnDamage(int damage)
     {
         hp -= damage;
+
+        if (StatusBar != null) StatusBar.SetBar((float)hp / MaxHp);
+
         if (hp <= 0)
         {
             DieEvent?.Invoke();
@@ -142,6 +151,9 @@ public class StatusManager
     public void OnHeal(int heal)
     {
         hp += heal;
+
+        if (StatusBar != null) StatusBar.SetBar((float)hp / MaxHp);
+
         if (hp > MaxHp)
         {
             hp = MaxHp;

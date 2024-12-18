@@ -23,6 +23,7 @@ public class Unidad : MonoBehaviour
     [Header("Positions")]
     // Damage UI를 띄울 위치
     [SerializeField] private Transform damageUiPosition; // 
+    [SerializeField] private Transform statusUiPosition; // 
     
     [Header("Settings")]
     // Unit 종류
@@ -35,8 +36,11 @@ public class Unidad : MonoBehaviour
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
     
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
+    public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
 
-    
+    public UnidadStatusBar statusBar;
+
+
     private Animator animator = null;
     private IUnidadState nowState = null;
     private StatusManager statusManager = null;
@@ -81,7 +85,6 @@ public class Unidad : MonoBehaviour
     }
     #endregion
 
-    
     public void StateChange(UnitState state)
     {
         if (states.TryGetValue(state, out IUnidadState newState))
