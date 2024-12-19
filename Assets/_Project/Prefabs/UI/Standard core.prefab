@@ -979,6 +979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitDeploymentManger: {fileID: 8639710635215165349}
   StandardCoreFieldUi: {fileID: 4157184928155869057}
+  warnningObject: {fileID: 0}
   stageNumber: {fileID: 4028905174062818609}
   unitNumber: {fileID: 8227697583133193276}
   managers: {fileID: 4800268714375589166}

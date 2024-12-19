@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,12 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     int currentUnitNumber = 1; //현재 필드에 있는 unit 수
     int maxUnitNumber = 5;     //필드 최대 unit 수
 
+    //임시 버튼 
+    bool blocksmithSpwan = false;
+    bool alchemySpawn =false;
+    bool nun2Spawn = false;
+    bool cowardly_KinghtSpawn = false;
+    bool ta001Spawn = false;
     private void Start()
     {
         StageTextUpdate(1, 2);
@@ -57,27 +64,69 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     //Unidad Manager에서 Unidad Statuses 배열 오류  ==> 1이상 부터는 인식을 못함 
     public void BlocksmithButton() //대장장이 버튼 
     {
-        UnitCreat(0);
+        if (!blocksmithSpwan)
+        {
+            UnitCreat(0);
+            blocksmithSpwan = true;
+        }
+        else
+        {
+            UnitDestory(0);
+            blocksmithSpwan = false;
+
+        }
     }
     
     public void AlchemyButton()//물약이 버튼
     {
-        UnitCreat(1);
+        if (!alchemySpawn)
+        {
+            UnitCreat(1);
+            alchemySpawn = true;
+        }
+        else
+        {
+
+        }
     }
 
     public void Nun2Button() //수녀 버튼
     {
-        UnitCreat(2);
+        if (!nun2Spawn)
+        {
+            UnitCreat(2);
+            nun2Spawn = true;
+        }
+        else
+        {
+
+        }
     } 
 
     public void Cowardly_KinghtButton() //갑옷 
     {
-        UnitCreat(3);
+        if (!cowardly_KinghtSpawn)
+        {
+            UnitCreat(3);
+            cowardly_KinghtSpawn = true;
+        }
+        else
+        {
+
+        }
     }
 
     public void TA001Buttton() //번개궁수
     {
-        UnitCreat(4);
+        if (!ta001Spawn)
+        {
+            UnitCreat(4);
+            ta001Spawn = true;
+        }
+        else
+        {
+
+        }
     }
 
     //unit  생성 & Unit 삭제에 대한 메서드 작성
@@ -95,6 +144,18 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
             StartCoroutine(WarnningTextPrint());
             Debug.Log("[Unit Deployment Manager]유닛 배치 최대입니다.");
         }
+    }
+
+    void UnitDestory(uint num) //Unit 삭제 => 삭제 메세드 
+    {
+        for (int i = 0; i < managers.GetComponent<TileManager>().allyTiles.Count; i++)
+        {
+            if(managers.GetComponent<TileManager>().allyTiles[i].GetInstanceID() == num)
+            {
+                
+            }
+        }
+
     }
 
     IEnumerator WarnningTextPrint() //경고 문구
