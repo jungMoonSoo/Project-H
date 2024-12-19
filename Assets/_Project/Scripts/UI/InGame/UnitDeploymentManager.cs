@@ -56,25 +56,35 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     public void BlocksmithButton() //대장장이 버튼 
     {
         managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(0), 0, true);
+        currentUnitNumber++;
+        UnitDeployTextUpdate(currentUnitNumber);
     }
     
     public void AlchemyButton()//물약이 버튼
     {
         managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(1), 0, true);
+        currentUnitNumber++;
+        UnitDeployTextUpdate(currentUnitNumber);
     }
 
     public void Nun2Button() //수녀 버튼
     {
         managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(2), 0, true);
+        currentUnitNumber++;
+        UnitDeployTextUpdate(currentUnitNumber);
     } 
 
     public void Cowardly_KinghtButton() //갑옷 
     {
         managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(3), 0, true);
+        currentUnitNumber++;
+        UnitDeployTextUpdate(currentUnitNumber);
     }
 
     public void TA001Buttton() //번개궁수
     {
         managers.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(4), 0, true);
+        currentUnitNumber++;
+        UnitDeployTextUpdate(currentUnitNumber);
     }
 }

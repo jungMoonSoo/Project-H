@@ -23,8 +23,6 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     public void GameStartButton() //게임이 시작 되도록하는 버튼
     {
         Debug.Log("[Standard Core Manager]게임이 시작되었습니다.");
-
-        Time.timeScale = 1f;
         gameStartButton.SetActive(false);
         timer.SetActive(true);
         TestSystem.Instance.StartTimer();
