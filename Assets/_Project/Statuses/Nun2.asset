@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b399a808fa8774190645441f631627, type: 3}
   m_Name: Nun2
   m_EditorClassIdentifier: 
-  id: 0
+  id: 2
   unidadPrefab: {fileID: 3818699146757874092, guid: 0fe5e04a792b95e43bbf79e39da18355, type: 3}
   skillPrefab: {fileID: 0}
-  maxHitpoint: 100
-  maxMana: 0
+  maxHp: 100
+  maxMp: 100
   moveSpeed: 2
   attackSpeed: 0.5
   attackStatus:

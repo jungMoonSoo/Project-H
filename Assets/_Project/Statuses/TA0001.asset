@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75b399a808fa8774190645441f631627, type: 3}
   m_Name: TA0001
   m_EditorClassIdentifier: 
-  id: 0
+  id: 4
   unidadPrefab: {fileID: 4930505331228810306, guid: 9b2a807dd9c8d58458d53d0d97a13e65, type: 3}
   skillPrefab: {fileID: 0}
-  maxHitpoint: 100
-  maxMana: 0
+  maxHp: 100
+  maxMp: 100
   moveSpeed: 2
   attackSpeed: 0.5
   attackStatus:
