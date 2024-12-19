@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Test용 System 코드, UI쪽 Timer 보기 위해 작성
+/// </summary>
 public class TestSystem : Singleton<TestSystem>
 {
     //타이머 관련 함수

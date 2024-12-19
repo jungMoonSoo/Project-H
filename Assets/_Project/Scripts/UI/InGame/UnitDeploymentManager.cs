@@ -4,7 +4,9 @@ using System.Xml.Serialization;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Unit 배치에 관련한 UI 관리 manager  
+/// </summary>
 public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
 {
     [Header("GameObject 연결")]
@@ -24,7 +26,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     int currentUnitNumber = 1; //현재 필드에 있는 unit 수
     int maxUnitNumber = 5;     //필드 최대 unit 수
 
-    //임시 버튼 
+    //임시 버튼  => List 변경 => unit값으로 관리  
     bool blocksmithSpwan = false;
     bool alchemySpawn =false;
     bool nun2Spawn = false;
@@ -66,12 +68,12 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     {
         if (!blocksmithSpwan)
         {
-            UnitCreat(0);
+            CreateUnit(0);
             blocksmithSpwan = true;
         }
         else
         {
-            UnitDestory(0);
+            DestroyUnit(0);
             blocksmithSpwan = false;
 
         }
@@ -81,7 +83,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     {
         if (!alchemySpawn)
         {
-            UnitCreat(1);
+            CreateUnit(1);
             alchemySpawn = true;
         }
         else
@@ -94,7 +96,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     {
         if (!nun2Spawn)
         {
-            UnitCreat(2);
+            CreateUnit(2);
             nun2Spawn = true;
         }
         else
@@ -107,7 +109,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     {
         if (!cowardly_KinghtSpawn)
         {
-            UnitCreat(3);
+            CreateUnit(3);
             cowardly_KinghtSpawn = true;
         }
         else
@@ -120,7 +122,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     {
         if (!ta001Spawn)
         {
-            UnitCreat(4);
+            CreateUnit(4);
             ta001Spawn = true;
         }
         else
@@ -131,7 +133,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
 
     //unit  생성 & Unit 삭제에 대한 메서드 작성
 
-    void UnitCreat(uint num) //Unit 생성 
+    void CreateUnit(uint num) //Unit 생성 
     {
         if (currentUnitNumber < maxUnitNumber)
         {
@@ -141,12 +143,12 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         }
         else
         {
-            StartCoroutine(WarnningTextPrint());
+            StartCoroutine(WarningTextPrint());
             Debug.Log("[Unit Deployment Manager]유닛 배치 최대입니다.");
         }
     }
 
-    void UnitDestory(uint num) //Unit 삭제 => 삭제 메세드 
+    void DestroyUnit(uint num) //Unit 삭제 => 삭제 메세드 
     {
         for (int i = 0; i < managers.GetComponent<TileManager>().allyTiles.Count; i++)
         {
@@ -158,7 +160,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
 
     }
 
-    IEnumerator WarnningTextPrint() //경고 문구
+    IEnumerator WarningTextPrint() //경고 문구
     {
         warnningObject.SetActive(true);
         yield return new WaitForSeconds(1f);

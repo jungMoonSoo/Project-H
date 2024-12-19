@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Unit 배치 이후의 UI를 관리하는 manager(일반적인 코어 기획서 내용 위주)
+/// timer / Unit Skill / Wave / Option 등의 UI 관리
+/// </summary>
 public class StandardCoreManager : Singleton<StandardCoreManager>
 {
     [Header("Object 연결")]
