@@ -52,7 +52,7 @@ public class StatusManager
             attackStatus.magicCriticalDamage = MagicCriticalDamage;
         
             attackStatus.physicalCriticalProbability = PhysicalCriticalProbability;
-            attackStatus.magicCriticalProbability = PhysicalCriticalProbability;
+            attackStatus.magicCriticalProbability = MagicCriticalProbability;
         
             attackStatus.accuracy = Accuracy;
         
