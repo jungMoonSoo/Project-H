@@ -28,7 +28,7 @@ public class TouchSystem : Singleton<TouchSystem>
 
             RaycastHit2D _hit = Physics2D.Raycast(_info.pos, Vector2.zero);
 
-            if (_hit.collider != null) _info.gameObject = _hit.collider.gameObject;
+            if (_hit.collider is not null) _info.gameObject = _hit.collider.gameObject;
         }
         else _info.phase = TouchPhase.Ended;
 
