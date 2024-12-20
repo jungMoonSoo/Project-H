@@ -106,7 +106,7 @@ public class Unidad : MonoBehaviour
 
         statusManager?.OnDamage(damage);
 
-        IncreaseMp(false);
+        IncreaseMp(true);
     }
 
     public void OnHeal(int heal, DamageType healType)
