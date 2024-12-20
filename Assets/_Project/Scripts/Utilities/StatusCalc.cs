@@ -6,6 +6,8 @@ public static class StatusCalc
 {
     private const float DM = 1f;
 
+    public const int MP_REGEN = 10;
+
     public static CallbackValueInfo<DamageType> CalculateFinalDamage(AttackStatus attackStatus, DefenceStatus defenceStatus, float skillCoefficient, float additionalDamage, bool isMagicAttack, string attackElement)
     {
         if (IsDodge(attackStatus.accuracy, defenceStatus.dodgeProbability)) return new CallbackValueInfo<DamageType>(DamageType.Miss, 0);
