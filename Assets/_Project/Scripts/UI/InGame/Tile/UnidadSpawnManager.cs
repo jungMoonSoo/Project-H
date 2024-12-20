@@ -39,13 +39,13 @@ public class UnidadSpawnManager : MonoBehaviour
         }
     }
 
-    public void SpawnAllyUnit(uint unitId) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, true);
+    public bool SpawnAllyUnit(uint unitId) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, true);
 
-    public void Spawn(UnidadStatus unidadStatus, int _tileId, bool ally)
+    public bool Spawn(UnidadStatus unidadStatus, int tileId, bool ally)
     {
         Unidad unit = ally ?
-            Spawn(unidadStatus, _tileId, tileManager.AllyTiles, spawnPointAlly) :
-            Spawn(unidadStatus, _tileId, tileManager.EnemyTiles, spawnPointEnemy);
+            Spawn(unidadStatus, tileId, tileManager.AllyTiles, spawnPointAlly) :
+            Spawn(unidadStatus, tileId, tileManager.EnemyTiles, spawnPointEnemy);
 
         if (unit != null)
         {
@@ -56,7 +56,11 @@ public class UnidadSpawnManager : MonoBehaviour
             hpBar.Init(unit.StatusUiPosition);
 
             unit.statusBar = hpBar;
+
+            return true;
         }
+
+        return false;
     }
 
     private Unidad Spawn(UnidadStatus unidadStatus, int tileId, List<TileHandle> tiles, Transform parent)
