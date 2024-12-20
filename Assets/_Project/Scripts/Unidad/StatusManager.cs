@@ -112,15 +112,15 @@ public class StatusManager
     #endregion
 
     #region ◇◇ 변동 스테이터스 ◇◇
-    public AttackStatus AttackUnitModifier => attackStatusModifier;
-    public DefenceStatus DefenceUnitModifier => defenceStatusModifier;
+    public AttackStatus AttackUnitModifier => attackUnitModifier;
+    public DefenceStatus DefenceUnitModifier => defenceUnitModifier;
 
-    public Dictionary<IUnitModifier, int> UnitModifiers => statusModifiers;
+    public Dictionary<IUnitModifier, int> UnitModifiers => unitModifiers;
 
-    private readonly AttackStatus attackStatusModifier = new();
-    private readonly DefenceStatus defenceStatusModifier = new();
+    private readonly AttackStatus attackUnitModifier = new();
+    private readonly DefenceStatus defenceUnitModifier = new();
 
-    private readonly Dictionary<IUnitModifier, int> statusModifiers = new();
+    private readonly Dictionary<IUnitModifier, int> unitModifiers = new();
     #endregion
 
     #endregion

@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class UnidadStatusBar : MonoBehaviour
 {
-    private Slider statusBar;
+    [SerializeField] private Slider statusBar;
+
     private Transform barTrans;
 
     private Camera cam;
@@ -13,8 +14,6 @@ public class UnidadStatusBar : MonoBehaviour
     private void Start()
     {
         cam = Camera.main;
-
-        TryGetComponent(out statusBar);
     }
 
     private void Update() => FallowUnit();

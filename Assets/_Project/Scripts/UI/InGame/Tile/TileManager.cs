@@ -22,20 +22,20 @@ public class TileManager : MonoBehaviour
 
     public void ToggleTile() => SetTileActiveState(false);
 
-    private void SetTileActiveState(bool _isActive)
+    private void SetTileActiveState(bool isActive)
     {
-        for (int i = 0; i < AllyTiles.Count; i++) AllyTiles[i].SetActive(_isActive);
-        for (int i = 0; i < EnemyTiles.Count; i++) EnemyTiles[i].SetActive(_isActive);
+        for (int i = 0; i < AllyTiles.Count; i++) AllyTiles[i].SetActive(isActive);
+        for (int i = 0; i < EnemyTiles.Count; i++) EnemyTiles[i].SetActive(isActive);
     }
 
     private void CheckTouch()
     {
-        TouchInfo _info = TouchSystem.Instance.GetTouch(0);
+        TouchInfo info = TouchSystem.Instance.GetTouch(0);
 
-        switch (_info.phase)
+        switch (info.phase)
         {
             case TouchPhase.Began:
-                selectedTile = GetTile(_info.gameObject);
+                selectedTile = GetTile(info.gameObject);
 
                 if (selectedTile != null && selectedTile.Unit == null) selectedTile = null;
                 break;
@@ -46,22 +46,22 @@ public class TileManager : MonoBehaviour
                 break;
 
             default:
-                targetTile = GetTile(_info.gameObject);
+                targetTile = GetTile(info.gameObject);
 
-                if (selectedTile != null) selectedTile.SetUnitPos(_info.pos);
+                if (selectedTile != null) selectedTile.SetUnitPos(info.pos);
                 break;
         }
     }
 
-    private TileHandle GetTile(GameObject _target)
+    private TileHandle GetTile(GameObject target)
     {
-        if (_target == null) return null;
+        if (target == null) return null;
 
-        _target.TryGetComponent(out TileHandle _tile);
+        target.TryGetComponent(out TileHandle tile);
 
-        if (_tile != null && !_tile.IsSelectable) _tile = null;
+        if (tile != null && !tile.IsSelectable) tile = null;
 
-        return _tile;
+        return tile;
     }
 
     private void TouchEnded()
