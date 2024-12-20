@@ -7,23 +7,23 @@ public class DoTModifier : ScriptableObject, IUnitModifier
 {
     [SerializeField] private int id;
 
-    [SerializeField] private int count;
+    [SerializeField] private float count;
     [SerializeField] private int damage;
 
     public int Id => id;
 
-    public int Count => count;
+    public float Count => count;
 
     public StatusManager Status { get; private set; }
 
-    public void Apply(StatusManager status, int time)
+    public void Apply(StatusManager status, float count)
     {
         Status = status;
 
-        Status.UnitModifiers.Add(this, time);
+        Status.UnitModifiers.Add(this, count);
     }
 
-    public void Check(int count)
+    public void Check(float count)
     {
         Status.OnDamage(damage);
 

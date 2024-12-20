@@ -7,27 +7,27 @@ public class BuffModifier : ScriptableObject, IUnitModifier
 {
     [SerializeField] private int id;
 
-    [SerializeField] private int count;
+    [SerializeField] private float count;
 
     [SerializeField] private AttackStatus attackStatus;
     [SerializeField] private DefenceStatus defenceStatus;
 
     public int Id => id;
 
-    public int Count => count;
+    public float Count => count;
 
     public StatusManager Status { get; private set; }
 
-    public void Apply(StatusManager status, int time)
+    public void Apply(StatusManager status, float count)
     {
         Status = status;
 
-        Status.UnitModifiers.Add(this, time);
+        Status.UnitModifiers.Add(this, count);
 
         SetStatus(true);
     }
 
-    public void Check(int count)
+    public void Check(float count)
     {
         if (count >= Count) Remove();
     }

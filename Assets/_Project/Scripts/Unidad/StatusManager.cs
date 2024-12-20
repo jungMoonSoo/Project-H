@@ -115,12 +115,12 @@ public class StatusManager
     public AttackStatus AttackUnitModifier => attackUnitModifier;
     public DefenceStatus DefenceUnitModifier => defenceUnitModifier;
 
-    public Dictionary<IUnitModifier, int> UnitModifiers => unitModifiers;
+    public Dictionary<IUnitModifier, float> UnitModifiers => unitModifiers;
 
     private readonly AttackStatus attackUnitModifier = new();
     private readonly DefenceStatus defenceUnitModifier = new();
 
-    private readonly Dictionary<IUnitModifier, int> unitModifiers = new();
+    private readonly Dictionary<IUnitModifier, float> unitModifiers = new();
     #endregion
 
     #endregion
