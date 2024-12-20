@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EllipseSkillArea : ISkillArea
 {
+    public byte SpriteCode => 0;
     public GameObject GameObject
     {
         get => _Transform.gameObject;
@@ -22,9 +23,9 @@ public class EllipseSkillArea : ISkillArea
     {
         spriteRenderer.sprite = sprite;
     }
-    public void SetPosition(Vector3 position)
+    public void SetPosition(Vector3 worldPosition)
     {
-        Transform.position = position;
+        Transform.position = worldPosition;
     }
     public void SetSize(Vector2 size)
     {

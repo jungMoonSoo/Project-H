@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LinearSkillArea: ISkillArea
 {
+    public byte SpriteCode => 1;
     public GameObject GameObject
     {
         get => _Transform.gameObject;
@@ -23,12 +24,12 @@ public class LinearSkillArea: ISkillArea
     {
         spriteRenderer.sprite = sprite;
     }
-    public void SetPosition(Vector3 position)
+    public void SetPosition(Vector3 worldPosition)
     {
-        Transform.position = InGameManager.Instance.PlayerTransform.position;
+        /*Transform.position = InGameManager.Instance.PlayerTransform.position;
 
-        float angle = VectorCalc.CalcRotation(position - Transform.position);
-        Transform.eulerAngles = new Vector3(0, 0, angle);
+        float angle = VectorCalc.CalcRotation(worldPosition - Transform.position);
+        Transform.eulerAngles = new Vector3(0, 0, angle);*/
     }
     public void SetSize(Vector2 size)
     {

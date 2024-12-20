@@ -3,11 +3,27 @@ using UnityEngine;
 public interface IActionSkill
 {
     /// <summary>
-    /// 스킬 드래그 위치 표시용 이펙트 오브젝트
+    /// 스킬을 사용하는 Unidad 객체<br/>
+    /// 생성된 인스턴스 객체여야 함.
     /// </summary>
-    public GameObject AreaEffect
+    public Unidad Unit
     {
         get;
+        set;
+    }
+    
+    /// <summary>
+    /// 스킬 사용 위치 표시용 이펙트 오브젝트
+    /// </summary>
+    public ISkillArea SkillArea
+    {
+        get;
+    }
+
+    public Vector2 AreaSize
+    {
+        get;
+        set;
     }
 
     /// <summary>
@@ -17,8 +33,8 @@ public interface IActionSkill
     /// <summary>
     /// 스킬 사용을 위한 드래그 Method
     /// </summary>
-    /// <param name="screenPosition">터치가 된 MainCamera 기준 위치</param>
-    public void OnDrag(Vector3 screenPosition);
+    /// <param name="worldPosition">스킬이 드래그 되고 있는 실제 위치</param>
+    public void OnDrag(Vector3 worldPosition);
     /// <summary>
     /// 스킬 사용이 종료된 뒤 동작 Method
     /// </summary>

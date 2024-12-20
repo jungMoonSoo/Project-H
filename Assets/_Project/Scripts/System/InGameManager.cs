@@ -10,6 +10,19 @@ public class InGameManager : Singleton<InGameManager>
 
     private readonly List<PauseType> pauseList = new();
 
+    private readonly Dictionary<PauseType, float> pauseSpeed = new()
+    {
+        {PauseType.UseSkill, 0.25f},
+        {PauseType.OpenMenu, 0f},
+        {PauseType.OpenOption, 0f},
+    };
+
+
+    void Start()
+    {
+        
+    }
+
     /// <summary>
     /// 게임 일시정지 Method
     /// </summary>
@@ -48,18 +61,16 @@ public class InGameManager : Singleton<InGameManager>
     /// </summary>
     private void CheckPause()
     {
-        if(pauseList.Count > 0)
+        float timeScale = 1f;
+        foreach (var pause in pauseList)
         {
-            // TODO 게임 일시정지
-            Time.timeScale = 0;
-            Logger.Debug("게임 일시정지", "일시정지");
+            if (pauseSpeed.TryGetValue(pause, out float value))
+            {
+                timeScale = value;
+            }
         }
-        else
-        {
-            // TODO 게임 재개
-            Time.timeScale = 1;
-            Logger.Debug("게임 일시정지", "게임재개");
-        }
+        
+        Time.timeScale = timeScale;
     }
 
     public void TestStop()
@@ -73,21 +84,5 @@ public class InGameManager : Singleton<InGameManager>
             pauseList.Add(PauseType.OpenMenu);
         }
         CheckPause();
-    }
-
-    public void TestSkill()
-    {
-        /*if(!Action)
-        {
-            if (skill.SkillRequire.CheckRequire(null))
-            {
-                Action = true;
-                skill.SkillPrepare.Begin(null);
-            }
-        }
-        else
-        {
-            skill.SkillPrepare.End(null);
-        }*/
     }
 }

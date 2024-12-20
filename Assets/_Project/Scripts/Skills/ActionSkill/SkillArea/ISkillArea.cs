@@ -2,6 +2,10 @@ using UnityEngine;
 
 public interface ISkillArea
 {
+    public byte SpriteCode
+    {
+        get;
+    }
     public GameObject GameObject
     {
         get;
@@ -13,6 +17,6 @@ public interface ISkillArea
     }
 
     public void SetSprite(Sprite sprite);
-    public void SetPosition(Vector3 position);
+    public void SetPosition(Vector3 worldPosition);
     public void SetSize(Vector2 size);
 }

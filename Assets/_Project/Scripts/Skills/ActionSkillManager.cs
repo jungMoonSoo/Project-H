@@ -3,40 +3,79 @@ using UnityEngine;
 
 public class ActionSkillManager: Singleton<ActionSkillManager>
 {
+    [SerializeField] private Sprite[] skillAreaSprites;
+    [SerializeField] private GameObject skillAreaObject;
+    
     public bool IsUsingSkill
     {
         get => usingSkill != null;
     }
-    
+
     private IActionSkill usingSkill = null;
     private bool hasPosition = false;
 
+    
+    void Start()
+    {
+        skillAreaObject.SetActive(false);
+    }
     
     void Update()
     {
         if (usingSkill is not null)
         {
-            if (Input.GetMouseButton(0))
+            TouchInfo touchInfo = TouchSystem.Instance.GetTouch(0);
+            if (touchInfo.count > 0)
             {
-                hasPosition = true;
+                if (!hasPosition)
+                {
+                    hasPosition = true;
+                }
+                else
+                {
+                    OnDrag(touchInfo.pos);
+                }
             }
             else if(hasPosition)
             {
                 hasPosition = false;
-                UseSkill(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                OnApplySkill(touchInfo.pos);
             }
         }
     }
 
-    
-    public void SelectSkill(IActionSkill skill)
+
+    public void OnSelect(IActionSkill skill)
     {
+        if(skill is null) return;
+        
+        InGameManager.Instance.PauseGame(PauseType.UseSkill);
+        
         usingSkill = skill;
+        usingSkill.OnSelect();
+        
+        ISkillArea skillArea = usingSkill.SkillArea;
+        skillArea.GameObject = skillAreaObject;
+        skillArea.SetSize(usingSkill.AreaSize);
+        skillArea.SetSprite(skillAreaSprites[usingSkill.SkillArea.SpriteCode]);
     }
 
-    private void UseSkill(Vector3 worldPosition)
+    private void OnApplySkill(Vector3 screenPosition)
     {
-        usingSkill?.ApplyAction(worldPosition);
+        InGameManager.Instance.ResumeGame(PauseType.UseSkill);
+        
+        usingSkill?.ApplyAction(screenPosition);
         usingSkill = null;
+        
+        skillAreaObject.SetActive(false);
+    }
+
+    private void OnDrag(Vector3 screenPosition)
+    {
+        if (!skillAreaObject.activeSelf)
+        {
+            skillAreaObject.SetActive(true);
+        }
+        usingSkill?.OnDrag(screenPosition);
     }
 }
