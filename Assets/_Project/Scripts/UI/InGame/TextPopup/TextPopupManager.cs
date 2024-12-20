@@ -28,30 +28,30 @@ public class TextPopupManager : Singleton<TextPopupManager>
         for (int i = 0; i < 10; i++) popupObjects.Enqueue(Instantiate(popupObject, popupParent));
     }
 
-    public void PopupDamage(string _text, Vector2 _position) => PopupText(_text, _position, onDamageColor);
+    public void PopupDamage(string text, Vector2 position) => PopupText(text, position, onDamageColor);
 
-    public void PopupHeal(string _text, Vector2 _position) => PopupText(_text, _position, onHealColor);
+    public void PopupHeal(string text, Vector2 position) => PopupText(text, position, onHealColor);
 
-    private void PopupText(string _text, Vector2 _position, Color32 _color)
+    private void PopupText(string text, Vector2 position, Color32 color)
     {
         TextPopup _textPopup = popupObjects.Dequeue(popupParent);
 
-        _textPopup.SetText(_text);
-        _textPopup.SetColor(_color);
-        _textPopup.SetPosition(cam.WorldToScreenPoint(_position));
+        _textPopup.SetText(text);
+        _textPopup.SetColor(color);
+        _textPopup.SetPosition(cam.WorldToScreenPoint(position));
 
         _textPopup.Show();
     }
 
-    private void OnEnqueue(TextPopup _textPopup)
+    private void OnEnqueue(TextPopup textPopup)
     {
-        _textPopup.SetActive(false);
+        textPopup.SetActive(false);
     }
 
-    private void OnDequeue(TextPopup _textPopup)
+    private void OnDequeue(TextPopup textPopup)
     {
-        if (!_textPopup.IsInitialized()) _textPopup.Init(popupObjects);
+        if (!textPopup.IsInitialized()) textPopup.Init(popupObjects);
 
-        _textPopup.SetActive(true);
+        textPopup.SetActive(true);
     }
 }

@@ -7,9 +7,9 @@ public struct CallbackValueInfo<T>
     public T type;
     public float value;
 
-    public CallbackValueInfo(T _type, float _value)
+    public CallbackValueInfo(T type, float value)
     {
-        type = _type;
-        value = _value;
+        this.type = type;
+        this.value = value;
     }
 }

@@ -9,32 +9,32 @@ public class TileHandle : MonoBehaviour
     public Unidad Unit { get; private set; }
     public bool IsSelectable => isSelectable;
 
-    public void SetUnit(Unidad _unit)
+    public void SetUnit(Unidad unit)
     {
-        Unit = _unit;
+        Unit = unit;
 
         if (Unit != null) ReturnPos();
     }
 
-    public void SwapUnits(TileHandle _tile)
+    public void SwapUnits(TileHandle tile)
     {
-        Unidad _unit = null;
+        Unidad unit = null;
 
-        if (_tile != null)
+        if (tile != null)
         {
-            _unit = _tile.Unit;
-            _tile.SetUnit(Unit);
+            unit = tile.Unit;
+            tile.SetUnit(Unit);
         }
 
-        SetUnit(_unit);
+        SetUnit(unit);
     }
 
-    public void SetUnitPos(Vector2 _pos)
+    public void SetUnitPos(Vector2 pos)
     {
-        if (Unit != null) Unit.transform.position = _pos;
+        if (Unit != null) Unit.transform.position = pos;
     }
 
     public void ReturnPos() => SetUnitPos(transform.position);
 
-    public void SetActive(bool _value) => gameObject.SetActive(_value);
+    public void SetActive(bool value) => gameObject.SetActive(value);
 }

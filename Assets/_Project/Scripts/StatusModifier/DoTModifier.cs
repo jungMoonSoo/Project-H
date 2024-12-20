@@ -16,18 +16,18 @@ public class DoTModifier : ScriptableObject, IUnitModifier
 
     public StatusManager Status { get; private set; }
 
-    public void Apply(StatusManager _status, int _time)
+    public void Apply(StatusManager status, int time)
     {
-        Status = _status;
+        Status = status;
 
-        Status.UnitModifiers.Add(this, _time);
+        Status.UnitModifiers.Add(this, time);
     }
 
-    public void Check(int _count)
+    public void Check(int count)
     {
         Status.OnDamage(damage);
 
-        if (_count >= Count) Remove();
+        if (count >= Count) Remove();
     }
 
     public void Remove()

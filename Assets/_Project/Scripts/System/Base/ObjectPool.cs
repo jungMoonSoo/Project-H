@@ -10,23 +10,23 @@ public class ObjectPool<T> where T : Object
 
     private readonly Queue<T> poolObjects = new();
 
-    public ObjectPool(T _poolObject) => poolObject = _poolObject;
+    public ObjectPool(T poolObject) => this.poolObject = poolObject;
 
-    public T Dequeue(Transform _parent = null)
+    public T Dequeue(Transform parent = null)
     {
-        T _object = poolObjects.Count == 0 ? Object.Instantiate(poolObject, _parent) : poolObjects.Dequeue();
+        T @object = poolObjects.Count == 0 ? Object.Instantiate(poolObject, parent) : poolObjects.Dequeue();
 
-        OnDequeue?.Invoke(_object);
+        OnDequeue?.Invoke(@object);
 
-        return _object;
+        return @object;
     }
 
-    public void Enqueue(T _object)
+    public void Enqueue(T @object)
     {
-        if (_object == null) return;
+        if (@object == null) return;
 
-        OnEnqueue?.Invoke(_object);
+        OnEnqueue?.Invoke(@object);
 
-        poolObjects.Enqueue(_object);
+        poolObjects.Enqueue(@object);
     }
 }

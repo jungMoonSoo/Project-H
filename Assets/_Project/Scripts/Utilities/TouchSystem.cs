@@ -10,46 +10,46 @@ public class TouchSystem : Singleton<TouchSystem>
     }
 
 #if UNITY_EDITOR
-    public TouchInfo GetTouch(int _index)
+    public TouchInfo GetTouch(int index)
     {
-        TouchInfo _info = new();
+        TouchInfo info = new();
 
-        if (Input.GetMouseButton(_index))
+        if (Input.GetMouseButton(index))
         {
-            _info.phase = Input.GetMouseButtonDown(_index) ? TouchPhase.Began : TouchPhase.Moved;
-            _info.count = _index + 1;
+            info.phase = Input.GetMouseButtonDown(index) ? TouchPhase.Began : TouchPhase.Moved;
+            info.count = index + 1;
         }
 
-        if (_info.count > _index)
+        if (info.count > index)
         {
-            _info.pos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+            info.pos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
 
-            RaycastHit2D _hit = Physics2D.Raycast(_info.pos, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(info.pos, Vector2.zero);
 
-            if (_hit.collider is not null) _info.gameObject = _hit.collider.gameObject;
+            if (hit.collider is not null) info.gameObject = hit.collider.gameObject;
         }
-        else _info.phase = TouchPhase.Ended;
+        else info.phase = TouchPhase.Ended;
 
-        return _info;
+        return info;
     }
 #else
-    public TouchInfo GetTouch(int _index)
+    public TouchInfo GetTouch(int index)
     {
-        TouchInfo _info = new() { count = Input.touchCount };
+        TouchInfo info = new() { count = Input.touchCount };
 
-        if (_info.count > _index)
+        if (info.count > index)
         {
-            Touch _touch = Input.GetTouch(_index);
+            Touch touch = Input.GetTouch(index);
 
-            _info.phase = _touch.phase;
-            _info.pos = mainCamera.ScreenToWorldPoint(_touch.position);
+            info.phase = touch.phase;
+            info.pos = mainCamera.ScreenToWorldPoint(touch.position);
 
-            RaycastHit2D _hit = Physics2D.Raycast(_info.pos, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(info.pos, Vector2.zero);
 
-            if (_hit.collider != null) _info.gameObject = _hit.collider.gameObject;
+            if (hit.collider != null) info.gameObject = hit.collider.gameObject;
         }
 
-        return _info;
+        return info;
     }
 #endif
 }

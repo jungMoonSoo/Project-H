@@ -19,9 +19,9 @@ public class UnidadStatusBar : MonoBehaviour
 
     private void Update() => FallowUnit();
 
-    public void Init(Transform _barTrans) => barTrans = _barTrans;
+    public void Init(Transform barTrans) => this.barTrans = barTrans;
 
-    public void SetBar(float _value) => statusBar.value = _value;
+    public void SetBar(float value) => statusBar.value = value;
 
     private void FallowUnit() => transform.position = cam.WorldToScreenPoint(barTrans.position);
 }

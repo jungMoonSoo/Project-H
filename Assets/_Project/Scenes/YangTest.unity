@@ -2479,8 +2479,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAlly: 0
   spawnEnemy: 0
-  spawnPoint_Ally: {fileID: 1412243147}
-  spawnPoint_Enemy: {fileID: 2121170513}
+  spawnPointAlly: {fileID: 1412243147}
+  spawnPointEnemy: {fileID: 2121170513}
   tileManager: {fileID: 2145259197}
   unidadHpBar: {fileID: 5718855193010962830, guid: b6b212c6646fede4195beff329d0a45d, type: 3}
   hpBarParent: {fileID: 489073091}

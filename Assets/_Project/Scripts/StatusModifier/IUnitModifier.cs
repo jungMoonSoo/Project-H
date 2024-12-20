@@ -6,7 +6,7 @@ public interface IUnitModifier
 
     public StatusManager Status { get; }
 
-    public void Apply(StatusManager _status, int _time);
-    public void Check(int _duration);
+    public void Apply(StatusManager status, int time);
+    public void Check(int duration);
     public void Remove();
 }

@@ -8,9 +8,9 @@ public class TextPopup : MonoBehaviour
     private TextPopupHandle handle;
     private ObjectPool<TextPopup> popupObjects;
 
-    public void Init(ObjectPool<TextPopup> _popupObjects)
+    public void Init(ObjectPool<TextPopup> popupObjects)
     {
-        popupObjects = _popupObjects;
+        this.popupObjects = popupObjects;
 
         TryGetComponent(out handle);
 
@@ -23,13 +23,13 @@ public class TextPopup : MonoBehaviour
 
     public void Hide() => popupObjects.Enqueue(this);
 
-    public void SetActive(bool _value) => gameObject.SetActive(_value);
+    public void SetActive(bool value) => gameObject.SetActive(value);
 
-    public void SetText(string _text) => handle.SetText(_text);
+    public void SetText(string text) => handle.SetText(text);
 
-    public void SetColor(Color32 _color) => handle.SetColor(_color);
+    public void SetColor(Color32 color) => handle.SetColor(color);
 
-    public void SetPosition(Vector2 _position) => handle.SetPosition(_position);
+    public void SetPosition(Vector2 position) => handle.SetPosition(position);
 
     private IEnumerator TextAnim()
     {

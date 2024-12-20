@@ -5,18 +5,18 @@ using UnityEngine;
 public class UnidadSpawnManager : MonoBehaviour
 {
     [Header("테스트")]
-    public bool spawnAlly;
-    public bool spawnEnemy;
+    [SerializeField] private bool spawnAlly;
+    [SerializeField] private bool spawnEnemy;
 
     [Header("스폰 정보")]
-    public Transform spawnPoint_Ally;
-    public Transform spawnPoint_Enemy;
+    [SerializeField] private Transform spawnPointAlly;
+    [SerializeField] private Transform spawnPointEnemy;
 
-    public TileManager tileManager;
+    [SerializeField] private TileManager tileManager;
 
     [Header("스테이터스 바")]
-    public UnidadStatusBar unidadHpBar;
-    public Transform hpBarParent;
+    [SerializeField] private UnidadStatusBar unidadHpBar;
+    [SerializeField] private Transform hpBarParent;
 
     private void Update()
     {
@@ -24,54 +24,54 @@ public class UnidadSpawnManager : MonoBehaviour
         {
             spawnAlly = false;
 
-            UnidadStatus _unidadStatus = UnidadManager.Instance.GetStatus(0);
+            UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(0);
 
-            Spawn(_unidadStatus, 0, true);
+            Spawn(unidadStatus, 0, true);
         }
 
         if (spawnEnemy)
         {
             spawnEnemy = false;
 
-            UnidadStatus _unidadStatus = UnidadManager.Instance.GetStatus(0);
+            UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(0);
 
-            Spawn(_unidadStatus, 0, false);
+            Spawn(unidadStatus, 0, false);
         }
     }
 
-    public void SpawnAllyUnit(uint _unitId) => Spawn(UnidadManager.Instance.GetStatus(_unitId), 0, true);
+    public void SpawnAllyUnit(uint unitId) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, true);
 
-    public void Spawn(UnidadStatus _unidadStatus, int _tileId, bool _ally)
+    public void Spawn(UnidadStatus unidadStatus, int _tileId, bool ally)
     {
-        Unidad _unit = _ally ?
-            Spawn(_unidadStatus, _tileId, tileManager.allyTiles, spawnPoint_Ally) :
-            Spawn(_unidadStatus, _tileId, tileManager.enemyTiles, spawnPoint_Enemy);
+        Unidad unit = ally ?
+            Spawn(unidadStatus, _tileId, tileManager.allyTiles, spawnPointAlly) :
+            Spawn(unidadStatus, _tileId, tileManager.enemyTiles, spawnPointEnemy);
 
-        if (_unit != null)
+        if (unit != null)
         {
-            _unit.Owner = _ally ? UnitType.Ally : UnitType.Enemy;
+            unit.Owner = ally ? UnitType.Ally : UnitType.Enemy;
 
-            UnidadStatusBar _hpBar = Instantiate(unidadHpBar, hpBarParent);
+            UnidadStatusBar hpBar = Instantiate(unidadHpBar, hpBarParent);
 
-            _hpBar.Init(_unit.StatusUiPosition);
+            hpBar.Init(unit.StatusUiPosition);
 
-            _unit.statusBar = _hpBar;
+            unit.statusBar = hpBar;
         }
     }
 
-    private Unidad Spawn(UnidadStatus _unidadStatus, int _tileId, List<TileHandle> _tiles, Transform _parent)
+    private Unidad Spawn(UnidadStatus unidadStatus, int tileId, List<TileHandle> tiles, Transform parent)
     {
-        if (_tiles[_tileId].Unit != null)
+        if (tiles[tileId].Unit != null)
         {
-            if (_tiles.Count > _tileId + 1) return Spawn(_unidadStatus, _tileId + 1, _tiles, _parent);
+            if (tiles.Count > tileId + 1) return Spawn(unidadStatus, tileId + 1, tiles, parent);
 
             return null;
         }
 
-        Unidad _unit = Instantiate(_unidadStatus.unidadPrefab, _parent).GetComponent<Unidad>();
+        Unidad unit = Instantiate(unidadStatus.unidadPrefab, parent).GetComponent<Unidad>();
 
-        _tiles[_tileId].SetUnit(_unit);
+        tiles[tileId].SetUnit(unit);
 
-        return _unit;
+        return unit;
     }
 }

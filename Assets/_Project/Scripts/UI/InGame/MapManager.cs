@@ -7,25 +7,25 @@ public class MapManager : Singleton<MapManager>
     public Vector2 mapPos;
     public Vector2 mapSize;
 
-    public Vector2 ClampPositionToMap(Vector3 _pos, Vector2 _colliderSize)
+    public Vector2 ClampPositionToMap(Vector3 pos, Vector2 colliderSize)
     {
-        float _dist = (mapPos.x - mapSize.x * 0.5f) - (_pos.x - _colliderSize.x);
+        float _dist = (mapPos.x - mapSize.x * 0.5f) - (pos.x - colliderSize.x);
 
-        if (_dist > 0) _pos.x += _dist;
+        if (_dist > 0) pos.x += _dist;
 
-        _dist = (mapPos.x + mapSize.x * 0.5f) - (_pos.x + _colliderSize.x);
+        _dist = (mapPos.x + mapSize.x * 0.5f) - (pos.x + colliderSize.x);
 
-        if (_dist < 0) _pos.x += _dist;
+        if (_dist < 0) pos.x += _dist;
 
-        _dist = (mapPos.y - mapSize.y * 0.5f) - (_pos.y - _colliderSize.y);
+        _dist = (mapPos.y - mapSize.y * 0.5f) - (pos.y - colliderSize.y);
 
-        if (_dist > 0) _pos.y += _dist;
+        if (_dist > 0) pos.y += _dist;
 
-        _dist = (mapPos.y + mapSize.y * 0.5f) - (_pos.y + _colliderSize.y);
+        _dist = (mapPos.y + mapSize.y * 0.5f) - (pos.y + colliderSize.y);
 
-        if (_dist < 0) _pos.y += _dist;
+        if (_dist < 0) pos.y += _dist;
 
-        return _pos;
+        return pos;
     }
 
 #if UNITY_EDITOR
