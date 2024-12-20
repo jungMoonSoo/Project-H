@@ -16,6 +16,12 @@ public class TileHandle : MonoBehaviour
         if (Unit != null) ReturnPos();
     }
 
+    public void RemoveUnit()
+    {
+        Destroy(Unit);
+        SetUnit(null);
+    }
+
     public void SwapUnits(TileHandle tile)
     {
         Unidad unit = null;
