@@ -150,9 +150,9 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
 
     void DestroyUnit(uint num) //Unit 삭제 => 삭제 메세드 
     {
-        for (int i = 0; i < managers.GetComponent<TileManager>().allyTiles.Count; i++)
+        for (int i = 0; i < managers.GetComponent<TileManager>().AllyTiles.Count; i++)
         {
-            if(managers.GetComponent<TileManager>().allyTiles[i].GetInstanceID() == num)
+            if(managers.GetComponent<TileManager>().AllyTiles[i].GetInstanceID() == num)
             {
                 
             }

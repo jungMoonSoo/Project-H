@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class TileManager : MonoBehaviour
 {
-    public List<TileHandle> allyTiles;
-    public List<TileHandle> enemyTiles;
+    [SerializeField] private List<TileHandle> allyTiles;
+    [SerializeField] private List<TileHandle> enemyTiles;
 
     private TileHandle selectedTile;
     private TileHandle targetTile;
+
+    public List<TileHandle> AllyTiles => allyTiles;
+    public List<TileHandle> EnemyTiles => enemyTiles;
 
     private void Update()
     {
@@ -21,8 +24,8 @@ public class TileManager : MonoBehaviour
 
     private void SetTileActiveState(bool _isActive)
     {
-        for (int i = 0; i < allyTiles.Count; i++) allyTiles[i].SetActive(_isActive);
-        for (int i = 0; i < enemyTiles.Count; i++) enemyTiles[i].SetActive(_isActive);
+        for (int i = 0; i < AllyTiles.Count; i++) AllyTiles[i].SetActive(_isActive);
+        for (int i = 0; i < EnemyTiles.Count; i++) EnemyTiles[i].SetActive(_isActive);
     }
 
     private void CheckTouch()

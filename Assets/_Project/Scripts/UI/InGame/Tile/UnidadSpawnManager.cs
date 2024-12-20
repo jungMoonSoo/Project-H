@@ -44,8 +44,8 @@ public class UnidadSpawnManager : MonoBehaviour
     public void Spawn(UnidadStatus unidadStatus, int _tileId, bool ally)
     {
         Unidad unit = ally ?
-            Spawn(unidadStatus, _tileId, tileManager.allyTiles, spawnPointAlly) :
-            Spawn(unidadStatus, _tileId, tileManager.enemyTiles, spawnPointEnemy);
+            Spawn(unidadStatus, _tileId, tileManager.AllyTiles, spawnPointAlly) :
+            Spawn(unidadStatus, _tileId, tileManager.EnemyTiles, spawnPointEnemy);
 
         if (unit != null)
         {
