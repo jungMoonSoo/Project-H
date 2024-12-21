@@ -16,6 +16,12 @@ public interface ISkillArea
         get;
     }
 
+    public IActionSkill Skill
+    {
+        get;
+        set;
+    }
+
     public void SetSprite(Sprite sprite);
     public void SetPosition(Vector3 worldPosition);
     public void SetSize(Vector2 size);

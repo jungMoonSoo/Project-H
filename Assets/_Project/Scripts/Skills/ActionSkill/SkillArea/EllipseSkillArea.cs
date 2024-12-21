@@ -16,6 +16,12 @@ public class EllipseSkillArea : ISkillArea
     public Transform Transform => _Transform;
     private Transform _Transform = null;
 
+    public IActionSkill Skill
+    {
+        get;
+        set;
+    }
+
     private Transform areaTransform = null;
     private SpriteRenderer spriteRenderer = null;
 
@@ -25,7 +31,7 @@ public class EllipseSkillArea : ISkillArea
     }
     public void SetPosition(Vector3 worldPosition)
     {
-        Transform.position = worldPosition;
+        Transform.position = worldPosition + Vector3.forward;
     }
     public void SetSize(Vector2 size)
     {
