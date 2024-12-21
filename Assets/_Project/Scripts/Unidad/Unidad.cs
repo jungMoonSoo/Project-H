@@ -106,17 +106,17 @@ public class Unidad : MonoBehaviour
 
         statusManager?.OnDamage(damage);
 
-        IncreaseMp(true);
+        IncreaseMp(StatusCalc.MP_REGEN * 0.5f);
     }
 
     public void OnHeal(int heal, DamageType healType)
     {
         TextPopupManager.Instance.PopupHeal(heal.ToString(), transform.position);
 
-        statusManager?.OnHeal(heal);        
+        statusManager?.OnHeal(heal);
     }
 
-    public void IncreaseMp(bool _half = false) => statusManager.mp += _half ? (int)(StatusCalc.MP_REGEN * 0.5f) : StatusCalc.MP_REGEN;
+    public void IncreaseMp(float value) => statusManager.mp += (int)value;
 
     public void AddUnitModifier(IUnitModifier modifier, float time) => modifier.Apply(statusManager, time);
 
