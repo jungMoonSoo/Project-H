@@ -33,10 +33,7 @@ public class EllipseCollider : MonoBehaviour
     /// <returns>타원방정식 결과, 1이 접촉, 이하는 </returns>
     public float OnEllipseDepth(EllipseCollider target)
     {
-        Vector3 dirPos = target.transform.position - (transform.position + (Vector3)center);
-
-        return Mathf.Pow(dirPos.x / (Radius.x + target.Radius.x), 2) +
-               Mathf.Pow(dirPos.y / (Radius.y + target.Radius.y), 2);
+        return VectorCalc.CalcEllipse(transform.position, target.transform.position, Radius, target.Radius);
     }
 
 #if UNITY_EDITOR
