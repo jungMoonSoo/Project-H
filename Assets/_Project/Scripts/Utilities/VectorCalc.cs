@@ -7,6 +7,9 @@ public static class VectorCalc
         return Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg;
     }
 
+    public static float CalcEllipsePoint(Vector2 center, Vector2 centerRadius, Vector2 point) =>
+        CalcEllipse(center, point, centerRadius, Vector2.zero);
+    
     public static float CalcEllipse(Vector2 center, Vector2 target, Vector2 centerRadius, Vector2 targetRadius) =>
         CalcEllipse(target - center, centerRadius, targetRadius);
     public static float CalcEllipse(Vector2 direction, Vector2 centerRadius, Vector2 targetRadius)
