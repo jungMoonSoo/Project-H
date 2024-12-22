@@ -3,29 +3,23 @@ using UnityEngine;
 public interface IActionSkill
 {
     /// <summary>
+    /// 스킬 사용시 생성될 SkillEffect의 Code
+    /// </summary>
+    public uint EffectCode { get; set; }
+
+    /// <summary>
     /// 스킬을 사용하는 Unidad 객체<br/>
     /// 생성된 인스턴스 객체여야 함.
     /// </summary>
-    public Unidad Caster
-    {
-        get;
-        set;
-    }
+    public Unidad Caster { get; set; }
+
     
     /// <summary>
     /// 스킬 사용 위치 표시용 이펙트 오브젝트
     /// </summary>
-    public ISkillArea SkillArea
-    {
-        get;
-        set;
-    }
+    public ISkillArea SkillArea { get; set; }
+    public Vector2 AreaSize { get; set; }
 
-    public Vector2 AreaSize
-    {
-        get;
-        set;
-    }
 
     /// <summary>
     /// 스킬 사용을 위해 선택받았을 때 동작 Method

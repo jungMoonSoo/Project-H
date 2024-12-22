@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DefaultActionSkill: IActionSkill
 {
+    public uint EffectCode { get; set; }
+    
     public Unidad Caster { get; set; }
 
     public ISkillArea SkillArea
@@ -16,12 +18,8 @@ public class DefaultActionSkill: IActionSkill
         }
     }
     private ISkillArea _SKillArea;
-
-    public Vector2 AreaSize
-    {
-        get;
-        set;
-    } = new(5, 2.5f);
+    
+    public Vector2 AreaSize { get; set; } = new(5, 2.5f);
     
 
     public void OnSelect()
