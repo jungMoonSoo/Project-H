@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class StandardCoreManager : Singleton<StandardCoreManager>
 {
     [Header("Camera 할당")]
-    [SerializeField] Camera mainCamara;
+    [SerializeField] Camera mainCamera;
 
     [Header("Object 연결")]
     [SerializeField] GameObject wave;
@@ -31,11 +31,35 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     //Hold 관련 변수 
     float pressStartTime;    //누르기 시작한 시간
     bool isPressing = false; //누르는 상태 여부 
-    const float longPressThreshold = 1f; //길게 누르기 판정 시간 
+    const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
+    GameObject targetTile = null;          //눌린 타일 
 
     private void Update()
     {
+        TouchInfo touch = TouchSystem.Instance.GetTouch(0);
 
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                targetTile = touch.gameObject;
+                pressStartTime = Time.time;
+                isPressing = true;
+                break;
+
+            case TouchPhase.Ended:
+            case TouchPhase.Canceled:
+                if (isPressing)
+                {
+                    isPressing = false;
+                    float pressDuration = Time.time - pressStartTime;
+
+                    if (pressDuration >= longPressThreshold)
+                    {
+                        HandleLongPress(); // 길게 누르기 처리
+                    }
+                }
+                break;
+        }  
     }
     #region ◇Button 기능◇
     public void GameStartButton() //게임이 시작 되도록하는 버튼
@@ -97,5 +121,33 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     //유닛 스킬하고 유닛에 대해 나오면 작업?
     #endregion
 
-    //Hold 관련 함수
+    #region◇Hold 관련 함수◇
+    private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
+    {
+        if(targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Ally)
+        {
+            Debug.Log("[Standard Core Manager]아군 유닛이 선택되었습니다.");
+            allyInfo.gameObject.SetActive(true);
+            allyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+        }
+        else if (targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Enemy)
+        {
+            Debug.Log("[Standard Core Manager]적군 유닛이 선택되었습니다.");
+            enemyInfo.gameObject.SetActive(true);
+            enemyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+        }
+    }
+
+    public void CloseInfoWindow() //설명창 비활성화
+    {
+        if (allyInfo.activeSelf)
+        {
+            allyInfo.gameObject.SetActive(false);
+        }
+        else if (enemyInfo.activeSelf)
+        {
+            enemyInfo.gameObject.SetActive(false);
+        }
+    }
+    #endregion
 }
