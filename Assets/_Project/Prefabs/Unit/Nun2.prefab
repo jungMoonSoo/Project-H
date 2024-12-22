@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 2
   idleState: {fileID: 3916148993169026993}
   moveState: {fileID: 7167320053235744595}
   attackState: {fileID: 8411213805730792512}

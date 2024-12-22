@@ -19,6 +19,9 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
     [Header("TEST")]
     [SerializeField] GameObject managers;
 
+    [Header("Ally Tile Handle")]
+    [SerializeField] TileHandle[] tileInfo;
+
     // 스테이지 정보 -를 기준으로 앞 뒤 숫자를 받아옴
     int frontStageNumber = 1;
     int backStageNumber = 1;
@@ -88,7 +91,8 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         }
         else
         {
-
+            DestroyUnit(1);
+            alchemySpawn = false;
         }
     }
 
@@ -101,7 +105,8 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         }
         else
         {
-
+            DestroyUnit(2);
+            nun2Spawn = true;
         }
     } 
 
@@ -114,7 +119,8 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         }
         else
         {
-
+            DestroyUnit(3);
+            cowardly_KinghtSpawn = true;
         }
     }
 
@@ -127,7 +133,8 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         }
         else
         {
-
+            DestroyUnit(4);
+            ta001Spawn = true;
         }
     }
 
@@ -150,11 +157,18 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
 
     void DestroyUnit(uint num) //Unit 삭제 => 삭제 메세드 
     {
-        for (int i = 0; i < managers.GetComponent<TileManager>().AllyTiles.Count; i++)
+        for (int i = 0; i < tileInfo.Length; i++)
         {
-            if(managers.GetComponent<TileManager>().AllyTiles[i].GetInstanceID() == num)
+            if (tileInfo[i].Unit != null)
             {
-                
+                if (tileInfo[i].Unit.Status == UnidadManager.Instance.GetStatus(num))
+                {
+                    currentUnitNumber -= 1;
+                    Destroy(tileInfo[i].Unit.gameObject);
+                    tileInfo[i].RemoveUnit();
+                    Debug.Log("[Unit Deployment Manager]해당 유닛을 제거하였습니다.");
+                    break;
+                }
             }
         }
 

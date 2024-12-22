@@ -397,7 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 4
   idleState: {fileID: 1994519294532932628}
   moveState: {fileID: 591526671278713739}
   attackState: {fileID: 146741039148528102}

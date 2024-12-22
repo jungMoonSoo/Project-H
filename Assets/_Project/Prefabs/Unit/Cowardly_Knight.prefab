@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  id: 3
   idleState: {fileID: 1326313390771422549}
   moveState: {fileID: 2524242718687757552}
   attackState: {fileID: 5906863871429950031}
@@ -596,7 +596,9 @@ MonoBehaviour:
   attackCollider: {fileID: 5547361004574991284}
   skillCollider: {fileID: 4482305305480043611}
   damageUiPosition: {fileID: 0}
+  statusUiPosition: {fileID: 0}
   Owner: 1
+  statusBar: {fileID: 0}
 --- !u!1 &7542458459907447365
 GameObject:
   m_ObjectHideFlags: 0
