@@ -1,18 +1,28 @@
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DefaultActionSkill: IActionSkill
 {
-    public Unidad Unit
+    public Unidad Caster { get; set; }
+
+    public ISkillArea SkillArea
     {
-        get; set;
+        get => _SKillArea;
+        set
+        {
+            _SKillArea = value;
+            _SKillArea.Skill = this;
+        }
     }
-    public ISkillArea SkillArea { get; } = new EllipseSkillArea();
+    private ISkillArea _SKillArea;
 
     public Vector2 AreaSize
     {
         get;
         set;
     } = new(5, 2.5f);
+    
 
     public void OnSelect()
     {

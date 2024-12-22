@@ -6,7 +6,7 @@ public interface IActionSkill
     /// 스킬을 사용하는 Unidad 객체<br/>
     /// 생성된 인스턴스 객체여야 함.
     /// </summary>
-    public Unidad Unit
+    public Unidad Caster
     {
         get;
         set;
@@ -18,6 +18,7 @@ public interface IActionSkill
     public ISkillArea SkillArea
     {
         get;
+        set;
     }
 
     public Vector2 AreaSize

@@ -7,8 +7,17 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     [Header("UI Elements")]
     [SerializeField] private Slider mpSlider;
     [SerializeField] private Image skillImage;
+    
+    [SerializeField] private Unidad caster;
 
     public IActionSkill ActionSkill = new DefaultActionSkill();
+
+
+    void Start()
+    {
+        ActionSkill.Caster = caster;
+        ActionSkill.SkillArea = new TargetSkillArea();
+    }
 
 
     public void OnPointerClick(PointerEventData eventData)
