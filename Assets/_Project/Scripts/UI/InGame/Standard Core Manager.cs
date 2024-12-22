@@ -9,12 +9,17 @@ using UnityEngine.UI;
 /// </summary>
 public class StandardCoreManager : Singleton<StandardCoreManager>
 {
+    [Header("Camera 할당")]
+    [SerializeField] Camera mainCamara;
+
     [Header("Object 연결")]
     [SerializeField] GameObject wave;
     [SerializeField] GameObject gameStartButton;
     [SerializeField] GameObject timer;
     [SerializeField] GameObject option;
     [SerializeField] GameObject gameEnd;
+    [SerializeField] GameObject allyInfo;
+    [SerializeField] GameObject enemyInfo;
 
     [Header("Skill prefabs 연결")]
     [SerializeField] GameObject[] skillprefabs;
@@ -23,7 +28,16 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
     bool isTimerRunning = false;    //타이머 실행 여부
 
-    //Button 기능
+    //Hold 관련 변수 
+    float pressStartTime;    //누르기 시작한 시간
+    bool isPressing = false; //누르는 상태 여부 
+    const float longPressThreshold = 1f; //길게 누르기 판정 시간 
+
+    private void Update()
+    {
+
+    }
+    #region ◇Button 기능◇
     public void GameStartButton() //게임이 시작 되도록하는 버튼
     {
         Debug.Log("[Standard Core Manager]게임이 시작되었습니다.");
@@ -48,7 +62,9 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         Time.timeScale = 1f;
         TestSystem.Instance.StartTimer();
     }
+    #endregion
 
+    #region◇GameSystem 표시 UI◇
     //Timer 관련 함수 
     public void UpdateTimerText(float t)
     {
@@ -79,5 +95,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
 
     //유닛 스킬 테스트용?
     //유닛 스킬하고 유닛에 대해 나오면 작업?
-    
+    #endregion
+
+    //Hold 관련 함수
 }
