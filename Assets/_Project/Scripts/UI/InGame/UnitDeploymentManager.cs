@@ -106,7 +106,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         else
         {
             DestroyUnit(2);
-            nun2Spawn = true;
+            nun2Spawn = false;
         }
     } 
 
@@ -120,7 +120,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         else
         {
             DestroyUnit(3);
-            cowardly_KinghtSpawn = true;
+            cowardly_KinghtSpawn = false;
         }
     }
 
@@ -134,7 +134,7 @@ public class UnitDeploymentManager : Singleton<UnitDeploymentManager>
         else
         {
             DestroyUnit(4);
-            ta001Spawn = true;
+            ta001Spawn = false;
         }
     }
 
