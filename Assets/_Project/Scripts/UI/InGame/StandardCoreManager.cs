@@ -45,9 +45,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                 pressStartTime = Time.time;
                 isPressing = true;
                 break;
-
-            case TouchPhase.Ended:
-            case TouchPhase.Canceled:
+            case TouchPhase.Stationary:
                 if (isPressing)
                 {
                     isPressing = false;
@@ -56,8 +54,13 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                     if (pressDuration >= longPressThreshold)
                     {
                         HandleLongPress(); // 길게 누르기 처리
+                        isPressing = false;
                     }
                 }
+                break;
+            case TouchPhase.Ended:
+            case TouchPhase.Canceled:
+               isPressing = false;
                 break;
         }  
     }
