@@ -32,7 +32,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     float pressStartTime;    //누르기 시작한 시간
     bool isPressing = false; //누르는 상태 여부 
     const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
-    GameObject targetTile = null;          //눌린 타일 
+    GameObject targetUnit = null;          //눌린 타일 
 
     private void Update()
     {
@@ -41,7 +41,8 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                targetTile = touch.gameObject;
+                Debug.Log(targetUnit);
+                targetUnit = touch.gameObject.transform.parent.parent.gameObject;
                 pressStartTime = Time.time;
                 isPressing = true;
                 break;
@@ -130,19 +131,19 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     #region◇Hold 관련 함수◇
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
     {
-        if(targetTile.GetComponent<TileHandle>().Unit != null)
+        if(targetUnit!= null)
         {
-            if (targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Ally)
+            if (targetUnit.GetComponent<Unidad>().Owner == UnitType.Ally)
             {
                 Debug.Log("[Standard Core Manager]아군 유닛이 선택되었습니다.");
                 allyInfo.gameObject.SetActive(true);
-                allyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+                allyInfo.GetComponentInChildren<Text>().text = targetUnit.GetComponent<Unidad>().Status.name;
             }
-            else if (targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Enemy)
+            else if (targetUnit.GetComponent<Unidad>().Owner == UnitType.Enemy)
             {
                 Debug.Log("[Standard Core Manager]적군 유닛이 선택되었습니다.");
                 enemyInfo.gameObject.SetActive(true);
-                enemyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+                enemyInfo.GetComponentInChildren<Text>().text = targetUnit.GetComponent<Unidad>().Status.name;
             }
         }
     }
