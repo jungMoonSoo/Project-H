@@ -52,7 +52,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                             CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null);
                             target.OnDamage((int)callback.value, callback.type);
 
-                            Unit.IncreaseMp(callback.type == DamageType.Miss ? StatusCalc.MP_REGEN * 0.5f : StatusCalc.MP_REGEN);
+                            Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
 
                             attack = true;
                         }
