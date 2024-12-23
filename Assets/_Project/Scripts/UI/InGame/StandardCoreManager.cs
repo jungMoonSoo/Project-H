@@ -34,6 +34,10 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
     GameObject targetUnit = null;          //눌린 타일 
 
+    private Vector2 initialTouchPosition; // 터치 시작 위치
+    private const float stationaryThreshold = 10.0f; // 이동 허용 범위 (픽셀 단위)
+
+
     private void Update()
     {
         TouchInfo touch = TouchSystem.Instance.GetTouch(0);
@@ -48,7 +52,8 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                 break;
 
             case TouchPhase.Stationary:
-            case TouchPhase.Moved: // 터치가 고정되거나 약간 움직이는 경우
+                break;
+            case TouchPhase.Moved:// 터치가 고정되거나 약간 움직이는 경우
                 if (isPressing)
                 {
                     float pressDuration = Time.time - pressStartTime;
@@ -60,7 +65,6 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                     }
                 }
                 break;
-
             case TouchPhase.Ended:
             case TouchPhase.Canceled:
                 isPressing = false; // 터치가 끝나면 플래그 초기화
@@ -131,7 +135,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     #region◇Hold 관련 함수◇
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
     {
-        if(targetUnit!= null)
+        if(targetUnit.GetComponent<Unidad>() != null)
         {
             if (targetUnit.GetComponent<Unidad>().Owner == UnitType.Ally)
             {
