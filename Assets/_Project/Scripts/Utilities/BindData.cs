@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class BindingValue<T>
+public class BindData<T>
 {
     [SerializeField] private T value;
 

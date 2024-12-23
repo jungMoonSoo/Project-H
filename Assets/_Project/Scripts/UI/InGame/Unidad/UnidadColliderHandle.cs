@@ -17,11 +17,11 @@ public class UnidadColliderHandle : MonoBehaviour
 
     public T GetHitComponent<T>() where T : class
     {
-        unitCollider.enabled = false;
+        SetActiveCollider(false);
 
         RaycastHit2D hit = Physics2D.Raycast(unidad.transform.position, Vector2.zero);
 
-        unitCollider.enabled = true;
+        SetActiveCollider(true);
 
         if (hit.collider != null && hit.collider.TryGetComponent(out T component)) return component;
 
