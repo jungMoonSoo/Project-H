@@ -45,25 +45,28 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                 pressStartTime = Time.time;
                 isPressing = true;
                 break;
+
             case TouchPhase.Stationary:
+            case TouchPhase.Moved: // 터치가 고정되거나 약간 움직이는 경우
                 if (isPressing)
                 {
-                    isPressing = false;
                     float pressDuration = Time.time - pressStartTime;
 
                     if (pressDuration >= longPressThreshold)
                     {
                         HandleLongPress(); // 길게 누르기 처리
-                        isPressing = false;
+                        isPressing = false; // 한 번만 실행되도록 플래그 해제
                     }
                 }
                 break;
+
             case TouchPhase.Ended:
             case TouchPhase.Canceled:
-               isPressing = false;
+                isPressing = false; // 터치가 끝나면 플래그 초기화
                 break;
-        }  
+        }
     }
+
     #region ◇Button 기능◇
     public void GameStartButton() //게임이 시작 되도록하는 버튼
     {
