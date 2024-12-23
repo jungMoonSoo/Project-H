@@ -28,7 +28,6 @@ public abstract class SkillAreaBase
     {
         SpriteRenderer.sprite = sprite;
     }
-    public abstract void SetPosition(Vector3 worldPosition);
     public virtual void SetSize(Vector2 size)
     {
         AreaTransform.localScale = size;

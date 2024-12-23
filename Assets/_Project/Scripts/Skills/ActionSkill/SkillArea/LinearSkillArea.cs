@@ -5,7 +5,7 @@ public class LinearSkillArea: SkillAreaBase, ISkillArea
 {
     public byte SpriteCode => 1;
     
-    public override void SetPosition(Vector3 worldPosition)
+    public void SetPosition(Vector3 worldPosition)
     {
         Transform.position = InGameManager.Instance.PlayerTransform.position + Vector3.forward;
 

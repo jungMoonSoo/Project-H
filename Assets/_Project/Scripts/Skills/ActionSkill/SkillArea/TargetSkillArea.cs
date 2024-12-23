@@ -6,7 +6,7 @@ public class TargetSkillArea: SkillAreaBase, ISkillArea
 {
     public byte SpriteCode => 0;
 
-    public override void SetPosition(Vector3 worldPosition)
+    public void SetPosition(Vector3 worldPosition)
     {
         Unidad[] enemies = UnidadManager.Instance.unidades.Where(x => x.Owner != UnitType.Ally).ToArray();
         Unidad target = enemies[0];
