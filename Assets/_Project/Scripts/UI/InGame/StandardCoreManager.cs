@@ -124,17 +124,20 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     #region◇Hold 관련 함수◇
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
     {
-        if(targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Ally)
+        if(targetTile.GetComponent<TileHandle>().Unit != null)
         {
-            Debug.Log("[Standard Core Manager]아군 유닛이 선택되었습니다.");
-            allyInfo.gameObject.SetActive(true);
-            allyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
-        }
-        else if (targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Enemy)
-        {
-            Debug.Log("[Standard Core Manager]적군 유닛이 선택되었습니다.");
-            enemyInfo.gameObject.SetActive(true);
-            enemyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+            if (targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Ally)
+            {
+                Debug.Log("[Standard Core Manager]아군 유닛이 선택되었습니다.");
+                allyInfo.gameObject.SetActive(true);
+                allyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+            }
+            else if (targetTile.GetComponent<TileHandle>().Unit.Owner == UnitType.Enemy)
+            {
+                Debug.Log("[Standard Core Manager]적군 유닛이 선택되었습니다.");
+                enemyInfo.gameObject.SetActive(true);
+                enemyInfo.GetComponentInChildren<Text>().text = targetTile.GetComponent<TileHandle>().Unit.Status.name;
+            }
         }
     }
 
