@@ -12,6 +12,8 @@ public class ObjectPool<T> where T : Object
 
     public ObjectPool(T poolObject) => this.poolObject = poolObject;
 
+    public void CreateDefault(Transform parent = null) => Enqueue(Object.Instantiate(poolObject, parent));
+
     public T Dequeue(Transform parent = null)
     {
         T @object = poolObjects.Count == 0 ? Object.Instantiate(poolObject, parent) : poolObjects.Dequeue();

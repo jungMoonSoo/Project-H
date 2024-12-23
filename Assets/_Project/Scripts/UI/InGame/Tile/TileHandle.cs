@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TileHandle : MonoBehaviour
@@ -35,12 +33,10 @@ public class TileHandle : MonoBehaviour
         SetUnit(unit);
     }
 
-    public void SetUnitPos(Vector2 pos)
+    public void ReturnPos()
     {
-        if (Unit != null) Unit.transform.position = pos;
+        if (Unit != null) Unit.transform.position = transform.position;
     }
-
-    public void ReturnPos() => SetUnitPos(transform.position);
 
     public void SetActive(bool value) => gameObject.SetActive(value);
 }

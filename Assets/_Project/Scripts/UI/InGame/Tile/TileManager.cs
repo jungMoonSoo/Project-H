@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +6,10 @@ public class TileManager : MonoBehaviour
     [SerializeField] private List<TileHandle> allyTiles;
     [SerializeField] private List<TileHandle> enemyTiles;
 
+    private Vector2 offsetPos;
+
     private TileHandle selectedTile;
-    private TileHandle targetTile;
+    private UnidadColliderHandle selectedUnit;
 
     public List<TileHandle> AllyTiles => allyTiles;
     public List<TileHandle> EnemyTiles => enemyTiles;
@@ -35,41 +36,38 @@ public class TileManager : MonoBehaviour
         switch (info.phase)
         {
             case TouchPhase.Began:
-                selectedTile = GetTile(info.gameObject);
+                if (info.gameObject == null) return;
 
-                if (selectedTile != null && selectedTile.Unit == null) selectedTile = null;
+                if (info.gameObject.TryGetComponent(out selectedUnit))
+                {
+                    if (selectedUnit.UnitType != UnitType.Ally) selectedUnit = null;
+                    else
+                    {
+                        offsetPos = (Vector2)selectedUnit.transform.position - info.pos;
+                        selectedTile = selectedUnit.GetHitComponent<TileHandle>();
+                    }
+                }
                 break;
 
             case TouchPhase.Ended:
             case TouchPhase.Canceled:
-                if (selectedTile != null) TouchEnded();
+                if (selectedUnit != null) TouchEnded();
                 break;
 
             default:
-                targetTile = GetTile(info.gameObject);
-
-                if (selectedTile != null) selectedTile.SetUnitPos(info.pos);
+                if (selectedUnit != null) selectedUnit.SetUnitPos(offsetPos + info.pos);
                 break;
         }
     }
 
-    private TileHandle GetTile(GameObject target)
-    {
-        if (target == null) return null;
-
-        target.TryGetComponent(out TileHandle tile);
-
-        if (tile != null && !tile.IsSelectable) tile = null;
-
-        return tile;
-    }
-
     private void TouchEnded()
     {
-        if (targetTile != null) selectedTile.SwapUnits(targetTile);
+        TileHandle targetTile = selectedUnit.GetHitComponent<TileHandle>();
+
+        if (targetTile != null && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();
 
+        selectedUnit = null;
         selectedTile = null;
-        targetTile = null;
     }
 }

@@ -25,7 +25,7 @@ public class TextPopupManager : Singleton<TextPopupManager>
             OnDequeue = OnDequeue
         };
 
-        for (int i = 0; i < 10; i++) popupObjects.Enqueue(Instantiate(popupObject, popupParent));
+        for (int i = 0; i < 10; i++) popupObjects.CreateDefault(popupParent);
     }
 
     public void PopupDamage(string text, Vector2 position) => PopupText(text, position, onDamageColor);
