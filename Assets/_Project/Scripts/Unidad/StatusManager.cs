@@ -7,8 +7,8 @@ public class StatusManager
 {
     private Unidad unidad = null;
 
-    [SerializeField] public BindingValue<int> hp;
-    [SerializeField] public BindingValue<int> mp;
+    [SerializeField] public BindingValue<int> hp = new();
+    [SerializeField] public BindingValue<int> mp = new();
 
     private UnidadStatusBar StatusBar => unidad.statusBar;
 
