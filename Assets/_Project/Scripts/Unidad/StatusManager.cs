@@ -7,8 +7,8 @@ public class StatusManager
 {
     private Unidad unidad = null;
 
-    [SerializeField] public int hp;
-    [SerializeField] public int mp;
+    [SerializeField] public BindingValue<int> hp;
+    [SerializeField] public BindingValue<int> mp;
 
     private UnidadStatusBar StatusBar => unidad.statusBar;
 
@@ -133,16 +133,16 @@ public class StatusManager
     {
         this.unidad = unidad;
 
-        hp = MaxHp;
+        hp.Value = MaxHp;
     }
     
     public void OnDamage(int damage)
     {
-        hp -= damage;
+        hp.Value -= damage;
 
-        if (StatusBar != null) StatusBar.SetBar((float)hp / MaxHp);
+        if (StatusBar != null) StatusBar.SetBar((float)hp.Value / MaxHp);
 
-        if (hp <= 0)
+        if (hp.Value <= 0)
         {
             DieEvent?.Invoke();
         }
@@ -150,13 +150,13 @@ public class StatusManager
 
     public void OnHeal(int heal)
     {
-        hp += heal;
+        hp.Value += heal;
 
-        if (StatusBar != null) StatusBar.SetBar((float)hp / MaxHp);
+        if (StatusBar != null) StatusBar.SetBar((float)hp.Value / MaxHp);
 
-        if (hp > MaxHp)
+        if (hp.Value > MaxHp)
         {
-            hp = MaxHp;
+            hp.Value = MaxHp;
         }
     }
 }

@@ -116,7 +116,7 @@ public class Unidad : MonoBehaviour
         statusManager?.OnHeal(heal);
     }
 
-    public void IncreaseMp(float value) => statusManager.mp += (int)(StatusCalc.MP_REGEN * value);
+    public void IncreaseMp(float value) => statusManager.mp.Value += (int)(StatusCalc.MP_REGEN * value);
 
     public void AddUnitModifier(IUnitModifier modifier, float time) => modifier.Apply(statusManager, time);
 
