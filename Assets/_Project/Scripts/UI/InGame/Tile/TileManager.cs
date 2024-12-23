@@ -36,9 +36,7 @@ public class TileManager : MonoBehaviour
         switch (info.phase)
         {
             case TouchPhase.Began:
-                if (info.gameObject == null) return;
-
-                if (info.gameObject.TryGetComponent(out selectedUnit))
+                if (info.gameObject != null && info.gameObject.TryGetComponent(out selectedUnit))
                 {
                     if (selectedUnit.UnitType != UnitType.Ally) selectedUnit = null;
                     else

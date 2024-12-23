@@ -13,6 +13,8 @@ public class UnidadColliderHandle : MonoBehaviour
 
     public void SetUnitPos(Vector2 pos) => unidad.transform.position = pos;
 
+    public void SetActiveCollider(bool _active) => unitCollider.enabled = _active;
+
     public T GetHitComponent<T>() where T : class
     {
         unitCollider.enabled = false;
