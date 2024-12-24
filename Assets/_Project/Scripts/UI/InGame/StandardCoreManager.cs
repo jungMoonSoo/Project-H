@@ -35,7 +35,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     GameObject targetUnit = null;          //눌린 타일 
 
     private Vector2 initialTouchPosition; // 터치 시작 위치
-    private const float stationaryThreshold = 10.0f; // 이동 허용 범위 (픽셀 단위)
+    private const float stationaryThreshold = 1.0f; // 이동 허용 범위 (픽셀 단위)
 
 
     private void Update()
@@ -47,6 +47,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
             case TouchPhase.Began:
                 Debug.Log(targetUnit);
                 targetUnit = touch.gameObject.transform.parent.parent.gameObject;
+                initialTouchPosition = touch.pos;
                 pressStartTime = Time.time;
                 isPressing = true;
                 break;
@@ -57,6 +58,13 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                 if (isPressing)
                 {
                     float pressDuration = Time.time - pressStartTime;
+                    float distance = Vector2.Distance(initialTouchPosition, touch.pos);
+
+                    if (distance > stationaryThreshold)
+                    {
+                        Debug.Log("[Standard Core Manager]터치가 움직였습니다. Hold가 취소되었습니다.");
+                        isPressing = false;
+                    }
 
                     if (pressDuration >= longPressThreshold)
                     {
@@ -133,6 +141,9 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     #endregion
 
     #region◇Hold 관련 함수◇
+    /// <summary>
+    /// Unidad prefab의 형태가 바뀌면 코드 수정을 해야됨
+    /// </summary>
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
     {
         if(targetUnit.GetComponent<Unidad>() != null)
