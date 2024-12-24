@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 /// <summary>
@@ -24,6 +25,7 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
 
     [Header("Skill prefabs 연결")]
     [SerializeField] GameObject[] skillprefabs;
+    [SerializeField] GameObject SkillInfo;
 
     //타이머 관련 함수
     float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
@@ -63,11 +65,9 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                     if (isSkillPress)
                     {
                         float pressDuration = Time.time - skillPressTime;
-                        float distance = Vector2.Distance(initialTouchPosition, touchSkill.position);
-
                         if (pressDuration >= longPressThreshold)
                         {
-                            SkillInfo();
+                            ShowSkillInfo();
                             isSkillPress = false; // 한 번만 실행되도록 플래그 해제
                         }
                     }
@@ -210,6 +210,10 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         {
             enemyInfo.gameObject.SetActive(false);
         }
+        else if (SkillInfo.activeSelf)
+        {
+            SkillInfo.gameObject.SetActive(false);
+        }
     }
     #endregion
 
@@ -260,9 +264,9 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         return false;
     }
 
-    private void SkillInfo()
+    private void ShowSkillInfo() //스킬창 띄우기
     {
-        // 터치된 이미지에 대한 동작
-        Debug.Log($"이미지가 터치되었습니다.");
+        Debug.Log("[Standard Core Manager]스킬이 선택되었습니다.");
+        SkillInfo.gameObject.SetActive(true);
     }
 }
