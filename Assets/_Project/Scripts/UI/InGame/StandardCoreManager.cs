@@ -72,6 +72,9 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                         }
                     }
                     break;
+                case TouchPhase.Ended:
+                    SkillInfo.gameObject.SetActive(false);
+                    break;
                 case TouchPhase.Canceled:
                     isSkillPress = false; // 터치가 끝나면 플래그 초기화
                     break;
@@ -209,10 +212,6 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         else if (enemyInfo.activeSelf)
         {
             enemyInfo.gameObject.SetActive(false);
-        }
-        else if (SkillInfo.activeSelf)
-        {
-            SkillInfo.gameObject.SetActive(false);
         }
     }
     #endregion
