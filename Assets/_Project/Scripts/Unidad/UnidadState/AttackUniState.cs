@@ -49,7 +49,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                     {
                         if (!attack)
                         {
-                            CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, false, null);
+                            CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, ElementType.None);
                             target.OnDamage((int)callback.value, callback.type);
 
                             Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);

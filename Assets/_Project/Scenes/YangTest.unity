@@ -2445,6 +2445,7 @@ MonoBehaviour:
   unidadStatuses:
   - {fileID: 11400000, guid: df32a647369ec2a46a585ac4aee63585, type: 2}
   defaultStatus: {fileID: 11400000, guid: f73de598515a0c04e901ee1977ee019c, type: 2}
+  test: {fileID: 0}
 --- !u!114 &2145259200
 MonoBehaviour:
   m_ObjectHideFlags: 0
