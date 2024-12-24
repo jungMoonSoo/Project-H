@@ -45,10 +45,13 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                targetUnit = touch.gameObject.transform.parent.parent.gameObject;
-                initialTouchPosition = touch.pos;
-                pressStartTime = Time.time;
-                isPressing = true;
+                if(touch.gameObject != null)
+                {
+                    targetUnit = touch.gameObject.transform.parent.parent.gameObject;
+                    initialTouchPosition = touch.pos;
+                    pressStartTime = Time.time;
+                    isPressing = true;
+                }
                 break;
 
             case TouchPhase.Stationary:
