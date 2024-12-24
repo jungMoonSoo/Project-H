@@ -133,14 +133,15 @@ public class StatusManager
     {
         this.unidad = unidad;
 
+        hp.SetCallback(BindHp);
+        mp.SetCallback(BindMp);
+
         hp.Value = MaxHp;
     }
     
     public void OnDamage(int damage)
     {
         hp.Value -= damage;
-
-        if (StatusBar != null) StatusBar.SetBar((float)hp.Value / MaxHp);
 
         if (hp.Value <= 0)
         {
@@ -152,11 +153,21 @@ public class StatusManager
     {
         hp.Value += heal;
 
-        if (StatusBar != null) StatusBar.SetBar((float)hp.Value / MaxHp);
-
         if (hp.Value > MaxHp)
         {
             hp.Value = MaxHp;
         }
+    }
+
+    private void BindHp(ref int currentValue, int newValue)
+    {
+        currentValue = newValue;
+
+        if (StatusBar != null) StatusBar.SetBar((float)hp.Value / MaxHp);
+    }
+
+    private void BindMp(ref int currentValue, int newValue)
+    {
+        currentValue = newValue;
     }
 }

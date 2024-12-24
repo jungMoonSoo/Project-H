@@ -86,7 +86,7 @@ public class Unidad : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (statusBar != null) Destroy(statusBar);
+        if (statusBar != null) Destroy(statusBar.gameObject);
     }
     #endregion
 

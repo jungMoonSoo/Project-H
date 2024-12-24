@@ -6,7 +6,7 @@ public class BindData<T>
 {
     [SerializeField] private T value;
 
-    public BindCallback callback;
+    private BindCallback callback;
 
     public T Value
     {
@@ -18,9 +18,11 @@ public class BindData<T>
         }
     }
 
-    public void SetCallback(BindCallback callback)
+    public void SetCallback(BindCallback callback, bool add = false)
     {
-        this.callback = callback;
+        if (add) this.callback += callback;
+        else this.callback = callback;
+
         this.callback(ref value, value);
     }
 
