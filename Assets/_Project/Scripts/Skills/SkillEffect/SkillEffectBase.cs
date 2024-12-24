@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class SkillObjectBase: MonoBehaviour, ISkillObject
+public abstract class SkillEffectBase: MonoBehaviour
 {
     public Vector2 EffectRange
     {

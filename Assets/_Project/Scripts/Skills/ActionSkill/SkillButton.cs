@@ -16,7 +16,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     void Start()
     {
         ActionSkill.Caster = caster;
-        ActionSkill.SkillArea = new TargetSkillArea();
+        ActionSkill.SkillArea = new SingleSkillArea();
     }
 
 

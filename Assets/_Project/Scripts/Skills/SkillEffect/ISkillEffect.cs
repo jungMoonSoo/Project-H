@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface ISkillObject
+public interface ISkillEffect
 {
     public Vector2 EffectRange
     {

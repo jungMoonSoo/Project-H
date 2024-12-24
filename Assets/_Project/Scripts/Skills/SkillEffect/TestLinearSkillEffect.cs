@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TestLinearSkillEffect : SkillObjectBase
+public class TestLinearSkillEffect : SkillEffectBase
 {
     public float MoveSpeed
     {

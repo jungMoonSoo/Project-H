@@ -20,6 +20,8 @@ public class DefaultActionSkill: IActionSkill
     private ISkillArea _SKillArea;
     
     public Vector2 AreaSize { get; set; } = new(5, 2.5f);
+
+    public ISkillEffect SkillEffect;
     
 
     public void OnSelect()

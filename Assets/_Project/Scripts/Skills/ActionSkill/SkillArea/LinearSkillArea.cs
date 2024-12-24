@@ -4,6 +4,9 @@ using UnityEngine;
 public class LinearSkillArea: SkillAreaBase, ISkillArea
 {
     public byte SpriteCode => 1;
+
+    public ITargetingSystem TargetingSystem { get; } = new AreaTargetingSystem();
+    
     
     public void SetPosition(Vector3 worldPosition)
     {

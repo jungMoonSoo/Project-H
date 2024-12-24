@@ -35,6 +35,11 @@ public interface ISkillArea
         set;
     }
 
+    public ITargetingSystem TargetingSystem
+    {
+        get;
+    }
+
     /// <summary>
     /// SkillArea의 Area 이미지 교체 Method
     /// </summary>

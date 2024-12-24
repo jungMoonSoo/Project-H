@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class TestSkillEffect : SkillObjectBase
+public class EllipseSkillEffect : SkillEffectBase, ISkillEffect
 {
     private EllipseCollider ellipseCollider = null;
 
