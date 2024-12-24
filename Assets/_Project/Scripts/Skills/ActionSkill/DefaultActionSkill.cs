@@ -1,6 +1,7 @@
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cache = UnityEngine.Cache;
 
 public class DefaultActionSkill: IActionSkill
 {
@@ -20,6 +21,7 @@ public class DefaultActionSkill: IActionSkill
     private ISkillArea _SKillArea;
     
     public Vector2 AreaSize { get; set; } = new(5, 2.5f);
+    public Vector2 SkillRange => Caster.skillCollider.size;
 
     public ISkillEffect SkillEffect;
     

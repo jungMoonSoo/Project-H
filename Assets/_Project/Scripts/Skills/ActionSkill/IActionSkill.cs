@@ -18,7 +18,14 @@ public interface IActionSkill
     /// 스킬 사용 위치 표시용 이펙트 오브젝트
     /// </summary>
     public ISkillArea SkillArea { get; set; }
+    /// <summary>
+    /// 스킬 범위 크기
+    /// </summary>
     public Vector2 AreaSize { get; set; }
+    /// <summary>
+    /// 스킬 최대 사거리
+    /// </summary>
+    public Vector2 SkillRange { get; }
 
 
     /// <summary>
