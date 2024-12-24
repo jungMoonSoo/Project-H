@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /// <summary>
@@ -29,17 +30,54 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     bool isTimerRunning = false;    //타이머 실행 여부
 
     //Hold 관련 변수 
-    float pressStartTime;    //누르기 시작한 시간
-    bool isPressing = false; //누르는 상태 여부 
+    float pressStartTime;                  //누르기 시작한 시간
+    bool isPressing = false;               //누르는 상태 여부 
     const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
     GameObject targetUnit = null;          //눌린 타일 
 
     private Vector2 initialTouchPosition; // 터치 시작 위치
     private const float stationaryThreshold = 1.0f; // 이동 허용 범위 (픽셀 단위)
 
+    //Skill Hold 변수 
+    [SerializeField] GraphicRaycaster raycaster; // Canvas의 GraphicRaycaster
+    [SerializeField] EventSystem eventSystem;    // EventSystem
+    float skillPressTime;
+    bool isSkillPress = false;
 
     private void Update()
     {
+        if (Input.touchCount > 0) // 터치가 있을 때만 처리
+        {
+            Touch touchSkill = Input.GetTouch(0);
+
+            switch (touchSkill.phase)
+            {
+                case TouchPhase.Began:
+                    if (CheckSkillTouched(touchSkill.position))
+                    {
+                        skillPressTime = Time.time;
+                        isSkillPress = true;
+                    }
+                    break;
+                case TouchPhase.Stationary:
+                    if (isSkillPress)
+                    {
+                        float pressDuration = Time.time - skillPressTime;
+                        float distance = Vector2.Distance(initialTouchPosition, touchSkill.position);
+
+                        if (pressDuration >= longPressThreshold)
+                        {
+                            SkillInfo();
+                            isSkillPress = false; // 한 번만 실행되도록 플래그 해제
+                        }
+                    }
+                    break;
+                case TouchPhase.Canceled:
+                    isSkillPress = false; // 터치가 끝나면 플래그 초기화
+                    break;
+            }
+        }
+
         TouchInfo touch = TouchSystem.Instance.GetTouch(0);
 
         switch (touch.phase)
@@ -53,16 +91,13 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
                     isPressing = true;
                 }
                 break;
-
-            case TouchPhase.Stationary:
-                break;
             case TouchPhase.Moved:// 터치가 고정되거나 약간 움직이는 경우
                 if (isPressing)
                 {
                     float pressDuration = Time.time - pressStartTime;
                     float distance = Vector2.Distance(initialTouchPosition, touch.pos);
 
-                    if (distance > stationaryThreshold)
+                    if (distance > stationaryThreshold) //Hold 취소
                     {
                         Debug.Log("[Standard Core Manager]터치가 움직였습니다. Hold가 취소되었습니다.");
                         isPressing = false;
@@ -177,4 +212,57 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         }
     }
     #endregion
+
+    void CheckSkillTouch(Vector2 touchPosition)
+    {
+        PointerEventData pointerEventData = new PointerEventData(eventSystem)
+        {
+            position = touchPosition
+        };
+
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerEventData, results);
+
+        foreach (RaycastResult result in results)
+        {
+            Image image = result.gameObject.GetComponent<Image>();                           // Image 컴포넌트 확인
+            SkillButton skillBtn = result.gameObject.GetComponentInParent<SkillButton>();    // skill 인지 확인
+
+            if (image != null && skillBtn != null)
+            {
+                return;
+            }
+        }
+    }
+    bool CheckSkillTouched(Vector2 touchPosition) //스킬을 터치했는지 확인
+    {
+        // 터치 위치를 화면 좌표에서 UI 좌표로 변환
+        PointerEventData pointerEventData = new PointerEventData(eventSystem)
+        {
+            position = touchPosition
+        };
+
+        // Raycast 결과 저장
+        List<RaycastResult> results = new List<RaycastResult>();
+        raycaster.Raycast(pointerEventData, results);
+
+        // 결과 확인
+        foreach (RaycastResult result in results)
+        {
+            Image image = result.gameObject.GetComponent<Image>(); // Image 컴포넌트 확인
+            SkillButton skillBtn = result.gameObject.GetComponentInParent<SkillButton>();
+            if (image != null && skillBtn != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void SkillInfo()
+    {
+        // 터치된 이미지에 대한 동작
+        Debug.Log($"이미지가 터치되었습니다.");
+    }
 }
