@@ -45,7 +45,6 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
         switch (touch.phase)
         {
             case TouchPhase.Began:
-                Debug.Log(targetUnit);
                 targetUnit = touch.gameObject.transform.parent.parent.gameObject;
                 initialTouchPosition = touch.pos;
                 pressStartTime = Time.time;
