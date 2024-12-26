@@ -40,46 +40,46 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     private Vector2 initialTouchPosition; // 터치 시작 위치
     private const float stationaryThreshold = 1.0f; // 이동 허용 범위 (픽셀 단위)
 
-    //Skill Hold 변수 
-    [SerializeField] GraphicRaycaster raycaster; // Canvas의 GraphicRaycaster
-    [SerializeField] EventSystem eventSystem;    // EventSystem
-    float skillPressTime;
-    bool isSkillPress = false;
+    ////Skill Hold 변수 
+    //[SerializeField] GraphicRaycaster raycaster; // Canvas의 GraphicRaycaster
+    //[SerializeField] EventSystem eventSystem;    // EventSystem
+    //float skillPressTime;
+    //bool isSkillPress = false;
 
     private void Update()
     {
-        if (Input.touchCount > 0) // 터치가 있을 때만 처리
-        {
-            Touch touchSkill = Input.GetTouch(0);
+        //if (Input.touchCount > 0) // 터치가 있을 때만 처리
+        //{
+        //    Touch touchSkill = Input.GetTouch(0);
 
-            switch (touchSkill.phase)
-            {
-                case TouchPhase.Began:
-                    if (CheckSkillTouched(touchSkill.position))
-                    {
-                        skillPressTime = Time.time;
-                        isSkillPress = true;
-                    }
-                    break;
-                case TouchPhase.Stationary:
-                    if (isSkillPress)
-                    {
-                        float pressDuration = Time.time - skillPressTime;
-                        if (pressDuration >= longPressThreshold)
-                        {
-                            ShowSkillInfo();
-                            isSkillPress = false; // 한 번만 실행되도록 플래그 해제
-                        }
-                    }
-                    break;
-                case TouchPhase.Ended:
-                    SkillInfo.gameObject.SetActive(false);
-                    break;
-                case TouchPhase.Canceled:
-                    isSkillPress = false; // 터치가 끝나면 플래그 초기화
-                    break;
-            }
-        }
+        //    switch (touchSkill.phase)
+        //    {
+        //        case TouchPhase.Began:
+        //            if (CheckSkillTouched(touchSkill.position))
+        //            {
+        //                skillPressTime = Time.time;
+        //                isSkillPress = true;
+        //            }
+        //            break;
+        //        case TouchPhase.Stationary:
+        //            if (isSkillPress)
+        //            {
+        //                float pressDuration = Time.time - skillPressTime;
+        //                if (pressDuration >= longPressThreshold)
+        //                {
+        //                    ShowSkillInfo();
+        //                    isSkillPress = false; // 한 번만 실행되도록 플래그 해제
+        //                }
+        //            }
+        //            break;
+        //        case TouchPhase.Ended:
+        //            SkillInfo.gameObject.SetActive(false);
+        //            break;
+        //        case TouchPhase.Canceled:
+        //            isSkillPress = false; // 터치가 끝나면 플래그 초기화
+        //            break;
+        //    }
+        //}
 
         TouchInfo touch = TouchSystem.Instance.GetTouch(0);
 
@@ -216,56 +216,56 @@ public class StandardCoreManager : Singleton<StandardCoreManager>
     }
     #endregion
 
-    void CheckSkillTouch(Vector2 touchPosition)
-    {
-        PointerEventData pointerEventData = new PointerEventData(eventSystem)
-        {
-            position = touchPosition
-        };
+    //void CheckSkillTouch(Vector2 touchPosition)
+    //{
+    //    PointerEventData pointerEventData = new PointerEventData(eventSystem)
+    //    {
+    //        position = touchPosition
+    //    };
 
-        List<RaycastResult> results = new List<RaycastResult>();
-        raycaster.Raycast(pointerEventData, results);
+    //    List<RaycastResult> results = new List<RaycastResult>();
+    //    raycaster.Raycast(pointerEventData, results);
 
-        foreach (RaycastResult result in results)
-        {
-            Image image = result.gameObject.GetComponent<Image>();                           // Image 컴포넌트 확인
-            SkillButton skillBtn = result.gameObject.GetComponentInParent<SkillButton>();    // skill 인지 확인
+    //    foreach (RaycastResult result in results)
+    //    {
+    //        Image image = result.gameObject.GetComponent<Image>();                           // Image 컴포넌트 확인
+    //        SkillButton skillBtn = result.gameObject.GetComponentInParent<SkillButton>();    // skill 인지 확인
 
-            if (image != null && skillBtn != null)
-            {
-                return;
-            }
-        }
-    }
-    bool CheckSkillTouched(Vector2 touchPosition) //스킬을 터치했는지 확인
-    {
-        // 터치 위치를 화면 좌표에서 UI 좌표로 변환
-        PointerEventData pointerEventData = new PointerEventData(eventSystem)
-        {
-            position = touchPosition
-        };
+    //        if (image != null && skillBtn != null)
+    //        {
+    //            return;
+    //        }
+    //    }
+    //}
+    //bool CheckSkillTouched(Vector2 touchPosition) //스킬을 터치했는지 확인
+    //{
+    //    // 터치 위치를 화면 좌표에서 UI 좌표로 변환
+    //    PointerEventData pointerEventData = new PointerEventData(eventSystem)
+    //    {
+    //        position = touchPosition
+    //    };
 
-        // Raycast 결과 저장
-        List<RaycastResult> results = new List<RaycastResult>();
-        raycaster.Raycast(pointerEventData, results);
+    //    // Raycast 결과 저장
+    //    List<RaycastResult> results = new List<RaycastResult>();
+    //    raycaster.Raycast(pointerEventData, results);
 
-        // 결과 확인
-        foreach (RaycastResult result in results)
-        {
-            Image image = result.gameObject.GetComponent<Image>(); // Image 컴포넌트 확인
-            SkillButton skillBtn = result.gameObject.GetComponentInParent<SkillButton>();
-            if (image != null && skillBtn != null)
-            {
-                return true;
-            }
-        }
+    //    // 결과 확인
+    //    foreach (RaycastResult result in results)
+    //    {
+    //        Image image = result.gameObject.GetComponent<Image>(); // Image 컴포넌트 확인
+    //        SkillButton skillBtn = result.gameObject.GetComponentInParent<SkillButton>();
+    //        if (image != null && skillBtn != null)
+    //        {
+    //            return true;
+    //        }
+    //    }
 
-        return false;
-    }
+    //    return false;
+    //}
 
-    private void ShowSkillInfo() //스킬창 띄우기
-    {
-        Debug.Log("[Standard Core Manager]스킬이 선택되었습니다.");
-        SkillInfo.gameObject.SetActive(true);
-    }
+    //private void ShowSkillInfo() //스킬창 띄우기
+    //{
+    //    Debug.Log("[Standard Core Manager]스킬이 선택되었습니다.");
+    //    SkillInfo.gameObject.SetActive(true);
+    //}
 }
