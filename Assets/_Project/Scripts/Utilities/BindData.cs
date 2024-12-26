@@ -18,10 +18,22 @@ public class BindData<T>
         }
     }
 
-    public void SetCallback(BindCallback callback, bool add = false)
+    public void SetCallback(BindCallback callback, SetCallbackType type = SetCallbackType.Set)
     {
-        if (add) this.callback += callback;
-        else this.callback = callback;
+        switch (type)
+        {
+            case SetCallbackType.Set:
+                this.callback = callback;
+                break;
+
+            case SetCallbackType.Add:
+                this.callback += callback;
+                break;
+
+            case SetCallbackType.Remove:
+                this.callback -= callback;
+                break;
+        }
 
         this.callback(ref value, value);
     }
