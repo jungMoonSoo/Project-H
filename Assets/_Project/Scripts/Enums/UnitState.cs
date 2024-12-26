@@ -4,5 +4,7 @@ public enum UnitState
     Move,
     Attack,
     Skill,
-    Die
+    Die,
+    Stay,
+    Pick
 }

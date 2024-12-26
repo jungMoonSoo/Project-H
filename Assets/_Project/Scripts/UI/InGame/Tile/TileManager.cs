@@ -43,6 +43,8 @@ public class TileManager : MonoBehaviour
                     {
                         offsetPos = (Vector2)selectedUnit.transform.position - info.pos;
                         selectedTile = selectedUnit.GetHitComponent<TileHandle>();
+
+                        selectedUnit.PickUnit();
                     }
                 }
                 break;
@@ -64,6 +66,8 @@ public class TileManager : MonoBehaviour
 
         if (targetTile != null && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();
+
+        selectedUnit.DropUnit();
 
         selectedUnit = null;
         selectedTile = null;
