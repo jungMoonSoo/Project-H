@@ -8,6 +8,7 @@ using UnityEngine;
 public class TestSystem : Singleton<TestSystem>
 {
     //타이머 관련 함수
+    [SerializeField]StandartGamePlayUI gamePlayUi;
     float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
     bool isTimerRunning = false;    //타이머 실행 여부
     private void Update()
@@ -15,7 +16,7 @@ public class TestSystem : Singleton<TestSystem>
         if (isTimerRunning) //타이머 관련 Update
         {
             timeInSeconds -= Time.deltaTime;
-            StandardCoreManager.Instance.UpdateTimerText(timeInSeconds);
+            gamePlayUi.UpdateTimerText(timeInSeconds);
             // 시간이 0 이하가 되면 타이머 정지 => 패배 문구
             if (timeInSeconds <= 0)
             {
