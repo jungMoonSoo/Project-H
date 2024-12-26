@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class MoveUniState: MonoBehaviour, IUnidadState
 {
-    [Header("Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    
     public Unidad Unit
     {
         get;
@@ -32,7 +29,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
             if ((Vector2)Unit.transform.position != _movePos)
             {
-                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, _movePos, moveSpeed * Time.deltaTime);
+                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, _movePos, Unit.Status.moveSpeed * Time.deltaTime);
             }
             else
             {
@@ -43,7 +40,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
                     Vector2 direction = target.unitCollider.transform.position - transform.position;
 
                     Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
-                    Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, moveSpeed * Time.deltaTime);
+                    Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.Status.moveSpeed * Time.deltaTime);
                 }
                 else
                 {
