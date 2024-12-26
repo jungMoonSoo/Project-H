@@ -12,7 +12,7 @@ public class StatusManager
 
     private UnidadStatusBar StatusBar => unidad.statusBar;
 
-    #region ◇ Parameters ◇
+    #region ◇ Properties ◇
     private UnidadStatus Status => unidad.Status;
     
     #region ◇◇ 기타 스테이터스 ◇◇
