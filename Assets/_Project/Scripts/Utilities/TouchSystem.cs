@@ -10,13 +10,21 @@ public class TouchSystem : Singleton<TouchSystem>
     }
 
 #if UNITY_EDITOR
+    private Vector3 clickPos;
+
     public TouchInfo GetTouch(int index)
     {
         TouchInfo info = new();
 
         if (Input.GetMouseButton(index))
         {
-            info.phase = Input.GetMouseButtonDown(index) ? TouchPhase.Began : TouchPhase.Moved;
+            if (Input.GetMouseButtonDown(index))
+            {
+                info.phase = TouchPhase.Began;
+                clickPos = Input.mousePosition;
+            }
+            else info.phase = clickPos == Input.mousePosition ? TouchPhase.Stationary : TouchPhase.Moved;
+
             info.count = index + 1;
         }
 
@@ -28,7 +36,7 @@ public class TouchSystem : Singleton<TouchSystem>
 
             if (hit.collider is not null) info.gameObject = hit.collider.gameObject;
         }
-        else info.phase = TouchPhase.Ended;
+        else info.phase = clickPos == Input.mousePosition ? TouchPhase.Canceled : TouchPhase.Ended;
 
         return info;
     }
