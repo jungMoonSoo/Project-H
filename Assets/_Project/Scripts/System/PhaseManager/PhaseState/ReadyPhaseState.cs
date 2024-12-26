@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class ReadyPhaseState : MonoBehaviour, IPhaseState
 {
+    [SerializeField] private GameObject readyUiGroup;
+    
+    
     public void OnEnter()
     {
-        
+        readyUiGroup.SetActive(true);
     }
 
     public void OnUpdate()
@@ -16,6 +19,6 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        
+        readyUiGroup.SetActive(false);
     }
 }
