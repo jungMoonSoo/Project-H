@@ -88,7 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601002fefe3948e5801b1a3ee3858579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!1 &558634896232870310
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,6 +414,7 @@ MonoBehaviour:
   attackState: {fileID: 7828361092714994204}
   skillState: {fileID: 14581131461070640}
   dieState: {fileID: 2833066722984320581}
+  readyState: {fileID: 7726282508227785987}
   stayState: {fileID: 8374306485959637554}
   pickState: {fileID: 3543688651122929988}
   unitCollider: {fileID: 3687531432283833537}
@@ -656,6 +656,50 @@ MonoBehaviour:
     layerMixModes: 01000000
     layerBlendModes: 01000000
   updateTiming: 1
+--- !u!1 &7726282508227785987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 703054175144815154}
+  - component: {fileID: 4498240150657518710}
+  m_Layer: 0
+  m_Name: ReadyState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &703054175144815154
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726282508227785987}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7946790399229908595}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4498240150657518710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7726282508227785987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb32fc7b1e8b4f4bbf01789e60a7024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7828361092714994204
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,6 +823,7 @@ Transform:
   - {fileID: 2881251966681020721}
   - {fileID: 5269489871574020729}
   - {fileID: 618724642991790908}
+  - {fileID: 703054175144815154}
   - {fileID: 4204237300407788158}
   - {fileID: 6674722442897676110}
   m_Father: {fileID: 895724413413281411}

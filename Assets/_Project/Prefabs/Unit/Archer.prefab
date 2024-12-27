@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &223093333797642164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2130059218764057152}
+  - component: {fileID: 3104326894872255412}
+  m_Layer: 0
+  m_Name: ReadyState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2130059218764057152
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223093333797642164}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8052544271465270443}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3104326894872255412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223093333797642164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb32fc7b1e8b4f4bbf01789e60a7024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2063743228579693798
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,6 +553,7 @@ MonoBehaviour:
   attackState: {fileID: 2063743228579693798}
   skillState: {fileID: 5878448489540748485}
   dieState: {fileID: 6598049943247461688}
+  readyState: {fileID: 223093333797642164}
   stayState: {fileID: 5381245023296480634}
   pickState: {fileID: 4313402673878161999}
   unitCollider: {fileID: 8343355205657017550}
@@ -788,7 +833,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601002fefe3948e5801b1a3ee3858579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!1 &9057447359730196343
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +867,7 @@ Transform:
   - {fileID: 1641559620991242527}
   - {fileID: 3606407731626509859}
   - {fileID: 7690601872660238811}
+  - {fileID: 2130059218764057152}
   - {fileID: 4484016345584203241}
   - {fileID: 5819660467987510899}
   m_Father: {fileID: 3100573331676940371}

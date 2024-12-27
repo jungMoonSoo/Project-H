@@ -44,6 +44,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e62415e4b1443a081a6c23918c0ab59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &251032828892641704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7835549776116551940}
+  - component: {fileID: 2035587212494714846}
+  m_Layer: 0
+  m_Name: ReadyState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7835549776116551940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251032828892641704}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5563967150725469744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035587212494714846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251032828892641704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb32fc7b1e8b4f4bbf01789e60a7024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &253380635389498437
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601002fefe3948e5801b1a3ee3858579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!1 &2864249801598382004
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +367,7 @@ MonoBehaviour:
   attackState: {fileID: 5876356706663235479}
   skillState: {fileID: 9197619279151498339}
   dieState: {fileID: 201402005388967572}
+  readyState: {fileID: 251032828892641704}
   stayState: {fileID: 7299884972644951543}
   pickState: {fileID: 253380635389498437}
   unitCollider: {fileID: 4486281770305180934}
@@ -552,6 +596,7 @@ Transform:
   - {fileID: 1554308026291357584}
   - {fileID: 3483270639047724908}
   - {fileID: 2331307155273336919}
+  - {fileID: 7835549776116551940}
   - {fileID: 5520053794334039161}
   - {fileID: 8685517991058476066}
   m_Father: {fileID: 360019477080100051}

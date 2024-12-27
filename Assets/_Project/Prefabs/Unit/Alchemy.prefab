@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &172187161941285521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9161589557031616991}
+  - component: {fileID: 7197778960654958169}
+  m_Layer: 0
+  m_Name: ReadyState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9161589557031616991
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172187161941285521}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3063804284255676604}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7197778960654958169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 172187161941285521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb32fc7b1e8b4f4bbf01789e60a7024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1022970637295440420
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +268,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601002fefe3948e5801b1a3ee3858579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!1 &3599388351949535259
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +475,7 @@ Transform:
   - {fileID: 605050932154747290}
   - {fileID: 3467297243727002274}
   - {fileID: 3874328509222760889}
+  - {fileID: 9161589557031616991}
   - {fileID: 625609432171024588}
   - {fileID: 4154104672724743035}
   m_Father: {fileID: 5016539478356696857}
@@ -624,6 +668,7 @@ MonoBehaviour:
   attackState: {fileID: 1804586812015424919}
   skillState: {fileID: 2588610176421612611}
   dieState: {fileID: 7182508872471502846}
+  readyState: {fileID: 172187161941285521}
   stayState: {fileID: 5295977754918772447}
   pickState: {fileID: 1428637960288460385}
   unitCollider: {fileID: 7507606756464538347}

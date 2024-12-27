@@ -13,6 +13,7 @@ public class Unidad : MonoBehaviour
     [SerializeField] private GameObject attackState;
     [SerializeField] private GameObject skillState;
     [SerializeField] private GameObject dieState;
+    [SerializeField] private GameObject readyState;
     [SerializeField] private GameObject stayState;
     [SerializeField] private GameObject pickState;
     
@@ -73,6 +74,7 @@ public class Unidad : MonoBehaviour
             { UnitState.Attack, attackState.GetComponent<IUnidadState>() },
             { UnitState.Skill, skillState.GetComponent<IUnidadState>() },
             { UnitState.Die, dieState.GetComponent<IUnidadState>() },
+            { UnitState.Ready, readyState.GetComponent<IUnidadState>() },
             { UnitState.Stay, stayState.GetComponent<IUnidadState>() },
             { UnitState.Pick, pickState.GetComponent<IUnidadState>() },
         };
