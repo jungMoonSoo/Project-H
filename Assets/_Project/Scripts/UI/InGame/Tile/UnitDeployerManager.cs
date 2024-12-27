@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TileManager : MonoBehaviour
+public class UnitDeployerManager : MonoBehaviour
 {
     [SerializeField] private List<TileHandle> allyTiles;
     [SerializeField] private List<TileHandle> enemyTiles;
