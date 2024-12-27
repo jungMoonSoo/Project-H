@@ -2395,7 +2395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2145259194}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2b2dd063ef70b4eacc5a610e083eb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 48a3a39d0e19c4e469f2c451ea8eaa90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allyTiles:
@@ -2445,7 +2445,6 @@ MonoBehaviour:
   unidadStatuses:
   - {fileID: 11400000, guid: df32a647369ec2a46a585ac4aee63585, type: 2}
   defaultStatus: {fileID: 11400000, guid: f73de598515a0c04e901ee1977ee019c, type: 2}
-  test: {fileID: 0}
 --- !u!114 &2145259200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2482,7 +2481,7 @@ MonoBehaviour:
   spawnEnemy: 0
   spawnPointAlly: {fileID: 1412243147}
   spawnPointEnemy: {fileID: 2121170513}
-  tileManager: {fileID: 2145259197}
+  unitDeployManager: {fileID: 0}
   unidadHpBar: {fileID: 5718855193010962830, guid: b6b212c6646fede4195beff329d0a45d, type: 3}
   hpBarParent: {fileID: 489073091}
 --- !u!1660057539 &9223372036854775807

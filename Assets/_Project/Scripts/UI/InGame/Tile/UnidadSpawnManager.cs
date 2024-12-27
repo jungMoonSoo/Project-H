@@ -12,7 +12,7 @@ public class UnidadSpawnManager : MonoBehaviour
     [SerializeField] private Transform spawnPointAlly;
     [SerializeField] private Transform spawnPointEnemy;
 
-    [SerializeField] private UnitDeployerManager unitDeployerManager;
+    [SerializeField] private UnitDeployManager unitDeployManager;
 
     [Header("스테이터스 바")]
     [SerializeField] private UnidadStatusBar unidadHpBar;
@@ -44,8 +44,8 @@ public class UnidadSpawnManager : MonoBehaviour
     public bool Spawn(UnidadStatus unidadStatus, int tileId, bool ally)
     {
         Unidad unit = ally ?
-            Spawn(unidadStatus, tileId, unitDeployerManager.AllyTiles, spawnPointAlly) :
-            Spawn(unidadStatus, tileId, unitDeployerManager.EnemyTiles, spawnPointEnemy);
+            Spawn(unidadStatus, tileId, unitDeployManager.AllyTiles, spawnPointAlly) :
+            Spawn(unidadStatus, tileId, unitDeployManager.EnemyTiles, spawnPointEnemy);
 
         if (unit != null)
         {
