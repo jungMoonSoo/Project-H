@@ -2481,7 +2481,7 @@ MonoBehaviour:
   spawnEnemy: 0
   spawnPointAlly: {fileID: 1412243147}
   spawnPointEnemy: {fileID: 2121170513}
-  unitDeployManager: {fileID: 0}
+  unitDeployManager: {fileID: 2145259197}
   unidadHpBar: {fileID: 5718855193010962830, guid: b6b212c6646fede4195beff329d0a45d, type: 3}
   hpBarParent: {fileID: 489073091}
 --- !u!1660057539 &9223372036854775807
