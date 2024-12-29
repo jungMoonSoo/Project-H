@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArcTargetingSystem: ITargetingSystem
 {
-    public Unidad[] GetTargets(UnitType targetOwner, Vector3 worldPosition, Vector3 rangeSize)
+    public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
         Vector2 angle = new(270, 360);
 
@@ -16,7 +16,7 @@ public class ArcTargetingSystem: ITargetingSystem
         {
             Vector2 targetPos = (Vector2)targets[i].transform.position + targets[i].unitCollider.center;
 
-            if (!CheckTargetInArea(worldPosition, rangeSize, targetPos, targets[i].unitCollider.Radius, angle)) targets.Remove(targets[i]);
+            if (!CheckTargetInArea(castedPosition, rangeSize, targetPos, targets[i].unitCollider.Radius, angle)) targets.Remove(targets[i]);
         }
 
         return targets.ToArray();

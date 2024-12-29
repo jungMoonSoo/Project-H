@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface ITargetingSystem
 {
-    public Unidad[] GetTargets(UnitType targetOwner, Vector3 worldPosition, Vector3 rangeSize);
+    public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize);
 }
