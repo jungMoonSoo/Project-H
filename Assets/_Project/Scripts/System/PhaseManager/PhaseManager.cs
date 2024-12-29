@@ -24,7 +24,11 @@ public class PhaseManager : Singleton<PhaseManager>
         };
         ChangeState(PhaseState.Ready);
     }
-    
+
+    private void Update()
+    {
+        nowState?.OnUpdate();
+    }
 
     public void ChangeState(PhaseState state)
     {
@@ -34,5 +38,11 @@ public class PhaseManager : Singleton<PhaseManager>
             nowState = newState;
             nowState.OnEnter();
         }
+    }
+
+    public void GameEntrance() //게임 입장
+    {
+        ChangeState(PhaseState.Run);
+        Debug.Log("[Ui Manager]게임에 입장하셨습니다.");
     }
 }
