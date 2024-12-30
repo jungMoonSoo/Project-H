@@ -11,7 +11,7 @@ public class SingleSkillArea: SkillAreaBase, ISkillArea
 
     public void SetPosition(Vector3 worldPosition)
     {
-        Unidad[] targets = TargetingSystem.GetTargets(Skill.Caster.Owner, worldPosition, Vector3.one);
+        Unidad[] targets = TargetingSystem.GetTargets(Skill.Caster.Owner, worldPosition, Vector3.one, Vector2.zero);
         if (targets[0] is not null)
         {
             Transform.position = targets[0].transform.position;

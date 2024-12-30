@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class ArcTargetingSystem: ITargetingSystem
 {
+    /// <summary>
+    /// 원뿔 형태의 범위에 속하는 타겟 목록 반환
+    /// </summary>
+    /// <param name="targetOwner">탐색 할 대상</param>
+    /// <param name="casterPosition">시작 위치</param>
+    /// <param name="castedPosition">각도 x~y</param>
+    /// <param name="rangeSize">탐색 범위</param>
+    /// <returns></returns>
     public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
-        Vector2 angle = new(270, 360);
-
-        rangeSize *= 0.5f;
-
         List<Unidad> targets = new(UnidadManager.Instance.unidades.Where(x => x.Owner == targetOwner));
 
         for (int i = targets.Count - 1; i >= 0; i--)
         {
             Vector2 targetPos = (Vector2)targets[i].transform.position + targets[i].unitCollider.center;
 
-            if (!CheckTargetInArea(castedPosition, rangeSize, targetPos, targets[i].unitCollider.Radius, angle)) targets.Remove(targets[i]);
+            if (!CheckTargetInArea(casterPosition, rangeSize, targetPos, targets[i].unitCollider.Radius, castedPosition)) targets.Remove(targets[i]);
         }
 
         return targets.ToArray();
@@ -26,7 +30,7 @@ public class ArcTargetingSystem: ITargetingSystem
     {
         if (VectorCalc.CalcEllipse(centerPos, targetPos, rangeSize, targetSize) > 1f) return false;
 
-        foreach (var point in GetContactPoints(targetPos, targetSize))
+        foreach (Vector2 point in GetContactPoints(targetPos, targetSize))
         {
             if (CheckDirectionInAngle(point - centerPos, angle)) return true;
         }
@@ -38,9 +42,7 @@ public class ArcTargetingSystem: ITargetingSystem
 
     private bool CheckDirectionInAngle(Vector2 direction, Vector2 angle)
     {
-        float centerAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        if (centerAngle < 0) centerAngle += 360;
-
+        float centerAngle = Mathf.Repeat(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, 360);
         float normalizedStartCenter = Mathf.Repeat(angle.x, 360);
         float normalizedEndCenter = Mathf.Repeat(angle.y, 360);
 
