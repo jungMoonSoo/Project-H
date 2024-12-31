@@ -95,8 +95,6 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         {
             skillAreaHandler.SetActive(true);
         }
-        // TODO: 스킬 드래그로 이벤트 필요
         skillAreaHandler.SetPosition(UsingSkill.targetType, CastingCaster, target);
-        //UsingSkill?.OnDrag(screenPosition);
     }
 }
