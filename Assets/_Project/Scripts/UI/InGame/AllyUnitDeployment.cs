@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitDeploymentButton : MonoBehaviour
+public class AllyUnitDeploymen : MonoBehaviour
 {
     [Header("GameObject 연결")]
     [SerializeField] private GameObject maxWarnningObject;
