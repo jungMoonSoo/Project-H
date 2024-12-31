@@ -42,9 +42,9 @@ public class PhaseManager : Singleton<PhaseManager>
         }
     }
 
-    public void GameEntrance() //게임 입장
+    public void GameStart() //게임 입장
     {
         ChangeState(PhaseState.Run);
-        Debug.Log("[Ui Manager]게임에 입장하셨습니다.");
+        Debug.Log("[Ui Manager]게임이 시작되었습니다.");
     }
 }

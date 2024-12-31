@@ -8,6 +8,7 @@ public class DefeatPhaseState : MonoBehaviour, IPhaseState
     public void OnEnter()
     {
         gameEndObject.SetActive(true);
+        GameDefeat();
     }
 
     public void OnUpdate()
