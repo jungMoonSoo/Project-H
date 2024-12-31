@@ -576,7 +576,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unidadStatuses:
-  - {fileID: 11400000, guid: df32a647369ec2a46a585ac4aee63585, type: 2}
+  - {fileID: 11400000, guid: 3aa6aed879eb5554d8fa04e324132be7, type: 2}
+  - {fileID: 11400000, guid: 4da4569559fd930489ad598c45dba35f, type: 2}
+  - {fileID: 11400000, guid: 28d289834e580fe43beee8bf3ebf7eff, type: 2}
+  - {fileID: 11400000, guid: 18fb3bd29fa107c408f2ee35036388f5, type: 2}
+  - {fileID: 11400000, guid: ac75d6d87590af64087e56e21171cd62, type: 2}
   defaultStatus: {fileID: 11400000, guid: f73de598515a0c04e901ee1977ee019c, type: 2}
 --- !u!114 &1240749879 stripped
 MonoBehaviour:
