@@ -2,5 +2,6 @@ public enum PhaseState
 {
     Ready,
     Run,
-    End
+    Victory,
+    Defeat
 }

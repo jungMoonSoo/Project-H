@@ -7,9 +7,10 @@ public class PhaseManager : Singleton<PhaseManager>
     [Header("PhaseStates")]
     [SerializeField] private GameObject readyPhase;
     [SerializeField] private GameObject runPhase;
-    [SerializeField] private GameObject endPhase;
-    
-    
+    [SerializeField] private GameObject victoryPhase;
+    [SerializeField] private GameObject defeatPhase;
+
+
     private Dictionary<PhaseState, IPhaseState> states = null;
     private IPhaseState nowState = null;
 
@@ -20,7 +21,7 @@ public class PhaseManager : Singleton<PhaseManager>
         {
             { PhaseState.Ready, readyPhase.GetComponent<IPhaseState>() },
             { PhaseState.Run, runPhase.GetComponent<IPhaseState>() },
-            { PhaseState.End, endPhase.GetComponent<IPhaseState>() },
+            { PhaseState.Victory, victoryPhase.GetComponent<IPhaseState>() },
         };
         ChangeState(PhaseState.Ready);
     }
