@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -64,6 +65,16 @@ public class Unidad : MonoBehaviour
     private Dictionary<UnitState, IUnidadState> states = new();
 
     #region ◇ Unity Events ◇
+    void OnEnable()
+    {
+        // Scene에 미리 생성된 Unidad를 테스트하기 위해 존재하는 코드
+        Owner = Owner;
+    }
+    void OnDisable()
+    {
+        UnidadManager.Instance.SetUnidad(this, false, owner);
+    }
+
     void Start()
     {
         statusManager = new StatusManager(this);

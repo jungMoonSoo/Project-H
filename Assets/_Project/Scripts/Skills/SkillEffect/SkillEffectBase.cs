@@ -3,6 +3,15 @@ using UnityEngine;
 
 public abstract class SkillEffectBase: MonoBehaviour
 {
+    public UnitType TargetType
+    {
+        get;
+    }
+    public Unidad Caster
+    {
+        get;
+        set;
+    }
     public Vector2 EffectRange
     {
         get;
@@ -13,10 +22,4 @@ public abstract class SkillEffectBase: MonoBehaviour
         get;
         set;
     }
-    protected virtual Unidad[] Targets => GetTargets();
-
-
-    public abstract void ApplyEffect();
-    public abstract void SetPosition(Vector2 position);
-    public abstract Unidad[] GetTargets();
 }

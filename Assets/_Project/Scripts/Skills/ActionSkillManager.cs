@@ -1,28 +1,32 @@
 using System;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ActionSkillManager: Singleton<ActionSkillManager>
 {
-    [SerializeField] private Sprite[] skillAreaSprites;
-    [SerializeField] private GameObject skillAreaObject;
+    [SerializeField] private SkillAreaHandler skillAreaHandler;
     
-    public bool IsUsingSkill
-    {
-        get => usingSkill != null;
-    }
-
-    private IActionSkill usingSkill = null;
+    [Header("Action Skill Settings")]
+    [SerializeField] private Transform skillButtonGroup;
+    [SerializeField] private GameObject skillButtonPrefab;
+    [SerializeField] private Unidad unidad;
+    
+    public bool IsUsingSkill => CastingCaster is not null;
+    public Unidad CastingCaster { get; private set; }
+    public ActionSkillInfo UsingSkill => CastingCaster.Status.skillInfo;
+    
     private bool hasPosition = false;
 
     
     void Start()
     {
-        skillAreaObject.SetActive(false);
+        skillAreaHandler.SetActive(false);
+        AddSkillButton(unidad);
     }
     
     void Update()
     {
-        if (usingSkill is not null)
+        if (IsUsingSkill)
         {
             TouchInfo touchInfo = TouchSystem.Instance.GetTouch(0);
             if (touchInfo.count > 0)
@@ -45,37 +49,54 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     }
 
 
-    public void OnSelect(IActionSkill skill)
+    public void AddSkillButton(Unidad unidad)
     {
-        if(skill is null) return;
+        Vector2 skillButtonPosition = Vector2.zero;
+        
+        GameObject instance = Instantiate(skillButtonPrefab, skillButtonGroup);
+        instance.transform.localPosition = skillButtonPosition;
+        
+        SkillButton skillButton = instance.GetComponent<SkillButton>();
+        skillButton.Caster = unidad;
+    }
+    
+    public void OnSelect(Unidad caster)
+    {
+        if(caster is null) return;
         
         InGameManager.Instance.PauseGame(PauseType.UseSkill);
         
-        usingSkill = skill;
-        usingSkill.OnSelect();
+        CastingCaster = caster;
+        skillAreaHandler.SetSprite(UsingSkill.skillArea.areaImage);
+        skillAreaHandler.SkillArea = UsingSkill.skillArea.SkillArea;
+    }
+    public void OnCancel()
+    {
+        InGameManager.Instance.ResumeGame(PauseType.UseSkill);
+        CastingCaster = null;
         
-        ISkillArea skillArea = usingSkill.SkillArea;
-        skillArea.GameObject = skillAreaObject;
-        skillArea.SetSize(usingSkill.AreaSize);
-        skillArea.SetSprite(skillAreaSprites[usingSkill.SkillArea.SpriteCode]);
+        skillAreaHandler.SetActive(false);
     }
 
-    private void OnApplySkill(Vector3 screenPosition)
+    private void OnApplySkill(Vector3 target)
     {
         InGameManager.Instance.ResumeGame(PauseType.UseSkill);
         
-        usingSkill?.ApplyAction(screenPosition);
-        usingSkill = null;
+        // TODO: 스킬 적용 코드 필요
+        //UsingSkill?.ApplyAction(screenPosition);
+        CastingCaster = null;
         
-        skillAreaObject.SetActive(false);
+        skillAreaHandler.SetActive(false);
     }
 
-    private void OnDrag(Vector3 screenPosition)
+    private void OnDrag(Vector3 target)
     {
-        if (!skillAreaObject.activeSelf)
+        if (!skillAreaHandler.gameObject.activeSelf)
         {
-            skillAreaObject.SetActive(true);
+            skillAreaHandler.SetActive(true);
         }
-        usingSkill?.OnDrag(screenPosition);
+        // TODO: 스킬 드래그로 이벤트 필요
+        skillAreaHandler.SetPosition(UsingSkill.targetType, CastingCaster, target);
+        //UsingSkill?.OnDrag(screenPosition);
     }
 }

@@ -1,14 +1,9 @@
 using UnityEngine;
 
-public class EllipseSkillArea : SkillAreaBase, ISkillArea
+public class EllipseSkillArea : ISkillArea
 {
-    public byte SpriteCode => 0;
-
-    public ITargetingSystem TargetingSystem { get; } = new AreaTargetingSystem();
-
-    
-    public void SetPosition(Vector3 worldPosition)
+    public void SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
     {
-        Transform.position = worldPosition + Vector3.forward;
+        transform.position = castedPosition;
     }
 }

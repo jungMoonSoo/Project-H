@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f21600fdc224138b4485b2947002e95, type: 3}
+  m_Name: TestSkill
+  m_EditorClassIdentifier: 
+  code: 0
+  name: "\uD14C\uC2A4\uD2B8 \uC2A4\uD0AC"
+  sprite: {fileID: 352914318, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
+  targetType: 2
+  targetingSystemType: 1
+  effectPrefab: {fileID: 3792025657868637557, guid: 630f992fdf1c0e9428f00625867e0e71, type: 3}
+  skillArea: {fileID: 11400000, guid: 9379cfc23636c2841a93984874734112, type: 2}

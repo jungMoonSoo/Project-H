@@ -1,18 +1,14 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class LinearSkillArea: SkillAreaBase, ISkillArea
+public class LinearSkillArea: ISkillArea
 {
-    public byte SpriteCode => 1;
-
-    public ITargetingSystem TargetingSystem { get; } = new AreaTargetingSystem();
-    
-    
-    public void SetPosition(Vector3 worldPosition)
+    public void SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
     {
-        Transform.position = InGameManager.Instance.PlayerTransform.position + Vector3.forward;
+        Vector2 casterPosition = caster.transform.position;
+        transform.position = casterPosition;
 
-        float angle = VectorCalc.CalcRotation(worldPosition - Transform.position);
-        Transform.eulerAngles.Set(0, 0, angle);
+        float angle = VectorCalc.CalcRotation(castedPosition - casterPosition);
+        transform.eulerAngles.Set(0, 0, angle);
     }
 }

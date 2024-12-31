@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,17 +9,24 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     [Header("UI Elements")]
     [SerializeField] private Slider mpSlider;
     [SerializeField] private Image skillImage;
-    
-    [SerializeField] private Unidad caster;
 
-    public IActionSkill ActionSkill = new DefaultActionSkill();
-
-
-    void Start()
+    /// <summary>
+    /// SkillButton은 Caster만 지정해주면, 나머지는 자동으로 할당 됨
+    /// </summary>
+    public Unidad Caster
     {
-        ActionSkill.Caster = caster;
-        ActionSkill.SkillArea = new SingleSkillArea();
+        get => _Caster;
+        set
+        {
+            _Caster = value;
+            actionSkill = value.Status.skillInfo;
+            skillImage.sprite = actionSkill.sprite;
+        }
     }
+    private Unidad _Caster;
+    
+    
+    private ActionSkillInfo actionSkill = null;
 
 
     public void OnPointerClick(PointerEventData eventData)
@@ -31,11 +40,16 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public void OnDrag(PointerEventData eventData) {}
     public void OnEndDrag(PointerEventData eventData) {}
 
+    
     private void OnSelect()
     {
         if (!ActionSkillManager.Instance.IsUsingSkill)
         {
-            ActionSkillManager.Instance.OnSelect(ActionSkill);
+            ActionSkillManager.Instance.OnSelect(Caster);
+        }
+        else if (ActionSkillManager.Instance.CastingCaster == Caster)
+        {
+            ActionSkillManager.Instance.OnCancel();
         }
     }
 }

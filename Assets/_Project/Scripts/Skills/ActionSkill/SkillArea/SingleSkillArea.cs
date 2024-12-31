@@ -1,28 +1,43 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class SingleSkillArea: SkillAreaBase, ISkillArea
+public class SingleSkillArea: ISkillArea
 {
-    public byte SpriteCode => 0;
-
-    public ITargetingSystem TargetingSystem { get; } = new SingleTargetingSystem();
-    
-
-    public void SetPosition(Vector3 worldPosition)
+    public void SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
     {
-        Unidad[] targets = TargetingSystem.GetTargets(Skill.Caster.Owner, worldPosition, Vector3.one, Vector2.zero);
-        if (targets[0] is not null)
+        Vector2 realPosition = VectorCalc.GetPointOnEllipse(caster.skillCollider, castedPosition);
+        List<Unidad> targets = caster.Status.skillInfo.GetTargets(caster);
+        Unidad target = null;
+
+        if (targets.Count > 0) // 선택될 수 있는 Target이 존재함.
         {
-            Transform.position = targets[0].transform.position;
+            float minRange = float.MaxValue;
+
+            foreach (Unidad enemy in targets)
+            {
+                if (!enemy.unitCollider.OnEllipseEnter(caster.skillCollider)) continue;
+
+                Vector2 dir = (Vector2)enemy.transform.position - castedPosition;
+                float range = dir.magnitude;
+
+                if (range < minRange)
+                {
+                    target = enemy;
+                    minRange = range;
+                }
+            }
         }
-        else
+
+        if(target is not null) // Target 존재
         {
-            Transform.position = worldPosition;
+            transform.position = target.transform.position;
         }
-    }
-    public override void SetSize(Vector2 size)
-    {
-        AreaTransform.localScale = new Vector2(2, 1);
+        else // Target 미존재 
+        {
+            transform.position = realPosition;
+        }
     }
 }

@@ -9,7 +9,9 @@ public class UnidadStatus : ScriptableObject
         
     [Header("Prefabs")]
     public GameObject unidadPrefab;
-    public GameObject skillPrefab;
+    
+    [Header("Skill Info")]
+    public ActionSkillInfo skillInfo;
     
     [Header("기본 스테이터스")]
     public int maxHp = 100;
