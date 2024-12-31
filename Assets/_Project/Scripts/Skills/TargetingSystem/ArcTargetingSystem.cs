@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ArcTargetingSystem: ITargetingSystem
 {
     public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
-        List<Unidad> targets = new(UnidadManager.Instance.unidades.Where(x => x.Owner == targetOwner));
+        List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner));
 
         float castedAngle = GetDirectionToAngle(castedPosition - casterPosition);
         Vector2 range = new(Mathf.Repeat(castedAngle - rangeSize.y * 0.5f, 360), Mathf.Repeat(castedAngle + rangeSize.y * 0.5f, 360));

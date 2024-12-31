@@ -26,7 +26,7 @@ public class EllipseSkillEffect : SkillEffectBase, ISkillEffect
     public override Unidad[] GetTargets()
     {
         SetCollider();
-        return UnidadManager.Instance.unidades.Where(x => ellipseCollider.OnEllipseEnter(x.skillCollider)).ToArray();
+        return UnidadManager.Instance.GetUnidads(UnitType.Enemy).Where(x => ellipseCollider.OnEllipseEnter(x.skillCollider)).ToArray();
     }
 
     private void SetCollider()

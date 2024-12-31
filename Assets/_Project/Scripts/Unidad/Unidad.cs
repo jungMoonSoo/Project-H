@@ -27,10 +27,22 @@ public class Unidad : MonoBehaviour
     // Damage UI를 띄울 위치
     [SerializeField] private Transform damageUiPosition; // 
     [SerializeField] private Transform statusUiPosition; // 
-    
+
     [Header("Settings")]
     // Unit 종류
-    [SerializeField] public UnitType Owner = UnitType.Enemy;
+    [SerializeField] private UnitType owner;
+
+    public UnitType Owner
+    {
+        get => owner;
+        set
+        {
+            UnidadManager.Instance.SetUnidad(this, false, owner);
+            UnidadManager.Instance.SetUnidad(this, true, value);
+
+            owner = value;
+        }
+    }
 
 
     public UnidadStatus Status => UnidadManager.Instance.GetStatus(id);
@@ -52,16 +64,6 @@ public class Unidad : MonoBehaviour
     private Dictionary<UnitState, IUnidadState> states = new();
 
     #region ◇ Unity Events ◇
-    void OnEnable()
-    {
-        UnidadManager.Instance.unidades.Add(this);
-    }
-
-    void OnDisable()
-    {
-        UnidadManager.Instance.unidades.Remove(this);
-    }
-    
     void Start()
     {
         statusManager = new StatusManager(this);

@@ -5,7 +5,7 @@ public class SingleTargetingSystem: ITargetingSystem
 {
     public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
-        Unidad[] targets = UnidadManager.Instance.unidades.Where(x => x.Owner != UnitType.Ally).ToArray();
+        Unidad[] targets = UnidadManager.Instance.GetUnidads(targetOwner).ToArray();
         Unidad target = null;
         float minRange = float.MaxValue;
             
