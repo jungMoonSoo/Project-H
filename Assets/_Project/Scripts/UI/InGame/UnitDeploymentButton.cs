@@ -18,6 +18,10 @@ public class UnitDeploymentButton : MonoBehaviour
     private int currentUnitNumber = 1; //현재 필드에 있는 unit 수
     private int maxUnitNumber = 5;     //필드 최대 unit 수
 
+    //Unit Spawn 여부 판단 변수(일단 아군 유닛 5종류로 설정)
+    private bool[] unitSpawn = new bool[5];
+
+
     private bool blocksmithSpwan = false;
     private bool alchemySpawn = false;
     private bool nun2Spawn = false;
@@ -35,75 +39,19 @@ public class UnitDeploymentButton : MonoBehaviour
         yield return new WaitForSeconds(1f);
         maxWarnningObject.SetActive(false);
     }
-
-    public void BlocksmithButton() //대장장이 버튼 
+    //Unit 생성&삭제 Button
+    public void UnitButton(int num)
     {
-        if (!blocksmithSpwan)
+        
+        if (!unitSpawn[num])
         {
-            CreateUnit(0);
-            blocksmithSpwan = true;
+            CreateUnit((uint)num);
+            unitSpawn[num] = true;
         }
         else
         {
-            DestroyUnit(0);
-            blocksmithSpwan = false;
-
-        }
-    }
-
-    public void AlchemyButton()//물약이 버튼
-    {
-        if (!alchemySpawn)
-        {
-            CreateUnit(1);
-            alchemySpawn = true;
-        }
-        else
-        {
-            DestroyUnit(1);
-            alchemySpawn = false;
-        }
-    }
-
-    public void Nun2Button() //수녀 버튼
-    {
-        if (!nun2Spawn)
-        {
-            CreateUnit(2);
-            nun2Spawn = true;
-        }
-        else
-        {
-            DestroyUnit(2);
-            nun2Spawn = false;
-        }
-    }
-
-    public void Cowardly_KinghtButton() //갑옷 
-    {
-        if (!cowardly_KinghtSpawn)
-        {
-            CreateUnit(3);
-            cowardly_KinghtSpawn = true;
-        }
-        else
-        {
-            DestroyUnit(3);
-            cowardly_KinghtSpawn = false;
-        }
-    }
-
-    public void TA001Buttton() //번개궁수
-    {
-        if (!ta001Spawn)
-        {
-            CreateUnit(4);
-            ta001Spawn = true;
-        }
-        else
-        {
-            DestroyUnit(4);
-            ta001Spawn = false;
+            DestroyUnit((uint)num);
+            unitSpawn[num] = false;
         }
     }
 
