@@ -6,37 +6,36 @@ using UnityEngine.UI;
 public class UnitDeploymentButton : MonoBehaviour
 {
     [Header("GameObject 연결")]
-    [SerializeField] GameObject warnningObject;
-    [SerializeField] Text unitNumber;
+    [SerializeField] private GameObject maxWarnningObject;
+    [SerializeField] private Text unitNumberText;
 
     [Header("Unit 관리 메니져")]
-    [SerializeField] GameObject unitManagerObject;
+    [SerializeField] private GameObject unitManagerObject;
 
     [Header("Ally Tile Handle")]
-    [SerializeField] TileHandle[] tileInfo;
+    [SerializeField] private TileHandle[] tileHandler;
 
-    int currentUnitNumber = 1; //현재 필드에 있는 unit 수
-    int maxUnitNumber = 5;     //필드 최대 unit 수
+    private int currentUnitNumber = 1; //현재 필드에 있는 unit 수
+    private int maxUnitNumber = 5;     //필드 최대 unit 수
 
-    bool blocksmithSpwan = false;
-    bool alchemySpawn = false;
-    bool nun2Spawn = false;
-    bool cowardly_KinghtSpawn = false;
-    bool ta001Spawn = false;
+    private bool blocksmithSpwan = false;
+    private bool alchemySpawn = false;
+    private bool nun2Spawn = false;
+    private bool cowardly_KinghtSpawn = false;
+    private bool ta001Spawn = false;
 
     public void UnitDeployTextUpdate(int num) //배치 수 업데이트 함수 
     {
         currentUnitNumber = num;
-        unitNumber.text = $"배치수 ({currentUnitNumber} / {maxUnitNumber})";
+        unitNumberText.text = $"배치수 ({currentUnitNumber} / {maxUnitNumber})";
     }
     IEnumerator WarningTextPrint() //경고 문구
     {
-        warnningObject.SetActive(true);
+        maxWarnningObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        warnningObject.SetActive(false);
+        maxWarnningObject.SetActive(false);
     }
 
-    #region◇Unidad 배치 메서드◇ 
     public void BlocksmithButton() //대장장이 버튼 
     {
         if (!blocksmithSpwan)
@@ -127,20 +126,19 @@ public class UnitDeploymentButton : MonoBehaviour
 
     void DestroyUnit(uint num) //Unit 삭제 => 삭제 메세드 
     {
-        for (int i = 0; i < tileInfo.Length; i++)
+        for (int i = 0; i < tileHandler.Length; i++)
         {
-            if (tileInfo[i].Unit != null)
+            if (tileHandler[i].Unit != null)
             {
-                if (tileInfo[i].Unit.Status == UnidadManager.Instance.GetStatus(num))
+                if (tileHandler[i].Unit.Status == UnidadManager.Instance.GetStatus(num))
                 {
                     currentUnitNumber -= 1;
-                    Destroy(tileInfo[i].Unit.gameObject);
-                    tileInfo[i].RemoveUnit();
+                    Destroy(tileHandler[i].Unit.gameObject);
+                    tileHandler[i].RemoveUnit();
                     Debug.Log("[Ui Manager]해당 유닛을 제거하였습니다.");
                     break;
                 }
             }
         }
     }
-    #endregion
 }

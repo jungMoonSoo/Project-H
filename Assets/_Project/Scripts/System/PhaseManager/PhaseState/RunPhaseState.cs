@@ -7,31 +7,32 @@ using UnityEngine.UI;
 public class RunPhaseState : MonoBehaviour, IPhaseState
 {
     [Header("Object 연결")]
-    [SerializeField] GameObject runWindow;
-    [SerializeField] GameObject wave;
-    [SerializeField] GameObject gameStartButton;
-    [SerializeField] GameObject timer;
-    [SerializeField] GameObject option;
+    [SerializeField] private GameObject standardCoreFieldUiObject;
+    [SerializeField] private GameObject waveObject;
+    [SerializeField] private GameObject gameStartButtonObject;
+    [SerializeField] private GameObject timerObject;
+    [SerializeField] private GameObject optionObject;
+
+    [Header("Information 연결")]
+    [SerializeField] private GameObject allyInfoObject;
+    [SerializeField] private GameObject enemyInfoObject;
 
     //타이머 관련 함수
-    float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
-    bool isTimerRunning = false;    //타이머 실행 여부
+    private float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
+    private bool isTimerRunning = false;    //타이머 실행 여부
 
     //Hold 관련 변수 
-    float pressStartTime;                  //누르기 시작한 시간
-    bool isPressing = false;               //누르는 상태 여부 
-    const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
-    GameObject targetUnit = null;          //눌린 타일 
+    private float pressStartTime;                  //누르기 시작한 시간
+    private bool isPressing = false;               //누르는 상태 여부 
+    private const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
+    private GameObject targetUnit = null;          //눌린 타일 
 
     private Vector2 initialTouchPosition; // 터치 시작 위치
     private const float stationaryThreshold = 1.0f; // 이동 허용 범위 (픽셀 단위)
     
-    [Header("Information 연결")]
-    [SerializeField] GameObject allyInfo;
-    [SerializeField] GameObject enemyInfo;
     public void OnEnter()
     {
-        runWindow.SetActive(true);
+        standardCoreFieldUiObject.SetActive(true);
     }
 
     public void OnUpdate()
@@ -88,13 +89,13 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        runWindow.SetActive(false);
+        standardCoreFieldUiObject.SetActive(false);
     }
     public void GameStartButton() //게임이 시작 되도록하는 버튼
     {
         Debug.Log("[Ui Manager]게임이 시작되었습니다.");
-        gameStartButton.SetActive(false);
-        timer.SetActive(true);
+        gameStartButtonObject.SetActive(false);
+        timerObject.SetActive(true);
         TestSystem.Instance.StartTimer();
     }
 
@@ -102,7 +103,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     {
         Debug.Log("[Ui Manager] 옵션창이 열렸습니다.");
 
-        option.transform.GetChild(1).gameObject.SetActive(true);
+        optionObject.transform.GetChild(1).gameObject.SetActive(true);
         TestSystem.Instance.StopTimer();
     }
 
@@ -110,7 +111,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     {
         Debug.Log("[Ui Manager] 옵션창이 닫혔습니다.");
 
-        option.transform.GetChild(1).gameObject.SetActive(false);
+        optionObject.transform.GetChild(1).gameObject.SetActive(false);
         Time.timeScale = 1f;
         TestSystem.Instance.StartTimer();
     }
@@ -122,7 +123,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         int seconds = Mathf.FloorToInt(t % 60); // 남은 초
 
         // "MM:SS" 형식으로 텍스트 업데이트
-        timer.GetComponentInChildren<Text>().text = $"{minutes:D2} : {seconds:D2}";
+        timerObject.GetComponentInChildren<Text>().text = $"{minutes:D2} : {seconds:D2}";
     }
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
     {
@@ -131,26 +132,26 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
             if (targetUnit.GetComponent<Unidad>().Owner == UnitType.Ally)
             {
                 Debug.Log("[Standard Game Star tUI]아군 유닛이 선택되었습니다.");
-                allyInfo.gameObject.SetActive(true);
-                allyInfo.GetComponentInChildren<Text>().text = targetUnit.GetComponent<Unidad>().Status.name;
+                allyInfoObject.gameObject.SetActive(true);
+                allyInfoObject.GetComponentInChildren<Text>().text = targetUnit.GetComponent<Unidad>().Status.name;
             }
             else if (targetUnit.GetComponent<Unidad>().Owner == UnitType.Enemy)
             {
                 Debug.Log("[Standard Game Start UI]적군 유닛이 선택되었습니다.");
-                enemyInfo.gameObject.SetActive(true);
-                enemyInfo.GetComponentInChildren<Text>().text = targetUnit.GetComponent<Unidad>().Status.name;
+                enemyInfoObject.gameObject.SetActive(true);
+                enemyInfoObject.GetComponentInChildren<Text>().text = targetUnit.GetComponent<Unidad>().Status.name;
             }
         }
     }
     public void CloseInfoWindow() //설명창 비활성화
     {
-        if (allyInfo.activeSelf)
+        if (allyInfoObject.activeSelf)
         {
-            allyInfo.gameObject.SetActive(false);
+            allyInfoObject.gameObject.SetActive(false);
         }
-        else if (enemyInfo.activeSelf)
+        else if (enemyInfoObject.activeSelf)
         {
-            enemyInfo.gameObject.SetActive(false);
+            enemyInfoObject.gameObject.SetActive(false);
         }
     }
 }
