@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class ArcTargetingSystem: ITargetingSystem
 {
-    /// <summary>
-    /// 원뿔 형태의 범위에 속하는 타겟 목록 반환
-    /// </summary>
-    /// <param name="targetOwner">탐색 할 대상</param>
-    /// <param name="casterPosition">시작 위치</param>
-    /// <param name="castedPosition">각도 x~y</param>
-    /// <param name="rangeSize">탐색 범위</param>
-    /// <returns></returns>
     public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
         List<Unidad> targets = new(UnidadManager.Instance.unidades.Where(x => x.Owner == targetOwner));
