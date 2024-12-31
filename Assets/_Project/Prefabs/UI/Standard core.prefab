@@ -479,6 +479,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5415144816622336538}
+  - component: {fileID: 6134496710288224897}
   m_Layer: 0
   m_Name: DefeatState
   m_TagString: Untagged
@@ -501,6 +502,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9050786225667250872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6134496710288224897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485711214924686833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 523b671a770e21f4f84c0ae33b4daa36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEndObject: {fileID: 3248816802845152054}
 --- !u!1 &598604933098052471
 GameObject:
   m_ObjectHideFlags: 0
@@ -1514,6 +1528,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5492513027284556704}
+  - component: {fileID: 8568790314270774465}
   m_Layer: 0
   m_Name: VictoryState
   m_TagString: Untagged
@@ -1536,6 +1551,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9050786225667250872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8568790314270774465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213363445626021622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ce318f6a0ed4bf45becba25356e3a65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEndObject: {fileID: 3248816802845152054}
 --- !u!1 &3248816802845152054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2589,12 +2617,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4107783623541883814}
         m_TargetAssemblyTypeName: UnitDeploymentButton, Assembly-CSharp
-        m_MethodName: Cowardly_KinghtButton
-        m_Mode: 1
+        m_MethodName: UnitButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -3234,8 +3262,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   readyPhase: {fileID: 6363423411260912173}
   runPhase: {fileID: 5856816750845836087}
-  victoryPhase: {fileID: 0}
-  defeatPhase: {fileID: 0}
+  victoryPhase: {fileID: 3213363445626021622}
+  defeatPhase: {fileID: 485711214924686833}
 --- !u!114 &4107783623541883814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4335,8 +4363,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4107783623541883814}
         m_TargetAssemblyTypeName: UnitDeploymentButton, Assembly-CSharp
-        m_MethodName: BlocksmithButton
-        m_Mode: 1
+        m_MethodName: UnitButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4504,12 +4532,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4107783623541883814}
         m_TargetAssemblyTypeName: UnitDeploymentButton, Assembly-CSharp
-        m_MethodName: Nun2Button
-        m_Mode: 1
+        m_MethodName: UnitButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -5104,12 +5132,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4107783623541883814}
         m_TargetAssemblyTypeName: UnitDeploymentButton, Assembly-CSharp
-        m_MethodName: AlchemyButton
-        m_Mode: 1
+        m_MethodName: UnitButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -6198,12 +6226,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4107783623541883814}
         m_TargetAssemblyTypeName: UnitDeploymentButton, Assembly-CSharp
-        m_MethodName: TA001Buttton
-        m_Mode: 1
+        m_MethodName: UnitButton
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
