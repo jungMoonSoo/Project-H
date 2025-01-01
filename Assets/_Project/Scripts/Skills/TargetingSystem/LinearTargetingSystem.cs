@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class LinearTargetingSystem : ITargetingSystem
 {
+    /// <param name="rangeSize"> x : 너비, y : 길이 </param>
     public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
         List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner));
@@ -62,12 +63,14 @@ public class LinearTargetingSystem : ITargetingSystem
 
     private Vector2[] GetPoints(Vector2 direction, Vector2 size)
     {
+        size.x *= 0.5f;
+
         Vector2[] corners = new Vector2[4]
         {
+            RotatePoint(new Vector2(-size.x, 0), direction),
             RotatePoint(new Vector2(-size.x, size.y), direction),
             RotatePoint(new Vector2(size.x, size.y), direction),
-            RotatePoint(new Vector2(size.x, -size.y), direction),
-            RotatePoint(new Vector2(-size.x, -size.y), direction),
+            RotatePoint(new Vector2(size.x, 0), direction),
         };
 
         return corners;
@@ -79,6 +82,6 @@ public class LinearTargetingSystem : ITargetingSystem
         float cosAngle = Mathf.Cos(angle);
         float sinAngle = Mathf.Sin(angle);
 
-        return new Vector2( point.x * cosAngle - point.y * sinAngle, point.x * sinAngle + point.y * cosAngle );
+        return new Vector2( point.y * cosAngle - point.x * sinAngle, point.y * sinAngle + point.x * cosAngle );
     }
 }

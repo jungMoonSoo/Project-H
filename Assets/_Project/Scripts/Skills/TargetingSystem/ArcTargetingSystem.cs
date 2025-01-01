@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class ArcTargetingSystem: ITargetingSystem
 {
+    /// <param name="rangeSize"> x : 범위각, y : 길이 </param>
     public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
         List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner));
 
         float castedAngle = GetDirectionToAngle(castedPosition - casterPosition);
-        Vector2 range = new(Mathf.Repeat(castedAngle - rangeSize.y * 0.5f, 360), Mathf.Repeat(castedAngle + rangeSize.y * 0.5f, 360));
-        Vector2 areaSize = new(rangeSize.x, rangeSize.x);
+        Vector2 range = new(Mathf.Repeat(castedAngle - rangeSize.x * 0.5f, 360), Mathf.Repeat(castedAngle + rangeSize.x * 0.5f, 360));
+        Vector2 areaSize = new(rangeSize.y, rangeSize.y);
 
         for (int i = targets.Count - 1; i >= 0; i--)
         {
