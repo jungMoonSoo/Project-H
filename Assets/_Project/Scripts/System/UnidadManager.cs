@@ -12,6 +12,20 @@ public class UnidadManager : Singleton<UnidadManager>
 
     private Dictionary<uint, UnidadStatus> unidadDict = new();
 
+
+    void Awake()
+    {
+        foreach (UnitType type in Enum.GetValues(typeof(UnitType))) unidades.Add(type, new());
+    }
+    void Start()
+    {
+        foreach (UnidadStatus status in unidadStatuses)
+        {
+            unidadDict.Add(status.id, status);
+        }
+    }
+    
+
     public Unidad GetUnidad(int index, UnitType type)
     {
         if (unidades[type].Count > index) return unidades[type][index];
@@ -44,16 +58,6 @@ public class UnidadManager : Singleton<UnidadManager>
     {
         if (add) unidades[type].Add(unidad);
         else unidades[type].Remove(unidad);
-    }
-
-    void Start()
-    {
-        foreach (UnidadStatus status in unidadStatuses)
-        {
-            unidadDict.Add(status.id, status);
-        }
-
-        foreach (UnitType type in Enum.GetValues(typeof(UnitType))) unidades.Add(type, new());
     }
 
     public UnidadStatus GetStatus(uint id)
