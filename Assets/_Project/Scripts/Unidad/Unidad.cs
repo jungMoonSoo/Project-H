@@ -65,14 +65,6 @@ public class Unidad : MonoBehaviour
     private Dictionary<UnitState, IUnidadState> states = new();
 
     #region ◇ Unity Events ◇
-    void OnEnable()
-    {
-        // Scene에 미리 생성된 Unidad를 테스트하기 위해 존재하는 코드
-        UnidadManager.Instance.SetUnidad(this, true, Owner);
-
-        Start();
-    }
-
     void OnDisable()
     {
         UnidadManager.Instance.SetUnidad(this, false, Owner);
@@ -80,6 +72,10 @@ public class Unidad : MonoBehaviour
 
     void Start()
     {
+        // Scene에 미리 생성된 Unidad를 테스트하기 위해 존재하는 코드
+        UnidadManager.Instance.SetUnidad(this, true, Owner);
+        
+        
         statusManager = new StatusManager(this);
         animator = GetComponentInChildren<Animator>();
 
