@@ -33,11 +33,11 @@ public class TextPopup : MonoBehaviour
 
     private IEnumerator TextAnim()
     {
-        handle.SetAlpha(1f);
+        handle.SetAlpha(3f);
 
         while (handle.GetAlpha() > 0f)
         {
-            handle.SetAlpha(handle.GetAlpha() - Time.deltaTime);
+            handle.SetAlpha(handle.GetAlpha() - Time.deltaTime * 3);
             handle.SetPosition(handle.GetPosition() + 100 * Time.deltaTime * Vector2.up);
 
             yield return null;

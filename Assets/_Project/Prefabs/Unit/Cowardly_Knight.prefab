@@ -826,7 +826,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5255072873285224301}
-  - component: {fileID: 1350386488930513025}
+  - component: {fileID: 8212261985432441012}
   m_Layer: 0
   m_Name: AttackState
   m_TagString: Untagged
@@ -849,7 +849,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1079225522236796913}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1350386488930513025
+--- !u!114 &8212261985432441012
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -861,6 +861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioClipNumber: -1
   atkAnimPoint: 0.3
 --- !u!1 &6311482025886791794
 GameObject:
