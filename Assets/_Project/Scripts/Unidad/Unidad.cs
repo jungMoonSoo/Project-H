@@ -68,11 +68,14 @@ public class Unidad : MonoBehaviour
     void OnEnable()
     {
         // Scene에 미리 생성된 Unidad를 테스트하기 위해 존재하는 코드
-        Owner = Owner;
+        UnidadManager.Instance.SetUnidad(this, true, Owner);
+
+        Start();
     }
+
     void OnDisable()
     {
-        UnidadManager.Instance.SetUnidad(this, false, owner);
+        UnidadManager.Instance.SetUnidad(this, false, Owner);
     }
 
     void Start()
@@ -108,6 +111,8 @@ public class Unidad : MonoBehaviour
     private void OnDestroy()
     {
         if (statusBar != null) Destroy(statusBar.gameObject);
+
+        UnidadManager.Instance.SetUnidad(this, false, Owner);
     }
     #endregion
 

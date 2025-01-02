@@ -64,6 +64,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                 }
             }
         }
+        else Unit.StateChange(UnitState.Move);
     }
 
     public void OnExit()

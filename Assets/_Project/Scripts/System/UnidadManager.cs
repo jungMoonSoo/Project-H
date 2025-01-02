@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class UnidadManager : Singleton<UnidadManager>
@@ -54,7 +53,7 @@ public class UnidadManager : Singleton<UnidadManager>
             unidadDict.Add(status.id, status);
         }
 
-        foreach (UnitType type in Enum.GetValues(typeof(UnitType)).Cast<UnitType>()) unidades.Add(type, new());
+        foreach (UnitType type in Enum.GetValues(typeof(UnitType))) unidades.Add(type, new());
     }
 
     public UnidadStatus GetStatus(uint id)
