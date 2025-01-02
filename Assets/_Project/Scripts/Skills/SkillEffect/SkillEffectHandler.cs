@@ -42,10 +42,17 @@ public class SkillEffectHandler : MonoBehaviour
 
     void Start()
     {
-        animatorEventHandler.OnCallbackEvent = OnApply;
+        animatorEventHandler.OnTriggerEvent = OnTrigger;
+        animatorEventHandler.OnFinishEvent = OnFinish;
+        Animator anim;
     }
 
-    private void OnApply()
+    private void OnTrigger()
+    {
+        
+    }
+
+    private void OnFinish()
     {
         Destroy(gameObject);
     }

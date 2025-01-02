@@ -5,10 +5,16 @@ using UnityEngine;
 
 public class AnimatorEventHandler : MonoBehaviour
 {
-    public Action OnCallbackEvent = null;
+    public Action OnTriggerEvent = null;
+    public Action OnFinishEvent = null;
     
-    public void OnEvent()
+    public void OnTrigger()
     {
-        OnCallbackEvent?.Invoke();
+        OnTriggerEvent?.Invoke();
+    }
+
+    public void OnFinish()
+    {
+        OnFinishEvent?.Invoke();
     }
 }
