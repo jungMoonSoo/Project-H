@@ -8,7 +8,7 @@ public class LinearTargetingSystem : ITargetingSystem
     {
         List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner));
 
-        Vector2[] points = GetPoints((castedPosition - casterPosition).normalized, rangeSize);
+        Vector2[] points = GetPoints(casterPosition, (castedPosition - casterPosition).normalized, rangeSize);
 
         for (int i = targets.Count - 1; i >= 0; i--)
         {
@@ -61,16 +61,16 @@ public class LinearTargetingSystem : ITargetingSystem
         return targetPos.x >= minX && targetPos.x <= maxX && targetPos.y >= minY && targetPos.y <= maxY;
     }
 
-    private Vector2[] GetPoints(Vector2 direction, Vector2 size)
+    private Vector2[] GetPoints(Vector2 pos, Vector2 direction, Vector2 size)
     {
         size.x *= 0.5f;
 
         Vector2[] corners = new Vector2[4]
         {
-            RotatePoint(new Vector2(-size.x, 0), direction),
-            RotatePoint(new Vector2(-size.x, size.y), direction),
-            RotatePoint(new Vector2(size.x, size.y), direction),
-            RotatePoint(new Vector2(size.x, 0), direction),
+            pos + RotatePoint(new Vector2(-size.x, 0), direction),
+            pos + RotatePoint(new Vector2(-size.x, size.y), direction),
+            pos + RotatePoint(new Vector2(size.x, size.y), direction),
+            pos + RotatePoint(new Vector2(size.x, 0), direction),
         };
 
         return corners;
