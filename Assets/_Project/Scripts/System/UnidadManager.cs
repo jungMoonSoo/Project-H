@@ -23,12 +23,24 @@ public class UnidadManager : Singleton<UnidadManager>
         };
     }
 
-    public List<Unidad> GetUnidads(UnitType type, bool reverse = false)
+    public List<Unidad> GetUnidads(UnitType type, TargetType targetType)
     {
         return type switch
         {
-            UnitType.Ally => reverse ? enemyUnidades : allyUnidades,
-            UnitType.Enemy => reverse ? allyUnidades : enemyUnidades,
+            UnitType.Ally => targetType switch
+            {
+                TargetType.Me => allyUnidades,
+                TargetType.We => allyUnidades,
+                TargetType.They => enemyUnidades,
+                _ => default,
+            },
+            UnitType.Enemy => targetType switch
+            {
+                TargetType.Me => enemyUnidades,
+                TargetType.We => enemyUnidades,
+                TargetType.They => allyUnidades,
+                _ => default,
+            },
             _ => default,
         };
     }

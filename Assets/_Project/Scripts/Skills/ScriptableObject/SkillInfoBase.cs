@@ -54,8 +54,8 @@ public abstract class SkillInfoBase : ScriptableObject
         return targetType switch
         {
             TargetType.Me => new List<Unidad>() { caster },
-            TargetType.We => UnidadManager.Instance.GetUnidads(caster.Owner, false),
-            TargetType.They => UnidadManager.Instance.GetUnidads(caster.Owner, true)
+            TargetType.We => UnidadManager.Instance.GetUnidads(caster.Owner, TargetType.We),
+            TargetType.They => UnidadManager.Instance.GetUnidads(caster.Owner, TargetType.They)
         };
     }
 }

@@ -21,7 +21,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        Unidad[] enemys = UnidadManager.Instance.GetUnidads(Unit.Owner, true).OrderBy(unit => Vector2.Distance((Vector2)unit.transform.position + unit.unitCollider.center, transform.position)).ToArray();
+        Unidad[] enemys = UnidadManager.Instance.GetUnidads(Unit.Owner, TargetType.They).OrderBy(unit => Vector2.Distance((Vector2)unit.transform.position + unit.unitCollider.center, transform.position)).ToArray();
 
         if (enemys.Length > 0)
         {

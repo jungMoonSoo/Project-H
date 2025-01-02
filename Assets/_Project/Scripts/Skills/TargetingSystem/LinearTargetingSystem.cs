@@ -4,9 +4,9 @@ using UnityEngine;
 public class LinearTargetingSystem : ITargetingSystem
 {
     /// <param name="rangeSize"> x : 너비, y : 길이 </param>
-    public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
+    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
-        List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner));
+        List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner, targetType));
 
         Vector2[] points = GetPoints(casterPosition, (castedPosition - casterPosition).normalized, rangeSize);
 

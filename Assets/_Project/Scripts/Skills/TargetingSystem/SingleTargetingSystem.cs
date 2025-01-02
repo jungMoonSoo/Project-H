@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SingleTargetingSystem: ITargetingSystem
 {
-    public Unidad[] GetTargets(UnitType targetOwner, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
+    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
     {
-        Unidad[] targets = UnidadManager.Instance.GetUnidads(targetOwner).ToArray();
+        Unidad[] targets = UnidadManager.Instance.GetUnidads(targetOwner, targetType).ToArray();
         Unidad target = null;
         float minRange = float.MaxValue;
             
