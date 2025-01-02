@@ -33,6 +33,10 @@ public class Unidad : MonoBehaviour
     // Unit 종류
     [SerializeField] private UnitType owner;
 
+    [Header("Ather")]
+    public UnidadAudioHandle audioHandle;
+    public UnidadStatusBar statusBar;
+
     public UnitType Owner
     {
         get => owner;
@@ -55,9 +59,6 @@ public class Unidad : MonoBehaviour
     
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
-
-    public UnidadStatusBar statusBar;
-
 
     private Animator animator = null;
     private IUnidadState nowState = null;

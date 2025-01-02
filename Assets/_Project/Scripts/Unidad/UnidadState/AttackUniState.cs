@@ -4,9 +4,11 @@ using UnityEngine;
 public class AttackUniState: MonoBehaviour, IUnidadState
 {
     [Header("Settings")]
+    [SerializeField] private int audioClipNumber = -1;
     [SerializeField] private float atkAnimPoint = 0.3f;
 
     private bool attack;
+    private bool playSound;
 
     public Unidad Unit
     {
@@ -57,9 +59,19 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                             attack = true;
                         }
                     }
-                    else
+                    else attack = false;
+
+                    if (audioClipNumber != -1)
                     {
-                         attack = false;
+                        if (state.normalizedTime % 1 > Unit.audioHandle.GetPlayTiming(audioClipNumber))
+                        {
+                            if (!playSound)
+                            {
+                                Unit.audioHandle.OnPlay(audioClipNumber);
+                                playSound = true;
+                            }
+                        }
+                        else playSound = false;
                     }
                 }
             }
