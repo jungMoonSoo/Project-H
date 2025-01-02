@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 public class SkillAreaHandler : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private SpriteRenderer spriteRenderer;
-    
-    
+
+    [NonSerialized] public Vector2? LastPosition;
     public ISkillArea SkillArea;
 
     public void SetSprite(Sprite sprite)
@@ -14,7 +15,10 @@ public class SkillAreaHandler : MonoBehaviour
     }
     public void SetPosition(TargetType targetType, Unidad caster, Vector2 target)
     {
-        SkillArea?.SetPosition(transform, targetType, caster, target);
+        if (SkillArea is not null)
+        {
+            LastPosition = SkillArea.SetPosition(transform, targetType, caster, target);
+        }
     }
     
     public void SetActive(bool active) => gameObject.SetActive(active);

@@ -9,5 +9,6 @@ public interface ISkillArea
     /// <param name="targetType">타겟 타입</param>
     /// <param name="caster">시전자</param>
     /// <param name="castedPosition">시전하려는 위치</param>
-    public void SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition);
+    /// <returns>실제 타겟 위치</returns>
+    public Vector2? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition);
 }

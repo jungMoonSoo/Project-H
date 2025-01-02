@@ -43,7 +43,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
             else if(hasPosition)
             {
                 hasPosition = false;
-                OnApplySkill(touchInfo.pos);
+                OnApplySkill(skillAreaHandler.LastPosition);
             }
         }
     }
@@ -78,18 +78,22 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         skillAreaHandler.SetActive(false);
     }
 
-    private void OnApplySkill(Vector3 target)
+    private void OnApplySkill(Vector2? target)
     {
         InGameManager.Instance.ResumeGame(PauseType.UseSkill);
+
+        if (target is not null) // 미존재면 스킬사용 실패
+        {
+            SkillEffectHandler handler = Instantiate(UsingSkill?.effectPrefab, CastingCaster.transform.position, Quaternion.identity).GetComponent<SkillEffectHandler>();
+            handler.Init(CastingCaster, (Vector2)target);
+        }
         
-        // TODO: 스킬 적용 코드 필요
-        //UsingSkill?.ApplyAction(screenPosition);
+        // Skill 제거
         CastingCaster = null;
-        
         skillAreaHandler.SetActive(false);
     }
 
-    private void OnDrag(Vector3 target)
+    private void OnDrag(Vector2 target)
     {
         if (!skillAreaHandler.gameObject.activeSelf)
         {

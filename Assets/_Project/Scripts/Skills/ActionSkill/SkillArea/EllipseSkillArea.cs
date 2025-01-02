@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class EllipseSkillArea : ISkillArea
 {
-    public void SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
+    public Vector2? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
     {
-        transform.position = castedPosition;
+        transform.position = VectorCalc.GetPointOnEllipse(caster.skillCollider, castedPosition);
+        return transform.position;
     }
 }
