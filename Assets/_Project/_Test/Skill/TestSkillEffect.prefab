@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08a7ed2e5ef233408ef9dbb98e2a07a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineColor: {r: 1, g: 1, b: 1, a: 1}
+  lineColor: {r: 0, g: 1, b: 1, a: 1}
   center: {x: 0, y: 0}
   size: {x: 6, y: 3}
 --- !u!1 &3792025657868637557

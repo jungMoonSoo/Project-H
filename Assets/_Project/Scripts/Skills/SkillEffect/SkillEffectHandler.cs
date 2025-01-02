@@ -104,6 +104,6 @@ public class SkillEffectHandler : MonoBehaviour
     
     private void Targeting()
     {
-        Targets = TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, (Vector2)transform.position + effectCollider.center, effectCollider.size);
+        Targets = TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, (Vector2)transform.position + effectCollider.center, effectCollider.size * 0.5f);
     }
 }
