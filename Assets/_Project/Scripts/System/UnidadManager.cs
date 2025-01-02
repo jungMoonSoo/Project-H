@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class UnidadManager : Singleton<UnidadManager>
@@ -8,19 +9,14 @@ public class UnidadManager : Singleton<UnidadManager>
     [SerializeField] private UnidadStatus[] unidadStatuses;
     [SerializeField] private UnidadStatus defaultStatus;
     
-    private List<Unidad> enemyUnidades = new();
-    private List<Unidad> allyUnidades = new();
+    private Dictionary<UnitType, List<Unidad>> unidades = new();
 
     private Dictionary<uint, UnidadStatus> unidadDict = new();
 
     public Unidad GetUnidad(int index, UnitType type)
     {
-        return type switch
-        {
-            UnitType.Ally => allyUnidades[index],
-            UnitType.Enemy => enemyUnidades[index],
-            _ => default,
-        };
+        if (unidades[type].Count > index) return unidades[type][index];
+        return null;
     }
 
     public List<Unidad> GetUnidads(UnitType type, TargetType targetType)
@@ -29,16 +25,16 @@ public class UnidadManager : Singleton<UnidadManager>
         {
             UnitType.Ally => targetType switch
             {
-                TargetType.Me => allyUnidades,
-                TargetType.We => allyUnidades,
-                TargetType.They => enemyUnidades,
+                TargetType.Me => unidades[UnitType.Ally],
+                TargetType.We => unidades[UnitType.Ally],
+                TargetType.They => unidades[UnitType.Enemy],
                 _ => default,
             },
             UnitType.Enemy => targetType switch
             {
-                TargetType.Me => enemyUnidades,
-                TargetType.We => enemyUnidades,
-                TargetType.They => allyUnidades,
+                TargetType.Me => unidades[UnitType.Enemy],
+                TargetType.We => unidades[UnitType.Enemy],
+                TargetType.They => unidades[UnitType.Ally],
                 _ => default,
             },
             _ => default,
@@ -47,21 +43,8 @@ public class UnidadManager : Singleton<UnidadManager>
 
     public void SetUnidad(Unidad unidad, bool add, UnitType type)
     {
-        switch (type)
-        {
-            case UnitType.Ally:
-                if (add) allyUnidades.Add(unidad);
-                else allyUnidades.Remove(unidad);
-                break;
-
-            case UnitType.Enemy:
-                if (add) enemyUnidades.Add(unidad);
-                else enemyUnidades.Remove(unidad);
-                break;
-
-            default:
-                break;
-        }
+        if (add) unidades[type].Add(unidad);
+        else unidades[type].Remove(unidad);
     }
 
     void Start()
@@ -70,6 +53,8 @@ public class UnidadManager : Singleton<UnidadManager>
         {
             unidadDict.Add(status.id, status);
         }
+
+        foreach (UnitType type in Enum.GetValues(typeof(UnitType)).Cast<UnitType>()) unidades.Add(type, new());
     }
 
     public UnidadStatus GetStatus(uint id)
