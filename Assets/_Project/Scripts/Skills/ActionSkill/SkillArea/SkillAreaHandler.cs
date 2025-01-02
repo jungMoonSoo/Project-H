@@ -9,6 +9,10 @@ public class SkillAreaHandler : MonoBehaviour
     [NonSerialized] public Vector2? LastPosition;
     public ISkillArea SkillArea;
 
+    public void SetSize(Vector2 size)
+    {
+        spriteRenderer.transform.localScale = size;
+    }
     public void SetSprite(Sprite sprite)
     {
         spriteRenderer.sprite = sprite;

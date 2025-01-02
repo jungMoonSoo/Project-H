@@ -9,7 +9,7 @@ public class LinearSkillArea: ISkillArea
         transform.position = casterPosition;
 
         float angle = VectorCalc.CalcRotation(castedPosition - casterPosition);
-        transform.eulerAngles.Set(0, 0, angle);
+        transform.eulerAngles = new Vector3(0, 0, angle);
 
         // TODO: 실제 스킬이 날아갈 위치 정해야 함.
         return null;

@@ -68,6 +68,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         
         CastingCaster = caster;
         skillAreaHandler.SetSprite(UsingSkill.skillArea.areaImage);
+        skillAreaHandler.SetSize(UsingSkill.skillArea.areaSize);
         skillAreaHandler.SkillArea = UsingSkill.skillArea.SkillArea;
     }
     public void OnCancel()

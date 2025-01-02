@@ -6,6 +6,7 @@ public class SkillAreaInfo: ScriptableObject
 {
     [Header("Area System Info")]
     [SerializeField] public Sprite areaImage;
+    [SerializeField] public Vector2 areaSize;
     [SerializeField] private SkillAreaType skillAreaType;
 
     #region ◇ Properties ◇
