@@ -55,7 +55,7 @@ public class UnidadSpawnManager : MonoBehaviour
 
             hpBar.Init(unit.StatusUiPosition);
 
-            unit.StatusBar = hpBar;
+            unit.statusBar = hpBar;
 
             return true;
         }

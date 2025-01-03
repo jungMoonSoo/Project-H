@@ -47,18 +47,7 @@ public class Unidad : MonoBehaviour
 
     [Header("Ather")]
     public UnidadAudioHandle audioHandle;
-    private UnidadStatusBar statusBar;
-
-    public UnidadStatusBar StatusBar
-    {
-        get => statusBar;
-        set
-        {
-            statusManager.hp.SetCallback(statusManager.BindHpStatusBar, value == null ? SetCallbackType.Remove : SetCallbackType.Add);
-
-            statusBar = value;
-        }
-    }
+    public UnidadStatusBar statusBar;
 
     public UnidadStatus Status => UnidadManager.Instance.GetStatus(id);
     
@@ -118,7 +107,7 @@ public class Unidad : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (StatusBar != null) Destroy(StatusBar.gameObject);
+        if (statusBar != null) Destroy(statusBar.gameObject);
 
         UnidadManager.Instance.SetUnidad(this, false, Owner);
     }

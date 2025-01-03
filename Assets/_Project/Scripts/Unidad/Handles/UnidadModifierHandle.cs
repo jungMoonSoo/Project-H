@@ -21,6 +21,12 @@ public class UnidadModifierHandle
 
         this.attackStatus = attackStatus;
         this.defenceStatus = defenceStatus;
+
+        InitAttackStatus(attackModifier, 0);
+        InitAttackStatus(attackModifierMultiply, 1);
+
+        InitDefenceStatus(defenceModifier, 0);
+        InitDefenceStatus(defenceModifierMultiply, 1);
     }
 
     public void AddModifier(IUnitModifier modifier)
@@ -51,6 +57,47 @@ public class UnidadModifierHandle
 
     public void SetModifierMultiply(AttackStatus modifierStatus, bool apply) => SetAttackStatus(attackModifierMultiply, modifierStatus, apply ? 1 : -1);
     public void SetModifierMultiply(DefenceStatus modifierStatus, bool apply) => SetDefenceStatus(defenceModifierMultiply, modifierStatus, apply ? 1 : -1);
+
+    private void InitAttackStatus(AttackStatus status, int value)
+    {
+        status.magicCriticalProbability = value;
+        status.physicalDamage = value;
+        status.magicDamage = value;
+
+        status.physicalCriticalDamage = value;
+        status.magicCriticalDamage = value;
+
+        status.physicalCriticalProbability = value;
+        status.magicCriticalProbability = value;
+
+        status.accuracy = value;
+
+        status.fireDamageBonus = value;
+        status.waterDamageBonus = value;
+        status.airDamageBonus = value;
+        status.earthDamageBonus = value;
+        status.lightDamageBonus = value;
+        status.darkDamageBonus = value;
+    }
+
+    private void InitDefenceStatus(DefenceStatus status, int value)
+    {
+        status.physicalDefence = value;
+        status.magicDefence = value;
+
+        status.physicalCriticalResistance = value;
+        status.magicCriticalResistance = value;
+
+        status.dodgeProbability = value;
+
+        status.fireResistanceBonus = value;
+        status.waterResistanceBonus = value;
+        status.airResistanceBonus = value;
+        status.earthResistanceBonus = value;
+
+        status.lightResistanceBonus = value;
+        status.darkResistanceBonus = value;
+    }
 
     private void SetAttackStatus(AttackStatus status, AttackStatus modifierStatus, int value)
     {

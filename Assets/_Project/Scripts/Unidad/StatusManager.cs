@@ -121,17 +121,20 @@ public class StatusManager
     {
         this.unidad = unidad;
 
+        hp.SetCallback(BindHpStatusBar, SetCallbackType.Add);
         hp.SetCallback(BindHp, SetCallbackType.Set);
         hp.Value = MaxHp;
 
         modifierHandle = new(unidad, Status.attackStatus, Status.defenceStatus);
+
+        DieEvent += () => hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
     }
     
     public void OnDamage(int damage) => hp.Value -= damage;
 
     public void OnHeal(int heal) => hp.Value += heal;
 
-    public void BindHpStatusBar(int newValue) => unidad.StatusBar.SetBar((float)newValue / MaxHp);
+    public void BindHpStatusBar(int newValue) => unidad.statusBar.SetBar((float)newValue / MaxHp);
 
     public void BindHp(ref int currentValue, int newValue)
     {
