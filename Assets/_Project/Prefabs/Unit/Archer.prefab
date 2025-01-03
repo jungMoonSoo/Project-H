@@ -564,7 +564,7 @@ MonoBehaviour:
   damageUiPosition: {fileID: 0}
   statusUiPosition: {fileID: 0}
   owner: 0
-  audioHandle: {fileID: 0}
+  audioHandle: {fileID: 6877868778480249074}
   statusBar: {fileID: 0}
 --- !u!1 &5381245023296480634
 GameObject:
@@ -755,6 +755,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3724737002162958841}
   - component: {fileID: 1757053628679782226}
+  - component: {fileID: 6877868778480249074}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -873,6 +874,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6877868778480249074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7145976071927699577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5f3e3a485dea9844b7cc2594c20cbda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioDatas:
+  - clip: {fileID: 0}
+    playTiming: 0.01
 --- !u!1 &7212638659068848404
 GameObject:
   m_ObjectHideFlags: 0

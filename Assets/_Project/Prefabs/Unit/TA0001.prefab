@@ -868,7 +868,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioDatas:
   - clip: {fileID: 0}
-    playTiming: 0
+    playTiming: 0.01
 --- !u!1 &7711261135939718187
 GameObject:
   m_ObjectHideFlags: 0

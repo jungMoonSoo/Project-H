@@ -1018,4 +1018,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioDatas:
   - clip: {fileID: 0}
-    playTiming: 0
+    playTiming: 0.01

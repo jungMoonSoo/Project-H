@@ -6,5 +6,5 @@ public class AudioData
 {
     public AudioClip clip;
 
-    [Range(0, 1f)] public float playTiming;
+    [Range(0.01f, 9.99f)] public float playTiming = 0.01f;
 }

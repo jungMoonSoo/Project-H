@@ -63,7 +63,7 @@ MonoBehaviour:
   damageUiPosition: {fileID: 0}
   statusUiPosition: {fileID: 0}
   owner: 0
-  audioHandle: {fileID: 6293113915158685809}
+  audioHandle: {fileID: 3602437712221219532}
   statusBar: {fileID: 0}
 --- !u!1 &215734985363013526
 GameObject:
@@ -415,7 +415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioClipNumber: -1
+  audioClipNumber: 0
   atkAnimPoint: 0.3
 --- !u!1 &3646364143418404346
 GameObject:
@@ -797,7 +797,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6856545979615170812}
   - component: {fileID: 6055411038264779668}
-  - component: {fileID: 6293113915158685809}
+  - component: {fileID: 3602437712221219532}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -916,7 +916,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6293113915158685809
+--- !u!114 &3602437712221219532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -929,8 +929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioDatas:
-  - clip: {fileID: 0}
-    playTiming: 0
+  - clip: {fileID: 8300000, guid: 7474e465a1ac8264e83bd3ea76475fa4, type: 3}
+    playTiming: 0.01
 --- !u!1 &7951692349766632408
 GameObject:
   m_ObjectHideFlags: 0
