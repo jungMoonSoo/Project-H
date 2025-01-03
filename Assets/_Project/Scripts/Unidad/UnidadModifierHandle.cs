@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class UnidadModifierHandle
 {
@@ -96,40 +94,47 @@ public class UnidadModifierHandle
     }
     #endregion
 
-    #region ◇◇ 공격 스테이터스 연산 ◇◇
-    public int PhysicalDamage => (attackStatus.physicalDamage + attackModifier.physicalDamage) * attackModifierMultiply.physicalDamage;
-    public int MagicDamage => (attackStatus.magicDamage + attackModifier.magicDamage) * attackModifierMultiply.magicDamage;
+    #region ◇◇ 스테이터스 연산 ◇◇
 
-    public float PhysicalCriticalDamage => (attackStatus.physicalCriticalDamage + attackModifier.physicalCriticalDamage) * attackModifierMultiply.physicalCriticalDamage;
-    public float MagicCriticalDamage => (attackStatus.magicCriticalDamage + attackModifier.magicCriticalDamage) * attackModifierMultiply.magicCriticalDamage;
+    #region ◇◇ 공격 스테이터스 반환 ◇◇
+    public int PhysicalDamage => StatusCalc(attackStatus.physicalDamage, attackModifier.physicalDamage, attackModifierMultiply.physicalDamage);
+    public int MagicDamage => StatusCalc(attackStatus.magicDamage, attackModifier.magicDamage, attackModifierMultiply.magicDamage);
 
-    public float PhysicalCriticalProbability => (attackStatus.physicalCriticalProbability + attackModifier.physicalCriticalProbability) * attackModifierMultiply.physicalCriticalProbability;
-    public float MagicCriticalProbability => (attackStatus.magicCriticalProbability + attackModifier.magicCriticalProbability) * attackModifierMultiply.magicCriticalProbability;
+    public float PhysicalCriticalDamage => StatusCalc(attackStatus.physicalCriticalDamage, attackModifier.physicalCriticalDamage, attackModifierMultiply.physicalCriticalDamage);
+    public float MagicCriticalDamage => StatusCalc(attackStatus.magicCriticalDamage, attackModifier.magicCriticalDamage, attackModifierMultiply.magicCriticalDamage);
 
-    public float Accuracy => (attackStatus.accuracy + attackModifier.accuracy) * attackModifierMultiply.accuracy;
+    public float PhysicalCriticalProbability => StatusCalc(attackStatus.physicalCriticalProbability, attackModifier.physicalCriticalProbability, attackModifierMultiply.physicalCriticalProbability);
+    public float MagicCriticalProbability => StatusCalc(attackStatus.magicCriticalProbability, attackModifier.magicCriticalProbability, attackModifierMultiply.magicCriticalProbability);
 
-    public float FireDamageBonus => (attackStatus.fireDamageBonus + attackModifier.fireDamageBonus) * attackModifierMultiply.fireDamageBonus;
-    public float WaterDamageBonus => (attackStatus.waterDamageBonus + attackModifier.waterDamageBonus) * attackModifierMultiply.waterDamageBonus;
-    public float AirDamageBonus => (attackStatus.airDamageBonus + attackModifier.airDamageBonus) * attackModifierMultiply.airDamageBonus;
-    public float EarthDamageBonus => (attackStatus.earthDamageBonus + attackModifier.earthDamageBonus) * attackModifierMultiply.earthDamageBonus;
-    public float LightDamageBonus => (attackStatus.lightDamageBonus + attackModifier.lightDamageBonus) * attackModifierMultiply.lightDamageBonus;
-    public float DarkDamageBonus => (attackStatus.darkDamageBonus + attackModifier.darkDamageBonus) * attackModifierMultiply.darkDamageBonus;
+    public float Accuracy => StatusCalc(attackStatus.accuracy, attackModifier.accuracy, attackModifierMultiply.accuracy);
+
+    public float FireDamageBonus => StatusCalc(attackStatus.fireDamageBonus, attackModifier.fireDamageBonus, attackModifierMultiply.fireDamageBonus);
+    public float WaterDamageBonus => StatusCalc(attackStatus.waterDamageBonus, attackModifier.waterDamageBonus, attackModifierMultiply.waterDamageBonus);
+    public float AirDamageBonus => StatusCalc(attackStatus.airDamageBonus, attackModifier.airDamageBonus, attackModifierMultiply.airDamageBonus);
+    public float EarthDamageBonus => StatusCalc(attackStatus.earthDamageBonus, attackModifier.earthDamageBonus, attackModifierMultiply.earthDamageBonus);
+    public float LightDamageBonus => StatusCalc(attackStatus.lightDamageBonus, attackModifier.lightDamageBonus, attackModifierMultiply.lightDamageBonus);
+    public float DarkDamageBonus => StatusCalc(attackStatus.darkDamageBonus, attackModifier.darkDamageBonus, attackModifierMultiply.darkDamageBonus);
     #endregion
 
-    #region ◇◇ 방어 스테이터스 연산 ◇◇
-    public int PhysicalDefence => (defenceStatus.physicalDefence + defenceModifier.physicalDefence) * defenceModifierMultiply.physicalDefence;
-    public int MagicDefence => (defenceStatus.magicDefence + defenceModifier.magicDefence) * defenceModifierMultiply.magicDefence;
+    #region ◇◇ 방어 스테이터스 반환 ◇◇
+    public int PhysicalDefence => StatusCalc(defenceStatus.physicalDefence, defenceModifier.physicalDefence, defenceModifierMultiply.physicalDefence);
+    public int MagicDefence => StatusCalc(defenceStatus.magicDefence, defenceModifier.magicDefence, defenceModifierMultiply.magicDefence);
 
-    public float PhysicalCriticalResistance => (defenceStatus.physicalCriticalResistance + defenceModifier.physicalCriticalResistance) * defenceModifierMultiply.physicalCriticalResistance;
-    public float MagicCriticalResistance => (defenceStatus.magicCriticalResistance + defenceModifier.magicCriticalResistance) * defenceModifierMultiply.magicCriticalResistance;
+    public float PhysicalCriticalResistance => StatusCalc(defenceStatus.physicalCriticalResistance, defenceModifier.physicalCriticalResistance, defenceModifierMultiply.physicalCriticalResistance);
+    public float MagicCriticalResistance => StatusCalc(defenceStatus.magicCriticalResistance, defenceModifier.magicCriticalResistance, defenceModifierMultiply.magicCriticalResistance);
 
-    public float DodgeProbability => (defenceStatus.dodgeProbability + defenceModifier.dodgeProbability) * defenceModifierMultiply.dodgeProbability;
+    public float DodgeProbability => StatusCalc(defenceStatus.dodgeProbability, defenceModifier.dodgeProbability, defenceModifierMultiply.dodgeProbability);
 
-    public float FireResistanceBonus => (defenceStatus.fireResistanceBonus + defenceModifier.fireResistanceBonus) * defenceModifierMultiply.fireResistanceBonus;
-    public float WaterResistanceBonus => (defenceStatus.waterResistanceBonus + defenceModifier.waterResistanceBonus) * defenceModifierMultiply.waterResistanceBonus;
-    public float AirResistanceBonus => (defenceStatus.airResistanceBonus + defenceModifier.airResistanceBonus) * defenceModifierMultiply.airResistanceBonus;
-    public float EarthResistanceBonus => (defenceStatus.earthResistanceBonus + defenceModifier.earthResistanceBonus) * defenceModifierMultiply.earthResistanceBonus;
-    public float LightResistanceBonus => (defenceStatus.lightResistanceBonus + defenceModifier.lightResistanceBonus) * defenceModifierMultiply.lightResistanceBonus;
-    public float DarkResistanceBonus => (defenceStatus.darkResistanceBonus + defenceModifier.darkResistanceBonus) * defenceModifierMultiply.darkResistanceBonus;
+    public float FireResistanceBonus => StatusCalc(defenceStatus.fireResistanceBonus, defenceModifier.fireResistanceBonus, defenceModifierMultiply.fireResistanceBonus);
+    public float WaterResistanceBonus => StatusCalc(defenceStatus.waterResistanceBonus, defenceModifier.waterResistanceBonus, defenceModifierMultiply.waterResistanceBonus);
+    public float AirResistanceBonus => StatusCalc(defenceStatus.airResistanceBonus, defenceModifier.airResistanceBonus, defenceModifierMultiply.airResistanceBonus);
+    public float EarthResistanceBonus => StatusCalc(defenceStatus.earthResistanceBonus, defenceModifier.earthResistanceBonus, defenceModifierMultiply.earthResistanceBonus);
+    public float LightResistanceBonus => StatusCalc(defenceStatus.lightResistanceBonus, defenceModifier.lightResistanceBonus, defenceModifierMultiply.lightResistanceBonus);
+    public float DarkResistanceBonus => StatusCalc(defenceStatus.darkResistanceBonus, defenceModifier.darkResistanceBonus, defenceModifierMultiply.darkResistanceBonus);
+    #endregion
+
+    private int StatusCalc(int a, int b, int c) => (a + b) * c;
+
+    private float StatusCalc(float a, float b, float c) => (a + b) * c;
     #endregion
 }
