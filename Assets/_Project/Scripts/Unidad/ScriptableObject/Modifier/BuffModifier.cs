@@ -9,6 +9,8 @@ public class BuffModifier : ScriptableObject, IUnitModifier
 
     [SerializeField] private float count;
 
+    [SerializeField] private bool multiply;
+
     [SerializeField] private AttackStatus attackStatus;
     [SerializeField] private DefenceStatus defenceStatus;
 
@@ -16,73 +18,36 @@ public class BuffModifier : ScriptableObject, IUnitModifier
 
     public float Count => count;
 
-    public StatusManager Status { get; private set; }
-
-    public void Apply(StatusManager status, float count)
+    public void Add(Unidad unidad)
     {
-        Status = status;
-
-        Status.UnitModifiers.Add(this, count);
-
-        SetStatus(true);
+        if (multiply)
+        {
+            unidad.ModifierHandle.SetModifierMultiply(attackStatus, true);
+            unidad.ModifierHandle.SetModifierMultiply(defenceStatus, true);
+        }
+        else
+        {
+            unidad.ModifierHandle.SetModifier(attackStatus, true);
+            unidad.ModifierHandle.SetModifier(defenceStatus, true);
+        }
     }
 
-    public void Check(float count)
+    public void Tick(Unidad unidad)
     {
-        if (count >= Count) Remove();
+
     }
 
-    public void Remove()
+    public void Remove(Unidad unidad)
     {
-        Status.UnitModifiers.Remove(this);
-
-        SetStatus(false);
-    }
-
-    private void SetStatus(bool apply)
-    {
-        SetAttackStatus(apply ? 1 : -1);
-        SetDefenceStatus(apply ? 1 : -1);
-    }
-
-    private void SetAttackStatus(int value)
-    {
-        Status.AttackUnitModifier.magicCriticalProbability += attackStatus.magicCriticalProbability * value;
-        Status.AttackUnitModifier.physicalDamage += attackStatus.physicalDamage * value;
-        Status.AttackUnitModifier.magicDamage += attackStatus.magicDamage * value;
-
-        Status.AttackUnitModifier.physicalCriticalDamage += attackStatus.physicalCriticalDamage * value;
-        Status.AttackUnitModifier.magicCriticalDamage += attackStatus.magicCriticalDamage * value;
-
-        Status.AttackUnitModifier.physicalCriticalProbability += attackStatus.physicalCriticalProbability * value;
-        Status.AttackUnitModifier.magicCriticalProbability += attackStatus.magicCriticalProbability * value;
-
-        Status.AttackUnitModifier.accuracy += attackStatus.accuracy * value;
-
-        Status.AttackUnitModifier.fireDamageBonus += attackStatus.fireDamageBonus * value;
-        Status.AttackUnitModifier.waterDamageBonus += attackStatus.waterDamageBonus * value;
-        Status.AttackUnitModifier.airDamageBonus += attackStatus.airDamageBonus * value;
-        Status.AttackUnitModifier.earthDamageBonus += attackStatus.earthDamageBonus * value;
-        Status.AttackUnitModifier.lightDamageBonus += attackStatus.lightDamageBonus * value;
-        Status.AttackUnitModifier.darkDamageBonus += attackStatus.darkDamageBonus * value;
-    }
-
-    private void SetDefenceStatus(int value)
-    {
-        Status.DefenceUnitModifier.physicalDefence += defenceStatus.physicalDefence * value;
-        Status.DefenceUnitModifier.magicDefence += defenceStatus.magicDefence * value;
-
-        Status.DefenceUnitModifier.physicalCriticalResistance += defenceStatus.physicalCriticalResistance * value;
-        Status.DefenceUnitModifier.magicCriticalResistance += defenceStatus.magicCriticalResistance * value;
-
-        Status.DefenceUnitModifier.dodgeProbability += defenceStatus.dodgeProbability * value;
-
-        Status.DefenceUnitModifier.fireResistanceBonus += defenceStatus.fireResistanceBonus * value;
-        Status.DefenceUnitModifier.waterResistanceBonus += defenceStatus.waterResistanceBonus * value;
-        Status.DefenceUnitModifier.airResistanceBonus += defenceStatus.airResistanceBonus * value;
-        Status.DefenceUnitModifier.earthResistanceBonus += defenceStatus.earthResistanceBonus * value;
-
-        Status.DefenceUnitModifier.lightResistanceBonus += defenceStatus.lightResistanceBonus * value;
-        Status.DefenceUnitModifier.darkResistanceBonus += defenceStatus.darkResistanceBonus * value;
+        if (multiply)
+        {
+            unidad.ModifierHandle.SetModifierMultiply(attackStatus, false);
+            unidad.ModifierHandle.SetModifierMultiply(defenceStatus, false);
+        }
+        else
+        {
+            unidad.ModifierHandle.SetModifier(attackStatus, false);
+            unidad.ModifierHandle.SetModifier(defenceStatus, false);
+        }
     }
 }

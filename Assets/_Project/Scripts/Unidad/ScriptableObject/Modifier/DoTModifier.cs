@@ -14,24 +14,18 @@ public class DoTModifier : ScriptableObject, IUnitModifier
 
     public float Count => count;
 
-    public StatusManager Status { get; private set; }
-
-    public void Apply(StatusManager status, float count)
+    public void Add(Unidad unidad)
     {
-        Status = status;
 
-        Status.UnitModifiers.Add(this, count);
     }
 
-    public void Check(float count)
+    public void Tick(Unidad unidad)
     {
-        Status.OnDamage(damage);
-
-        if (count >= Count) Remove();
+        unidad.OnDamage(damage, DamageType.Normal);
     }
 
-    public void Remove()
+    public void Remove(Unidad unidad)
     {
-        Status.UnitModifiers.Remove(this);
+
     }
 }

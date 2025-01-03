@@ -56,7 +56,8 @@ public class Unidad : MonoBehaviour
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
 
     public float MoveSpeed => statusManager.MoveSpeed;
-    
+    public UnidadModifierHandle ModifierHandle => statusManager.modifierHandle;
+
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
 
@@ -141,9 +142,9 @@ public class Unidad : MonoBehaviour
 
     public void IncreaseMp(float value) => statusManager.mp.Value += (int)(StatusCalc.MP_REGEN * value);
 
-    public void AddUnitModifier(IUnitModifier modifier, float time) => modifier.Apply(statusManager, time);
+    public void AddUnitModifier(IUnitModifier modifier) => ModifierHandle.AddModifier(modifier);
 
-    public void OnUnitModifier(IUnitModifier modifier, float time) => modifier.Check(time - statusManager.UnitModifiers[modifier]);
+    public void OnUnitModifier(IUnitModifier modifier, float count) => ModifierHandle.CheckTick(modifier, count);
 
-    public void RemoveUnitModifier(IUnitModifier modifier) => modifier.Remove();
+    public void RemoveUnitModifier(IUnitModifier modifier) => ModifierHandle.RemoveModifier(modifier);
 }

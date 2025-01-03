@@ -4,9 +4,7 @@ public interface IUnitModifier
 
     public float Count { get; }
 
-    public StatusManager Status { get; }
-
-    public void Apply(StatusManager status, float count);
-    public void Check(float count);
-    public void Remove();
+    public void Add(Unidad unidad);
+    public void Tick(Unidad unidad);
+    public void Remove(Unidad unidad);
 }
