@@ -33,10 +33,6 @@ public class Unidad : MonoBehaviour
     // Unit 종류
     [SerializeField] private UnitType owner;
 
-    [Header("Ather")]
-    public UnidadAudioHandle audioHandle;
-    public UnidadStatusBar statusBar;
-
     public UnitType Owner
     {
         get => owner;
@@ -49,6 +45,20 @@ public class Unidad : MonoBehaviour
         }
     }
 
+    [Header("Ather")]
+    public UnidadAudioHandle audioHandle;
+    private UnidadStatusBar statusBar;
+
+    public UnidadStatusBar StatusBar
+    {
+        get => statusBar;
+        set
+        {
+            statusManager.hp.SetCallback(statusManager.BindHpStatusBar, value == null ? SetCallbackType.Remove : SetCallbackType.Add);
+
+            statusBar = value;
+        }
+    }
 
     public UnidadStatus Status => UnidadManager.Instance.GetStatus(id);
     
@@ -108,7 +118,7 @@ public class Unidad : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (statusBar != null) Destroy(statusBar.gameObject);
+        if (StatusBar != null) Destroy(StatusBar.gameObject);
 
         UnidadManager.Instance.SetUnidad(this, false, Owner);
     }

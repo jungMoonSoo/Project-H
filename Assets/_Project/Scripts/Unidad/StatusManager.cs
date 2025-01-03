@@ -10,8 +10,6 @@ public class StatusManager
     [SerializeField] public BindData<int> hp = new();
     [SerializeField] public BindData<int> mp = new();
 
-    private UnidadStatusBar StatusBar => unidad.statusBar;
-
     #region ◇ Properties ◇
     private UnidadStatus Status => unidad.Status;
 
@@ -123,43 +121,26 @@ public class StatusManager
     {
         this.unidad = unidad;
 
-        hp.SetCallback(BindHp);
-        mp.SetCallback(BindMp);
-
+        hp.SetCallback(BindHp, SetCallbackType.Set);
         hp.Value = MaxHp;
 
         modifierHandle = new(unidad, Status.attackStatus, Status.defenceStatus);
     }
     
-    public void OnDamage(int damage)
-    {
-        hp.Value -= damage;
+    public void OnDamage(int damage) => hp.Value -= damage;
 
-        if (hp.Value <= 0)
+    public void OnHeal(int heal) => hp.Value += heal;
+
+    public void BindHpStatusBar(int newValue) => unidad.StatusBar.SetBar((float)newValue / MaxHp);
+
+    public void BindHp(ref int currentValue, int newValue)
+    {
+        if (newValue <= 0)
         {
+            currentValue = 0;
             DieEvent?.Invoke();
         }
-    }
-
-    public void OnHeal(int heal)
-    {
-        hp.Value += heal;
-
-        if (hp.Value > MaxHp)
-        {
-            hp.Value = MaxHp;
-        }
-    }
-
-    private void BindHp(ref int currentValue, int newValue)
-    {
-        currentValue = newValue;
-
-        if (StatusBar != null) StatusBar.SetBar((float)hp.Value / MaxHp);
-    }
-
-    private void BindMp(ref int currentValue, int newValue)
-    {
-        currentValue = newValue;
+        else if (newValue > MaxHp) currentValue = MaxHp;
+        else currentValue = newValue;
     }
 }
