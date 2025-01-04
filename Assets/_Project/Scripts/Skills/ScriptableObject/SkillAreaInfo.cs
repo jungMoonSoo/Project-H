@@ -9,33 +9,6 @@ public class SkillAreaInfo: ScriptableObject
     [SerializeField] public Vector2 areaSize;
     [SerializeField] private SkillAreaType skillAreaType;
 
-    #region ◇ Properties ◇
-    public ISkillArea SkillArea
-    {
-        get
-        {
-            if (_SkillArea is null)
-            {
-                switch (skillAreaType)
-                {
-                    case SkillAreaType.Single:
-                        _SkillArea = new SingleSkillArea();
-                        break;
-                    case SkillAreaType.Linear:
-                        _SkillArea = new LinearSkillArea();
-                        break;
-                    case SkillAreaType.Area:
-                        _SkillArea = new EllipseSkillArea();
-                        break;
-                    default:
-                        throw new Exception("SkillArea Type 미존재.");
-                        break;
-                }
-            }
-            
-            return _SkillArea;
-        }
-    }
-    private ISkillArea _SkillArea = null;
-    #endregion
+    
+    public ISkillArea SkillArea => SkillTypeHub.GetSkillArea(skillAreaType);
 }

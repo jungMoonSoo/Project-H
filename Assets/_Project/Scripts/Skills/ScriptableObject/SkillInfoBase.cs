@@ -13,35 +13,8 @@ public abstract class SkillInfoBase : ScriptableObject
     [SerializeField] public TargetType targetType;
     [SerializeField] private TargetingSystemType targetingSystemType;
 
-    #region ◇ Properties ◇
-    public ITargetingSystem TargetingSystem
-    {
-        get
-        {
-            if (_TargetingSystem is null)
-            {
-                switch (targetingSystemType)
-                {
-                    case TargetingSystemType.Single:
-                        _TargetingSystem = new SingleTargetingSystem();
-                        break;
-                    case TargetingSystemType.Linear:
-                        _TargetingSystem = new LinearTargetingSystem();
-                        break;
-                    case TargetingSystemType.Area:
-                        _TargetingSystem = new AreaTargetingSystem();
-                        break;
-                    default:
-                        throw new Exception("TargetingSystem Type 미존재.");
-                        break;
-                }
-            }
-            
-            return _TargetingSystem;
-        }
-    }
-    private ITargetingSystem _TargetingSystem = null;
-    #endregion
+    
+    public ITargetingSystem TargetingSystem => SkillTypeHub.GetTargetingSystem(targetingSystemType);
 
 
     /// <summary>
