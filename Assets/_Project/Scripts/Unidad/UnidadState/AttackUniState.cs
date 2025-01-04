@@ -28,6 +28,15 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
+        Vector2 movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Radius);
+
+        if ((Vector2)Unit.transform.position != movePos)
+        {
+            Unit.StateChange(UnitState.Move);
+
+            return;
+        }
+
         Unidad[] enemys = UnidadManager.Instance.GetUnidads(Unit.Owner, TargetType.They).OrderBy(unit => Vector2.Distance((Vector2)unit.transform.position + unit.unitCollider.center, transform.position)).ToArray();
 
         if (enemys.Length > 0)
@@ -37,42 +46,15 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
             Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
 
-            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
-            {
-                Unit.StateChange(UnitState.Move);
-            }
+            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.StateChange(UnitState.Move);
             else
             {
                 AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
 
                 if (state.IsName("Attack_0"))
                 {
-                    if (state.normalizedTime % 1 > atkAnimPoint)
-                    {
-                        if (!attack)
-                        {
-                            CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, ElementType.None);
-                            target.OnDamage((int)callback.value, callback.type);
-
-                            Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
-
-                            attack = true;
-                        }
-                    }
-                    else attack = false;
-
-                    if (audioClipNumber != -1)
-                    {
-                        if (state.normalizedTime % 1 > Unit.audioHandle.GetPlayTiming(audioClipNumber))
-                        {
-                            if (!playSound)
-                            {
-                                Unit.audioHandle.OnPlay(audioClipNumber);
-                                playSound = true;
-                            }
-                        }
-                        else playSound = false;
-                    }
+                    CheckAttackPoint(state, target);
+                    CheckSoundPoint(state);
                 }
             }
         }
@@ -82,5 +64,38 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     public void OnExit()
     {
         
+    }
+
+    private void CheckAttackPoint(AnimatorStateInfo state, Unidad target)
+    {
+        if (state.normalizedTime % 1 > atkAnimPoint)
+        {
+            if (!attack)
+            {
+                CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, ElementType.None);
+                target.OnDamage((int)callback.value, callback.type);
+
+                Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
+
+                attack = true;
+            }
+        }
+        else attack = false;
+    }
+
+    private void CheckSoundPoint(AnimatorStateInfo state)
+    {
+        if (audioClipNumber != -1)
+        {
+            if (state.normalizedTime % 1 > Unit.audioHandle.GetPlayTiming(audioClipNumber))
+            {
+                if (!playSound)
+                {
+                    Unit.audioHandle.OnPlay(audioClipNumber);
+                    playSound = true;
+                }
+            }
+            else playSound = false;
+        }
     }
 }

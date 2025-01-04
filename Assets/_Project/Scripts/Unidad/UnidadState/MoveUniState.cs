@@ -21,37 +21,31 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
+        Vector2 movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Radius);
+
+        if ((Vector2)Unit.transform.position != movePos)
+        {
+            Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, movePos, Unit.MoveSpeed * Time.deltaTime);
+
+            return;
+        }
+
         Unidad[] enemys = UnidadManager.Instance.GetUnidads(Unit.Owner, TargetType.They).OrderBy(unit => Vector2.Distance((Vector2)unit.transform.position + unit.unitCollider.center, transform.position)).ToArray();
 
         if (enemys.Length > 0)
         {
-            Vector2 _movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.size);
+            Unidad target = enemys[0];
 
-            if ((Vector2)Unit.transform.position != _movePos)
+            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
             {
-                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, _movePos, Unit.MoveSpeed * Time.deltaTime);
-            }
-            else
-            {
-                Unidad target = enemys[0];
+                Vector2 direction = target.unitCollider.transform.position - transform.position;
 
-                if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
-                {
-                    Vector2 direction = target.unitCollider.transform.position - transform.position;
-
-                    Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
-                    Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.MoveSpeed * Time.deltaTime);
-                }
-                else
-                {
-                    Unit.StateChange(UnitState.Attack);
-                }
+                Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
+                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.MoveSpeed * Time.deltaTime);
             }
+            else Unit.StateChange(UnitState.Attack);
         }
-        else
-        {
-            Unit.StateChange(UnitState.Idle);
-        }
+        else Unit.StateChange(UnitState.Idle);
     }
 
     public void OnExit()
