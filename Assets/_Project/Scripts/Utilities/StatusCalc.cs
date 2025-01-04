@@ -10,18 +10,15 @@ public static class StatusCalc
     {
         if (IsDodge(attackStatus.accuracy, defenceStatus.dodgeProbability)) return new CallbackValueInfo<DamageType>(DamageType.Miss, 0);
 
-        bool isCriticalHit;
-        float baseDamage, damageReductionPercentage, attributeDamagePercentage, criticalDamagePercentage;
+        float attributeDamagePercentage = CalculateAttributeDamage(attackStatus, defenceStatus, elementType);
 
-        attributeDamagePercentage = CalculateAttributeDamage(attackStatus, defenceStatus, elementType);
+        float baseDamage = CalculateBaseDamage(attackStatus.magicDamage, skillCoefficient);
+        float damageReductionPercentage = CalculateDamageReduction(defenceStatus.magicDefence);
+        bool isCriticalHit = CalculateCriticalHit(attackStatus.magicCriticalProbability, defenceStatus.magicCriticalResistance);
 
-        baseDamage = CalculateBaseDamage(attackStatus.magicDamage, skillCoefficient);
-        damageReductionPercentage = CalculateDamageReduction(defenceStatus.magicDefence);
-        isCriticalHit = CalculateCriticalHit(attackStatus.magicCriticalProbability, defenceStatus.magicCriticalResistance);
+        float criticalDamagePercentage = isCriticalHit ? attackStatus.magicCriticalDamage : 100f;
 
-        criticalDamagePercentage = isCriticalHit ? attackStatus.magicCriticalDamage : 100f;
-
-        float finalDamage = (baseDamage * damageReductionPercentage * attributeDamagePercentage * (criticalDamagePercentage / 100f)) + additionalDamage;
+        float finalDamage = (baseDamage * damageReductionPercentage * attributeDamagePercentage * (criticalDamagePercentage * 0.01f)) + additionalDamage;
 
         return new CallbackValueInfo<DamageType>(isCriticalHit ? DamageType.Critical : DamageType.Normal, finalDamage);
     }
@@ -30,40 +27,24 @@ public static class StatusCalc
     {
         if (IsDodge(attackStatus.accuracy, defenceStatus.dodgeProbability)) return new CallbackValueInfo<DamageType>(DamageType.Miss, 0);
 
-        bool isCriticalHit;
-        float baseDamage, damageReductionPercentage, attributeDamagePercentage, criticalDamagePercentage;
+        float attributeDamagePercentage = CalculateAttributeDamage(attackStatus, defenceStatus, elementType);
 
-        attributeDamagePercentage = CalculateAttributeDamage(attackStatus, defenceStatus, elementType);
+        float baseDamage = CalculateBaseDamage(attackStatus.physicalDamage, skillCoefficient);
+        float damageReductionPercentage = CalculateDamageReduction(defenceStatus.physicalDefence);
+        bool isCriticalHit = CalculateCriticalHit(attackStatus.physicalCriticalProbability, defenceStatus.physicalCriticalResistance);
 
-        baseDamage = CalculateBaseDamage(attackStatus.physicalDamage, skillCoefficient);
-        damageReductionPercentage = CalculateDamageReduction(defenceStatus.physicalDefence);
-        isCriticalHit = CalculateCriticalHit(attackStatus.physicalCriticalProbability, defenceStatus.physicalCriticalResistance);
+        float criticalDamagePercentage = isCriticalHit ? attackStatus.physicalCriticalDamage : 100f;
 
-        criticalDamagePercentage = isCriticalHit ? attackStatus.physicalCriticalDamage : 100f;
-
-        float finalDamage = (baseDamage * damageReductionPercentage * attributeDamagePercentage * (criticalDamagePercentage / 100f)) + additionalDamage;
+        float finalDamage = (baseDamage * damageReductionPercentage * attributeDamagePercentage * (criticalDamagePercentage * 0.01f)) + additionalDamage;
 
         return new CallbackValueInfo<DamageType>(isCriticalHit ? DamageType.Critical : DamageType.Normal, finalDamage);
     }
 
-    private static bool IsDodge(float accuracy, float dodgeProbability)
-    {
-        float hitChance = accuracy - dodgeProbability;
+    private static bool IsDodge(float accuracy, float dodgeProbability) => Random.Range(1, 101) > Mathf.Clamp(accuracy - dodgeProbability, 0f, 100f);
 
-        hitChance = Mathf.Clamp(hitChance, 0f, 100f);
+    private static float CalculateBaseDamage(int damage, float skillCoefficient) => damage * (skillCoefficient * 0.01f);
 
-        return Random.Range(1, 101) > hitChance;
-    }
-
-    private static float CalculateBaseDamage(int damage, float skillCoefficient)
-    {
-        return damage * (skillCoefficient / 100f);
-    }
-
-    private static float CalculateDamageReduction(float defence)
-    {
-        return defence / (defence + DM);
-    }
+    private static float CalculateDamageReduction(float defence) => defence / (defence + DM);
 
     private static float CalculateAttributeDamage(AttackStatus attackStatus, DefenceStatus defenceStatus, ElementType elementType)
     {
@@ -109,17 +90,10 @@ public static class StatusCalc
                 break;
         }
 
-        return (1 + damageBonus / 100f) / (1 + resistanceBonus / 100f);
+        return (1 + damageBonus * 0.01f) / (1 + resistanceBonus * 0.01f);
     }
 
-    private static bool CalculateCriticalHit(float criticalProbability, float criticalResistance)
-    {
-        float criticalChance = criticalProbability - criticalResistance;
-
-        criticalChance = Mathf.Clamp(criticalChance, 0f, 100f);
-
-        return Random.Range(1, 101) <= criticalChance;
-    }
+    private static bool CalculateCriticalHit(float criticalProbability, float criticalResistance) => Random.Range(1, 101) <= Mathf.Clamp(criticalProbability - criticalResistance, 0f, 100f);
 
     public static int GetHeal(int healAmount)
     {

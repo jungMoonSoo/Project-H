@@ -15,12 +15,12 @@ public class UnidadModifierHandle
 
     private readonly Dictionary<IUnitModifier, float> unitModifiers = new();
 
-    public UnidadModifierHandle(Unidad unidad, AttackStatus attackStatus, DefenceStatus defenceStatus)
+    public UnidadModifierHandle(Unidad unidad)
     {
         this.unidad = unidad;
 
-        this.attackStatus = attackStatus;
-        this.defenceStatus = defenceStatus;
+        attackStatus = unidad.Status.attackStatus;
+        defenceStatus = unidad.Status.defenceStatus;
 
         InitAttackStatus(attackModifier, 0);
         InitAttackStatus(attackModifierMultiply, 1);

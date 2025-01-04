@@ -125,7 +125,7 @@ public class StatusManager
         hp.SetCallback(BindHp, SetCallbackType.Set);
         hp.Value = MaxHp;
 
-        modifierHandle = new(unidad, Status.attackStatus, Status.defenceStatus);
+        modifierHandle = new(unidad);
 
         DieEvent += () => hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
     }
