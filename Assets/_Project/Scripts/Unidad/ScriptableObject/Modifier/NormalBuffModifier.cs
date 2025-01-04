@@ -1,11 +1,11 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "UnitModifier/Buff", fileName = "NewBuff")]
-public class BuffModifier : ScriptableObject, IUnitModifier
+[CreateAssetMenu(menuName = "UnitModifier/NormalBuff", fileName = "NewNormalBuff")]
+public class NormalBuffModifier : ScriptableObject, IUnitModifier
 {
     [SerializeField] private int id;
 
-    [SerializeField] private float count;
+    [SerializeField] private int count;
 
     [SerializeField] private bool multiply;
 
@@ -14,7 +14,7 @@ public class BuffModifier : ScriptableObject, IUnitModifier
 
     public int Id => id;
 
-    public float Count => count;
+    public int Count => count;
 
     public void Add(Unidad unidad)
     {
@@ -30,11 +30,6 @@ public class BuffModifier : ScriptableObject, IUnitModifier
         }
     }
 
-    public void Tick(Unidad unidad)
-    {
-
-    }
-
     public void Remove(Unidad unidad)
     {
         if (multiply)
@@ -48,4 +43,6 @@ public class BuffModifier : ScriptableObject, IUnitModifier
             unidad.ModifierHandle.SetModifier(defenceStatus, false);
         }
     }
+
+    public virtual int Check(Unidad unidad) => 1;
 }

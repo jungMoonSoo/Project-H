@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public class UnidadModifierHandle
 {
@@ -29,7 +30,7 @@ public class UnidadModifierHandle
         InitDefenceStatus(defenceModifierMultiply, 1);
     }
 
-    public void AddModifier(IUnitModifier modifier)
+    public void Add(IUnitModifier modifier)
     {
         if (unitModifiers.ContainsKey(modifier)) unitModifiers[modifier] = modifier.Count;
         else unitModifiers.Add(modifier, modifier.Count);
@@ -37,18 +38,23 @@ public class UnidadModifierHandle
         modifier.Add(unidad);
     }
 
-    public void CheckTick(IUnitModifier modifier, float count)
-    {
-        modifier.Tick(unidad);
-
-        if (count > unitModifiers[modifier]) RemoveModifier(modifier);
-    }
-
-    public void RemoveModifier(IUnitModifier modifier)
+    public void Remove(IUnitModifier modifier)
     {
         if (unitModifiers.ContainsKey(modifier)) unitModifiers.Remove(modifier);
 
         modifier.Remove(unidad);
+    }
+
+    public void Check()
+    {
+        List<IUnitModifier> modifiers = unitModifiers.Keys.ToList();
+
+        for (int i = modifiers.Count - 1; i >= 0; i--)
+        {
+            unitModifiers[modifiers[i]] -= modifiers[i].Check(unidad);
+
+            if (unitModifiers[modifiers[i]] <= 0) Remove(modifiers[i]);
+        }
     }
 
     #region ◇◇ 스테이터스 적용 ◇◇
