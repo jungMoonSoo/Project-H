@@ -7,5 +7,5 @@ public interface IUnitModifier
     public void Add(Unidad unidad);
     public void Remove(Unidad unidad);
 
-    public int Check(Unidad unidad);
+    public int Cycle(Unidad unidad);
 }

@@ -3,9 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "UnitModifier/TestDoT", fileName = "NewTestDoT")]
 public class TestDoT : NormalDoTModifier
 {
-    public override int Check(Unidad unidad)
+    public override int Cycle(Unidad unidad)
     {
-        base.Check(unidad);
+        base.Cycle(unidad);
 
         return 2;
     }

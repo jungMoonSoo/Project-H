@@ -20,13 +20,13 @@ public class NormalBuffModifier : ScriptableObject, IUnitModifier
     {
         if (multiply)
         {
-            unidad.ModifierHandle.SetModifierMultiply(attackStatus, true);
-            unidad.ModifierHandle.SetModifierMultiply(defenceStatus, true);
+            unidad.ModifierManager.SetModifierMultiply(attackStatus, true);
+            unidad.ModifierManager.SetModifierMultiply(defenceStatus, true);
         }
         else
         {
-            unidad.ModifierHandle.SetModifier(attackStatus, true);
-            unidad.ModifierHandle.SetModifier(defenceStatus, true);
+            unidad.ModifierManager.SetModifier(attackStatus, true);
+            unidad.ModifierManager.SetModifier(defenceStatus, true);
         }
     }
 
@@ -34,15 +34,15 @@ public class NormalBuffModifier : ScriptableObject, IUnitModifier
     {
         if (multiply)
         {
-            unidad.ModifierHandle.SetModifierMultiply(attackStatus, false);
-            unidad.ModifierHandle.SetModifierMultiply(defenceStatus, false);
+            unidad.ModifierManager.SetModifierMultiply(attackStatus, false);
+            unidad.ModifierManager.SetModifierMultiply(defenceStatus, false);
         }
         else
         {
-            unidad.ModifierHandle.SetModifier(attackStatus, false);
-            unidad.ModifierHandle.SetModifier(defenceStatus, false);
+            unidad.ModifierManager.SetModifier(attackStatus, false);
+            unidad.ModifierManager.SetModifier(defenceStatus, false);
         }
     }
 
-    public virtual int Check(Unidad unidad) => 1;
+    public virtual int Cycle(Unidad unidad) => 1;
 }

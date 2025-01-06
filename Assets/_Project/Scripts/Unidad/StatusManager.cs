@@ -13,7 +13,7 @@ public class StatusManager
     #region ◇ Properties ◇
     private UnidadStatus Status => unidad.Status;
 
-    public UnidadModifierHandle modifierHandle;
+    public ModifierManager modifierManager;
 
     #region ◇◇ 기타 스테이터스 ◇◇
     public int MaxHp => Status.maxHp;
@@ -23,23 +23,23 @@ public class StatusManager
     #endregion
     
     #region ◇◇ 공격 스테이터스 ◇◇
-    public int PhysicalDamage => modifierHandle.PhysicalDamage;
-    public int MagicDamage => modifierHandle.MagicDamage;
+    public int PhysicalDamage => modifierManager.PhysicalDamage;
+    public int MagicDamage => modifierManager.MagicDamage;
     
-    public float PhysicalCriticalDamage => modifierHandle.PhysicalCriticalDamage;
-    public float MagicCriticalDamage => modifierHandle.MagicCriticalDamage;
+    public float PhysicalCriticalDamage => modifierManager.PhysicalCriticalDamage;
+    public float MagicCriticalDamage => modifierManager.MagicCriticalDamage;
     
-    public float PhysicalCriticalProbability => modifierHandle.PhysicalCriticalProbability;
-    public float MagicCriticalProbability => modifierHandle.MagicCriticalProbability;
+    public float PhysicalCriticalProbability => modifierManager.PhysicalCriticalProbability;
+    public float MagicCriticalProbability => modifierManager.MagicCriticalProbability;
     
-    public float Accuracy => modifierHandle.Accuracy;
+    public float Accuracy => modifierManager.Accuracy;
     
-    public float FireDamageBonus => modifierHandle.FireDamageBonus;
-    public float WaterDamageBonus => modifierHandle.WaterDamageBonus;
-    public float AirDamageBonus => modifierHandle.AirDamageBonus;
-    public float EarthDamageBonus => modifierHandle.EarthDamageBonus;
-    public float LightDamageBonus => modifierHandle.LightDamageBonus;
-    public float DarkDamageBonus => modifierHandle.DarkDamageBonus;
+    public float FireDamageBonus => modifierManager.FireDamageBonus;
+    public float WaterDamageBonus => modifierManager.WaterDamageBonus;
+    public float AirDamageBonus => modifierManager.AirDamageBonus;
+    public float EarthDamageBonus => modifierManager.EarthDamageBonus;
+    public float LightDamageBonus => modifierManager.LightDamageBonus;
+    public float DarkDamageBonus => modifierManager.DarkDamageBonus;
     
     public AttackStatus AttackStatus
     {
@@ -70,21 +70,21 @@ public class StatusManager
     #endregion
     
     #region ◇◇ 방어 스테이터스 ◇◇
-    public int PhysicalDefence => modifierHandle.PhysicalDefence;
-    public int MagicDefence => modifierHandle.MagicDefence;
+    public int PhysicalDefence => modifierManager.PhysicalDefence;
+    public int MagicDefence => modifierManager.MagicDefence;
 
-    public float PhysicalCriticalResistance => modifierHandle.PhysicalCriticalResistance;
-    public float MagicCriticalResistance => modifierHandle.MagicCriticalResistance;
+    public float PhysicalCriticalResistance => modifierManager.PhysicalCriticalResistance;
+    public float MagicCriticalResistance => modifierManager.MagicCriticalResistance;
 
-    public float DodgeProbability => modifierHandle.DodgeProbability;
+    public float DodgeProbability => modifierManager.DodgeProbability;
 
-    public float FireResistanceBonus => modifierHandle.FireResistanceBonus;
-    public float WaterResistanceBonus => modifierHandle.WaterResistanceBonus;
-    public float AirResistanceBonus => modifierHandle.AirResistanceBonus;
-    public float EarthResistanceBonus => modifierHandle.EarthResistanceBonus;
+    public float FireResistanceBonus => modifierManager.FireResistanceBonus;
+    public float WaterResistanceBonus => modifierManager.WaterResistanceBonus;
+    public float AirResistanceBonus => modifierManager.AirResistanceBonus;
+    public float EarthResistanceBonus => modifierManager.EarthResistanceBonus;
     
-    public float LightResistanceBonus => modifierHandle.LightResistanceBonus;
-    public float DarkResistanceBonus => modifierHandle.DarkResistanceBonus;
+    public float LightResistanceBonus => modifierManager.LightResistanceBonus;
+    public float DarkResistanceBonus => modifierManager.DarkResistanceBonus;
     
     public DefenceStatus DefenceStatus
     {
@@ -125,7 +125,7 @@ public class StatusManager
         hp.SetCallback(BindHp, SetCallbackType.Set);
         hp.Value = MaxHp;
 
-        modifierHandle = new(unidad);
+        modifierManager = new(unidad);
 
         DieEvent += () => hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
     }

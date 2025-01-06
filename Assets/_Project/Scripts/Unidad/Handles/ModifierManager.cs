@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class UnidadModifierHandle
+public class ModifierManager
 {
     private readonly Unidad unidad;
 
@@ -16,18 +16,14 @@ public class UnidadModifierHandle
 
     private readonly Dictionary<IUnitModifier, float> unitModifiers = new();
 
-    public UnidadModifierHandle(Unidad unidad)
+    public ModifierManager(Unidad unidad)
     {
         this.unidad = unidad;
 
         attackStatus = unidad.Status.attackStatus;
         defenceStatus = unidad.Status.defenceStatus;
 
-        InitAttackStatus(attackModifier, 0);
-        InitAttackStatus(attackModifierMultiply, 1);
-
-        InitDefenceStatus(defenceModifier, 0);
-        InitDefenceStatus(defenceModifierMultiply, 1);
+        Clear();
     }
 
     public void Add(IUnitModifier modifier)
@@ -45,13 +41,24 @@ public class UnidadModifierHandle
         modifier.Remove(unidad);
     }
 
-    public void Check()
+    public void Clear()
+    {
+        unitModifiers.Clear();
+
+        InitAttackStatus(attackModifier, 0);
+        InitAttackStatus(attackModifierMultiply, 1);
+
+        InitDefenceStatus(defenceModifier, 0);
+        InitDefenceStatus(defenceModifierMultiply, 1);
+    }
+
+    public void CheckCycle()
     {
         List<IUnitModifier> modifiers = unitModifiers.Keys.ToList();
 
         for (int i = modifiers.Count - 1; i >= 0; i--)
         {
-            unitModifiers[modifiers[i]] -= modifiers[i].Check(unidad);
+            unitModifiers[modifiers[i]] -= modifiers[i].Cycle(unidad);
 
             if (unitModifiers[modifiers[i]] <= 0) Remove(modifiers[i]);
         }

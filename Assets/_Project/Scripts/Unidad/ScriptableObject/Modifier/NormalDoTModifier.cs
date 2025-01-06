@@ -16,7 +16,7 @@ public class NormalDoTModifier : ScriptableObject, IUnitModifier
 
     public void Remove(Unidad unidad) { }
 
-    public virtual int Check(Unidad unidad)
+    public virtual int Cycle(Unidad unidad)
     {
         unidad.OnDamage(damage, DamageType.Normal);
 
