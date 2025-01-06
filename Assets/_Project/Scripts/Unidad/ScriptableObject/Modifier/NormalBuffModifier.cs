@@ -5,7 +5,8 @@ public class NormalBuffModifier : ScriptableObject, IUnitModifier
 {
     [SerializeField] private int id;
 
-    [SerializeField] private int count;
+    [SerializeField] private int cycleCount;
+    [SerializeField] private float intervalTime;
 
     [SerializeField] private bool multiply;
 
@@ -14,35 +15,39 @@ public class NormalBuffModifier : ScriptableObject, IUnitModifier
 
     public int Id => id;
 
-    public int Count => count;
+    public int CycleCount => cycleCount;
 
-    public void Add(Unidad unidad)
+    private float applyTime;
+
+    public virtual void Add(Unidad unidad)
+    {
+        applyTime = Time.time;
+
+        SetModifier(unidad.ModifierManager, true);
+    }
+
+    public virtual void Remove(Unidad unidad) => SetModifier(unidad.ModifierManager, false);
+
+    public virtual int Cycle(Unidad unidad)
+    {
+        if (applyTime > Time.time) return 0;
+
+        applyTime = Time.time + intervalTime;
+
+        return 1;
+    }
+
+    private void SetModifier(ModifierManager modifierManager, bool apply)
     {
         if (multiply)
         {
-            unidad.ModifierManager.SetModifierMultiply(attackStatus, true);
-            unidad.ModifierManager.SetModifierMultiply(defenceStatus, true);
+            modifierManager.SetModifierMultiply(attackStatus, apply);
+            modifierManager.SetModifierMultiply(defenceStatus, apply);
         }
         else
         {
-            unidad.ModifierManager.SetModifier(attackStatus, true);
-            unidad.ModifierManager.SetModifier(defenceStatus, true);
+            modifierManager.SetModifier(attackStatus, apply);
+            modifierManager.SetModifier(defenceStatus, apply);
         }
     }
-
-    public void Remove(Unidad unidad)
-    {
-        if (multiply)
-        {
-            unidad.ModifierManager.SetModifierMultiply(attackStatus, false);
-            unidad.ModifierManager.SetModifierMultiply(defenceStatus, false);
-        }
-        else
-        {
-            unidad.ModifierManager.SetModifier(attackStatus, false);
-            unidad.ModifierManager.SetModifier(defenceStatus, false);
-        }
-    }
-
-    public virtual int Cycle(Unidad unidad) => 1;
 }

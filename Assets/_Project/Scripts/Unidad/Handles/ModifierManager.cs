@@ -14,7 +14,8 @@ public class ModifierManager
     private readonly AttackStatus attackModifierMultiply = new();
     private readonly DefenceStatus defenceModifierMultiply = new();
 
-    private readonly Dictionary<IUnitModifier, float> unitModifiers = new();
+    private readonly List<IUnitModifier> removeModifiers = new();
+    private readonly Dictionary<IUnitModifier, float> applyModifiers = new();
 
     public ModifierManager(Unidad unidad)
     {
@@ -28,22 +29,24 @@ public class ModifierManager
 
     public void Add(IUnitModifier modifier)
     {
-        if (unitModifiers.ContainsKey(modifier)) unitModifiers[modifier] = modifier.Count;
-        else unitModifiers.Add(modifier, modifier.Count);
+        if (applyModifiers.ContainsKey(modifier)) applyModifiers[modifier] = modifier.CycleCount;
+        else applyModifiers.Add(modifier, modifier.CycleCount);
 
         modifier.Add(unidad);
     }
 
     public void Remove(IUnitModifier modifier)
     {
-        if (unitModifiers.ContainsKey(modifier)) unitModifiers.Remove(modifier);
+        if (applyModifiers.ContainsKey(modifier)) applyModifiers.Remove(modifier);
 
         modifier.Remove(unidad);
     }
 
     public void Clear()
     {
-        unitModifiers.Clear();
+        foreach (IUnitModifier modifier in applyModifiers.Keys) Remove(modifier);
+
+        removeModifiers.Clear();
 
         InitAttackStatus(attackModifier, 0);
         InitAttackStatus(attackModifierMultiply, 1);
@@ -54,14 +57,16 @@ public class ModifierManager
 
     public void CheckCycle()
     {
-        List<IUnitModifier> modifiers = unitModifiers.Keys.ToList();
-
-        for (int i = modifiers.Count - 1; i >= 0; i--)
+        foreach (IUnitModifier modifier in applyModifiers.Keys)
         {
-            unitModifiers[modifiers[i]] -= modifiers[i].Cycle(unidad);
+            applyModifiers[modifier] -= modifier.Cycle(unidad);
 
-            if (unitModifiers[modifiers[i]] <= 0) Remove(modifiers[i]);
+            if (applyModifiers[modifier] <= 0) removeModifiers.Add(modifier);
         }
+
+        if (removeModifiers.Count == 0) return;
+
+        for (int i = removeModifiers.Count - 1; i >= 0; i--) Remove(removeModifiers[i]);
     }
 
     #region ◇◇ 스테이터스 적용 ◇◇
