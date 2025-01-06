@@ -43,7 +43,6 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        ActionSkillManager.Instance.OnCancel();
         timeInSeconds = 120f;
         UpdateTimerText(timeInSeconds);
         StopTimer();
