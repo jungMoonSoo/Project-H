@@ -134,7 +134,7 @@ public class StatusManager
 
     public void OnHeal(int heal) => hp.Value += heal;
 
-    public void BindHpStatusBar(int newValue) => unidad.statusBar.SetBar((float)newValue / MaxHp);
+    public void BindHpStatusBar(int newValue) => unidad.statusBar?.SetBar((float)newValue / MaxHp);
 
     public void BindHp(ref int currentValue, int newValue)
     {
