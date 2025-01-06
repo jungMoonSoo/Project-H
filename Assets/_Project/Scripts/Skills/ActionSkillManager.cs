@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -9,19 +10,18 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     [Header("Action Skill Settings")]
     [SerializeField] private Transform skillButtonGroup;
     [SerializeField] private GameObject skillButtonPrefab;
-    [SerializeField] private Unidad unidad;
     
     public bool IsUsingSkill => CastingCaster is not null;
     public Unidad CastingCaster { get; private set; }
     public ActionSkillInfo UsingSkill => CastingCaster.Status.skillInfo;
     
     private bool hasPosition = false;
+    private List<SkillButton> createdSkillButtons = new();
 
     
     void Start()
     {
         skillAreaHandler.SetActive(false);
-        AddSkillButton(unidad);
     }
     
     void Update()
@@ -51,14 +51,22 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
     public void AddSkillButton(Unidad unidad)
     {
-        Vector2 skillButtonPosition = Vector2.zero;
-        
         GameObject instance = Instantiate(skillButtonPrefab, skillButtonGroup);
-        instance.transform.localPosition = skillButtonPosition;
         
         SkillButton skillButton = instance.GetComponent<SkillButton>();
         skillButton.Caster = unidad;
+        createdSkillButtons.Add(skillButton);
     }
+
+    public void ClearSkillButtons()
+    {
+        foreach (SkillButton skillButton in createdSkillButtons)
+        {
+            Destroy(skillButton.gameObject);
+        }
+        createdSkillButtons.Clear();
+    }
+    
     
     public void OnSelect(Unidad caster)
     {
