@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AllyUnitDeploymen : MonoBehaviour
+public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
 {
     [Header("GameObject 연결")]
     [SerializeField] private GameObject maxWarnningObject;
@@ -20,14 +21,6 @@ public class AllyUnitDeploymen : MonoBehaviour
 
     //Unit Spawn 여부 판단 변수(일단 아군 유닛 5종류로 설정)
     private bool[] unitSpawn = new bool[5];
-
-
-    private bool blocksmithSpwan = false;
-    private bool alchemySpawn = false;
-    private bool nun2Spawn = false;
-    private bool cowardly_KinghtSpawn = false;
-    private bool ta001Spawn = false;
-
     public void UnitDeployTextUpdate(int num) //배치 수 업데이트 함수 
     {
         currentUnitNumber = num;
@@ -86,6 +79,19 @@ public class AllyUnitDeploymen : MonoBehaviour
                     Debug.Log("[Ui Manager]해당 유닛을 제거하였습니다.");
                     break;
                 }
+            }
+        }
+    }
+
+    public void SkillConnect()
+    {
+        for (int i = 0; i < tileHandler.Length; i++)
+        {
+            if (tileHandler[i].Unit != null)
+            {
+                ActionSkillManager.Instance.AddSkillButton(tileHandler[i].Unit);
+                ActionSkillManager.Instance.OnSelect(tileHandler[i].Unit);
+                Debug.Log("[Ui Manager]스킬을 배정하였습니다.");
             }
         }
     }

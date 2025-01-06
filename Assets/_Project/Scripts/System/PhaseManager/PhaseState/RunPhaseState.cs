@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,13 +13,14 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject optionObject;
 
     //타이머 관련 함수
-    private float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
+    private float timeInSeconds = 1f;     //초기 타이머 시간(한판에 걸리는 시간)
     private bool isTimerRunning = false;    //타이머 실행 여부
 
     public void OnEnter()
     {
         gameStartButtonObject.SetActive(false);
         timerObject.SetActive(true);
+        AllyUnitDeploymen.Instance.SkillConnect();
         StartTimer();
     }
 
@@ -41,6 +43,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
+        ActionSkillManager.Instance.OnCancel();
         timeInSeconds = 120f;
         UpdateTimerText(timeInSeconds);
         StopTimer();
