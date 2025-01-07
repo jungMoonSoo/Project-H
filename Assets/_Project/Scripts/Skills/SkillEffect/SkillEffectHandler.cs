@@ -46,7 +46,6 @@ public class SkillEffectHandler : MonoBehaviour
                         break;
                     default:
                         throw new Exception("TargetingSystem Type 미존재.");
-                        break;
                 }
             }
             
