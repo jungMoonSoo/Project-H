@@ -31,6 +31,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     private bool enableHolding = false;
     public void OnEnter()
     {
+        UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
         unitDeploymentObject.SetActive(true);
     }
 

@@ -18,6 +18,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnEnter()
     {
+        UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
         gameStartButtonObject.SetActive(false);
         timerObject.SetActive(true);
         AllyUnitDeploymen.Instance.SkillConnect();
