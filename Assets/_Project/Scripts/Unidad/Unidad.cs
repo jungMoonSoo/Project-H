@@ -61,10 +61,10 @@ public class Unidad : MonoBehaviour
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
 
-    private Animator animator = null;
-    private IUnidadState nowState = null;
     private StatusManager statusManager = null;
+
     private Dictionary<UnitState, IUnidadState> states = new();
+    private IUnidadState nowState = null;
 
     #region ◇ Unity Events ◇
     void OnDisable()
@@ -78,7 +78,6 @@ public class Unidad : MonoBehaviour
         UnidadManager.Instance.SetUnidad(this, true, Owner);
         
         statusManager = new StatusManager(this);
-        animator = GetComponentInChildren<Animator>();
 
         states = new()
         {
