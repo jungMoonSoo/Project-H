@@ -77,7 +77,6 @@ public class Unidad : MonoBehaviour
         // Scene에 미리 생성된 Unidad를 테스트하기 위해 존재하는 코드
         UnidadManager.Instance.SetUnidad(this, true, Owner);
         
-        
         statusManager = new StatusManager(this);
         animator = GetComponentInChildren<Animator>();
 
@@ -92,12 +91,9 @@ public class Unidad : MonoBehaviour
             { UnitState.Stay, stayState.GetComponent<IUnidadState>() },
             { UnitState.Pick, pickState.GetComponent<IUnidadState>() },
         };
-        foreach (IUnidadState state in states.Values)
-        {
-            state.Unit = this;
-            state.Animator = animator;
-        }
-        
+
+        foreach (IUnidadState state in states.Values) state.Unit = this;
+
         StateChange(UnitState.Idle);
     }
 

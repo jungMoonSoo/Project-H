@@ -1,29 +1,44 @@
+using Spine.Unity;
 using System.Linq;
 using UnityEngine;
 
 public class AttackUniState: MonoBehaviour, IUnidadState
 {
     [Header("Settings")]
-    [SerializeField] private int audioClipNumber = -1;
-    [SerializeField] private float atkAnimPoint = 0.3f;
+    [SerializeField] private SkeletonAnimation skeletonAnimation;
+    [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
 
-    private bool attack;
-    private bool playSound;
+    [SerializeField, SpineEvent(dataField: "skeletonAnimation")] private string hitPoint;
+    [SerializeField, SpineEvent(dataField: "skeletonAnimation")] private string soundPoint;
+
+    [SerializeField] private int audioClipNumber = -1;
+
+    private Spine.Animation playAnimation;
+
+    private Spine.EventData hitEvent;
+    private Spine.EventData soundEvent;
+
+    private Unidad target;
 
     public Unidad Unit
     {
         get;
         set;
     }
-    public Animator Animator
+
+    private void Awake()
     {
-        get;
-        set;
+        playAnimation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
+
+        hitEvent = skeletonAnimation.Skeleton.Data.FindEvent(hitPoint);
+        soundEvent = skeletonAnimation.Skeleton.Data.FindEvent(soundPoint);
+
+        skeletonAnimation.AnimationState.Event += AnimationEvent;
     }
 
     public void OnEnter()
     {
-        Animator.Play("Attack_0");
+        skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
     }
 
     public void OnUpdate()
@@ -41,22 +56,12 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
         if (enemys.Length > 0)
         {
-            Unidad target = enemys[0];
+            target = enemys[0];
             Vector2 direction = target.unitCollider.transform.position - transform.position;
 
             Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
 
             if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.StateChange(UnitState.Move);
-            else
-            {
-                AnimatorStateInfo state = Animator.GetCurrentAnimatorStateInfo(0);
-
-                if (state.IsName("Attack_0"))
-                {
-                    CheckAttackPoint(state, target);
-                    CheckSoundPoint(state);
-                }
-            }
         }
         else Unit.StateChange(UnitState.Move);
     }
@@ -66,36 +71,22 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         
     }
 
-    private void CheckAttackPoint(AnimatorStateInfo state, Unidad target)
+    private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
     {
-        if (state.normalizedTime % 1 > atkAnimPoint)
-        {
-            if (!attack)
-            {
-                CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, ElementType.None);
-                target.OnDamage((int)callback.value, callback.type);
-
-                Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
-
-                attack = true;
-            }
-        }
-        else attack = false;
+        if (e.Data == hitEvent) CheckAttackPoint();
+        else if (e.Data == soundEvent) PlaySound();
     }
 
-    private void CheckSoundPoint(AnimatorStateInfo state)
+    private void CheckAttackPoint()
     {
-        if (audioClipNumber != -1)
-        {
-            if (state.normalizedTime % 1 > Unit.audioHandle.GetPlayTiming(audioClipNumber))
-            {
-                if (!playSound)
-                {
-                    Unit.audioHandle.OnPlay(audioClipNumber);
-                    playSound = true;
-                }
-            }
-            else playSound = false;
-        }
+        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, ElementType.None);
+        target.OnDamage((int)callback.value, callback.type);
+
+        Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
+    }
+
+    private void PlaySound()
+    {
+        if (audioClipNumber != -1) Unit.audioHandle.OnPlay(audioClipNumber);
     }
 }

@@ -1,21 +1,28 @@
+using Spine.Unity;
 using UnityEngine;
 
 public class SkillUniState: MonoBehaviour, IUnidadState
 {
+    [Header("Settings")]
+    [SerializeField] private SkeletonAnimation skeletonAnimation;
+    [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
+
+    private Spine.Animation playAnimation;
+
     public Unidad Unit
     {
         get;
         set;
     }
-    public Animator Animator
+
+    private void Awake()
     {
-        get;
-        set;
+        playAnimation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
     }
 
     public void OnEnter()
     {
-        Animator.Play("Skill _0");
+        skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
     }
 
     public void OnUpdate()
