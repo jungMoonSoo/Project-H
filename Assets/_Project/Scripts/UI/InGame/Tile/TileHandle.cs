@@ -16,7 +16,7 @@ public class TileHandle : MonoBehaviour
 
     public void RemoveUnit()
     {
-        Destroy(Unit);
+        Destroy(Unit.gameObject);
         SetUnit(null);
     }
 
