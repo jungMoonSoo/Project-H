@@ -98,6 +98,7 @@ public class Unidad : MonoBehaviour
     void Update()
     {
         nowState?.OnUpdate();
+        CheckModifierCycle();
     }
 
     private void OnDestroy()

@@ -42,6 +42,7 @@ public class ModifierManager
         if (applyModifiers.ContainsKey(modifier)) applyModifiers.Remove(modifier);
 
         modifier.Remove(unidad);
+        removeModifiers.Remove(modifier);
     }
 
     public void Clear()

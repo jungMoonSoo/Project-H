@@ -9,7 +9,7 @@ public class TouchCollider : MonoBehaviour
 
     private BoxCollider2D unitCollider;
 
-    private void Start() => TryGetComponent(out unitCollider);
+    private void Awake() => TryGetComponent(out unitCollider);
 
     public void PickUnit() => unidad.StateChange(UnitState.Pick);
 
