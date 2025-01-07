@@ -14,8 +14,8 @@ public class ModifierManager
     private readonly AttackStatus attackModifierMultiply = new();
     private readonly DefenceStatus defenceModifierMultiply = new();
 
-    private readonly List<IUnitModifier> removeModifiers = new();
-    private readonly Dictionary<IUnitModifier, ModifierInfo> applyModifiers = new();
+    private readonly List<ModifierBase> removeModifiers = new();
+    private readonly Dictionary<ModifierBase, ModifierInfo> applyModifiers = new();
 
     public ModifierManager(Unidad unidad)
     {
@@ -27,7 +27,7 @@ public class ModifierManager
         Clear();
     }
 
-    public void Add(IUnitModifier modifier)
+    public void Add(ModifierBase modifier)
     {
         ModifierInfo modifierInfo = new(Time.time, modifier.CycleCount);
 
@@ -37,7 +37,7 @@ public class ModifierManager
         modifier.Add(unidad);
     }
 
-    public void Remove(IUnitModifier modifier)
+    public void Remove(ModifierBase modifier)
     {
         if (applyModifiers.ContainsKey(modifier)) applyModifiers.Remove(modifier);
 
@@ -46,7 +46,7 @@ public class ModifierManager
 
     public void Clear()
     {
-        foreach (IUnitModifier modifier in applyModifiers.Keys) Remove(modifier);
+        foreach (ModifierBase modifier in applyModifiers.Keys) Remove(modifier);
 
         removeModifiers.Clear();
 
@@ -59,7 +59,7 @@ public class ModifierManager
 
     public void CheckCycle()
     {
-        foreach (IUnitModifier modifier in applyModifiers.Keys)
+        foreach (ModifierBase modifier in applyModifiers.Keys)
         {
             if (applyModifiers[modifier].applyTime > Time.time) continue;
 

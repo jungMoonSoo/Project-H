@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class ModifierBase : ScriptableObject, IUnitModifier
+public abstract class ModifierBase : ScriptableObject
 {
     [SerializeField] private int id;
 

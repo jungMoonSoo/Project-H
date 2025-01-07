@@ -141,9 +141,9 @@ public class Unidad : MonoBehaviour
 
     public void IncreaseMp(float value) => statusManager.mp.Value += (int)(StatusCalc.MP_REGEN * value);
 
-    public void AddModifier(IUnitModifier modifier) => ModifierManager.Add(modifier);
+    public void AddModifier(ModifierBase modifier) => ModifierManager.Add(modifier);
 
-    public void RemoveModifier(IUnitModifier modifier) => ModifierManager.Remove(modifier);
+    public void RemoveModifier(ModifierBase modifier) => ModifierManager.Remove(modifier);
 
     public void ClearModifier() => ModifierManager.Clear();
 
