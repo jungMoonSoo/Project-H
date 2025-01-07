@@ -1,22 +1,28 @@
+using Spine.Unity;
 using UnityEngine;
 
 public class StayUniState : MonoBehaviour, IUnidadState
 {
+    [Header("Settings")]
+    [SerializeField] private SkeletonAnimation skeletonAnimation;
+    [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
+
+    private Spine.Animation playAnimation;
+
     public Unidad Unit
     {
         get;
         set;
     }
 
-    public Animator Animator
+    private void Awake()
     {
-        get;
-        set;
+        playAnimation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
     }
 
     public void OnEnter()
     {
-        Animator.Play("Idle_0");
+        skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
 
         Unit.touchCollider.SetActiveCollider(true);
     }
