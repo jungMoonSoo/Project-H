@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 0
+  status: {fileID: 11400000, guid: df32a647369ec2a46a585ac4aee63585, type: 2}
+  owner: 0
   idleState: {fileID: 8704471131272526149}
   moveState: {fileID: 215734985363013526}
   attackState: {fileID: 3048799924692082891}
@@ -63,7 +64,6 @@ MonoBehaviour:
   touchCollider: {fileID: 5611226495777423036}
   damageUiPosition: {fileID: 0}
   statusUiPosition: {fileID: 0}
-  owner: 0
   audioHandle: {fileID: 3602437712221219532}
   statusBar: {fileID: 0}
 --- !u!1 &215734985363013526

@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class Unidad : MonoBehaviour
 {
-    [SerializeField] private uint id;
+    [Header("Settings")]
+    [SerializeField] private UnidadStatus status;
+    // Unit 종류
+    [SerializeField] private UnitType owner;
     
     [Header("States")]
     // State Script가 있는 GameObject들
@@ -30,10 +33,6 @@ public class Unidad : MonoBehaviour
     [SerializeField] private Transform damageUiPosition; // 
     [SerializeField] private Transform statusUiPosition; // 
 
-    [Header("Settings")]
-    // Unit 종류
-    [SerializeField] private UnitType owner;
-
     public UnitType Owner
     {
         get => owner;
@@ -50,7 +49,7 @@ public class Unidad : MonoBehaviour
     public UnidadAudioHandle audioHandle;
     public UnidadStatusBar statusBar;
 
-    public UnidadStatus Status => UnidadManager.Instance.GetStatus(id);
+    public UnidadStatus Status => status;
     
     public AttackStatus NowAttackStatus => statusManager.AttackStatus;
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
