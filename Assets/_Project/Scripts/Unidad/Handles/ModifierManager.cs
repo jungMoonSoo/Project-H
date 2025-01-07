@@ -30,6 +30,10 @@ public class ModifierManager
         defaultNormalStatus = unidad.Status.normalStatus[unidad.Status.normalStatus.Length > level ? level : unidad.Status.normalStatus.Length - 1];
         defaultAttackStatus = unidad.Status.attackStatus[unidad.Status.attackStatus.Length > level ? level : unidad.Status.attackStatus.Length - 1];
         defaultDefenceStatus = unidad.Status.defenceStatus[unidad.Status.defenceStatus.Length > level ? level : unidad.Status.defenceStatus.Length - 1];
+
+        SetNowNormalStatus();
+        SetNowAttackStatus();
+        SetNowDefenceStatus();
     }
 
     public void Add(ModifierBase modifier)
