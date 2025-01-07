@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 4
   unidadPrefab: {fileID: 4930505331228810306, guid: 9b2a807dd9c8d58458d53d0d97a13e65, type: 3}
-  skillPrefab: {fileID: 0}
+  skillInfo: {fileID: 11400000, guid: afd066ddfe7224846a5a6ddad04aeb32, type: 2}
   maxHp: 100
   maxMp: 100
   moveSpeed: 2
