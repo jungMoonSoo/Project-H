@@ -88,7 +88,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mpSlider: {fileID: 2577179024328576126}
   skillImage: {fileID: 1323236061078374564}
-  caster: {fileID: 0}
 --- !u!1 &4087134452239982399
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,8 +401,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 352914318, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

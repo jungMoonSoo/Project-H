@@ -6,7 +6,7 @@ public abstract class SkillInfoBase : ScriptableObject
 {
     [Header("Skill Info")]
     [SerializeField] public uint code;
-    [SerializeField] public string name;
+    [SerializeField] public string skillName;
     [SerializeField] public Sprite sprite;
     
     [Header("Target Info")]

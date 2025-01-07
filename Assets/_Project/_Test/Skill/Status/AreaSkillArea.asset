@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: AreaSkillArea
   m_EditorClassIdentifier: 
   areaImage: {fileID: 21300000, guid: 249a516ddc0a4aa468d1bd1d850e2b2a, type: 3}
+  areaSize: {x: 5, y: 2}
   skillAreaType: 0
