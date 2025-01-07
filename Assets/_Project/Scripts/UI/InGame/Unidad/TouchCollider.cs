@@ -13,7 +13,7 @@ public class TouchCollider : MonoBehaviour
 
     public void PickUnit() => unidad.StateChange(UnitState.Pick);
 
-    public void DropUnit() => unidad.StateChange(UnitState.Stay);
+    public void DropUnit() => unidad.StateChange(UnitState.Ready);
 
     public void SetUnitPos(Vector2 pos) => unidad.transform.position = pos;
 
