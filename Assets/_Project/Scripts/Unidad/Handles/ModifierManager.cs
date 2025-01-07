@@ -5,14 +5,13 @@ public class ModifierManager
 {
     private readonly Unidad unidad;
 
-    private readonly AttackStatus attackStatus;
-    private readonly DefenceStatus defenceStatus;
+    private readonly NormalStatus nowNormalStatus = new();
+    private readonly AttackStatus nowAttackStatus = new();
+    private readonly DefenceStatus nowDefenceStatus = new();
 
-    private readonly AttackStatus attackModifier = new();
-    private readonly DefenceStatus defenceModifier = new();
-
-    private readonly AttackStatus attackModifierMultiply = new();
-    private readonly DefenceStatus defenceModifierMultiply = new();
+    public NormalStatus NowNormalStatus => nowNormalStatus;
+    public AttackStatus NowAttackStatus => nowAttackStatus;
+    public DefenceStatus NowDefenceStatus => nowDefenceStatus;
 
     private readonly List<ModifierBase> removeModifiers = new();
     private readonly Dictionary<ModifierBase, ModifierInfo> applyModifiers = new();
@@ -21,10 +20,16 @@ public class ModifierManager
     {
         this.unidad = unidad;
 
-        attackStatus = unidad.Status.attackStatus;
-        defenceStatus = unidad.Status.defenceStatus;
-
         Clear();
+    }
+
+    public void SetUnitDefaltStatus(int level)
+    {
+        if (level < 0) level = 0;
+
+        defaultNormalStatus = unidad.Status.normalStatus[unidad.Status.normalStatus.Length > level ? level : unidad.Status.normalStatus.Length - 1];
+        defaultAttackStatus = unidad.Status.attackStatus[unidad.Status.attackStatus.Length > level ? level : unidad.Status.attackStatus.Length - 1];
+        defaultDefenceStatus = unidad.Status.defenceStatus[unidad.Status.defenceStatus.Length > level ? level : unidad.Status.defenceStatus.Length - 1];
     }
 
     public void Add(ModifierBase modifier)
@@ -51,6 +56,11 @@ public class ModifierManager
 
         removeModifiers.Clear();
 
+        SetUnitDefaltStatus(0);
+
+        InitNormalStatus(normalModifier, 0);
+        InitNormalStatus(normalModifierMultiply, 1);
+
         InitAttackStatus(attackModifier, 0);
         InitAttackStatus(attackModifierMultiply, 1);
 
@@ -76,11 +86,22 @@ public class ModifierManager
     }
 
     #region ◇◇ 스테이터스 적용 ◇◇
+    public void SetModifier(NormalStatus modifierStatus, bool apply) => SetNormalStatus(normalModifier, modifierStatus, apply ? 1 : -1);
     public void SetModifier(AttackStatus modifierStatus, bool apply) => SetAttackStatus(attackModifier, modifierStatus, apply ? 1 : -1);
     public void SetModifier(DefenceStatus modifierStatus, bool apply) => SetDefenceStatus(defenceModifier, modifierStatus, apply ? 1 : -1);
 
+    public void SetModifierMultiply(NormalStatus modifierStatus, bool apply) => SetNormalStatus(normalModifierMultiply, modifierStatus, apply ? 1 : -1);
     public void SetModifierMultiply(AttackStatus modifierStatus, bool apply) => SetAttackStatus(attackModifierMultiply, modifierStatus, apply ? 1 : -1);
     public void SetModifierMultiply(DefenceStatus modifierStatus, bool apply) => SetDefenceStatus(defenceModifierMultiply, modifierStatus, apply ? 1 : -1);
+
+    private void InitNormalStatus(NormalStatus status, int value)
+    {
+        status.maxHp = value;
+        status.maxMp = value;
+
+        status.attackSpeed = value;
+        status.moveSpeed = value;
+    }
 
     private void InitAttackStatus(AttackStatus status, int value)
     {
@@ -123,6 +144,17 @@ public class ModifierManager
         status.darkResistanceBonus = value;
     }
 
+    private void SetNormalStatus(NormalStatus status, NormalStatus modifierStatus, int value)
+    {
+        status.maxHp += modifierStatus.maxHp * value;
+        status.maxMp += modifierStatus.maxMp * value;
+
+        status.attackSpeed += modifierStatus.attackSpeed * value;
+        status.moveSpeed += modifierStatus.moveSpeed * value;
+
+        SetNowNormalStatus();
+    }
+
     private void SetAttackStatus(AttackStatus status, AttackStatus modifierStatus, int value)
     {
         status.magicCriticalProbability += modifierStatus.magicCriticalProbability * value;
@@ -143,6 +175,8 @@ public class ModifierManager
         status.earthDamageBonus += modifierStatus.earthDamageBonus * value;
         status.lightDamageBonus += modifierStatus.lightDamageBonus * value;
         status.darkDamageBonus += modifierStatus.darkDamageBonus * value;
+
+        SetNowAttackStatus();
     }
 
     private void SetDefenceStatus(DefenceStatus status, DefenceStatus modifierStatus, int value)
@@ -162,47 +196,71 @@ public class ModifierManager
         
         status.lightResistanceBonus += modifierStatus.lightResistanceBonus * value;
         status.darkResistanceBonus += modifierStatus.darkResistanceBonus * value;
+
+        SetNowDefenceStatus();
     }
     #endregion
 
     #region ◇◇ 스테이터스 연산 ◇◇
+    private NormalStatus defaultNormalStatus;
+    private AttackStatus defaultAttackStatus;
+    private DefenceStatus defaultDefenceStatus;
 
-    #region ◇◇ 공격 스테이터스 반환 ◇◇
-    public int PhysicalDamage => StatusCalc(attackStatus.physicalDamage, attackModifier.physicalDamage, attackModifierMultiply.physicalDamage);
-    public int MagicDamage => StatusCalc(attackStatus.magicDamage, attackModifier.magicDamage, attackModifierMultiply.magicDamage);
+    private readonly NormalStatus normalModifier = new();
+    private readonly AttackStatus attackModifier = new();
+    private readonly DefenceStatus defenceModifier = new();
 
-    public float PhysicalCriticalDamage => StatusCalc(attackStatus.physicalCriticalDamage, attackModifier.physicalCriticalDamage, attackModifierMultiply.physicalCriticalDamage);
-    public float MagicCriticalDamage => StatusCalc(attackStatus.magicCriticalDamage, attackModifier.magicCriticalDamage, attackModifierMultiply.magicCriticalDamage);
+    private readonly NormalStatus normalModifierMultiply = new();
+    private readonly AttackStatus attackModifierMultiply = new();
+    private readonly DefenceStatus defenceModifierMultiply = new();
 
-    public float PhysicalCriticalProbability => StatusCalc(attackStatus.physicalCriticalProbability, attackModifier.physicalCriticalProbability, attackModifierMultiply.physicalCriticalProbability);
-    public float MagicCriticalProbability => StatusCalc(attackStatus.magicCriticalProbability, attackModifier.magicCriticalProbability, attackModifierMultiply.magicCriticalProbability);
+    private void SetNowNormalStatus()
+    {
+        nowNormalStatus.maxHp = StatusCalc(defaultNormalStatus.maxHp, normalModifier.maxHp, normalModifierMultiply.maxHp);
+        nowNormalStatus.maxMp = StatusCalc(defaultNormalStatus.maxMp, normalModifier.maxMp, normalModifierMultiply.maxMp);
 
-    public float Accuracy => StatusCalc(attackStatus.accuracy, attackModifier.accuracy, attackModifierMultiply.accuracy);
+        nowNormalStatus.attackSpeed = StatusCalc(defaultNormalStatus.attackSpeed, normalModifier.attackSpeed, normalModifierMultiply.attackSpeed);
+        nowNormalStatus.moveSpeed = StatusCalc(defaultNormalStatus.moveSpeed, normalModifier.moveSpeed, normalModifierMultiply.moveSpeed);
+    }
 
-    public float FireDamageBonus => StatusCalc(attackStatus.fireDamageBonus, attackModifier.fireDamageBonus, attackModifierMultiply.fireDamageBonus);
-    public float WaterDamageBonus => StatusCalc(attackStatus.waterDamageBonus, attackModifier.waterDamageBonus, attackModifierMultiply.waterDamageBonus);
-    public float AirDamageBonus => StatusCalc(attackStatus.airDamageBonus, attackModifier.airDamageBonus, attackModifierMultiply.airDamageBonus);
-    public float EarthDamageBonus => StatusCalc(attackStatus.earthDamageBonus, attackModifier.earthDamageBonus, attackModifierMultiply.earthDamageBonus);
-    public float LightDamageBonus => StatusCalc(attackStatus.lightDamageBonus, attackModifier.lightDamageBonus, attackModifierMultiply.lightDamageBonus);
-    public float DarkDamageBonus => StatusCalc(attackStatus.darkDamageBonus, attackModifier.darkDamageBonus, attackModifierMultiply.darkDamageBonus);
-    #endregion
+    private void SetNowAttackStatus()
+    {
+        nowAttackStatus.physicalDamage = StatusCalc(defaultAttackStatus.physicalDamage, attackModifier.physicalDamage, attackModifierMultiply.physicalDamage);
+        nowAttackStatus.magicDamage = StatusCalc(defaultAttackStatus.magicDamage, attackModifier.magicDamage, attackModifierMultiply.magicDamage);
 
-    #region ◇◇ 방어 스테이터스 반환 ◇◇
-    public int PhysicalDefence => StatusCalc(defenceStatus.physicalDefence, defenceModifier.physicalDefence, defenceModifierMultiply.physicalDefence);
-    public int MagicDefence => StatusCalc(defenceStatus.magicDefence, defenceModifier.magicDefence, defenceModifierMultiply.magicDefence);
+        nowAttackStatus.physicalCriticalDamage = StatusCalc(defaultAttackStatus.physicalCriticalDamage, attackModifier.physicalCriticalDamage, attackModifierMultiply.physicalCriticalDamage);
+        nowAttackStatus.magicCriticalDamage = StatusCalc(defaultAttackStatus.magicCriticalDamage, attackModifier.magicCriticalDamage, attackModifierMultiply.magicCriticalDamage);
 
-    public float PhysicalCriticalResistance => StatusCalc(defenceStatus.physicalCriticalResistance, defenceModifier.physicalCriticalResistance, defenceModifierMultiply.physicalCriticalResistance);
-    public float MagicCriticalResistance => StatusCalc(defenceStatus.magicCriticalResistance, defenceModifier.magicCriticalResistance, defenceModifierMultiply.magicCriticalResistance);
+        nowAttackStatus.physicalCriticalProbability = StatusCalc(defaultAttackStatus.physicalCriticalProbability, attackModifier.physicalCriticalProbability, attackModifierMultiply.physicalCriticalProbability);
+        nowAttackStatus.magicCriticalProbability = StatusCalc(defaultAttackStatus.magicCriticalProbability, attackModifier.magicCriticalProbability, attackModifierMultiply.magicCriticalProbability);
 
-    public float DodgeProbability => StatusCalc(defenceStatus.dodgeProbability, defenceModifier.dodgeProbability, defenceModifierMultiply.dodgeProbability);
+        nowAttackStatus.accuracy = StatusCalc(defaultAttackStatus.accuracy, attackModifier.accuracy, attackModifierMultiply.accuracy);
 
-    public float FireResistanceBonus => StatusCalc(defenceStatus.fireResistanceBonus, defenceModifier.fireResistanceBonus, defenceModifierMultiply.fireResistanceBonus);
-    public float WaterResistanceBonus => StatusCalc(defenceStatus.waterResistanceBonus, defenceModifier.waterResistanceBonus, defenceModifierMultiply.waterResistanceBonus);
-    public float AirResistanceBonus => StatusCalc(defenceStatus.airResistanceBonus, defenceModifier.airResistanceBonus, defenceModifierMultiply.airResistanceBonus);
-    public float EarthResistanceBonus => StatusCalc(defenceStatus.earthResistanceBonus, defenceModifier.earthResistanceBonus, defenceModifierMultiply.earthResistanceBonus);
-    public float LightResistanceBonus => StatusCalc(defenceStatus.lightResistanceBonus, defenceModifier.lightResistanceBonus, defenceModifierMultiply.lightResistanceBonus);
-    public float DarkResistanceBonus => StatusCalc(defenceStatus.darkResistanceBonus, defenceModifier.darkResistanceBonus, defenceModifierMultiply.darkResistanceBonus);
-    #endregion
+        nowAttackStatus.fireDamageBonus = StatusCalc(defaultAttackStatus.fireDamageBonus, attackModifier.fireDamageBonus, attackModifierMultiply.fireDamageBonus);
+        nowAttackStatus.waterDamageBonus = StatusCalc(defaultAttackStatus.waterDamageBonus, attackModifier.waterDamageBonus, attackModifierMultiply.waterDamageBonus);
+        nowAttackStatus.airDamageBonus = StatusCalc(defaultAttackStatus.airDamageBonus, attackModifier.airDamageBonus, attackModifierMultiply.airDamageBonus);
+        nowAttackStatus.earthDamageBonus = StatusCalc(defaultAttackStatus.earthDamageBonus, attackModifier.earthDamageBonus, attackModifierMultiply.earthDamageBonus);
+        nowAttackStatus.lightDamageBonus = StatusCalc(defaultAttackStatus.lightDamageBonus, attackModifier.lightDamageBonus, attackModifierMultiply.lightDamageBonus);
+        nowAttackStatus.darkDamageBonus = StatusCalc(defaultAttackStatus.darkDamageBonus, attackModifier.darkDamageBonus, attackModifierMultiply.darkDamageBonus);
+    }
+
+    private void SetNowDefenceStatus()
+    {
+        nowDefenceStatus.physicalDefence = StatusCalc(defaultDefenceStatus.physicalDefence, defenceModifier.physicalDefence, defenceModifierMultiply.physicalDefence);
+        nowDefenceStatus.magicDefence = StatusCalc(defaultDefenceStatus.magicDefence, defenceModifier.magicDefence, defenceModifierMultiply.magicDefence);
+
+        nowDefenceStatus.physicalCriticalResistance = StatusCalc(defaultDefenceStatus.physicalCriticalResistance, defenceModifier.physicalCriticalResistance, defenceModifierMultiply.physicalCriticalResistance);
+        nowDefenceStatus.magicCriticalResistance = StatusCalc(defaultDefenceStatus.magicCriticalResistance, defenceModifier.magicCriticalResistance, defenceModifierMultiply.magicCriticalResistance);
+
+        nowDefenceStatus.dodgeProbability = StatusCalc(defaultDefenceStatus.dodgeProbability, defenceModifier.dodgeProbability, defenceModifierMultiply.dodgeProbability);
+
+        nowDefenceStatus.fireResistanceBonus = StatusCalc(defaultDefenceStatus.fireResistanceBonus, defenceModifier.fireResistanceBonus, defenceModifierMultiply.fireResistanceBonus);
+        nowDefenceStatus.waterResistanceBonus = StatusCalc(defaultDefenceStatus.waterResistanceBonus, defenceModifier.waterResistanceBonus, defenceModifierMultiply.waterResistanceBonus);
+        nowDefenceStatus.airResistanceBonus = StatusCalc(defaultDefenceStatus.airResistanceBonus, defenceModifier.airResistanceBonus, defenceModifierMultiply.airResistanceBonus);
+        nowDefenceStatus.earthResistanceBonus = StatusCalc(defaultDefenceStatus.earthResistanceBonus, defenceModifier.earthResistanceBonus, defenceModifierMultiply.earthResistanceBonus);
+        nowDefenceStatus.lightResistanceBonus = StatusCalc(defaultDefenceStatus.lightResistanceBonus, defenceModifier.lightResistanceBonus, defenceModifierMultiply.lightResistanceBonus);
+        nowDefenceStatus.darkResistanceBonus = StatusCalc(defaultDefenceStatus.darkResistanceBonus, defenceModifier.darkResistanceBonus, defenceModifierMultiply.darkResistanceBonus);
+    }
 
     private int StatusCalc(int a, int b, int c) => (a + b) * c;
 

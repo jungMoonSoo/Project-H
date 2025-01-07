@@ -17,7 +17,7 @@ public class AttackStatus
     public float magicCriticalProbability;
 
     [Header("명중률")]
-    [Range(70, 150)] public float accuracy = 100f;
+    public float accuracy = 100f;
 
     [Header("속성 보너스")]
     public float fireDamageBonus = 80f;

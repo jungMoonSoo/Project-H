@@ -15,17 +15,35 @@ MonoBehaviour:
   id: 3
   unidadPrefab: {fileID: 6670689217314585606, guid: 3a89e23cf540cce49a51a1025de7f1be, type: 3}
   skillInfo: {fileID: 11400000, guid: afd066ddfe7224846a5a6ddad04aeb32, type: 2}
-  maxHp: 100
-  maxMp: 100
-  moveSpeed: 2
-  attackSpeed: 0.5
+  normalStatus:
+  - maxHp: 100
+    maxMp: 100
+    moveSpeed: 0
+    attackSpeed: 0
+  - maxHp: 150
+    maxMp: 100
+    moveSpeed: 0
+    attackSpeed: 0
   attackStatus:
-    physicalDamage: 10
-    magicDamage: 10
-    physicalCriticalDamage: 100
-    magicCriticalDamage: 100
-    physicalCriticalProbability: 0
-    magicCriticalProbability: 0
+  - physicalDamage: 10
+    magicDamage: 15
+    physicalCriticalDamage: 150
+    magicCriticalDamage: 150
+    physicalCriticalProbability: 10
+    magicCriticalProbability: 10
+    accuracy: 100
+    fireDamageBonus: 80
+    waterDamageBonus: 80
+    airDamageBonus: 80
+    earthDamageBonus: 80
+    lightDamageBonus: 80
+    darkDamageBonus: 80
+  - physicalDamage: 15
+    magicDamage: 15
+    physicalCriticalDamage: 150
+    magicCriticalDamage: 150
+    physicalCriticalProbability: 10
+    magicCriticalProbability: 10
     accuracy: 100
     fireDamageBonus: 80
     waterDamageBonus: 80
@@ -34,14 +52,25 @@ MonoBehaviour:
     lightDamageBonus: 80
     darkDamageBonus: 80
   defenceStatus:
-    physicalDefence: 1
+  - physicalDefence: 1
     magicDefence: 1
     physicalCriticalResistance: 0
     magicCriticalResistance: 0
     dodgeProbability: 5
-    fireResistanceBonus: 80
-    waterResistanceBonus: 80
-    airResistanceBonus: 80
-    earthResistanceBonus: 80
-    lightResistanceBonus: 80
-    darkResistanceBonus: 80
+    fireResistanceBonus: 0
+    waterResistanceBonus: 0
+    airResistanceBonus: 0
+    earthResistanceBonus: 0
+    lightResistanceBonus: 0
+    darkResistanceBonus: 0
+  - physicalDefence: 1
+    magicDefence: 1
+    physicalCriticalResistance: 0
+    magicCriticalResistance: 0
+    dodgeProbability: 5
+    fireResistanceBonus: 0
+    waterResistanceBonus: 0
+    airResistanceBonus: 0
+    earthResistanceBonus: 0
+    lightResistanceBonus: 0
+    darkResistanceBonus: 0

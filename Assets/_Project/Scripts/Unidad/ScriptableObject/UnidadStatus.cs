@@ -14,14 +14,11 @@ public class UnidadStatus : ScriptableObject
     public ActionSkillInfo skillInfo;
     
     [Header("기본 스테이터스")]
-    public int maxHp = 100;
-    public int maxMp = 100;
-    [Range(0.25f, float.MaxValue)] public float moveSpeed;
-    [Range(0.5f, 5f)] public float attackSpeed;
+    public NormalStatus[] normalStatus;
 
     [Header("공격 스테이터스")]
-    public AttackStatus attackStatus;
+    public AttackStatus[] attackStatus;
     
     [Header("방어 스테이터스")]
-    public DefenceStatus defenceStatus;
+    public DefenceStatus[] defenceStatus;
 }
