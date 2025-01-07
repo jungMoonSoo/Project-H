@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class UnidadColliderHandle : MonoBehaviour
+public class TouchCollider : MonoBehaviour
 {
     [SerializeField] private Unidad unidad;
 

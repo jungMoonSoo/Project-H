@@ -518,6 +518,7 @@ MonoBehaviour:
   unitCollider: {fileID: 4486281770305180934}
   attackCollider: {fileID: 6786368950808204381}
   skillCollider: {fileID: 1249799360267620588}
+  touchCollider: {fileID: 7692576676035464354}
   damageUiPosition: {fileID: 0}
   statusUiPosition: {fileID: 0}
   owner: 0

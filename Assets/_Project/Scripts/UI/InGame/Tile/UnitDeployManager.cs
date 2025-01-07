@@ -9,7 +9,7 @@ public class UnitDeployManager : MonoBehaviour
     private Vector2 offsetPos;
 
     private TileHandle selectedTile;
-    private UnidadColliderHandle selectedUnit;
+    private TouchCollider selectedUnit;
 
     public List<TileHandle> AllyTiles => allyTiles;
     public List<TileHandle> EnemyTiles => enemyTiles;

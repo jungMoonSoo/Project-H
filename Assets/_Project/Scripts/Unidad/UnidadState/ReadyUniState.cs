@@ -17,6 +17,8 @@ public class ReadyUniState : MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         Animator.Play("Idle_0");
+
+        Unit.touchCollider.SetActiveCollider(false);
     }
 
     public void OnUpdate()

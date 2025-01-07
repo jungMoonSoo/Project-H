@@ -17,6 +17,8 @@ public class StayUniState : MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         Animator.Play("Idle_0");
+
+        Unit.touchCollider.SetActiveCollider(true);
     }
 
     public void OnUpdate()
