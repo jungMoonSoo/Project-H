@@ -5,6 +5,9 @@ using UnityEngine;
 public class DefeatPhaseState : MonoBehaviour, IPhaseState
 {
     [SerializeField] private GameObject gameEndObject;
+    [SerializeField] private GameObject gameVictoryObject;
+    [SerializeField] private GameObject gameDefeatObject;
+    [SerializeField] private GameObject stageClearObject;
     public void OnEnter()
     {
         gameEndObject.SetActive(true);
@@ -25,8 +28,8 @@ public class DefeatPhaseState : MonoBehaviour, IPhaseState
     {
         Debug.Log("[Ui Manager]게임에서 패배하셨습니다.");
 
-        gameEndObject.transform.GetChild(0).gameObject.SetActive(false);
-        gameEndObject.transform.GetChild(1).gameObject.SetActive(true);
-        gameEndObject.transform.GetChild(2).gameObject.SetActive(false);
+        gameVictoryObject.SetActive(false);
+        gameDefeatObject.SetActive(true);
+        stageClearObject.SetActive(false);
     }
 }
