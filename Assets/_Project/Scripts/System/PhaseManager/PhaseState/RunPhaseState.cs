@@ -43,7 +43,8 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        timeInSeconds = 120f;
+        ActionSkillManager.Instance.ClearSkillButtons();
+        timeInSeconds = 0f;
         UpdateTimerText(timeInSeconds);
         StopTimer();
     }
