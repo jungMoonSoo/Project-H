@@ -92,7 +92,7 @@ public class Unidad : MonoBehaviour
 
         foreach (IUnidadState state in states.Values) state.Unit = this;
 
-        StateChange(UnitState.Idle);
+        StateChange(UnitState.Stay);
     }
 
     void Update()
