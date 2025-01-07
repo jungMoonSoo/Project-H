@@ -1,40 +1,25 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "UnitModifier/NormalBuff", fileName = "NewNormalBuff")]
-public class NormalBuffModifier : ScriptableObject, IUnitModifier
+public class NormalBuffModifier : ModifierBase
 {
-    [SerializeField] private int id;
-
-    [SerializeField] private int cycleCount;
-    [SerializeField] private float intervalTime;
-
     [SerializeField] private bool multiply;
 
     [SerializeField] private AttackStatus attackStatus;
     [SerializeField] private DefenceStatus defenceStatus;
 
-    public int Id => id;
-
-    public int CycleCount => cycleCount;
-
-    private float applyTime;
-
-    public virtual void Add(Unidad unidad)
+    public override void Add(Unidad unidad)
     {
-        applyTime = Time.time;
+        base.Add(unidad);
 
         SetModifier(unidad.ModifierManager, true);
     }
 
-    public virtual void Remove(Unidad unidad) => SetModifier(unidad.ModifierManager, false);
-
-    public virtual int Cycle(Unidad unidad)
+    public override void Remove(Unidad unidad)
     {
-        if (applyTime > Time.time) return 0;
+        base.Remove(unidad);
 
-        applyTime = Time.time + intervalTime;
-
-        return 1;
+        SetModifier(unidad.ModifierManager, false);
     }
 
     private void SetModifier(ModifierManager modifierManager, bool apply)

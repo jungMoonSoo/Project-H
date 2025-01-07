@@ -4,6 +4,8 @@ public interface IUnitModifier
 
     public int CycleCount { get; }
 
+    public float IntervalTime { get; }
+
     public void Add(Unidad unidad);
     public void Remove(Unidad unidad);
 

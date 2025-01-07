@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
+using UnityEngine;
 
 public class ModifierManager
 {
@@ -15,7 +15,7 @@ public class ModifierManager
     private readonly DefenceStatus defenceModifierMultiply = new();
 
     private readonly List<IUnitModifier> removeModifiers = new();
-    private readonly Dictionary<IUnitModifier, float> applyModifiers = new();
+    private readonly Dictionary<IUnitModifier, ModifierInfo> applyModifiers = new();
 
     public ModifierManager(Unidad unidad)
     {
@@ -29,8 +29,10 @@ public class ModifierManager
 
     public void Add(IUnitModifier modifier)
     {
-        if (applyModifiers.ContainsKey(modifier)) applyModifiers[modifier] = modifier.CycleCount;
-        else applyModifiers.Add(modifier, modifier.CycleCount);
+        ModifierInfo modifierInfo = new(Time.time, modifier.CycleCount);
+
+        if (applyModifiers.ContainsKey(modifier)) applyModifiers[modifier] = modifierInfo;
+        else applyModifiers.Add(modifier, modifierInfo);
 
         modifier.Add(unidad);
     }
@@ -59,9 +61,12 @@ public class ModifierManager
     {
         foreach (IUnitModifier modifier in applyModifiers.Keys)
         {
-            applyModifiers[modifier] -= modifier.Cycle(unidad);
+            if (applyModifiers[modifier].applyTime > Time.time) continue;
 
-            if (applyModifiers[modifier] <= 0) removeModifiers.Add(modifier);
+            applyModifiers[modifier].applyTime = Time.time + modifier.IntervalTime;
+            applyModifiers[modifier].cycleCount -= modifier.Cycle(unidad);
+
+            if (applyModifiers[modifier].cycleCount <= 0) removeModifiers.Add(modifier);
         }
 
         if (removeModifiers.Count == 0) return;
