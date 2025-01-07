@@ -15,9 +15,6 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject allyInfoObject;
     [SerializeField] private GameObject enemyInfoObject;
 
-    //스테이지 정보 -를 기준으로 앞 뒤 숫자를 받아옴
-    private int frontStageNumber = 0;
-    private int backStageNumber = 0;
 
     //Hold 관련 변수 
     private float pressStartTime;                  //누르기 시작한 시간
@@ -32,7 +29,8 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     public void OnEnter()
     {
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
-        unitDeploymentObject.SetActive(true);
+        unitDeploymentObject.SetActive(false);
+        standardCoreFieldUiObject.SetActive(true);
     }
 
     public void OnUpdate()
@@ -93,28 +91,6 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     public void OnExit()
     {
         enableHolding = false;
-        unitDeploymentObject.SetActive(false);
-    }
-
-    public void BackWindowButton() //뒤로 가기 버튼
-    {
-        Debug.Log("[Ui Manager]뒤로가기 버튼을 눌렸습니다. ");
-    }
-
-    public void StageTextUpdate(int front, int back) //Stage 정보 업데이트 함수 
-    {
-        frontStageNumber = front;
-        backStageNumber = back;
-
-        stageText.text = $"{frontStageNumber} - {backStageNumber}";
-    }
-
-    public void GameEntrance() //게임 입장
-    {
-        standardCoreFieldUiObject.SetActive(true);
-        unitDeploymentObject.SetActive(false);
-        enableHolding = true;
-        Debug.Log("[Ui Manager]field로 전환 됩니다.");
     }
 
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI

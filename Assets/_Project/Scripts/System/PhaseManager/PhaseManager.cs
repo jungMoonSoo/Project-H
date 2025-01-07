@@ -5,6 +5,7 @@ using UnityEngine;
 public class PhaseManager : Singleton<PhaseManager>
 {
     [Header("PhaseStates")]
+    [SerializeField] private GameObject deployPhase;
     [SerializeField] private GameObject readyPhase;
     [SerializeField] private GameObject runPhase;
     [SerializeField] private GameObject victoryPhase;
@@ -19,12 +20,13 @@ public class PhaseManager : Singleton<PhaseManager>
     {
         states = new()
         {
+            { PhaseState.Deploy, deployPhase.GetComponent<IPhaseState>() },
             { PhaseState.Ready, readyPhase.GetComponent<IPhaseState>() },
             { PhaseState.Run, runPhase.GetComponent<IPhaseState>() },
             { PhaseState.Victory, victoryPhase.GetComponent<IPhaseState>() },
             { PhaseState.Defeat, defeatPhase.GetComponent<IPhaseState>() }
         };
-        ChangeState(PhaseState.Ready);
+        ChangeState(PhaseState.Deploy);
     }
 
     private void Update()
@@ -41,10 +43,14 @@ public class PhaseManager : Singleton<PhaseManager>
             nowState.OnEnter();
         }
     }
-
-    public void GameStart() //게임 입장
+    
+    public void ChangeReadyPhase()
+    {
+        ChangeState(PhaseState.Ready);
+    }
+    public void ChangeRunPhase()
     {
         ChangeState(PhaseState.Run);
-        Debug.Log("[Ui Manager]게임이 시작되었습니다.");
     }
+
 }
