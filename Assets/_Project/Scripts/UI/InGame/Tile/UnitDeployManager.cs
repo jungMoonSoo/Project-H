@@ -14,6 +14,8 @@ public class UnitDeployManager : MonoBehaviour
     public List<TileHandle> AllyTiles => allyTiles;
     public List<TileHandle> EnemyTiles => enemyTiles;
 
+    [SerializeField] private LayerMask unitLayerMask;
+
     private void Update()
     {
         // 시작 여부 확인 필요
@@ -31,7 +33,7 @@ public class UnitDeployManager : MonoBehaviour
 
     private void CheckTouch()
     {
-        TouchInfo info = TouchSystem.GetTouch(0);
+        TouchInfo info = TouchSystem.GetTouch(0, unitLayerMask);
 
         switch (info.phase)
         {
@@ -42,7 +44,7 @@ public class UnitDeployManager : MonoBehaviour
                     else
                     {
                         offsetPos = (Vector2)selectedUnit.transform.position - info.pos;
-                        selectedTile = selectedUnit.GetHitComponent<TileHandle>();
+                        selectedTile = selectedUnit.GetHitComponent<TileHandle>(~unitLayerMask);
 
                         selectedUnit.PickUnit();
                     }
@@ -62,7 +64,7 @@ public class UnitDeployManager : MonoBehaviour
 
     private void TouchEnded()
     {
-        TileHandle targetTile = selectedUnit.GetHitComponent<TileHandle>();
+        TileHandle targetTile = selectedUnit.GetHitComponent<TileHandle>(~unitLayerMask);
 
         if (targetTile != null && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();

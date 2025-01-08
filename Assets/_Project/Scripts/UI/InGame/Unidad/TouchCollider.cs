@@ -19,11 +19,11 @@ public class TouchCollider : MonoBehaviour
 
     public void SetActiveCollider(bool _active) => unitCollider.enabled = _active;
 
-    public T GetHitComponent<T>() where T : class
+    public T GetHitComponent<T>(int layerMask = -1) where T : class
     {
         SetActiveCollider(false);
 
-        RaycastHit2D hit = Physics2D.Raycast(unidad.transform.position, Vector2.zero, 1f, ~(1 << gameObject.layer));
+        RaycastHit2D hit = Physics2D.Raycast(unidad.transform.position, Vector2.zero, 1f, layerMask);
 
         SetActiveCollider(true);
 
