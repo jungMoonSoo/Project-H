@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9161589557031616991}
   - component: {fileID: 7197778960654958169}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ReadyState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70249076880513719}
   - component: {fileID: 6196681963358738051}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4154104672724743035}
   - component: {fileID: 5622004571863695912}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PickState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   m_Component:
   - component: {fileID: 605050932154747290}
   - component: {fileID: 1869817982258810327}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AttackState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -198,7 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3467297243727002274}
   - component: {fileID: 4079081491277179909}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SkillState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 5031205723670645443}
   - component: {fileID: 3247490497287625933}
   - component: {fileID: 6604994404387091370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +387,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4340725554588527352}
   - component: {fileID: 6247853046663460700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MoveState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +434,7 @@ GameObject:
   - component: {fileID: 8545936320092667090}
   - component: {fileID: 2675353681074063072}
   - component: {fileID: 3192946597709317300}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TouchCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 6975630875545344147}
   - component: {fileID: 1581384712131523899}
   - component: {fileID: 8129655833158462561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -651,7 +651,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4387403226647942060}
   - component: {fileID: 1528403023922974188}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SkillCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1692906242187001485}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -732,7 +732,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3063804284255676604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4115152502929950813}
   - component: {fileID: 7507606756464538347}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: UnitCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +819,7 @@ GameObject:
   m_Component:
   - component: {fileID: 625609432171024588}
   - component: {fileID: 8485755111222732305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StayState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -865,7 +865,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6955789645915495856}
   - component: {fileID: 1476887206705508116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IdleState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -911,7 +911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5016539478356696857}
   - component: {fileID: 2959052554162630870}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Alchemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -977,7 +977,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3874328509222760889}
   - component: {fileID: 1148382631856463687}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DieState
   m_TagString: Untagged
   m_Icon: {fileID: 0}

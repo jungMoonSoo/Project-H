@@ -37,7 +37,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     {
         if (enableHolding)
         {
-            TouchInfo touch = TouchSystem.Instance.GetTouch(0);
+            TouchInfo touch = TouchSystem.GetTouch(0);
 
             switch (touch.phase)
             {

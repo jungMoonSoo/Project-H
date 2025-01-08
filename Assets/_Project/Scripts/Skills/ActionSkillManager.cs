@@ -28,7 +28,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     {
         if (IsUsingSkill)
         {
-            TouchInfo touchInfo = TouchSystem.Instance.GetTouch(0);
+            TouchInfo touchInfo = TouchSystem.GetTouch(0);
             if (touchInfo.count > 0)
             {
                 if (!hasPosition)

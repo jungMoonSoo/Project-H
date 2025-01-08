@@ -23,7 +23,7 @@ public class TouchCollider : MonoBehaviour
     {
         SetActiveCollider(false);
 
-        RaycastHit2D hit = Physics2D.Raycast(unidad.transform.position, Vector2.zero);
+        RaycastHit2D hit = Physics2D.Raycast(unidad.transform.position, Vector2.zero, 1f, ~(1 << gameObject.layer));
 
         SetActiveCollider(true);
 

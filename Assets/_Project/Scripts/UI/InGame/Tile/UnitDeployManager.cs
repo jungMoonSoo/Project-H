@@ -31,7 +31,7 @@ public class UnitDeployManager : MonoBehaviour
 
     private void CheckTouch()
     {
-        TouchInfo info = TouchSystem.Instance.GetTouch(0);
+        TouchInfo info = TouchSystem.GetTouch(0);
 
         switch (info.phase)
         {
