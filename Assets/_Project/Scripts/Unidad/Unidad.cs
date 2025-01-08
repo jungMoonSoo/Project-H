@@ -55,7 +55,6 @@ public class Unidad : MonoBehaviour
     public AttackStatus NowAttackStatus => statusManager.AttackStatus;
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
 
-    public float MoveSpeed => NowNormalStatus.moveSpeed;
     public ModifierManager ModifierManager => statusManager.modifierManager;
 
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;

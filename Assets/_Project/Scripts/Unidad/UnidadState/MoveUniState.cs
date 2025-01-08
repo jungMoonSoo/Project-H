@@ -1,5 +1,4 @@
 using Spine.Unity;
-using System.Linq;
 using UnityEngine;
 
 public class MoveUniState: MonoBehaviour, IUnidadState
@@ -34,7 +33,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
         if ((Vector2)Unit.transform.position != movePos)
         {
-            Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, movePos, Unit.MoveSpeed * Time.deltaTime);
+            Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, movePos, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
 
             return;
         }
@@ -50,7 +49,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
                 Vector2 direction = target.unitCollider.transform.position - transform.position;
 
                 Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
-                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.MoveSpeed * Time.deltaTime);
+                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
             }
             else Unit.StateChange(UnitState.Attack);
         }
