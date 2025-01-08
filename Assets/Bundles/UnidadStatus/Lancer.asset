@@ -18,12 +18,12 @@ MonoBehaviour:
   normalStatus:
   - maxHp: 100
     maxMp: 100
-    moveSpeed: 0
-    attackSpeed: 0
+    moveSpeed: 2
+    attackSpeed: 0.5
   - maxHp: 150
     maxMp: 100
-    moveSpeed: 0
-    attackSpeed: 0
+    moveSpeed: 2
+    attackSpeed: 0.5
   attackStatus:
   - physicalDamage: 10
     magicDamage: 15

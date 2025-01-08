@@ -60,8 +60,6 @@ public class ModifierManager
 
         removeModifiers.Clear();
 
-        SetUnitDefaltStatus(0);
-
         InitNormalStatus(normalModifier, 0);
         InitNormalStatus(normalModifierMultiply, 1);
 
@@ -70,6 +68,8 @@ public class ModifierManager
 
         InitDefenceStatus(defenceModifier, 0);
         InitDefenceStatus(defenceModifierMultiply, 1);
+
+        SetUnitDefaltStatus(0);
     }
 
     public void CheckCycle()
@@ -225,6 +225,7 @@ public class ModifierManager
 
         nowNormalStatus.attackSpeed = StatusCalc(defaultNormalStatus.attackSpeed, normalModifier.attackSpeed, normalModifierMultiply.attackSpeed);
         nowNormalStatus.moveSpeed = StatusCalc(defaultNormalStatus.moveSpeed, normalModifier.moveSpeed, normalModifierMultiply.moveSpeed);
+
     }
 
     private void SetNowAttackStatus()

@@ -50,11 +50,12 @@ public class Unidad : MonoBehaviour
     public UnidadStatusBar statusBar;
 
     public UnidadStatus Status => status;
-    
+
+    public NormalStatus NowNormalStatus => statusManager.NormalStatus;
     public AttackStatus NowAttackStatus => statusManager.AttackStatus;
     public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
 
-    public float MoveSpeed => statusManager.NormalStatus.moveSpeed;
+    public float MoveSpeed => NowNormalStatus.moveSpeed;
     public ModifierManager ModifierManager => statusManager.modifierManager;
 
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
