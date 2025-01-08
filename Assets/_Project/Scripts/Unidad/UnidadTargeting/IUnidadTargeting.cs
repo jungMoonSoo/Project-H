@@ -1,4 +1,4 @@
 public interface IUnidadTargeting
 {
-    public Unidad[] GetTargets(EllipseCollider collider, int count);
+    public Unidad[] GetTargets(UnitType type, EllipseCollider collider, int count);
 }

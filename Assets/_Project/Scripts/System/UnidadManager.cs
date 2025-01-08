@@ -62,8 +62,9 @@ public class UnidadManager : Singleton<UnidadManager>
 
     public void SetUnidad(Unidad unidad, bool add, UnitType type)
     {
+        unidads[type].Remove(unidad);
+
         if (add) unidads[type].Add(unidad);
-        else unidads[type].Remove(unidad);
     }
 
     public UnidadStatus GetStatus(uint id)

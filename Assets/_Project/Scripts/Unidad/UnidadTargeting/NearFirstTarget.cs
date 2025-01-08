@@ -1,12 +1,11 @@
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
-public class NearFirstTarget: MonoBehaviour, IUnidadTargeting
+public class NearFirstTarget : IUnidadTargeting
 {
-    public Unidad[] GetTargets(EllipseCollider collider, int count)
+    public Unidad[] GetTargets(UnitType type, EllipseCollider collider, int count)
     {
-        List<Unidad> result = GameObject.FindObjectsOfType<Unidad>().Where(x => collider.OnEllipseEnter(x.unitCollider)).ToList();
+        List<Unidad> result = new(UnidadManager.Instance.GetUnidads(type, TargetType.They));
+
         result.Sort((x, y) => collider.OnEllipseDepth(x.unitCollider) > collider.OnEllipseDepth(y.unitCollider) ? 1 : -1);
         
         return result.GetRange(0, count).ToArray();

@@ -28,7 +28,7 @@ public static class SkillTypeHub
             SkillAreaType.Single => singleSkillArea,
             SkillAreaType.Linear => linearSkillArea,
             SkillAreaType.Area => ellipseSkillArea,
-            _ => throw new Exception("TargetingSystem Type 미존재."),
+            _ => throw new Exception("SkillArea Type 미존재."),
         };
     }
 }

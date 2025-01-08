@@ -10,6 +10,8 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
     private Spine.Animation playAnimation;
 
+    private UnidadTargetingType targetingType = UnidadTargetingType.Near;
+
     public Unidad Unit
     {
         get;
@@ -37,7 +39,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        Unidad[] enemys = UnidadManager.Instance.GetUnidads(Unit.Owner, TargetType.They).OrderBy(unit => Vector2.Distance((Vector2)unit.transform.position + unit.unitCollider.center, transform.position)).ToArray();
+        Unidad[] enemys = TargetingTypeHub.GetTargetingSystem(targetingType).GetTargets(Unit.Owner, Unit.attackCollider, 1);
 
         if (enemys.Length > 0)
         {
