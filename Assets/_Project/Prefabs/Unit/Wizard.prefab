@@ -629,7 +629,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   status: {fileID: 11400000, guid: 21b68be31ab29ed44b7e1dd6e51898dc, type: 2}
-  owner: 0
+  owner: 1
   idleState: {fileID: 6753772708261956132}
   moveState: {fileID: 4978945154647903674}
   attackState: {fileID: 7572001285581273254}
