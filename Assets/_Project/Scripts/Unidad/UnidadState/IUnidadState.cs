@@ -5,7 +5,8 @@ public interface IUnidadState
         get;
         set;
     }
-    
+
+    public void Init();
     public void OnEnter();
     public void OnUpdate();
     public void OnExit();

@@ -90,7 +90,11 @@ public class Unidad : MonoBehaviour
             { UnitState.Pick, pickState.GetComponent<IUnidadState>() },
         };
 
-        foreach (IUnidadState state in states.Values) state.Unit = this;
+        foreach (IUnidadState state in states.Values)
+        {
+            state.Init();
+            state.Unit = this;
+        }
 
         StateChange(UnitState.Ready);
     }
