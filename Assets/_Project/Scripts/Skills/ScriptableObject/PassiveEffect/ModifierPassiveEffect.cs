@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Skill/PassiveEffect/BuffPassiveEffect", fileName = "NewBuffPassiveEffect")]
+[CreateAssetMenu(menuName = "Skill/PassiveEffect/ModifierPassiveEffect", fileName = "NewModifierPassiveEffect")]
 public class ModifierPassiveEffect: PassiveEffectBase
 {
     [SerializeField] private ModifierBase modifier;
