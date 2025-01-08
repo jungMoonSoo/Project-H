@@ -26,7 +26,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         set;
     }
 
-    private void Awake()
+    public void Init()
     {
         playAnimation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
 
