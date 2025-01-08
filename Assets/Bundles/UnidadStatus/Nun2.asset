@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 2
   unidadPrefab: {fileID: 3818699146757874092, guid: 0fe5e04a792b95e43bbf79e39da18355, type: 3}
-  skillInfo: {fileID: 11400000, guid: afd066ddfe7224846a5a6ddad04aeb32, type: 2}
+  skillInfo: {fileID: 11400000, guid: 470361cfa7d48ca4096f689519a12c8c, type: 2}
   normalStatus:
   - maxHp: 100
     maxMp: 100

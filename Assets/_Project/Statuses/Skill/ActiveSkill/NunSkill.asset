@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f21600fdc224138b4485b2947002e95, type: 3}
-  m_Name: LancerSkill
+  m_Name: NunSkill
   m_EditorClassIdentifier: 
-  code: 0
-  skillName: LancerSkill
-  sprite: {fileID: -99174080, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
-  targetType: 0
-  targetingSystemType: 1
+  code: 2
+  skillName: NunSkill
+  sprite: {fileID: 301113313, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
+  targetType: 1
+  targetingSystemType: 0
   effectPrefab: {fileID: 3792025657868637557, guid: 630f992fdf1c0e9428f00625867e0e71, type: 3}
   skillArea: {fileID: 11400000, guid: 9379cfc23636c2841a93984874734112, type: 2}
