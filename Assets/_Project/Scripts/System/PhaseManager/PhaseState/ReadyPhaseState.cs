@@ -21,6 +21,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     private bool isPressing = false;               //누르는 상태 여부 
     private const float longPressThreshold = 0.5f; //길게 누르기 판정 시간 
     private GameObject targetUnit = null;          //눌린 타일 
+    [SerializeField] private LayerMask unitLayerMask; //UnitLayerMask
 
     private Vector2 initialTouchPosition; // 터치 시작 위치
     private const float stationaryThreshold = 1.0f; // 이동 허용 범위 (픽셀 단위)
@@ -28,6 +29,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     private bool enableHolding = false;
     public void OnEnter()
     {
+        enableHolding = true;
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
         unitDeploymentObject.SetActive(false);
         standardCoreFieldUiObject.SetActive(true);
@@ -37,7 +39,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     {
         if (enableHolding)
         {
-            TouchInfo touch = TouchSystem.GetTouch(0);
+            TouchInfo touch = TouchSystem.GetTouch(0, unitLayerMask);
 
             switch (touch.phase)
             {
