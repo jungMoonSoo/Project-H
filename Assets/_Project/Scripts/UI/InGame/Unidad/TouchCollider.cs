@@ -26,7 +26,7 @@ public class TouchCollider : MonoBehaviour
         return component;
     }
 
-    public void TryGetHitComponent<T>(out T component,int layerMask = -1) where T : class
+    public bool TryGetHitComponent<T>(out T component,int layerMask = -1) where T : class
     {
         SetActiveCollider(false);
 
@@ -34,8 +34,10 @@ public class TouchCollider : MonoBehaviour
 
         SetActiveCollider(true);
 
-        if (hit.collider != null && hit.collider.TryGetComponent(out component)) return;
+        if (hit.collider != null && hit.collider.TryGetComponent(out component)) return true;
 
         component = null;
+
+        return false;
     }
 }

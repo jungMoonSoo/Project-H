@@ -64,9 +64,7 @@ public class UnitDeployManager : MonoBehaviour
 
     private void TouchEnded()
     {
-        selectedUnit.TryGetHitComponent(out TileHandle targetTile, ~unitLayerMask);
-
-        if (targetTile != null && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
+        if (selectedUnit.TryGetHitComponent(out TileHandle targetTile, ~unitLayerMask) && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();
 
         selectedUnit.DropUnit();
