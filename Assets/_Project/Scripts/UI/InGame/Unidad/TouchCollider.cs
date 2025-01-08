@@ -21,14 +21,21 @@ public class TouchCollider : MonoBehaviour
 
     public T GetHitComponent<T>(int layerMask = -1) where T : class
     {
+        TryGetHitComponent(out T component, layerMask);
+
+        return component;
+    }
+
+    public void TryGetHitComponent<T>(out T component,int layerMask = -1) where T : class
+    {
         SetActiveCollider(false);
 
         RaycastHit2D hit = Physics2D.Raycast(unidad.transform.position, Vector2.zero, 1f, layerMask);
 
         SetActiveCollider(true);
 
-        if (hit.collider != null && hit.collider.TryGetComponent(out T component)) return component;
+        if (hit.collider != null && hit.collider.TryGetComponent(out component)) return;
 
-        return null;
+        component = null;
     }
 }

@@ -44,7 +44,7 @@ public class UnitDeployManager : MonoBehaviour
                     else
                     {
                         offsetPos = (Vector2)selectedUnit.transform.position - info.pos;
-                        selectedTile = selectedUnit.GetHitComponent<TileHandle>(~unitLayerMask);
+                        selectedUnit.TryGetHitComponent(out selectedTile, ~unitLayerMask);
 
                         selectedUnit.PickUnit();
                     }
@@ -64,7 +64,7 @@ public class UnitDeployManager : MonoBehaviour
 
     private void TouchEnded()
     {
-        TileHandle targetTile = selectedUnit.GetHitComponent<TileHandle>(~unitLayerMask);
+        selectedUnit.TryGetHitComponent(out TileHandle targetTile, ~unitLayerMask);
 
         if (targetTile != null && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();
