@@ -22,7 +22,7 @@ public class DieUniState: MonoBehaviour, IUnidadState
 
     public void OnEnter()
     {
-        
+        Destroy(Unit.gameObject);
     }
 
     public void OnUpdate()
