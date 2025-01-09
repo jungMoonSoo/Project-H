@@ -4,37 +4,30 @@ public class TileHandle : MonoBehaviour
 {
     [SerializeField] private UnitType type;
 
-    public Unidad Unit { get; private set; }
+    private Unidad unit;
+    public Unidad Unit
+    {
+        get => unit;
+        set
+        {
+            unit = value;
+
+            if (value != null) ReturnPos();
+        }
+    }
 
     public UnitType Type => type;
 
     public void Start() => UnitDeployManager.Instance.SetTile(this, true, type);
 
-    public void SetUnit(Unidad unit)
-    {
-        Unit = unit;
-
-        if (Unit != null) ReturnPos();
-    }
-
     public void RemoveUnit()
     {
         Destroy(Unit.gameObject);
-        SetUnit(null);
+
+        Unit = null;
     }
 
-    public void SwapUnits(TileHandle tile)
-    {
-        Unidad unit = null;
-
-        if (tile != null)
-        {
-            unit = tile.Unit;
-            tile.SetUnit(Unit);
-        }
-
-        SetUnit(unit);
-    }
+    public void SwapUnits(TileHandle tile) => (Unit, tile.Unit) = (tile.Unit, Unit);
 
     public void ReturnPos()
     {
