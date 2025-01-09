@@ -429,6 +429,7 @@ MonoBehaviour:
   hitPoint: 
   soundPoint: 
   audioClipNumber: 0
+  attackPoint: 0.5
 --- !u!1 &3646364143418404346
 GameObject:
   m_ObjectHideFlags: 0
