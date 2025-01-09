@@ -90,7 +90,6 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
             if (tileHandler[i].Unit != null)
             {
                 ActionSkillManager.Instance.AddSkillButton(tileHandler[i].Unit);
-                ActionSkillManager.Instance.OnSelect(tileHandler[i].Unit);
                 Debug.Log("[Ui Manager]스킬을 배정하였습니다.");
             }
         }
