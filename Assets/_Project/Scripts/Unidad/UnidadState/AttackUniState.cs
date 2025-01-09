@@ -62,9 +62,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        Unidad[] enemys = unidadTargeting.GetTargets(Unit.Owner, Unit.attackCollider, 1);
-
-        if (enemys.Length > 0)
+        if (unidadTargeting.TryGetTargets(out Unidad[] enemys, Unit.Owner, Unit.attackCollider, 1))
         {
             target = enemys[0];
             Vector2 direction = target.unitCollider.transform.position - transform.position;
