@@ -1,34 +1,44 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitDeployManager : MonoBehaviour
+public class UnitDeployManager : Singleton<UnitDeployManager>
 {
-    [SerializeField] private List<TileHandle> allyTiles;
-    [SerializeField] private List<TileHandle> enemyTiles;
+    private readonly Dictionary<UnitType, List<TileHandle>> tiles = new();
 
     private Vector2 offsetPos;
 
     private TileHandle selectedTile;
     private TouchCollider selectedUnit;
 
-    public List<TileHandle> AllyTiles => allyTiles;
-    public List<TileHandle> EnemyTiles => enemyTiles;
-
+    [Header("설정")]
+    [SerializeField] private UnitType selectableType;
     [SerializeField] private LayerMask unitLayerMask;
 
-    private void Update()
+    void Awake()
     {
-        // 시작 여부 확인 필요
-
-        CheckTouch();
+        foreach (UnitType type in Enum.GetValues(typeof(UnitType))) tiles.Add(type, new());
     }
 
-    public void ToggleTile() => SetTileActiveState(false);
+    private void Update() => CheckTouch();
 
-    private void SetTileActiveState(bool isActive)
+    public void SetTile(TileHandle tile, bool add, UnitType type)
     {
-        for (int i = 0; i < AllyTiles.Count; i++) AllyTiles[i].SetActive(isActive);
-        for (int i = 0; i < EnemyTiles.Count; i++) EnemyTiles[i].SetActive(isActive);
+        tiles[type].Remove(tile);
+
+        if (add) tiles[type].Add(tile);
+
+        tiles[type].Sort((a, b) => a.name.CompareTo(b.name));
+    }
+
+    public List<TileHandle> GetTiles(UnitType type) => tiles[type];
+
+    public void SetAllTileActive(bool isActive)
+    {
+        foreach (List<TileHandle> tiles in tiles.Values)
+        {
+            foreach (TileHandle tile in tiles) tile.SetActive(isActive);
+        }
     }
 
     private void CheckTouch()
@@ -64,7 +74,7 @@ public class UnitDeployManager : MonoBehaviour
 
     private void TouchEnded()
     {
-        if (selectedUnit.TryGetHitComponent(out TileHandle targetTile, ~unitLayerMask) && targetTile.IsSelectable) selectedTile.SwapUnits(targetTile);
+        if (selectedUnit.TryGetHitComponent(out TileHandle targetTile, ~unitLayerMask) && targetTile.Type == selectableType) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();
 
         selectedUnit.DropUnit();

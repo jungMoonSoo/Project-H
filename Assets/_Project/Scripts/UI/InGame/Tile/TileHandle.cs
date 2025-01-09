@@ -2,10 +2,13 @@ using UnityEngine;
 
 public class TileHandle : MonoBehaviour
 {
-    [SerializeField] private bool isSelectable;
+    [SerializeField] private UnitType type;
 
     public Unidad Unit { get; private set; }
-    public bool IsSelectable => isSelectable;
+
+    public UnitType Type => type;
+
+    public void Start() => UnitDeployManager.Instance.SetTile(this, true, type);
 
     public void SetUnit(Unidad unit)
     {

@@ -54,7 +54,7 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
     {
         if (currentUnitNumber < maxUnitNumber)
         {
-            unitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(num), 0, true);
+            unitManagerObject.GetComponent<UnidadSpawnManager>().SpawnAllyUnit(num);
             currentUnitNumber++;
             UnitDeployTextUpdate(currentUnitNumber);
         }

@@ -26,9 +26,9 @@ public class UnidadManager : Singleton<UnidadManager>
     
     public void ChangeAllUnitState(UnitState state)
     {
-        foreach (List<Unidad> unidadList in unidads.Values)
+        foreach (List<Unidad> unidads in unidads.Values)
         {
-            foreach (Unidad unidad in unidadList) unidad.StateChange(state);
+            foreach (Unidad unidad in unidads) unidad.StateChange(state);
         }
     }
 

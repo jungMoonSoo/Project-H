@@ -38,8 +38,8 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         standardCoreFieldUiObject.SetActive(true);
 
         //TEST
-        UnitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(10000), 0, false);
-        UnitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(10001), 0, false);
+        UnitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(10000), 0, UnitType.Enemy);
+        UnitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(10001), 0, UnitType.Enemy);
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
     }
 
