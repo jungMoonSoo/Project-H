@@ -772,6 +772,10 @@ PrefabInstance:
       value: Standard core
       objectReference: {fileID: 0}
     - target: {fileID: 5001226746251998376, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: UnitManagerObject
+      value: 
+      objectReference: {fileID: 2104298220}
+    - target: {fileID: 5001226746251998376, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
       propertyPath: unitLayerMask.m_Bits
       value: 64
       objectReference: {fileID: 0}

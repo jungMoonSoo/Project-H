@@ -10,6 +10,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject waveObject;
     [SerializeField] private GameObject unitDeploymentObject;
     [SerializeField] private Text stageText;
+    [SerializeField] private GameObject UnitManagerObject;
 
     [Header("Information 연결")]
     [SerializeField] private GameObject allyInfoObject;
@@ -33,6 +34,11 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
         unitDeploymentObject.SetActive(false);
         standardCoreFieldUiObject.SetActive(true);
+
+        //TEST
+        UnitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(10000), 0, false);
+        UnitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(UnidadManager.Instance.GetStatus(10001), 0, false);
+        UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
     }
 
     public void OnUpdate()
