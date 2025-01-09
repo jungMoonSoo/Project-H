@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject unitDeploymentObject;
     [SerializeField] private Text stageText;
     [SerializeField] private GameObject UnitManagerObject;
+    [SerializeField] private GameObject TilesObject;
 
     [Header("Information 연결")]
     [SerializeField] private GameObject allyInfoObject;
@@ -99,6 +101,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     public void OnExit()
     {
         enableHolding = false;
+        TilesObject.SetActive(false);
     }
 
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
