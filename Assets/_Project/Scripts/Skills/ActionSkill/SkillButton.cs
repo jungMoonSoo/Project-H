@@ -21,6 +21,10 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             _Caster = value;
             actionSkill = value.Status.skillInfo;
             skillImage.sprite = actionSkill.sprite;
+
+            mpSlider.maxValue = _Caster.NowNormalStatus.maxMp;
+            _Caster.Mp.SetCallback(UpdateMpSlider, SetCallbackType.Add);
+            UpdateMpSlider(_Caster.Mp.Value);
         }
     }
     private Unidad _Caster;
@@ -28,6 +32,10 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     
     private ActionSkillInfo actionSkill = null;
 
+    private void UpdateMpSlider(int currentMp)
+    {
+        mpSlider.value = currentMp;
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
