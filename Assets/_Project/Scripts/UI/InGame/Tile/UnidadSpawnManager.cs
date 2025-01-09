@@ -59,7 +59,7 @@ public class UnidadSpawnManager : MonoBehaviour
 
         Unidad unit = Instantiate(unidadStatus.unidadPrefab, parent).GetComponent<Unidad>();
 
-        tiles[tileId].SetUnit(unit);
+        tiles[tileId].Unit = unit;
 
         if (unit != null)
         {
