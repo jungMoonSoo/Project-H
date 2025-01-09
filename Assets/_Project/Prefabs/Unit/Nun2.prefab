@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   center: {x: 0, y: 0}
-  size: {x: 6, y: 3}
+  size: {x: 9, y: 4.5}
 --- !u!1 &841806244704469025
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,6 +795,7 @@ MonoBehaviour:
   hitPoint: 
   soundPoint: 
   audioClipNumber: -1
+  attackPoint: 0.5
 --- !u!1 &9026691515988758857
 GameObject:
   m_ObjectHideFlags: 0
