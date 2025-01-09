@@ -4,21 +4,29 @@ using UnityEngine;
 public class AttackUniState: MonoBehaviour, IUnidadState
 {
     [Header("Settings")]
+
+    #region ◇ Spine Settings ◇
     [SerializeField] private SkeletonAnimation skeletonAnimation;
     [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
 
     [SerializeField, SpineEvent(dataField: "skeletonAnimation")] private string hitPoint;
     [SerializeField, SpineEvent(dataField: "skeletonAnimation")] private string soundPoint;
 
-    [SerializeField] private int audioClipNumber = -1;
-
     private Spine.Animation playAnimation;
 
     private Spine.EventData hitEvent;
     private Spine.EventData soundEvent;
+    #endregion
+
+    [SerializeField] private int audioClipNumber = -1;
+    [SerializeField] private float attackPoint = 0.5f;
+
+    private bool attack;
 
     private Unidad target;
+
     private UnidadTargetingType targetingType = UnidadTargetingType.Near;
+    private IUnidadTargeting unidadTargeting;
 
     public Unidad Unit
     {
@@ -39,6 +47,8 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
+
+        unidadTargeting = TargetingTypeHub.GetTargetingSystem(targetingType);
     }
 
     public void OnUpdate()
@@ -52,7 +62,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        Unidad[] enemys = TargetingTypeHub.GetTargetingSystem(targetingType).GetTargets(Unit.Owner, Unit.attackCollider, 1);
+        Unidad[] enemys = unidadTargeting.GetTargets(Unit.Owner, Unit.attackCollider, 1);
 
         if (enemys.Length > 0)
         {
@@ -60,6 +70,17 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             Vector2 direction = target.unitCollider.transform.position - transform.position;
 
             Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
+
+            if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackPoint)
+            {
+                if (!attack)
+                {
+                    unidadTargeting.OnEvent(Unit, target);
+
+                    attack = true;
+                }
+            }
+            else attack = false;
 
             if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.StateChange(UnitState.Move);
         }
@@ -73,16 +94,8 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
     {
-        if (e.Data == hitEvent) CheckAttackPoint();
+        if (e.Data == hitEvent) unidadTargeting.OnEvent(Unit, target);
         else if (e.Data == soundEvent) PlaySound();
-    }
-
-    private void CheckAttackPoint()
-    {
-        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unit.NowAttackStatus, target.NowDefenceStatus, 100, 0, ElementType.None);
-        target.OnDamage((int)callback.value, callback.type);
-
-        Unit.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
     }
 
     private void PlaySound()
