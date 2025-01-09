@@ -20,8 +20,10 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     [SerializeField] private int audioClipNumber = -1;
     [SerializeField] private float attackPoint = 0.5f;
+    [SerializeField] private float attackSoundPoint = 0.5f;
 
     private bool attack;
+    private bool sound;
 
     private Unidad target;
 
@@ -79,6 +81,17 @@ public class AttackUniState: MonoBehaviour, IUnidadState
                 }
             }
             else attack = false;
+
+            if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackSoundPoint)
+            {
+                if (!sound)
+                {
+                    PlaySound();
+
+                    sound = true;
+                }
+            }
+            else sound = false;
 
             if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.StateChange(UnitState.Move);
         }
