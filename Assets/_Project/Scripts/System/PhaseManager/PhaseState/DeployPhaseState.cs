@@ -9,13 +9,13 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject waveObject;
     [SerializeField] private GameObject unitDeploymentObject;
     [SerializeField] private Text stageText;
-    [SerializeField] private GameObject TilesObject;
 
     private int frontStageNumber = 0;
     private int backStageNumber = 0;
     public void OnEnter()
     {
-        TilesObject.SetActive(true);
+        UnitDeployManager.Instance.SetAllTileActive(true);
+
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
         standardCoreFieldUiObject.SetActive(false);
         unitDeploymentObject.SetActive(true);

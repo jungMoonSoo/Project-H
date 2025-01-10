@@ -12,7 +12,6 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject unitDeploymentObject;
     [SerializeField] private Text stageText;
     [SerializeField] private GameObject UnitManagerObject;
-    [SerializeField] private GameObject TilesObject;
 
     [Header("Information 연결")]
     [SerializeField] private GameObject allyInfoObject;
@@ -101,7 +100,8 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     public void OnExit()
     {
         enableHolding = false;
-        TilesObject.SetActive(false);
+
+        UnitDeployManager.Instance.SetAllTileActive(false);
     }
 
     private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
@@ -126,11 +126,11 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     {
         if (allyInfoObject.activeSelf)
         {
-            allyInfoObject.gameObject.SetActive(false);
+            allyInfoObject.SetActive(false);
         }
         else if (enemyInfoObject.activeSelf)
         {
-            enemyInfoObject.gameObject.SetActive(false);
+            enemyInfoObject.SetActive(false);
         }
     }
 }

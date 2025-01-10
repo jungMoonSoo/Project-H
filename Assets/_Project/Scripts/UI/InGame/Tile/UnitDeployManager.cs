@@ -22,6 +22,34 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
 
     private void Update() => CheckTouch();
 
+    public void RemoveSpawnUnit(uint unitId)
+    {
+        UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
+
+        foreach (List<TileHandle> tiles in tiles.Values)
+        {
+            foreach (TileHandle tile in tiles)
+            {
+                if (tile.Unit.Status == unidadStatus) tile.RemoveUnit();
+            }
+        }
+    }
+
+    public List<Unidad> GetSpawnUnits()
+    {
+        List<Unidad> units = new();
+
+        foreach (List<TileHandle> tiles in tiles.Values)
+        {
+            foreach (TileHandle tile in tiles)
+            {
+                if (tile.Unit != null) units.Add(tile.Unit);
+            }
+        }
+
+        return units;
+    }
+
     public void SetTile(TileHandle tile, bool add, UnitType type)
     {
         tiles[type].Remove(tile);

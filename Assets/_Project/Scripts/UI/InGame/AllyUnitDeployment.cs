@@ -13,9 +13,6 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
     [Header("Unit 관리 메니져")]
     [SerializeField] private GameObject unitManagerObject;
 
-    [Header("Ally Tile Handle")]
-    [SerializeField] private TileHandle[] tileHandler;
-
     private int currentUnitNumber = 1; //현재 필드에 있는 unit 수
     private int maxUnitNumber = 5;     //필드 최대 unit 수
 
@@ -65,33 +62,16 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
         }
     }
 
-    void DestroyUnit(uint num) //Unit 삭제 => 삭제 메세드 
-    {
-        for (int i = 0; i < tileHandler.Length; i++)
-        {
-            if (tileHandler[i].Unit != null)
-            {
-                if (tileHandler[i].Unit.Status == UnidadManager.Instance.GetStatus(num))
-                {
-                    currentUnitNumber -= 1;
-                    Destroy(tileHandler[i].Unit.gameObject);
-                    tileHandler[i].RemoveUnit();
-                    Debug.Log("[Ui Manager]해당 유닛을 제거하였습니다.");
-                    break;
-                }
-            }
-        }
-    }
+    void DestroyUnit(uint num) => UnitDeployManager.Instance.RemoveSpawnUnit(num);
 
     public void SkillConnect()
     {
-        for (int i = 0; i < tileHandler.Length; i++)
+        List<Unidad> unidads = UnitDeployManager.Instance.GetSpawnUnits();
+
+        for (int i = 0; i < unidads.Count; i++)
         {
-            if (tileHandler[i].Unit != null)
-            {
-                ActionSkillManager.Instance.AddSkillButton(tileHandler[i].Unit);
-                Debug.Log("[Ui Manager]스킬을 배정하였습니다.");
-            }
+            ActionSkillManager.Instance.AddSkillButton(unidads[i]);
+            Debug.Log("[Ui Manager]스킬을 배정하였습니다.");
         }
     }
 }
