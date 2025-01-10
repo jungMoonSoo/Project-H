@@ -1230,7 +1230,6 @@ MonoBehaviour:
   unitDeploymentObject: {fileID: 3833788388999534978}
   stageText: {fileID: 7975883782484111467}
   UnitManagerObject: {fileID: 2434950082702788363}
-  TilesObject: {fileID: 0}
   allyInfoObject: {fileID: 3594035859874262073}
   enemyInfoObject: {fileID: 8655994885689485366}
   unitLayerMask:
@@ -2551,6 +2550,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5685625928465756}
   - component: {fileID: 8752766049271105871}
+  - component: {fileID: 1971868061557452378}
   m_Layer: 0
   m_Name: BackGroundImg
   m_TagString: Untagged
@@ -2625,6 +2625,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1971868061557452378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3577885294045883019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96cfd69ac55e9134cace0d42e416e50b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapPos: {x: -0.2, y: -0.9}
+  mapSize: {x: 18, y: 5.6}
 --- !u!1 &3594035859874262073
 GameObject:
   m_ObjectHideFlags: 0
@@ -3311,16 +3325,6 @@ MonoBehaviour:
   maxWarnningObject: {fileID: 3191790104502794303}
   unitNumberText: {fileID: 4629008003417880838}
   unitManagerObject: {fileID: 2434950082702788363}
-  tileHandler:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &5597164636282700058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5851,7 +5855,6 @@ MonoBehaviour:
   waveObject: {fileID: 5919390072395121703}
   unitDeploymentObject: {fileID: 3833788388999534978}
   stageText: {fileID: 7975883782484111467}
-  TilesObject: {fileID: 0}
 --- !u!1 &8796579050432191510
 GameObject:
   m_ObjectHideFlags: 0
