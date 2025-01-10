@@ -50,6 +50,40 @@ MonoBehaviour:
   soundPoint: 
   audioClipNumber: -1
   attackPoint: 0.5
+  attackSoundPoint: 0.5
+--- !u!1 &378648504325869164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4382408847085601971}
+  m_Layer: 6
+  m_Name: Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4382408847085601971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378648504325869164}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4892709537515427125}
+  - {fileID: 9206378180646387357}
+  m_Father: {fileID: 3805329275954542736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &591526671278713739
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +269,37 @@ MonoBehaviour:
   lineColor: {r: 0, g: 0, b: 0, a: 1}
   center: {x: 0, y: 0}
   size: {x: 7, y: 3.5}
+--- !u!1 &1287168689908361697
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9206378180646387357}
+  m_Layer: 6
+  m_Name: Status UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9206378180646387357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287168689908361697}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4382408847085601971}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1333885538496082331
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,6 +346,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4878625194061487093}
   animationName: idel
+--- !u!1 &1372132054611609142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4892709537515427125}
+  m_Layer: 6
+  m_Name: Text UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4892709537515427125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1372132054611609142}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4382408847085601971}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1374197957882804915
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,6 +629,7 @@ Transform:
   - {fileID: 2821536529220474162}
   - {fileID: 2010591125303877433}
   - {fileID: 7130479440883954267}
+  - {fileID: 4382408847085601971}
   - {fileID: 6079354259179099654}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -562,8 +659,8 @@ MonoBehaviour:
   attackCollider: {fileID: 5004726096515216064}
   skillCollider: {fileID: 497229657999507490}
   touchCollider: {fileID: 6129342343192927101}
-  damageUiPosition: {fileID: 0}
-  statusUiPosition: {fileID: 0}
+  damageUiPosition: {fileID: 4892709537515427125}
+  statusUiPosition: {fileID: 9206378180646387357}
   audioHandle: {fileID: 4648712360873556466}
   statusBar: {fileID: 0}
 --- !u!1 &5129920097593706054

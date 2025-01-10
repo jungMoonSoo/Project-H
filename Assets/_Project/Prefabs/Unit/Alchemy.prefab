@@ -93,6 +93,39 @@ MonoBehaviour:
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   center: {x: 0, y: 0}
   size: {x: 8, y: 4}
+--- !u!1 &1227549364591851410
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4015958737561947288}
+  m_Layer: 6
+  m_Name: Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4015958737561947288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227549364591851410}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1945676781002861287}
+  - {fileID: 3984195991756771338}
+  m_Father: {fileID: 5016539478356696857}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1428637960288460385
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,6 +844,37 @@ MonoBehaviour:
   lineColor: {r: 0, g: 1, b: 0, a: 1}
   center: {x: 0, y: 0}
   size: {x: 2, y: 1}
+--- !u!1 &5087932706992835290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945676781002861287}
+  m_Layer: 6
+  m_Name: Text UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1945676781002861287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5087932706992835290}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4015958737561947288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5295977754918772447
 GameObject:
   m_ObjectHideFlags: 0
@@ -936,6 +1000,7 @@ Transform:
   - {fileID: 6682668842961847250}
   - {fileID: 3063804284255676604}
   - {fileID: 1692906242187001485}
+  - {fileID: 4015958737561947288}
   - {fileID: 5031205723670645443}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -965,10 +1030,41 @@ MonoBehaviour:
   attackCollider: {fileID: 6196681963358738051}
   skillCollider: {fileID: 1528403023922974188}
   touchCollider: {fileID: 3192946597709317300}
-  damageUiPosition: {fileID: 0}
-  statusUiPosition: {fileID: 0}
+  damageUiPosition: {fileID: 1945676781002861287}
+  statusUiPosition: {fileID: 3984195991756771338}
   audioHandle: {fileID: 6604994404387091370}
   statusBar: {fileID: 0}
+--- !u!1 &6864574925046251924
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3984195991756771338}
+  m_Layer: 6
+  m_Name: Status UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3984195991756771338
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6864574925046251924}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4015958737561947288}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7182508872471502846
 GameObject:
   m_ObjectHideFlags: 0

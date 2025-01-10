@@ -219,6 +219,37 @@ MonoBehaviour:
   _animationName: 
   loop: 1
   timeScale: 1
+--- !u!1 &396942284562878547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 299211262487084961}
+  m_Layer: 6
+  m_Name: Status UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &299211262487084961
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396942284562878547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7259141411825872933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &558634896232870310
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +560,7 @@ Transform:
   - {fileID: 6829609566403078499}
   - {fileID: 7946790399229908595}
   - {fileID: 6145630389235008822}
+  - {fileID: 7259141411825872933}
   - {fileID: 2803706465624071266}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -558,8 +590,8 @@ MonoBehaviour:
   attackCollider: {fileID: 1238250414474648499}
   skillCollider: {fileID: 8104387621177777138}
   touchCollider: {fileID: 6906340378737884186}
-  damageUiPosition: {fileID: 0}
-  statusUiPosition: {fileID: 0}
+  damageUiPosition: {fileID: 2148299900033807527}
+  statusUiPosition: {fileID: 299211262487084961}
   audioHandle: {fileID: 7623632101259076590}
   statusBar: {fileID: 0}
 --- !u!1 &3978585670354251226
@@ -609,6 +641,39 @@ MonoBehaviour:
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   center: {x: 0, y: 0}
   size: {x: 3, y: 1.5}
+--- !u!1 &4143973491067587061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7259141411825872933}
+  m_Layer: 6
+  m_Name: Positions
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7259141411825872933
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143973491067587061}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2148299900033807527}
+  - {fileID: 299211262487084961}
+  m_Father: {fileID: 895724413413281411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5168247012214405430
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +708,37 @@ Transform:
   - {fileID: 2120720001456500679}
   - {fileID: 4369544384340895778}
   m_Father: {fileID: 895724413413281411}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7012972880007876563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2148299900033807527}
+  m_Layer: 6
+  m_Name: Text UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2148299900033807527
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7012972880007876563}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7259141411825872933}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7726282508227785987
 GameObject:
@@ -740,6 +836,7 @@ MonoBehaviour:
   soundPoint: 
   audioClipNumber: -1
   attackPoint: 0.5
+  attackSoundPoint: 0.5
 --- !u!1 &8130310277408952869
 GameObject:
   m_ObjectHideFlags: 0
