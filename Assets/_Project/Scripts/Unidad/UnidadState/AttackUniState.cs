@@ -69,7 +69,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             target = enemys[0];
             Vector2 direction = target.unitCollider.transform.position - transform.position;
 
-            Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
+            Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
 
             if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackPoint)
             {

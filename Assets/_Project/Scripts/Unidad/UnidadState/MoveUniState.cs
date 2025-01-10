@@ -49,7 +49,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
             {
                 Vector2 direction = target.unitCollider.transform.position - transform.position;
 
-                Unit.transform.eulerAngles = new Vector2(0, direction.x > 0 ? 180 : 0);
+                Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
                 Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
             }
             else Unit.StateChange(UnitState.Attack);

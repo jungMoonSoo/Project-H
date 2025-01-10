@@ -430,6 +430,7 @@ MonoBehaviour:
   soundPoint: 
   audioClipNumber: 0
   attackPoint: 0.5
+  attackSoundPoint: 0.5
 --- !u!1 &3646364143418404346
 GameObject:
   m_ObjectHideFlags: 0
@@ -550,13 +551,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4158194301593464135}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 408193235041528853}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!33 &2174631365098812195
 MeshFilter:
   m_ObjectHideFlags: 0
