@@ -95,6 +95,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         {
             SkillEffectHandler handler = Instantiate(UsingSkill?.effectPrefab, CastingCaster.transform.position, Quaternion.identity).GetComponent<SkillEffectHandler>();
             handler.Init(CastingCaster, (Vector2)target);
+
+            CastingCaster.ChangeState(UnitState.Skill);
         }
         
         // Skill 제거

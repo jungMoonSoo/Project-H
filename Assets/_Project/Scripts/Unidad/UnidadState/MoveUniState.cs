@@ -52,9 +52,9 @@ public class MoveUniState: MonoBehaviour, IUnidadState
                 Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
                 Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
             }
-            else Unit.StateChange(UnitState.Attack);
+            else Unit.ChangeState(UnitState.Attack);
         }
-        else Unit.StateChange(UnitState.Idle);
+        else Unit.ChangeState(UnitState.Idle);
     }
 
     public void OnExit()

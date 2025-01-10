@@ -28,7 +28,7 @@ public class StatusManager
         hp.Value = NormalStatus.maxHp;
 
         DieEvent += () => hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
-        DieEvent += () => unidad.StateChange(UnitState.Die);
+        DieEvent += () => unidad.ChangeState(UnitState.Die);
     }
     
     public void OnDamage(int damage) => hp.Value -= damage;

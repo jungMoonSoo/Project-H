@@ -29,7 +29,7 @@ public class IdleUniState: MonoBehaviour, IUnidadState
     {
         if (UnidadManager.Instance.GetUnidads(Unit.Owner, TargetType.They).Count > 0)
         {
-            Unit.StateChange(UnitState.Move);
+            Unit.ChangeState(UnitState.Move);
         }
     }
 

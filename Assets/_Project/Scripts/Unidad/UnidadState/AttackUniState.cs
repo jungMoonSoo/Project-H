@@ -59,7 +59,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
         if ((Vector2)Unit.transform.position != movePos)
         {
-            Unit.StateChange(UnitState.Move);
+            Unit.ChangeState(UnitState.Move);
 
             return;
         }
@@ -93,9 +93,9 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             }
             else sound = false;
 
-            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.StateChange(UnitState.Move);
+            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.ChangeState(UnitState.Move);
         }
-        else Unit.StateChange(UnitState.Move);
+        else Unit.ChangeState(UnitState.Move);
     }
 
     public void OnExit()

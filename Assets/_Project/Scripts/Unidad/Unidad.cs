@@ -99,7 +99,7 @@ public class Unidad : MonoBehaviour
             state.Unit = this;
         }
 
-        StateChange(UnitState.Ready);
+        ChangeState(UnitState.Ready);
     }
 
     void Update()
@@ -116,7 +116,7 @@ public class Unidad : MonoBehaviour
     }
     #endregion
 
-    public void StateChange(UnitState state)
+    public void ChangeState(UnitState state)
     {
         if (states.TryGetValue(state, out IUnidadState newState))
         {

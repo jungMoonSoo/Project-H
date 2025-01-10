@@ -22,16 +22,18 @@ public class SkillUniState: MonoBehaviour, IUnidadState
 
     public void OnEnter()
     {
-        skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
+        skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, false).Complete += EndUse;
     }
 
     public void OnUpdate()
     {
-        
+
     }
 
     public void OnExit()
     {
         
     }
+
+    private void EndUse(Spine.TrackEntry trackEntry) => Unit.ChangeState(UnitState.Idle);
 }

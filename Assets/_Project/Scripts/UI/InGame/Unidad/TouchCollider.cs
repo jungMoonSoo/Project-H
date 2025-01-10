@@ -11,9 +11,9 @@ public class TouchCollider : MonoBehaviour
 
     private void Awake() => TryGetComponent(out unitCollider);
 
-    public void PickUnit() => unidad.StateChange(UnitState.Pick);
+    public void PickUnit() => unidad.ChangeState(UnitState.Pick);
 
-    public void DropUnit() => unidad.StateChange(UnitState.Ready);
+    public void DropUnit() => unidad.ChangeState(UnitState.Ready);
 
     public void SetUnitPos(Vector2 pos) => unidad.transform.position = pos;
 
