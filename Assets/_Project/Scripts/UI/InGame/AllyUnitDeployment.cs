@@ -40,15 +40,15 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
     {
         if (!unitSpawn[num])
         {
+            CreateUnit((uint)num);
             unitSpawn[num] = true;
             currentUnitNumber.Value++;
-            CreateUnit((uint)num);
         }
         else
         {
+            DestroyUnit((uint)num);
             unitSpawn[num] = false;
             currentUnitNumber.Value--;
-            DestroyUnit((uint)num);
         }
     }
 

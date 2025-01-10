@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4767147146677785965}
-  animationName: idel
+  animationName: at2
 --- !u!1 &5709028012638895011
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +796,7 @@ MonoBehaviour:
   soundPoint: 
   audioClipNumber: -1
   attackPoint: 0.5
+  attackSoundPoint: 0.5
 --- !u!1 &9026691515988758857
 GameObject:
   m_ObjectHideFlags: 0
