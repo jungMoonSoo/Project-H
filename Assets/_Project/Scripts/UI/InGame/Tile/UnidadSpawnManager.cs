@@ -39,6 +39,8 @@ public class UnidadSpawnManager : MonoBehaviour
 
     public bool SpawnAllyUnit(uint unitId) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, UnitType.Ally);
 
+    public bool SpawnUnit(uint unitId, UnitType owner) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, owner);
+
     public bool Spawn(UnidadStatus unidadStatus, int tileId, UnitType owner)
     {
         List<TileHandle> tiles = UnitDeployManager.Instance.GetTiles(owner);

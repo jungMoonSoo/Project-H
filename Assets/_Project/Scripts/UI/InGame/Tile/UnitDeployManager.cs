@@ -50,7 +50,7 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
             case TouchPhase.Began:
                 if (info.gameObject != null && info.gameObject.TryGetComponent(out selectedUnit))
                 {
-                    if (selectedUnit.UnitType != UnitType.Ally) selectedUnit = null;
+                    if (selectedUnit.UnitType != selectableType) selectedUnit = null;
                     else
                     {
                         offsetPos = (Vector2)selectedUnit.transform.position - info.pos;
