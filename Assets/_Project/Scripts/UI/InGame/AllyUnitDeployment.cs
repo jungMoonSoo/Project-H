@@ -13,36 +13,42 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
     [Header("Unit 관리 메니져")]
     [SerializeField] private GameObject unitManagerObject;
 
-    private int currentUnitNumber = 0; //현재 필드에 있는 unit 수
+    private BindData<int> currentUnitNumber = new(); //현재 필드에 있는 unit 수
     private int maxUnitNumber = 5;     //필드 최대 unit 수
 
     //Unit Spawn 여부 판단 변수(일단 아군 유닛 5종류로 설정)
     private bool[] unitSpawn = new bool[5];
-    public void UnitDeployTextUpdate(int num) //배치 수 업데이트 함수 
+
+    private void Start()
     {
-        currentUnitNumber = num;
-        unitNumberText.text = $"배치수 ({currentUnitNumber} / {maxUnitNumber})";
+        currentUnitNumber.SetCallback(UnitDeployTextUpdate, SetCallbackType.Add);
+
+        maxWarnningObject.SetActive(false);
     }
+
+    public void UnitDeployTextUpdate(int newValue) => unitNumberText.text = $"배치수 ({newValue} / {maxUnitNumber})";
+
     IEnumerator WarningTextPrint() //경고 문구
     {
         maxWarnningObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         maxWarnningObject.SetActive(false);
     }
+
     //Unit 생성&삭제 Button
     public void UnitButton(int num)
     {
         if (!unitSpawn[num])
         {
-            CreateUnit((uint)num);
             unitSpawn[num] = true;
-            currentUnitNumber++;
+            currentUnitNumber.Value++;
+            CreateUnit((uint)num);
         }
         else
         {
-            DestroyUnit((uint)num);
             unitSpawn[num] = false;
-            currentUnitNumber--;
+            currentUnitNumber.Value--;
+            DestroyUnit((uint)num);
         }
     }
 
@@ -50,10 +56,9 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
 
     void CreateUnit(uint num) //Unit 생성 
     {
-        if (currentUnitNumber < maxUnitNumber)
+        if (currentUnitNumber.Value < maxUnitNumber)
         {
             unitManagerObject.GetComponent<UnidadSpawnManager>().SpawnAllyUnit(num);
-            UnitDeployTextUpdate(currentUnitNumber);
         }
         else
         {
