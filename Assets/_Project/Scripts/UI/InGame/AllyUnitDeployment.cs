@@ -13,7 +13,7 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
     [Header("Unit 관리 메니져")]
     [SerializeField] private GameObject unitManagerObject;
 
-    private int currentUnitNumber = 1; //현재 필드에 있는 unit 수
+    private int currentUnitNumber = 0; //현재 필드에 있는 unit 수
     private int maxUnitNumber = 5;     //필드 최대 unit 수
 
     //Unit Spawn 여부 판단 변수(일단 아군 유닛 5종류로 설정)
@@ -66,7 +66,7 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
 
     public void SkillConnect()
     {
-        List<Unidad> unidads = UnitDeployManager.Instance.GetSpawnUnits();
+        List<Unidad> unidads = UnitDeployManager.Instance.GetSpawnUnits(UnitType.Ally);
 
         for (int i = 0; i < unidads.Count; i++)
         {

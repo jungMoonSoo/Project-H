@@ -35,16 +35,13 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
         }
     }
 
-    public List<Unidad> GetSpawnUnits()
+    public List<Unidad> GetSpawnUnits(UnitType type)
     {
         List<Unidad> units = new();
 
-        foreach (List<TileHandle> tiles in tiles.Values)
+        foreach (TileHandle tile in tiles[type])
         {
-            foreach (TileHandle tile in tiles)
-            {
-                if (tile.Unit != null) units.Add(tile.Unit);
-            }
+            if (tile.Unit != null) units.Add(tile.Unit);
         }
 
         return units;
