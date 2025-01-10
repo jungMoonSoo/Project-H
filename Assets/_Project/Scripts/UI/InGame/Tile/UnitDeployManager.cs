@@ -30,7 +30,14 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
         {
             foreach (TileHandle tile in tiles)
             {
-                if (tile.Unit.Status == unidadStatus) tile.RemoveUnit();
+                if (tile.Unit == null) continue;
+
+                if (tile.Unit.Status == unidadStatus)
+                {
+                    tile.RemoveUnit();
+
+                    return;
+                }
             }
         }
     }

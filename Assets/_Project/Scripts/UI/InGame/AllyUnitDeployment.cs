@@ -32,16 +32,17 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
     //Unit 생성&삭제 Button
     public void UnitButton(int num)
     {
-        
         if (!unitSpawn[num])
         {
             CreateUnit((uint)num);
             unitSpawn[num] = true;
+            currentUnitNumber++;
         }
         else
         {
             DestroyUnit((uint)num);
             unitSpawn[num] = false;
+            currentUnitNumber--;
         }
     }
 
@@ -52,7 +53,6 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
         if (currentUnitNumber < maxUnitNumber)
         {
             unitManagerObject.GetComponent<UnidadSpawnManager>().SpawnAllyUnit(num);
-            currentUnitNumber++;
             UnitDeployTextUpdate(currentUnitNumber);
         }
         else
