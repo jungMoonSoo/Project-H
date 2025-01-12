@@ -1,5 +1,7 @@
 using Spine.Unity;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AttackUniState: MonoBehaviour, IUnidadState
 {
@@ -9,13 +11,10 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     [SerializeField] private SkeletonAnimation skeletonAnimation;
     [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
 
-    [SerializeField, SpineEvent(dataField: "skeletonAnimation")] private string hitPoint;
-    [SerializeField, SpineEvent(dataField: "skeletonAnimation")] private string soundPoint;
+    [SerializeField] private SpineEventData[] events;
 
     private Spine.Animation playAnimation;
-
-    private Spine.EventData hitEvent;
-    private Spine.EventData soundEvent;
+    private readonly Dictionary<string, UnityEvent> eventHandles = new();
     #endregion
 
     [SerializeField] private int audioClipNumber = -1;
@@ -40,8 +39,12 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     {
         playAnimation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
 
-        hitEvent = skeletonAnimation.Skeleton.Data.FindEvent(hitPoint);
-        soundEvent = skeletonAnimation.Skeleton.Data.FindEvent(soundPoint);
+        for (int i = 0; i < events.Length; i++)
+        {
+            if (events[i].eventName == "") continue;
+
+            eventHandles.Add(events[i].eventName, events[i].unityEvent);
+        }
 
         skeletonAnimation.AnimationState.Event += AnimationEvent;
     }
@@ -75,7 +78,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             {
                 if (!attack)
                 {
-                    unidadTargeting.OnEvent(Unit, target);
+                    OnEvent();
 
                     attack = true;
                 }
@@ -103,13 +106,11 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         
     }
 
-    private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
-    {
-        if (e.Data == hitEvent) unidadTargeting.OnEvent(Unit, target);
-        else if (e.Data == soundEvent) PlaySound();
-    }
+    private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e) => eventHandles[e.Data.Name]?.Invoke();
 
-    private void PlaySound()
+    public void OnEvent() => unidadTargeting.OnEvent(Unit, target);
+
+    public void PlaySound()
     {
         if (audioClipNumber != -1) Unit.audioHandle.OnPlay(audioClipNumber);
     }

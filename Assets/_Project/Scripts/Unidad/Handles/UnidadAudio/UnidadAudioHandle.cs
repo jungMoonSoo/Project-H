@@ -10,4 +10,6 @@ public class UnidadAudioHandle : MonoBehaviour
     private void Start() => TryGetComponent(out audioSource);
 
     public void OnPlay(int index) => audioSource.PlayOneShot(sounds[index]);
+
+    public void OnPlay(AudioClip clip) => audioSource.PlayOneShot(clip);
 }
