@@ -55,19 +55,13 @@ public class UnidadSpawnManager : MonoBehaviour
             _ => null,
         };
 
-        Unidad unit = Instantiate(unidadStatus.unidadPrefab, parent).GetComponent<Unidad>();
-
-        tiles[tileId].Unit = unit;
-
-        if (unit != null)
+        if (Instantiate(unidadStatus.unidadPrefab, parent).TryGetComponent(out Unidad unit))
         {
+            tiles[tileId].Unit = unit;
             unit.Owner = owner;
 
-            UnidadStatusBar hpBar = Instantiate(unidadHpBar, hpBarParent);
-
-            hpBar.Init(unit.StatusUiPosition);
-
-            unit.statusBar = hpBar;
+            unit.statusBar = Instantiate(unidadHpBar, hpBarParent);
+            unit.statusBar.Init(unit.StatusUiPosition);
 
             return true;
         }
