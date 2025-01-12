@@ -22,32 +22,28 @@ public class UnidadSpawnManager : MonoBehaviour
         {
             spawnAlly = false;
 
-            UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(0);
-
-            Spawn(unidadStatus, 0, UnitType.Ally);
+            Spawn(0, 0, UnitType.Ally);
         }
 
         if (spawnEnemy)
         {
             spawnEnemy = false;
 
-            UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(0);
-
-            Spawn(unidadStatus, 0, UnitType.Enemy);
+            Spawn(0, 0, UnitType.Enemy);
         }
     }
 
-    public bool SpawnAllyUnit(uint unitId) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, UnitType.Ally);
+    public bool Spawn(uint unitId, UnitType owner = UnitType.Ally) => Spawn(unitId, 0, owner);
 
-    public bool SpawnUnit(uint unitId, UnitType owner) => Spawn(UnidadManager.Instance.GetStatus(unitId), 0, owner);
-
-    public bool Spawn(UnidadStatus unidadStatus, int tileId, UnitType owner)
+    public bool Spawn(uint unitId, int tileId, UnitType owner)
     {
+        UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
+
         List<TileHandle> tiles = UnitDeployManager.Instance.GetTiles(owner);
 
         if (tiles[tileId].Unit != null)
         {
-            if (tiles.Count > tileId + 1) return Spawn(unidadStatus, tileId + 1, owner);
+            if (tiles.Count > tileId + 1) return Spawn(unitId, tileId + 1, owner);
 
             return false;
         }
