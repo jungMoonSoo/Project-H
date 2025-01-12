@@ -80,7 +80,7 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
         switch (info.phase)
         {
             case TouchPhase.Began:
-                if (info.gameObject != null && info.gameObject.TryGetComponent(out selectedUnit))
+                if (info[0] != null && info[0].TryGetComponent(out selectedUnit))
                 {
                     if (selectedUnit.UnitType != selectableType) selectedUnit = null;
                     else

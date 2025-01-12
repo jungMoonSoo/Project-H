@@ -51,9 +51,9 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    if (touch.gameObject != null)
+                    if (touch[0] != null)
                     {
-                        targetUnit = touch.gameObject.transform.parent.parent.gameObject;
+                        targetUnit = touch[0].transform.parent.parent.gameObject;
                         initialTouchPosition = touch.pos;
                         pressStartTime = Time.time;
                         isPressing = true;
