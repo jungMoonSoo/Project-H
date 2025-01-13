@@ -27,32 +27,7 @@ public class SkillEffectHandler : MonoBehaviour
     
     
     #region ◇ Properties ◇
-    public ITargetingSystem TargetingSystem
-    {
-        get
-        {
-            if (_TargetingSystem is null)
-            {
-                switch (targetingSystemType)
-                {
-                    case TargetingSystemType.Single:
-                        _TargetingSystem = new SingleTargetingSystem();
-                        break;
-                    case TargetingSystemType.Linear:
-                        _TargetingSystem = new LinearTargetingSystem();
-                        break;
-                    case TargetingSystemType.Area:
-                        _TargetingSystem = new AreaTargetingSystem();
-                        break;
-                    default:
-                        throw new Exception("TargetingSystem Type 미존재.");
-                }
-            }
-            
-            return _TargetingSystem;
-        }
-    }
-    private ITargetingSystem _TargetingSystem = null;
+    public ITargetingSystem TargetingSystem { get; private set; }
     #endregion
 
 
@@ -69,6 +44,8 @@ public class SkillEffectHandler : MonoBehaviour
         
         animatorEventHandler.OnTriggerEvent = OnTrigger;
         animatorEventHandler.OnFinishEvent = OnFinish;
+
+        TargetingSystem = SkillTypeHub.GetTargetingSystem(targetingSystemType);
     }
 
 
