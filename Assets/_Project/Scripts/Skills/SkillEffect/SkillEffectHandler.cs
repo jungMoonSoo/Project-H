@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SkillEffectHandler : MonoBehaviour
@@ -11,25 +10,19 @@ public class SkillEffectHandler : MonoBehaviour
     [SerializeField] private AnimatorEventHandler animatorEventHandler;
     [SerializeField] private EllipseCollider effectCollider;
 
-
-    public Unidad Caster => caster;
-    
-    
-    [NonSerialized] public Unidad[] Targets;
-
-    private Unidad caster;
     private Vector2 position;
     
     private ISkillEffectCreateEvent skillEffectCreateEvent;
     private ISkillEffectTriggerEvent skillEffectTriggerEvent;
     private ISkillEffectFinishEvent skillEffectFinishEvent;
     private ISkillEffectPositioner skillEffectPositioner;
-    
-    
+
     #region ◇ Properties ◇
+    public Unidad Caster { get; private set; }
+    public Unidad[] Targets { get; private set; }
+
     public ITargetingSystem TargetingSystem { get; private set; }
     #endregion
-
 
     void Start()
     {
@@ -37,47 +30,48 @@ public class SkillEffectHandler : MonoBehaviour
         skillEffectTriggerEvent = GetComponent<ISkillEffectTriggerEvent>();
         skillEffectFinishEvent = GetComponent<ISkillEffectFinishEvent>();
         skillEffectPositioner = GetComponent<ISkillEffectPositioner>();
-            
-            
+
         skillEffectPositioner?.SetPosition(this, position);
-        OnCreate();
-        
-        animatorEventHandler.OnTriggerEvent = OnTrigger;
-        animatorEventHandler.OnFinishEvent = OnFinish;
 
         TargetingSystem = SkillTypeHub.GetTargetingSystem(targetingSystemType);
-    }
 
+        switch (targetingTimingType)
+        {
+            case TargetingTimingType.OnCreate:
+                OnCreate();
+                break;
+
+            case TargetingTimingType.OnTrigger:
+                animatorEventHandler.OnTriggerEvent = OnTrigger;
+                break;
+        }
+        
+        animatorEventHandler.OnFinishEvent = OnFinish;
+    }
 
     public void Init(Unidad caster, Vector2 position)
     {
-        this.caster = caster;
+        Caster = caster;
         this.position = position;
     }
 
-    
     private void OnCreate()
     {
-        if (targetingTimingType == TargetingTimingType.OnCreate)
-        {
-            Targeting();
-        }
+        Targeting();
         skillEffectCreateEvent?.OnCreate(this);
     }
+
     private void OnTrigger()
     {
-        if (targetingTimingType == TargetingTimingType.OnTrigger)
-        {
-            Targeting();
-        }
+        Targeting();
         skillEffectTriggerEvent?.OnTrigger(this);
     }
+
     private void OnFinish()
     {
         skillEffectFinishEvent?.OnFinish(this);
     }
 
-    
     private void Targeting()
     {
         Targets = TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, (Vector2)transform.position + effectCollider.center, effectCollider.size * 0.5f);
