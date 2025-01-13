@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class ActionSkillManager: Singleton<ActionSkillManager>
@@ -9,7 +7,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     
     [Header("Action Skill Settings")]
     [SerializeField] private Transform skillButtonGroup;
-    [SerializeField] private GameObject skillButtonPrefab;
+    [SerializeField] private SkillButton skillButtonPrefab;
     
     public bool IsUsingSkill => CastingCaster is not null;
     public Unidad CastingCaster { get; private set; }
@@ -51,9 +49,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
     public void AddSkillButton(Unidad unidad)
     {
-        GameObject instance = Instantiate(skillButtonPrefab, skillButtonGroup);
-        
-        SkillButton skillButton = instance.GetComponent<SkillButton>();
+        SkillButton skillButton = Instantiate(skillButtonPrefab, skillButtonGroup);
+
         skillButton.Caster = unidad;
         createdSkillButtons.Add(skillButton);
     }
@@ -93,7 +90,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
         if (target is not null) // 미존재면 스킬사용 실패
         {
-            SkillEffectHandler handler = Instantiate(UsingSkill?.effectPrefab, CastingCaster.transform.position, Quaternion.identity).GetComponent<SkillEffectHandler>();
+            SkillEffectHandlerBase handler = Instantiate(UsingSkill?.effectPrefab, CastingCaster.transform.position, Quaternion.identity);
             handler.Init(CastingCaster, (Vector2)target);
 
             CastingCaster.ChangeState(UnitState.Skill);

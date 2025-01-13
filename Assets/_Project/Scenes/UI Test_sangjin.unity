@@ -774,6 +774,10 @@ PrefabInstance:
       propertyPath: skillAreaHandler
       value: 
       objectReference: {fileID: 1978133721}
+    - target: {fileID: 5597164636282700058, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: skillButtonPrefab
+      value: 
+      objectReference: {fileID: 5698164872460316663, guid: 3dbcfb04319bb7140858b20ebc594e2b, type: 3}
     - target: {fileID: 8164836082785477221, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
       propertyPath: m_IsActive
       value: 0

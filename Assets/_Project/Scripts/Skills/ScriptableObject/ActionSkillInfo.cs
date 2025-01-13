@@ -4,6 +4,6 @@ using UnityEngine;
 public class ActionSkillInfo: SkillInfoBase
 {
     [Header("Active Skill Info")]
-    [SerializeField] public GameObject effectPrefab;
+    [SerializeField] public SkillEffectHandlerBase effectPrefab;
     [SerializeField] public SkillAreaInfo skillArea;
 }

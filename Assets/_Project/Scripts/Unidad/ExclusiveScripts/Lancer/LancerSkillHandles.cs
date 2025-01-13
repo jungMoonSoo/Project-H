@@ -6,19 +6,19 @@ public class LancerSkillHandles : MonoBehaviour, ISkillEffectTriggerEvent, ISkil
 {
     [SerializeField] private float skillCoefficient = 200f;
 
-    public void OnTrigger(SkillEffectHandler handler)
+    public void OnTrigger(SkillEffectHandlerBase handler)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
 
         foreach (Unidad unit in handler.Targets) unit.OnDamage((int)callback.value, callback.type);
     }
 
-    public void SetPosition(SkillEffectHandler handler, Vector2 position)
+    public void SetPosition(SkillEffectHandlerBase handler, Vector2 position)
     {
         handler.transform.position = position;
     }
 
-    public void OnFinish(SkillEffectHandler handler)
+    public void OnFinish(SkillEffectHandlerBase handler)
     {
         Destroy(handler.gameObject);
     }

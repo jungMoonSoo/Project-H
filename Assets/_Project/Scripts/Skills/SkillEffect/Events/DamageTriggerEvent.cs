@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DamageTriggerEvent: MonoBehaviour, ISkillEffectTriggerEvent
 {
-    public void OnTrigger(SkillEffectHandler handler)
+    public void OnTrigger(SkillEffectHandlerBase handler)
     {
         foreach (Unidad unit in handler.Targets)
         {

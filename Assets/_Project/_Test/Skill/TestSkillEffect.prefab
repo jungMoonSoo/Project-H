@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026856397095710534}
-  - component: {fileID: 3150125505038467210}
+  - component: {fileID: 2655237496323968454}
   - component: {fileID: 8841968534178399513}
   - component: {fileID: 5362146125081823029}
   - component: {fileID: 4288427183755041319}
@@ -84,7 +84,7 @@ Transform:
   - {fileID: 1108180001214134973}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3150125505038467210
+--- !u!114 &2655237496323968454
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,7 +93,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792025657868637557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c642e4e3e5374b2194364220901cb281, type: 3}
+  m_Script: {fileID: 11500000, guid: e76b0129bc3d10a4b80937418caaa491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
