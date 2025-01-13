@@ -12,6 +12,6 @@ public class LinearSkillArea: ISkillArea
         transform.eulerAngles = new Vector3(0, 0, angle);
 
         // TODO: 실제 스킬이 날아갈 위치 정해야 함.
-        return casterPosition;
+        return castedPosition;
     }
 }

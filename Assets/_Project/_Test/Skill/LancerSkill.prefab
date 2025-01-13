@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  targetingTimingType: 1
+  targetingTimingType: 0
   targetingSystemType: 2
   animatorEventHandler: {fileID: 4213904965122752113}
-  size: {x: 3, y: 8}
 --- !u!114 &136149478320711698
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -8,11 +8,11 @@ public class LinearSkillEffectHandler : SkillEffectHandlerBase
 
     public override void Init(Unidad caster, Vector2 position)
     {
-        base.Init(caster, position);
-
-        size = Caster.Status.skillInfo.skillArea.areaSize;
+        size = caster.Status.skillInfo.skillArea.areaSize;
 
         (size.x, size.y) = (size.y, size.x);
+
+        base.Init(caster, position);
     }
 
     protected override Unidad[] Targeting(TargetType targetType) => TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, transform.position, size);

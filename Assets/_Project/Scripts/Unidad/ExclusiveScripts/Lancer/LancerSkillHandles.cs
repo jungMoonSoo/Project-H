@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LancerSkillHandles : MonoBehaviour, ISkillEffectTriggerEvent, ISkillEffectPositioner, ISkillEffectFinishEvent
+public class LancerSkillHandles : MonoBehaviour, ISkillEffectCreateEvent, ISkillEffectPositioner, ISkillEffectFinishEvent
 {
     [SerializeField] private float skillCoefficient = 200f;
 
-    public void OnTrigger(SkillEffectHandlerBase handler)
+    public void OnCreate(SkillEffectHandlerBase handler)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
 

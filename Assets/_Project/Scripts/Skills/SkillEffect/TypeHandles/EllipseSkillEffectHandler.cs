@@ -8,9 +8,9 @@ public class EllipseSkillEffectHandler : SkillEffectHandlerBase
 
     public override void Init(Unidad caster, Vector2 position)
     {
-        base.Init(caster, position);
+        effectCollider.size = caster.Status.skillInfo.skillArea.areaSize;
 
-        effectCollider.size = Caster.Status.skillInfo.skillArea.areaSize;
+        base.Init(caster, position);
     }
 
     protected override Unidad[] Targeting(TargetType targetType) => TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, (Vector2)transform.position + effectCollider.center, effectCollider.size * 0.5f);
