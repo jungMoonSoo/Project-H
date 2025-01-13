@@ -24,7 +24,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
             mpSlider.maxValue = _Caster.NowNormalStatus.maxMp;
             _Caster.Mp.SetCallback(UpdateMpSlider, SetCallbackType.Add);
-            UpdateMpSlider(_Caster.Mp.Value);
         }
     }
     private Unidad _Caster;
@@ -61,7 +60,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         {
             ActionSkillManager.Instance.OnSelect(Caster);
             _Caster.Mp.Value = 0;
-            UpdateMpSlider(_Caster.Mp.Value);
         }
         else if (ActionSkillManager.Instance.CastingCaster == Caster)
         {
