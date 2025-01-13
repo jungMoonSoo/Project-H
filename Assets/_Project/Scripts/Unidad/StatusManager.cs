@@ -27,6 +27,9 @@ public class StatusManager
         hp.SetCallback(BindHp, SetCallbackType.Set);
         hp.Value = NormalStatus.maxHp;
 
+        mp.SetCallback(BindMp, SetCallbackType.Set);
+        mp.Value = 0;
+
         DieEvent += () => hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
         DieEvent += () => unidad.ChangeState(UnitState.Die);
     }
@@ -45,6 +48,13 @@ public class StatusManager
             DieEvent?.Invoke();
         }
         else if (newValue > NormalStatus.maxHp) currentValue = NormalStatus.maxHp;
+        else currentValue = newValue;
+    }
+
+    public void BindMp(ref int currentValue, int newValue)
+    {
+        if (newValue <= 0) currentValue = 0;
+        else if (newValue > NormalStatus.maxMp) currentValue = NormalStatus.maxMp;
         else currentValue = newValue;
     }
 }
