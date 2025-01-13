@@ -17,5 +17,5 @@ MonoBehaviour:
   sprite: {fileID: -99174080, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
   targetType: 0
   targetingSystemType: 1
-  effectPrefab: {fileID: 3792025657868637557, guid: 630f992fdf1c0e9428f00625867e0e71, type: 3}
+  effectPrefab: {fileID: 3792025657868637557, guid: 697183ce0e4167848999a8dd95fda3e5, type: 3}
   skillArea: {fileID: 11400000, guid: 6a1cce8fea8f0074cba0c41b7ea38e55, type: 2}
