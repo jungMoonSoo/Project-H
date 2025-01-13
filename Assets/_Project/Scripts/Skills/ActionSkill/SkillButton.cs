@@ -39,11 +39,17 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        OnSelect();
+        if(_Caster.Mp.Value == _Caster.NowNormalStatus.maxMp)
+        {
+            OnSelect();
+        }
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
-        OnSelect();
+        if (_Caster.Mp.Value == _Caster.NowNormalStatus.maxMp)
+        {
+            OnSelect();
+        }
     }
     public void OnDrag(PointerEventData eventData) {}
     public void OnEndDrag(PointerEventData eventData) {}
@@ -54,6 +60,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         if (!ActionSkillManager.Instance.IsUsingSkill)
         {
             ActionSkillManager.Instance.OnSelect(Caster);
+            _Caster.Mp.Value = 0;
+            UpdateMpSlider(_Caster.Mp.Value);
         }
         else if (ActionSkillManager.Instance.CastingCaster == Caster)
         {
