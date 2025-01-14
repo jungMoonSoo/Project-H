@@ -1,13 +1,11 @@
 using System;
-using UnityEngine;
 
-[Serializable]
 public class StatusManager
 {
     private readonly Unidad unidad;
 
-    [SerializeField] public BindData<int> hp = new();
-    [SerializeField] public BindData<int> mp = new();
+    public BindData<int> hp = new();
+    public BindData<int> mp = new();
 
     public ModifierManager modifierManager;
 
