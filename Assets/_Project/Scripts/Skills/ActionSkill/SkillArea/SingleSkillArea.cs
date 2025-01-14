@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class SingleSkillArea: ISkillArea
@@ -9,7 +6,7 @@ public class SingleSkillArea: ISkillArea
     public Vector2? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
     {
         Vector2 realPosition = VectorCalc.GetPointOnEllipse(caster.skillCollider, castedPosition);
-        List<Unidad> targets = caster.Status.skillInfo.GetTargets(caster);
+        List<Unidad> targets = UnidadManager.Instance.GetUnidads(caster.Owner, targetType);
         Unidad target = null;
 
         if (targets.Count > 0) // 선택될 수 있는 Target이 존재함.
@@ -31,7 +28,7 @@ public class SingleSkillArea: ISkillArea
             }
         }
 
-        if(target is not null) // Target 존재
+        if (target is not null) // Target 존재
         {
             transform.position = target.transform.position;
             

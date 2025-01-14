@@ -16,6 +16,7 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
     public Unidad Caster { get; private set; }
     public Unidad[] Targets { get; private set; }
 
+    public TargetType TargetType => targetType;
     public ITargetingSystem TargetingSystem { get; private set; }
 
     public virtual void Init(Unidad caster, Vector2 position)
@@ -34,7 +35,7 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
         switch (targetingTimingType)
         {
             case TargetingTimingType.OnCreate:
-                Targets = Targeting(targetType);
+                Targets = Targeting(TargetType);
                 skillEffectCreateEvent?.OnCreate(this);
                 break;
 
@@ -46,9 +47,11 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
         animatorEventHandler.OnFinishEvent = OnFinish;
     }
 
+    public abstract Vector2 GetAreaSize();
+
     private void OnTrigger()
     {
-        Targets = Targeting(targetType);
+        Targets = Targeting(TargetType);
         skillEffectTriggerEvent?.OnTrigger(this);
     }
 

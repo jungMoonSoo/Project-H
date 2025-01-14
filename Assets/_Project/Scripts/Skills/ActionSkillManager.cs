@@ -57,10 +57,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
     public void ClearSkillButtons()
     {
-        foreach (SkillButton skillButton in createdSkillButtons)
-        {
-            Destroy(skillButton.gameObject);
-        }
+        foreach (SkillButton skillButton in createdSkillButtons) Destroy(skillButton.gameObject);
+
         createdSkillButtons.Clear();
     }
     
@@ -72,9 +70,10 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         InGameManager.Instance.PauseGame(PauseType.UseSkill);
         
         CastingCaster = caster;
-        skillAreaHandler.SetSprite(UsingSkill.skillArea.areaImage);
-        skillAreaHandler.SetSize(UsingSkill.skillArea.areaSize);
-        skillAreaHandler.SkillArea = UsingSkill.skillArea.SkillArea;
+
+        skillAreaHandler.SetSprite(UsingSkill.areaImage);
+        skillAreaHandler.SetSize(UsingSkill.effectPrefab.GetAreaSize());
+        skillAreaHandler.SkillArea = SkillTypeHub.GetSkillArea(UsingSkill.skillAreaType);
     }
     public void OnCancel()
     {
@@ -103,10 +102,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
     private void OnDrag(Vector2 target)
     {
-        if (!skillAreaHandler.gameObject.activeSelf)
-        {
-            skillAreaHandler.SetActive(true);
-        }
-        skillAreaHandler.SetPosition(UsingSkill.targetType, CastingCaster, target);
+        if (!skillAreaHandler.gameObject.activeSelf) skillAreaHandler.SetActive(true);
+
+        skillAreaHandler.SetPosition(UsingSkill.effectPrefab.TargetType, CastingCaster, target);
     }
 }

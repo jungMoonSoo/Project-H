@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class LinearSkillEffectHandler : SkillEffectHandlerBase
 {
-    private Vector2 size;
+    [SerializeField] private Vector2 size;
+
+    public override Vector2 GetAreaSize() => size;
 
     public override void Init(Unidad caster, Vector2 position)
     {
-        size = caster.Status.skillInfo.skillArea.areaSize;
-
         (size.x, size.y) = (size.y, size.x);
 
         base.Init(caster, position);

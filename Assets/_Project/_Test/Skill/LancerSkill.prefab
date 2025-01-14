@@ -50,6 +50,7 @@ MonoBehaviour:
   targetingTimingType: 0
   targetingSystemType: 2
   animatorEventHandler: {fileID: 4213904965122752113}
+  size: {x: 8, y: 3}
 --- !u!114 &136149478320711698
 MonoBehaviour:
   m_ObjectHideFlags: 0

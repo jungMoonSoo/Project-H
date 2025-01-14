@@ -6,12 +6,7 @@ public class EllipseSkillEffectHandler : SkillEffectHandlerBase
 {
     [SerializeField] private EllipseCollider effectCollider;
 
-    public override void Init(Unidad caster, Vector2 position)
-    {
-        effectCollider.size = caster.Status.skillInfo.skillArea.areaSize;
+    public override Vector2 GetAreaSize() => effectCollider.Radius;
 
-        base.Init(caster, position);
-    }
-
-    protected override Unidad[] Targeting(TargetType targetType) => TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, (Vector2)transform.position + effectCollider.center, effectCollider.size * 0.5f);
+    protected override Unidad[] Targeting(TargetType targetType) => TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, (Vector2)transform.position + effectCollider.center, effectCollider.Radius);
 }
