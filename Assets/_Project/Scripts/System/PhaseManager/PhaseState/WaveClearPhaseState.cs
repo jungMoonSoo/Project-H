@@ -12,6 +12,7 @@ public class WeveClearPhaseWeState : MonoBehaviour, IPhaseState
     {
         gameEndObject.SetActive(true);
         GameClear();
+        PhaseManager.Instance.ChangeState(PhaseState.Ready);
     }
 
     public void OnUpdate()
@@ -24,9 +25,9 @@ public class WeveClearPhaseWeState : MonoBehaviour, IPhaseState
         gameEndObject.SetActive(false);
     }
 
-    public void GameClear() //패배 문구 출력 메서드
+    public void GameClear() //클리어 문구 출력 메서드
     {
-        Debug.Log("[Ui Manager]게임에서 패배하셨습니다.");
+        Debug.Log("[Ui Manager]웨이브를 클리어하였습니다.");
 
         gameVictoryObject.SetActive(false);
         gameDefeatObject.SetActive(false);
