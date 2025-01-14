@@ -1229,7 +1229,7 @@ MonoBehaviour:
   waveObject: {fileID: 5919390072395121703}
   unitDeploymentObject: {fileID: 3833788388999534978}
   stageText: {fileID: 7975883782484111467}
-  UnitManagerObject: {fileID: 2434950082702788363}
+  spawnManager: {fileID: 3737874233814593047}
   allyInfoObject: {fileID: 3594035859874262073}
   enemyInfoObject: {fileID: 8655994885689485366}
   unitLayerMask:
@@ -1868,7 +1868,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac75d6d87590af64087e56e21171cd62, type: 2}
   - {fileID: 11400000, guid: 21b68be31ab29ed44b7e1dd6e51898dc, type: 2}
   - {fileID: 11400000, guid: 7c8920daaad778d409a2ac4d909508bd, type: 2}
-  defaultStatus: {fileID: 11400000, guid: f73de598515a0c04e901ee1977ee019c, type: 2}
+  defaultStatus: {fileID: 0}
 --- !u!114 &5924306237713721124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3310,6 +3310,7 @@ MonoBehaviour:
   runPhase: {fileID: 4114258847803607180}
   victoryPhase: {fileID: 5731900697751971229}
   defeatPhase: {fileID: 6755746885213105934}
+  waveClearPhase: {fileID: 8849645245486663348}
 --- !u!114 &7484286341309759324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3339,7 +3340,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillAreaHandler: {fileID: 0}
   skillButtonGroup: {fileID: 8631929077161644867}
-  skillButtonPrefab: {fileID: 3728844181784290594, guid: 3dbcfb04319bb7140858b20ebc594e2b, type: 3}
+  skillButtonPrefab: {fileID: 5698164872460316663, guid: 3dbcfb04319bb7140858b20ebc594e2b, type: 3}
 --- !u!1 &4621949785531118587
 GameObject:
   m_ObjectHideFlags: 0
@@ -5442,6 +5443,7 @@ Transform:
   - {fileID: 5414362087976512857}
   - {fileID: 3117144465101974267}
   - {fileID: 5327237391999320239}
+  - {fileID: 8130436880434384535}
   m_Father: {fileID: 3006867006226341774}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8093263598208050698
@@ -5892,6 +5894,54 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &8849645245486663348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8130436880434384535}
+  - component: {fileID: 8585521086866660614}
+  m_Layer: 0
+  m_Name: WaveClearState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8130436880434384535
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849645245486663348}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8198679325708917467}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8585521086866660614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849645245486663348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fd988b0fb06d647bfd2cd88bf9bf5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEndObject: {fileID: 8164836082785477221}
+  gameVictoryObject: {fileID: 608787904652720510}
+  gameDefeatObject: {fileID: 4837380551371180544}
+  stageClearObject: {fileID: 6055071770663293326}
 --- !u!1 &8916584991423970070
 GameObject:
   m_ObjectHideFlags: 0

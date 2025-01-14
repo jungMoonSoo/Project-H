@@ -38,7 +38,8 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 
         //TEST
         spawnManager.Spawn(10000, UnitType.Enemy);
-        spawnManager.Spawn(10001, UnitType.Enemy);
+        spawnManager.Spawn(10001, 7, UnitType.Enemy);
+        spawnManager.EnemySpawn(10000, new Vector2(10, 10));
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
     }
 

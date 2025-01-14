@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -67,5 +68,19 @@ public class UnidadSpawnManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    public void EnemySpawn(uint unitId, Vector2 pos)
+    {
+        UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
+        GameObject unit= Instantiate(unidadStatus.unidadPrefab, pos, new Quaternion(0,0,0,0),spawnPointEnemy);
+
+        unit.GetComponent<Unidad>().statusBar = Instantiate(unidadHpBar, hpBarParent);
+        unit.GetComponent<Unidad>().statusBar.Init(unit.GetComponent<Unidad>().StatusUiPosition);
+    }
+
+    private object Instantiate(GameObject unidadPrefab, Vector2 pos)
+    {
+        throw new NotImplementedException();
     }
 }

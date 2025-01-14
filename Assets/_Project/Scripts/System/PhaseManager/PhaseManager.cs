@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,12 +11,11 @@ public class PhaseManager : Singleton<PhaseManager>
     [SerializeField] private GameObject runPhase;
     [SerializeField] private GameObject victoryPhase;
     [SerializeField] private GameObject defeatPhase;
-
+    [SerializeField] private GameObject waveClearPhase;
 
     private Dictionary<PhaseState, IPhaseState> states = null;
     private IPhaseState nowState = null;
 
-    
     void Start()
     {
         states = new()
@@ -24,7 +24,8 @@ public class PhaseManager : Singleton<PhaseManager>
             { PhaseState.Ready, readyPhase.GetComponent<IPhaseState>() },
             { PhaseState.Run, runPhase.GetComponent<IPhaseState>() },
             { PhaseState.Victory, victoryPhase.GetComponent<IPhaseState>() },
-            { PhaseState.Defeat, defeatPhase.GetComponent<IPhaseState>() }
+            { PhaseState.Defeat, defeatPhase.GetComponent<IPhaseState>() },
+            { PhaseState.WaveClear, defeatPhase.GetComponent<IPhaseState>() }
         };
         ChangeState(PhaseState.Deploy);
     }
