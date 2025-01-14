@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,8 +37,6 @@ public class UnidadSpawnManager : MonoBehaviour
 
     public bool Spawn(uint unitId, int tileId, UnitType owner)
     {
-        UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
-
         List<TileHandle> tiles = UnitDeployManager.Instance.GetTiles(owner);
 
         if (tiles[tileId].Unit != null)
@@ -49,7 +46,16 @@ public class UnidadSpawnManager : MonoBehaviour
             return false;
         }
 
-        Transform parent = tiles[tileId].Type switch
+        tiles[tileId].Unit = Spawn(unitId, tiles[tileId].transform.position, owner);
+
+        return tiles[tileId].Unit != null;
+    }
+
+    public Unidad Spawn(uint unitId, Vector2 pos, UnitType owner)
+    {
+        UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
+
+        Transform parent = owner switch
         {
             UnitType.Ally => spawnPointAlly,
             UnitType.Enemy => spawnPointEnemy,
@@ -58,29 +64,19 @@ public class UnidadSpawnManager : MonoBehaviour
 
         if (Instantiate(unidadStatus.unidadPrefab, parent).TryGetComponent(out Unidad unit))
         {
-            tiles[tileId].Unit = unit;
             unit.Owner = owner;
+            unit.transform.position = pos;
 
-            unit.statusBar = Instantiate(unidadHpBar, hpBarParent);
-            unit.statusBar.Init(unit.StatusUiPosition);
+            unit.Init();
 
-            return true;
+            UnidadStatusBar statusBar = Instantiate(unidadHpBar, hpBarParent);
+
+            unit.SetStatusBar(statusBar);
+            statusBar.Init(unit.StatusUiPosition);
+
+            return unit;
         }
 
-        return false;
-    }
-
-    public void EnemySpawn(uint unitId, Vector2 pos)
-    {
-        UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
-        GameObject unit= Instantiate(unidadStatus.unidadPrefab, pos, new Quaternion(0,0,0,0),spawnPointEnemy);
-
-        unit.GetComponent<Unidad>().statusBar = Instantiate(unidadHpBar, hpBarParent);
-        unit.GetComponent<Unidad>().statusBar.Init(unit.GetComponent<Unidad>().StatusUiPosition);
-    }
-
-    private object Instantiate(GameObject unidadPrefab, Vector2 pos)
-    {
-        throw new NotImplementedException();
+        return null;
     }
 }

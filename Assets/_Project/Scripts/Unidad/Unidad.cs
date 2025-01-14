@@ -47,7 +47,7 @@ public class Unidad : MonoBehaviour
 
     [Header("Ather")]
     public UnidadAudioHandle audioHandle;
-    public UnidadStatusBar statusBar;
+    private UnidadStatusBar statusBar;
 
     public UnidadStatus Status => status;
 
@@ -68,17 +68,39 @@ public class Unidad : MonoBehaviour
     private Dictionary<UnitState, IUnidadState> states = new();
     private IUnidadState nowState = null;
 
+    public Action DieEvent = null;
+
     #region ◇ Unity Events ◇
-    void OnDisable()
+    private void OnDisable()
     {
         UnidadManager.Instance.SetUnidad(this, false, Owner);
     }
 
-    void Start()
+    private void Start()
     {
-        // Scene에 미리 생성된 Unidad를 테스트하기 위해 존재하는 코드
+        if (statusManager != null) return;
+
+        Init();
+    }
+
+    private void Update()
+    {
+        nowState?.OnUpdate();
+        CheckModifierCycle();
+    }
+
+    private void OnDestroy()
+    {
+        SetStatusBar(null);
+
+        UnidadManager.Instance.SetUnidad(this, false, Owner);
+    }
+    #endregion
+
+    public void Init()
+    {
         UnidadManager.Instance.SetUnidad(this, true, Owner);
-        
+
         statusManager = new StatusManager(this);
 
         states = new()
@@ -100,21 +122,27 @@ public class Unidad : MonoBehaviour
         }
 
         ChangeState(UnitState.Ready);
+
+        DieEvent += () => ChangeState(UnitState.Die);
     }
 
-    void Update()
+    public void SetStatusBar(UnidadStatusBar statusBar)
     {
-        nowState?.OnUpdate();
-        CheckModifierCycle();
+        if (statusBar == null && this.statusBar != null)
+        {
+            Hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
+
+            Destroy(this.statusBar.gameObject);
+        }
+        else
+        {
+            this.statusBar = statusBar;
+
+            Hp.SetCallback(BindHpStatusBar, SetCallbackType.Add);
+        }
     }
 
-    private void OnDestroy()
-    {
-        if (statusBar != null) Destroy(statusBar.gameObject);
-
-        UnidadManager.Instance.SetUnidad(this, false, Owner);
-    }
-    #endregion
+    public void BindHpStatusBar(int newValue) => statusBar.SetBar((float)newValue / NowNormalStatus.maxHp);
 
     public void ChangeState(UnitState state)
     {
