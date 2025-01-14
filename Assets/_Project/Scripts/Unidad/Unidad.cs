@@ -154,8 +154,15 @@ public class Unidad : MonoBehaviour
         }
     }
 
-    public void OnDamage(int damage, DamageType damageType)
+    public void OnDamage(int damage, DamageType damageTypem, GameObject effect = null)
     {
+        // if (effect != null)
+        // {
+        //     GameObject instantEffect = Instantiate(effect);
+        // 
+        //     instantEffect.transform.position = transform.position;
+        // }
+
         TextPopupManager.Instance.PopupDamage(damage.ToString(), DamageUiPosition.position);
 
         statusManager?.OnDamage(damage);

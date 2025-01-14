@@ -17,17 +17,23 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     private readonly Dictionary<string, UnityEvent> eventHandles = new();
     #endregion
 
+    [Header("임시 설정")]
     [SerializeField] private int audioClipNumber = -1;
     [SerializeField] private float attackPoint = 0.5f;
     [SerializeField] private float attackSoundPoint = 0.5f;
 
+    [SerializeField] private GameObject attackEventHandle;
+    [SerializeField] private GameObject attackEffect;
+
     private bool attack;
     private bool sound;
 
-    private Unidad target;
+    private Unidad[] targets;
 
     private UnidadTargetingType targetingType = UnidadTargetingType.Near;
+
     private IUnidadTargeting unidadTargeting;
+    private IUnidadAttack unidadAttack;
 
     public Unidad Unit
     {
@@ -47,6 +53,8 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         }
 
         skeletonAnimation.AnimationState.Event += AnimationEvent;
+
+        attackEventHandle.TryGetComponent(out unidadAttack);
     }
 
     public void OnEnter()
@@ -67,9 +75,10 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        if (unidadTargeting.TryGetTargets(out Unidad[] enemys, Unit.Owner, Unit.attackCollider, 1))
+        if (unidadTargeting.TryGetTargets(out targets, Unit.Owner, Unit.attackCollider, 1))
         {
-            target = enemys[0];
+            Unidad target = targets[0];
+
             Vector2 direction = target.unitCollider.transform.position - transform.position;
 
             Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
@@ -78,7 +87,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             {
                 if (!attack)
                 {
-                    OnEvent();
+                    OnAttack();
 
                     attack = true;
                 }
@@ -108,7 +117,12 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e) => eventHandles[e.Data.Name]?.Invoke();
 
-    public void OnEvent() => unidadTargeting.OnEvent(Unit, target);
+    public void OnAttack()
+    {
+        // if (attackEffect != null) attackEffect.SetActive(true);
+
+        unidadAttack.OnAttack(Unit, targets);
+    }
 
     public void PlaySound()
     {

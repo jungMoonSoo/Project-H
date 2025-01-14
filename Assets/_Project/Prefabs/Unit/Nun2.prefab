@@ -78,7 +78,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4721863004726864109}
+  m_Father: {fileID: 4341492316380632923}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &5383128802776459167
 AudioSource:
@@ -469,7 +469,7 @@ Transform:
   - {fileID: 3350756662369535903}
   - {fileID: 1392622495035082249}
   - {fileID: 4084582041309409699}
-  - {fileID: 3381767895103481797}
+  - {fileID: 4341492316380632923}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7751980901334209204
@@ -501,7 +501,6 @@ MonoBehaviour:
   damageUiPosition: {fileID: 4739341944829035793}
   statusUiPosition: {fileID: 4355805304145455882}
   audioHandle: {fileID: 3716851205594525602}
-  statusBar: {fileID: 0}
 --- !u!1 &3916148993169026993
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +547,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4767147146677785965}
   animationName: idel
+--- !u!1 &4639038451537139553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4341492316380632923}
+  m_Layer: 6
+  m_Name: Handles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4341492316380632923
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639038451537139553}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3381767895103481797}
+  - {fileID: 3735584725163046287}
+  m_Father: {fileID: 4721863004726864109}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5158104237130783061
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,6 +796,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4767147146677785965}
   animationName: walking
+--- !u!1 &7333186374559346357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3735584725163046287}
+  - component: {fileID: 4251980035188178179}
+  m_Layer: 6
+  m_Name: Event
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3735584725163046287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7333186374559346357}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4341492316380632923}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4251980035188178179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7333186374559346357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfa707669b181b44485751095c82c1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillCoefficient: 100
+  effect: {fileID: 0}
 --- !u!1 &7898721274747308019
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,11 +935,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4767147146677785965}
   animationName: at1
-  hitPoint: 
-  soundPoint: 
+  events: []
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
+  attackEventHandle: {fileID: 7333186374559346357}
+  attackEffect: {fileID: 0}
 --- !u!1 &8722770179423571736
 GameObject:
   m_ObjectHideFlags: 0
