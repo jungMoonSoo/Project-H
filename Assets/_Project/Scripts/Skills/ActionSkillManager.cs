@@ -71,9 +71,10 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         
         CastingCaster = caster;
 
-        skillAreaHandler.SetSprite(UsingSkill.areaImage);
         skillAreaHandler.SetSize(UsingSkill.effectPrefab.GetAreaSize());
-        skillAreaHandler.SkillArea = SkillTypeHub.GetSkillArea(UsingSkill.skillAreaType);
+
+        skillAreaHandler.SetSprite(UsingSkill.skillArea.areaImage);
+        skillAreaHandler.SkillArea = SkillTypeHub.GetSkillArea(UsingSkill.skillArea.skillAreaType);
     }
     public void OnCancel()
     {
@@ -104,6 +105,6 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     {
         if (!skillAreaHandler.gameObject.activeSelf) skillAreaHandler.SetActive(true);
 
-        skillAreaHandler.SetPosition(UsingSkill.effectPrefab.TargetType, CastingCaster, target);
+        skillAreaHandler.SetPosition(UsingSkill.skillArea.targetType, CastingCaster, target);
     }
 }

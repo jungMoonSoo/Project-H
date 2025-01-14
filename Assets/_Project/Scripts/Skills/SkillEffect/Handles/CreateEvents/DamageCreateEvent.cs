@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LancerSkillHandles : MonoBehaviour, ISkillEffectCreateEvent, ISkillEffectPositioner, ISkillEffectFinishEvent
+public class DamageCreateEvent : MonoBehaviour, ISkillEffectCreateEvent
 {
     [SerializeField] private float skillCoefficient = 200f;
 
@@ -11,15 +11,5 @@ public class LancerSkillHandles : MonoBehaviour, ISkillEffectCreateEvent, ISkill
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
 
         foreach (Unidad unit in handler.Targets) unit.OnDamage((int)callback.value, callback.type);
-    }
-
-    public void SetPosition(SkillEffectHandlerBase handler, Vector2 position)
-    {
-        handler.transform.position = position;
-    }
-
-    public void OnFinish(SkillEffectHandlerBase handler)
-    {
-        Destroy(handler.gameObject);
     }
 }
