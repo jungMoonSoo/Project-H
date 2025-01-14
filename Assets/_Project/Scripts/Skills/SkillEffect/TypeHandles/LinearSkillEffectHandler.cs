@@ -6,14 +6,7 @@ public class LinearSkillEffectHandler : SkillEffectHandlerBase
 {
     [SerializeField] private Vector2 size;
 
-    public override Vector2 GetAreaSize() => size;
+    public override Vector2 GetAreaSize() => new(size.y, size.x);
 
-    public override void Init(Unidad caster, Vector2 position)
-    {
-        (size.x, size.y) = (size.y, size.x);
-
-        base.Init(caster, position);
-    }
-
-    protected override Unidad[] Targeting(TargetType targetType) => TargetingSystem.GetTargets(Caster.Owner, targetType, Caster.transform.position, transform.position, size);
+    protected override Unidad[] Targeting() => TargetingSystem.GetTargets(Caster.Owner, TargetType, Caster.transform.position, transform.position, size);
 }

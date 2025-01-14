@@ -35,7 +35,7 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
         switch (targetingTimingType)
         {
             case TargetingTimingType.OnCreate:
-                Targets = Targeting(TargetType);
+                Targets = Targeting();
                 skillEffectCreateEvent?.OnCreate(this);
                 break;
 
@@ -51,11 +51,11 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
 
     private void OnTrigger()
     {
-        Targets = Targeting(TargetType);
+        Targets = Targeting();
         skillEffectTriggerEvent?.OnTrigger(this);
     }
 
     private void OnFinish() => skillEffectFinishEvent?.OnFinish(this);
 
-    protected abstract Unidad[] Targeting(TargetType targetType);
+    protected abstract Unidad[] Targeting();
 }

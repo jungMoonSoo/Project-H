@@ -16,5 +16,4 @@ MonoBehaviour:
   skillName: LancerSkill
   sprite: {fileID: -99174080, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
   effectPrefab: {fileID: 8770459583381645957, guid: 697183ce0e4167848999a8dd95fda3e5, type: 3}
-  areaImage: {fileID: 21300000, guid: 89125d7885869d740a5d79c2a015d84f, type: 3}
-  skillAreaType: 2
+  skillArea: {fileID: 11400000, guid: 7ac1b7d5fa626b94c91e61bf70e431ef, type: 2}
