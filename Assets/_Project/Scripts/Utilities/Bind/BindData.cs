@@ -32,6 +32,7 @@ public class BindData<T>
                 break;
 
             case SetCallbackType.Add:
+                prevCallback -= callback;
                 prevCallback += callback;
                 break;
 
@@ -55,6 +56,7 @@ public class BindData<T>
                 break;
 
             case SetCallbackType.Add:
+                subCallback -= callback;
                 subCallback += callback;
                 break;
 
