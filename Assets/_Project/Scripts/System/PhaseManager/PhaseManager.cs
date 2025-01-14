@@ -25,7 +25,7 @@ public class PhaseManager : Singleton<PhaseManager>
             { PhaseState.Run, runPhase.GetComponent<IPhaseState>() },
             { PhaseState.Victory, victoryPhase.GetComponent<IPhaseState>() },
             { PhaseState.Defeat, defeatPhase.GetComponent<IPhaseState>() },
-            { PhaseState.WaveClear, defeatPhase.GetComponent<IPhaseState>() }
+            { PhaseState.WaveClear, waveClearPhase.GetComponent<IPhaseState>() }
         };
         ChangeState(PhaseState.Deploy);
     }
