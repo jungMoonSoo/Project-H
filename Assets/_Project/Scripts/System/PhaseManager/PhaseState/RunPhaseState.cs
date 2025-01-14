@@ -15,7 +15,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     private float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
     private bool isTimerRunning = false;    //타이머 실행 여부\
 
-    private int wave = 2;
+    private int wave = 0;
     private GameObject allyGroup;
     private GameObject EnemyGroup;
     public void OnEnter()
