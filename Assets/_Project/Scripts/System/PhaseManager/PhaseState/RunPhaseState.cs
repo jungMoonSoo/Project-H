@@ -7,27 +7,45 @@ using UnityEngine.UI;
 
 public class RunPhaseState : MonoBehaviour, IPhaseState
 {
+    [Header("SetActive Objects")]
+    [SerializeField] private GameObject[] enableObjects;
+    [SerializeField] private GameObject[] disableObjects;
+    
+    [SerializeField] private Text txtCounter;
+    
     [Header("Object 연결")]
     [SerializeField] private GameObject gameStartButtonObject;
     [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject optionObject;
+    
+    
     //타이머 관련 함수
     private float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
     private bool isTimerRunning = false;    //타이머 실행 여부\
     
     private GameObject allyGroup;
     private GameObject enemyGroup;
+    
+    
     public void OnEnter()
     {
+        timeInSeconds = 120f;
+        
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
         gameStartButtonObject.SetActive(false);
         timerObject.SetActive(true);
         AllyUnitDeploymen.Instance.SkillConnect();
         StartTimer();
+        
         //TEST
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Idle);
         allyGroup = GameObject.Find("Ally");
         enemyGroup = GameObject.Find("Enemy");
+
+        
+        // 사용 및 비사용 오브젝트 Active 처리
+        foreach (var obj in enableObjects) obj.SetActive(true);
+        foreach (var obj in disableObjects) obj.SetActive(false);
     }
 
     public void OnUpdate()
@@ -72,12 +90,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         UpdateTimerText(timeInSeconds);
         StopTimer();
     }
-    public void GameStartButton() //게임이 시작 되도록하는 버튼
-    {
-        Debug.Log("[Ui Manager]게임이 시작되었습니다.");
-        gameStartButtonObject.SetActive(false);
-        timerObject.SetActive(true);
-    }
+    
 
     public void OptionButton() //게임 옵션창 
     {
@@ -101,7 +114,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         int seconds = Mathf.FloorToInt(t % 60); // 남은 초
 
         // "MM:SS" 형식으로 텍스트 업데이트
-        timerObject.GetComponentInChildren<Text>().text = $"{minutes:D2} : {seconds:D2}";
+        txtCounter.text = $"{minutes:D2} : {seconds:D2}";
     }
     private void StartTimer()// 타이머 시작
     {
