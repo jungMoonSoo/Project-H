@@ -14,10 +14,9 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     //타이머 관련 함수
     private float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
     private bool isTimerRunning = false;    //타이머 실행 여부\
-
-    private int wave = 0;
+    
     private GameObject allyGroup;
-    private GameObject EnemyGroup;
+    private GameObject enemyGroup;
     public void OnEnter()
     {
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
@@ -27,9 +26,8 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         StartTimer();
         //TEST
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Idle);
-        wave++;
         allyGroup = GameObject.Find("Ally");
-        EnemyGroup = GameObject.Find("Enemy");
+        enemyGroup = GameObject.Find("Enemy");
     }
 
     public void OnUpdate()
@@ -52,9 +50,9 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         {
             PhaseManager.Instance.ChangeState(PhaseState.Defeat);
         }
-        else if(EnemyGroup.transform.childCount == 0)
+        else if(enemyGroup.transform.childCount == 0)
         {
-            if(wave >= 3)
+            if(PhaseManager.Instance.wave >= 3)
             {
                 PhaseManager.Instance.ChangeState(PhaseState.Victory);
             }
@@ -68,6 +66,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
+        PhaseManager.Instance.wave++;
         ActionSkillManager.Instance.ClearSkillButtons();
         timeInSeconds = 0f;
         UpdateTimerText(timeInSeconds);

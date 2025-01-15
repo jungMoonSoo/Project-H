@@ -13,6 +13,7 @@ public class PhaseManager : Singleton<PhaseManager>
     [SerializeField] private GameObject defeatPhase;
     [SerializeField] private GameObject waveClearPhase;
 
+    public int wave = 0;
     private Dictionary<PhaseState, IPhaseState> states = null;
     private IPhaseState nowState = null;
 

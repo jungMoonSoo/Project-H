@@ -8,14 +8,17 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 {
     [Header("GameObject 연결")]
     [SerializeField] private GameObject standardCoreFieldUiObject;
-    [SerializeField] private GameObject waveObject;
     [SerializeField] private GameObject unitDeploymentObject;
-    [SerializeField] private Text stageText;
     [SerializeField] private UnidadSpawnManager spawnManager;
+
+    [SerializeField] private GameObject timerObject;
+    [SerializeField] private GameObject gameStartButtonObject;
 
     [Header("Information 연결")]
     [SerializeField] private GameObject allyInfoObject;
     [SerializeField] private GameObject enemyInfoObject;
+
+    [SerializeField] private Text waveText;
 
 
     //Hold 관련 변수 
@@ -35,9 +38,14 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
         unitDeploymentObject.SetActive(false);
         standardCoreFieldUiObject.SetActive(true);
+
         UnitDeployManager.Instance.SetAllTileActive(true);
         spawnManager.RedeployUnits();
-        
+
+        timerObject.SetActive(false);
+        gameStartButtonObject.SetActive(true);
+        WaveTextChange(PhaseManager.Instance.wave);
+
         //TEST
         spawnManager.Spawn(10000, UnitType.Enemy);
         spawnManager.Spawn(10001, 7, UnitType.Enemy);
@@ -135,5 +143,10 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         {
             enemyInfoObject.SetActive(false);
         }
+    }
+
+    public void WaveTextChange(int wave)
+    {
+        waveText.text = wave.ToString() +  "Wave";
     }
 }

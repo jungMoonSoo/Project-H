@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class DeployPhaseState : MonoBehaviour, IPhaseState
 {
     [SerializeField] private GameObject standardCoreFieldUiObject;
-    [SerializeField] private GameObject waveObject;
     [SerializeField] private GameObject unitDeploymentObject;
     [SerializeField] private Text stageText;
 
