@@ -80,6 +80,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     {
         InGameManager.Instance.ResumeGame(PauseType.UseSkill);
         CastingCaster = null;
+        hasPosition = false;
         
         skillAreaHandler.SetActive(false);
     }

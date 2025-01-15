@@ -42,6 +42,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     private void UpdateUnidadDie()
     {
         skillImage.color = Color.red;
+        if (ActionSkillManager.Instance.CastingCaster == Caster) ActionSkillManager.Instance.OnCancel();
     }
 
     public void OnPointerClick(PointerEventData eventData)
