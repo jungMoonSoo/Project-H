@@ -11,36 +11,33 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject[] enableObjects;
     [SerializeField] private GameObject[] disableObjects;
     
+    [Header("Unit Groups")]
+    [SerializeField] private GameObject allyGroup;
+    [SerializeField] private GameObject enemyGroup;
+    
+    [Header("Timer")]
     [SerializeField] private Text txtCounter;
+    [SerializeField] private float timeInSeconds = 120f;
     
     [Header("Object 연결")]
-    [SerializeField] private GameObject gameStartButtonObject;
-    [SerializeField] private GameObject timerObject;
     [SerializeField] private GameObject optionObject;
     
     
     //타이머 관련 함수
-    private float timeInSeconds = 120f;     //초기 타이머 시간(한판에 걸리는 시간)
+    private float timerCount;     //초기 타이머 시간(한판에 걸리는 시간)
     private bool isTimerRunning = false;    //타이머 실행 여부\
-    
-    private GameObject allyGroup;
-    private GameObject enemyGroup;
     
     
     public void OnEnter()
     {
-        timeInSeconds = 120f;
+        timerCount = timeInSeconds;
         
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
-        gameStartButtonObject.SetActive(false);
-        timerObject.SetActive(true);
-        AllyUnitDeploymen.Instance.SkillConnect();
+        AllyUnitDeploymen.Instance.SkillConnect(); // TODO: CreateSkillButton으로 Method명을 변경해야 할 것 같음
         StartTimer();
         
         //TEST
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Idle);
-        allyGroup = GameObject.Find("Ally");
-        enemyGroup = GameObject.Find("Enemy");
 
         
         // 사용 및 비사용 오브젝트 Active 처리
@@ -52,13 +49,13 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     {
         if (isTimerRunning) //타이머 관련 Update
         {
-            timeInSeconds -= Time.deltaTime;
-            UpdateTimerText(timeInSeconds);
+            timerCount -= Time.deltaTime;
+            UpdateTimerText(timerCount);
 
             // 시간이 0 이하가 되면 타이머 정지 => 패배 문구
-            if (timeInSeconds <= 0)
+            if (timerCount <= 0)
             {
-                timeInSeconds = 0;
+                timerCount = 0;
                 StopTimer();
                 PhaseManager.Instance.ChangeState(PhaseState.Defeat);
             }
@@ -86,8 +83,8 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     {
         PhaseManager.Instance.wave++;
         ActionSkillManager.Instance.ClearSkillButtons();
-        timeInSeconds = 0f;
-        UpdateTimerText(timeInSeconds);
+        timerCount = 0f;
+        UpdateTimerText(timerCount);
         StopTimer();
     }
     
@@ -118,7 +115,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     }
     private void StartTimer()// 타이머 시작
     {
-        timeInSeconds += Time.deltaTime;
+        timerCount += Time.deltaTime;
         isTimerRunning = true;
     }
     private void StopTimer()//타이머 멈추기
