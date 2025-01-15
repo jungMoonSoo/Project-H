@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
+public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
 {
     [Header("GameObject 연결")]
     [SerializeField] private GameObject maxWarnningObject;
@@ -69,7 +69,7 @@ public class AllyUnitDeploymen : Singleton<AllyUnitDeploymen>
 
     void DestroyUnit(uint num) => UnitDeployManager.Instance.RemoveSpawnUnit(num);
 
-    public void SkillConnect()
+    public void CreateSkillButton()
     {
         List<Unidad> unidads = UnitDeployManager.Instance.GetSpawnUnits(UnitType.Ally);
 

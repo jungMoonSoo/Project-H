@@ -33,7 +33,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         timerCount = timeInSeconds;
         
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Stay);
-        AllyUnitDeploymen.Instance.SkillConnect(); // TODO: CreateSkillButton으로 Method명을 변경해야 할 것 같음
+        AllyUnitDeployment.Instance.CreateSkillButton();
         StartTimer();
         
         //TEST

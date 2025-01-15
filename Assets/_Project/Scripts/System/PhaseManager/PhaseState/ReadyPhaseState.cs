@@ -8,15 +8,15 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 {
     [Header("GameObject 연결")]
     [SerializeField] private GameObject gameCombatUi;
-    [SerializeField] private UnidadSpawnManager spawnManager;
-
     [SerializeField] private GameObject timerObject;
-    [SerializeField] private GameObject gameStartButtonObject;
+    [SerializeField] private GameObject startButtonObject;
+
+    [Header("UnidadSpawnManager 연결")]
+    [SerializeField] private UnidadSpawnManager spawnManager;
 
     [Header("Information 연결")]
     [SerializeField] private GameObject allyInfoObject;
     [SerializeField] private GameObject enemyInfoObject;
-
     [SerializeField] private Text waveText;
 
 
@@ -32,18 +32,21 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 
     public void OnEnter()
     {
-        UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
+        //GameObj 관련
         gameCombatUi.SetActive(true);
-
         UnitDeployManager.Instance.SetAllTileActive(true);
-        spawnManager.RedeployUnits();
-
+        startButtonObject.SetActive(true);
         timerObject.SetActive(false);
-        gameStartButtonObject.SetActive(true);
-        WaveTextChange(PhaseManager.Instance.wave);
 
-        //TEST
-        spawnManager.Spawn(10000, UnitType.Enemy);
+        if(PhaseManager.Instance.wave > 1) //Wave clear 하고 다시 Ready로 돌아오면 해야할 작업
+        {
+            WaveTextChange(PhaseManager.Instance.wave);
+            UnitDeployManager.Instance.SetAllTileActive(true);
+            spawnManager.RedeployUnits();
+        }
+
+        //TEST => 적군 소환 
+        spawnManager.Spawn(10000, 2 ,UnitType.Enemy);
         spawnManager.Spawn(10001, 7, UnitType.Enemy);
         spawnManager.Spawn(10000, new Vector2(10, 10), UnitType.Enemy);
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
@@ -103,7 +106,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        gameStartButtonObject.SetActive(false);
+        startButtonObject.SetActive(false);
         timerObject.SetActive(true);   
         UnitDeployManager.Instance.SetAllTileActive(false);
     }
