@@ -5,19 +5,16 @@ using UnityEngine.UI;
 
 public class DeployPhaseState : MonoBehaviour, IPhaseState
 {
-    [SerializeField] private GameObject standardCoreFieldUiObject;
-    [SerializeField] private GameObject unitDeploymentObject;
+    [SerializeField] private GameObject deployUi;
     [SerializeField] private Text stageText;
 
     private int frontStageNumber = 0;
     private int backStageNumber = 0;
     public void OnEnter()
     {
+        deployUi.SetActive(true);
         UnitDeployManager.Instance.SetAllTileActive(true);
 
-        UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
-        standardCoreFieldUiObject.SetActive(false);
-        unitDeploymentObject.SetActive(true);
         StageTextUpdate(1, 1);
     }
 
@@ -27,8 +24,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        standardCoreFieldUiObject.SetActive(true);
-        unitDeploymentObject.SetActive(false);
+        deployUi.SetActive(false);
     }
     public void BackWindowButton() //뒤로 가기 버튼
     {
