@@ -35,7 +35,9 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
         unitDeploymentObject.SetActive(false);
         standardCoreFieldUiObject.SetActive(true);
-
+        UnitDeployManager.Instance.SetAllTileActive(true);
+        spawnManager.RedeployUnits();
+        
         //TEST
         spawnManager.Spawn(10000, UnitType.Enemy);
         spawnManager.Spawn(10001, 7, UnitType.Enemy);

@@ -79,4 +79,15 @@ public class UnidadSpawnManager : MonoBehaviour
 
         return null;
     }
+
+    public void RedeployUnits()
+    {
+        List<TileHandle> allyTiles = new List<TileHandle>(GameObject.Find("Tiles").GetComponentsInChildren<TileHandle>());
+
+        foreach (TileHandle tileHandle in allyTiles)
+        {
+            tileHandle.ReturnPos();
+        }
+
+    }
 }
