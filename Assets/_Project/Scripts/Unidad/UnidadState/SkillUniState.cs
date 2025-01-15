@@ -35,5 +35,5 @@ public class SkillUniState: MonoBehaviour, IUnidadState
         
     }
 
-    private void EndUse(Spine.TrackEntry trackEntry) => Unit.ChangeState(UnitState.Idle);
+    private void EndUse(Spine.TrackEntry trackEntry) => Unit.ChangeState(UnitState.Attack);
 }
