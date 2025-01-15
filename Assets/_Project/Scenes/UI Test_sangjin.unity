@@ -682,11 +682,6 @@ Transform:
   - {fileID: 899416092}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1975032989 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3833788388999534978, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
-  m_PrefabInstance: {fileID: 2982546193005547787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1978133721 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8992408685092784796, guid: e93e3672803949d41a8ae0fd55732ea6, type: 3}
@@ -764,16 +759,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3215463438598632573, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
-      propertyPath: m_Name
-      value: Game Combat UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 3215463438598632573, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3833788388999534978, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
-      propertyPath: m_Name
-      value: Deploy Ui
       objectReference: {fileID: 0}
     - target: {fileID: 4237791658303645185, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
       propertyPath: m_Name
@@ -783,13 +770,13 @@ PrefabInstance:
       propertyPath: skillAreaHandler
       value: 
       objectReference: {fileID: 1978133721}
-    - target: {fileID: 6048499592997068162, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
-      propertyPath: deployUi
-      value: 
-      objectReference: {fileID: 1975032989}
-    - target: {fileID: 7845834094959356885, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 7020154017529959620, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7579945499711090562, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8191637967172017699, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
       propertyPath: m_LocalPosition.x

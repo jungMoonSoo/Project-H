@@ -7,8 +7,7 @@ using UnityEngine.UI;
 public class ReadyPhaseState : MonoBehaviour, IPhaseState
 {
     [Header("GameObject 연결")]
-    [SerializeField] private GameObject standardCoreFieldUiObject;
-    [SerializeField] private GameObject unitDeploymentObject;
+    [SerializeField] private GameObject gameCombatUi;
     [SerializeField] private UnidadSpawnManager spawnManager;
 
     [SerializeField] private GameObject timerObject;
@@ -31,13 +30,10 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     private Vector2 initialTouchPosition; // 터치 시작 위치
     private const float stationaryThreshold = 1.0f; // 이동 허용 범위 (픽셀 단위)
 
-    private bool enableHolding = false;
     public void OnEnter()
     {
-        enableHolding = true;
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
-        unitDeploymentObject.SetActive(false);
-        standardCoreFieldUiObject.SetActive(true);
+        gameCombatUi.SetActive(true);
 
         UnitDeployManager.Instance.SetAllTileActive(true);
         spawnManager.RedeployUnits();
@@ -55,63 +51,60 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 
     public void OnUpdate()
     {
-        if (enableHolding)
+        TouchInfo touch = TouchSystem.GetTouch(0, unitLayerMask);
+
+        switch (touch.phase)
         {
-            TouchInfo touch = TouchSystem.GetTouch(0, unitLayerMask);
+            case TouchPhase.Began:
+                if (touch[0] != null)
+                {
+                    targetUnit = touch[0].transform.parent.parent.gameObject;
+                    initialTouchPosition = touch.pos;
+                    pressStartTime = Time.time;
+                    isPressing = true;
+                }
+                break;
+            case TouchPhase.Moved:// 터치가 고정되거나 약간 움직이는 경우
+                if (isPressing)
+                {
+                    float pressDuration = Time.time - pressStartTime;
+                    float distance = Vector2.Distance(initialTouchPosition, touch.pos);
 
-            switch (touch.phase)
-            {
-                case TouchPhase.Began:
-                    if (touch[0] != null)
+                    if (distance > stationaryThreshold) //Hold 취소
                     {
-                        targetUnit = touch[0].transform.parent.parent.gameObject;
-                        initialTouchPosition = touch.pos;
-                        pressStartTime = Time.time;
-                        isPressing = true;
+                        Debug.Log("[Ui Manager]터치가 움직였습니다. Hold가 취소되었습니다.");
+                        isPressing = false;
                     }
-                    break;
-                case TouchPhase.Moved:// 터치가 고정되거나 약간 움직이는 경우
-                    if (isPressing)
-                    {
-                        float pressDuration = Time.time - pressStartTime;
-                        float distance = Vector2.Distance(initialTouchPosition, touch.pos);
 
-                        if (distance > stationaryThreshold) //Hold 취소
-                        {
-                            Debug.Log("[Ui Manager]터치가 움직였습니다. Hold가 취소되었습니다.");
-                            isPressing = false;
-                        }
-
-                        if (pressDuration >= longPressThreshold)
-                        {
-                            HandleLongPress(); // 길게 누르기 처리
-                            isPressing = false; // 한 번만 실행되도록 플래그 해제
-                        }
-                    }
-                    break;
-                case TouchPhase.Stationary:
-                    if (isPressing)
+                    if (pressDuration >= longPressThreshold)
                     {
-                        float pressDuration = Time.time - pressStartTime;
-                        if (pressDuration >= longPressThreshold)
-                        {
-                            HandleLongPress(); // 길게 누르기 처리
-                            isPressing = false; // 한 번만 실행되도록 플래그 해제
-                        }
+                        HandleLongPress(); // 길게 누르기 처리
+                        isPressing = false; // 한 번만 실행되도록 플래그 해제
                     }
-                    break;
-                case TouchPhase.Ended:
-                case TouchPhase.Canceled:
-                    isPressing = false; // 터치가 끝나면 플래그 초기화
-                    break;
-            }
+                }
+                break;
+            case TouchPhase.Stationary:
+                if (isPressing)
+                {
+                    float pressDuration = Time.time - pressStartTime;
+                    if (pressDuration >= longPressThreshold)
+                    {
+                        HandleLongPress(); // 길게 누르기 처리
+                        isPressing = false; // 한 번만 실행되도록 플래그 해제
+                    }
+                }
+                break;
+            case TouchPhase.Ended:
+            case TouchPhase.Canceled:
+                isPressing = false; // 터치가 끝나면 플래그 초기화
+                break;
         }
     }
 
     public void OnExit()
     {
-        enableHolding = false;
-
+        gameStartButtonObject.SetActive(false);
+        timerObject.SetActive(true);   
         UnitDeployManager.Instance.SetAllTileActive(false);
     }
 
@@ -147,6 +140,6 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
 
     public void WaveTextChange(int wave)
     {
-        waveText.text = wave.ToString() +  "Wave";
+        waveText.text = wave.ToString() + "Wave";
     }
 }
