@@ -157,7 +157,9 @@ public class Unidad : MonoBehaviour
     {
         if (effect != null)
         {
-            effect.transform.position = transform.position;
+            Vector3 pos = VectorCalc.GetRandomPositionInBoxCollider(boxCollider.Size);
+
+            effect.transform.position = transform.position + pos;
         }
 
         TextPopupManager.Instance.PopupDamage(damage.ToString(), DamageUiPosition.position);

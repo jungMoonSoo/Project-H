@@ -934,7 +934,7 @@ MonoBehaviour:
   unitCollider: {fileID: 2569011375897474234}
   attackCollider: {fileID: 5547361004574991284}
   skillCollider: {fileID: 4482305305480043611}
-  boxCollider: {fileID: 0}
+  boxCollider: {fileID: 674787526351713066}
   damageUiPosition: {fileID: 1679092143487451585}
   statusUiPosition: {fileID: 9162227307162989853}
   audioHandle: {fileID: 7202717892245656949}
