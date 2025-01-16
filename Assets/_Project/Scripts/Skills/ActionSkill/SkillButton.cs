@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,6 +19,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         get => _Caster;
         set
         {
+            Clear();
+            
             _Caster = value;
             actionSkill = value.Status.skillInfo;
             skillImage.sprite = actionSkill.sprite;
@@ -34,6 +37,42 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     
     private ActionSkillInfo actionSkill = null;
 
+
+    void OnDestroy()
+    {
+        Clear();
+    }
+
+
+    #region ◇ UI Events ◇
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        Select();
+    }
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        Select();
+    }
+    public void OnDrag(PointerEventData eventData) {}
+    public void OnEndDrag(PointerEventData eventData) {}
+    #endregion
+
+
+    private void Select()
+    {
+        if (_Caster.Mp.Value == _Caster.NowNormalStatus.maxMp && _Caster.Hp.Value > 0)
+        {
+            if (!ActionSkillManager.Instance.IsUsingSkill)
+            {
+                ActionSkillManager.Instance.OnSelect(Caster);
+            }
+            else if (ActionSkillManager.Instance.CastingCaster == Caster)
+            {
+                ActionSkillManager.Instance.OnCancel();
+            }
+        }
+    }
+    
     private void UpdateMpSlider(int currentMp)
     {
         mpSlider.value = currentMp;
@@ -45,33 +84,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         if (ActionSkillManager.Instance.CastingCaster == Caster) ActionSkillManager.Instance.OnCancel();
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    public void Clear()
     {
-        if(_Caster.Mp.Value == _Caster.NowNormalStatus.maxMp && _Caster.Hp.Value > 0)
-        {
-            OnSelect();
-        }
-    }
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        if (_Caster.Mp.Value == _Caster.NowNormalStatus.maxMp && _Caster.Hp.Value > 0)
-        {
-            OnSelect();
-        }
-    }
-    public void OnDrag(PointerEventData eventData) {}
-    public void OnEndDrag(PointerEventData eventData) {}
-
-    
-    private void OnSelect()
-    {
-        if (!ActionSkillManager.Instance.IsUsingSkill)
-        {
-            ActionSkillManager.Instance.OnSelect(Caster);
-        }
-        else if (ActionSkillManager.Instance.CastingCaster == Caster)
-        {
-            ActionSkillManager.Instance.OnCancel();
-        }
+        mpSlider.value = 0;
+        _Caster?.Mp.SetCallback(UpdateMpSlider, SetCallbackType.Remove);
     }
 }
