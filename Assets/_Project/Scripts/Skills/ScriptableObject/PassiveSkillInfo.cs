@@ -5,4 +5,5 @@ public class PassiveSkillInfo: SkillInfoBase
 {
     [Header("Passive Skill Info")]
     public PassiveRequireBase passiveRequire;
+    public PassiveEffectBase passiveEffect;
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElementMemberPassiveRequire: PassiveRequireBase
 {
     [Header("패시브 발동 조건")]
+    [SerializeField] private ElementType elementType = ElementType.None;
     [SerializeField] private int minMembers = 1;
     
     public override PassiveRequireType RequireType => PassiveRequireType.ElementMember;

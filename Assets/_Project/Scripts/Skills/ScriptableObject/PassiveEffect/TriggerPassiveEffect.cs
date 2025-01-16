@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(menuName = "Skill/PassiveEffect/TriggerPassiveEffect", fileName = "NewTriggerPassiveEffect")]
 public class TriggerPassiveEffect: PassiveEffectBase
 {
     [Header("Trigger Settings")]
