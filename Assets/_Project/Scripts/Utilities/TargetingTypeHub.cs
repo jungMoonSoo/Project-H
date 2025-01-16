@@ -2,7 +2,7 @@ using System;
 
 public static class TargetingTypeHub
 {
-    private readonly static NearFirstTarget nearFirstTarget = new();
+    private readonly static NearUniTargeting nearFirstTarget = new();
 
     public static IUnidadTargeting GetTargetingSystem(UnidadTargetingType type)
     {

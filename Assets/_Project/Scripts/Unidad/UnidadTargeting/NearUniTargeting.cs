@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class NearFirstTarget : IUnidadTargeting
+public class NearUniTargeting : IUnidadTargeting
 {
     public bool TryGetTargets(out Unidad[] targets, UnitType type, EllipseCollider collider, int count)
     {
