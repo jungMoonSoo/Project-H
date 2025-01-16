@@ -649,6 +649,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &994991480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1796740135036873714, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+  m_PrefabInstance: {fileID: 2982546193005547787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1460043428
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +698,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f94b74b300d41a6829f3771ae9d0777, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2023639974 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4155917382375138940, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+  m_PrefabInstance: {fileID: 2982546193005547787}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2032649369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,6 +768,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3215463438598632573, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3748826241225860171, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: gameDefeatObject
+      value: 
+      objectReference: {fileID: 2023639974}
+    - target: {fileID: 3748826241225860171, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: gameVictoryObject
+      value: 
+      objectReference: {fileID: 994991480}
+    - target: {fileID: 4155917382375138940, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4182370267544794184, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: gameDefeatObject
+      value: 
+      objectReference: {fileID: 2023639974}
+    - target: {fileID: 4182370267544794184, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: gameVictoryObject
+      value: 
+      objectReference: {fileID: 994991480}
     - target: {fileID: 4237791658303645185, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
       propertyPath: m_Name
       value: Standard core
@@ -806,6 +840,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8585521086866660614, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: gameDefeatObject
+      value: 
+      objectReference: {fileID: 2023639974}
+    - target: {fileID: 8585521086866660614, guid: 26c3cd5e9a3f33b4fb3712ec2f5fc794, type: 3}
+      propertyPath: gameVictoryObject
+      value: 
+      objectReference: {fileID: 994991480}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

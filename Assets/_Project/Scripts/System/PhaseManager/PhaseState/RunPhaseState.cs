@@ -59,7 +59,6 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
         if(allyGroup.transform.childCount == 0)
         {
-            Debug.Log("Check");
             PhaseManager.Instance.ChangeState(PhaseState.Defeat);
         }
         else if(enemyGroup.transform.childCount == 0)
