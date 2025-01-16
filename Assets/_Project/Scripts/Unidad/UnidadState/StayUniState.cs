@@ -24,7 +24,7 @@ public class StayUniState : MonoBehaviour, IUnidadState
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
 
-        Unit.touchCollider.SetActiveCollider(false);
+        Unit.boxCollider.SetActiveCollider(false);
     }
 
     public void OnUpdate()

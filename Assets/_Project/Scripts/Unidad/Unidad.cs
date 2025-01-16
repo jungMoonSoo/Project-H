@@ -26,7 +26,7 @@ public class Unidad : MonoBehaviour
     [SerializeField] public EllipseCollider unitCollider; // 
     [SerializeField] public EllipseCollider attackCollider;
     [SerializeField] public EllipseCollider skillCollider;
-    [SerializeField] public TouchCollider touchCollider;
+    [SerializeField] public BoxColliderManager boxCollider;
     
     [Header("Positions")]
     // Damage UI를 띄울 위치

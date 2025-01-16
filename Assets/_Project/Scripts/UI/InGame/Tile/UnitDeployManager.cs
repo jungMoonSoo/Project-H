@@ -9,7 +9,7 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
     private Vector2 offsetPos;
 
     private TileHandle selectedTile;
-    private TouchCollider selectedUnit;
+    private BoxColliderManager selectedUnit;
 
     [Header("설정")]
     [SerializeField] private UnitType selectableType;

@@ -1,11 +1,13 @@
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class TouchCollider : MonoBehaviour
+public class BoxColliderManager : MonoBehaviour
 {
     [SerializeField] private Unidad unidad;
 
     public UnitType UnitType => unidad.Owner;
+
+    public Vector2 Size => unitCollider.size;
 
     private BoxCollider2D unitCollider;
 

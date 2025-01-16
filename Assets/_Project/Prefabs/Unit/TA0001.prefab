@@ -390,7 +390,7 @@ GameObject:
   - component: {fileID: 1421095213599006775}
   - component: {fileID: 6129342343192927101}
   m_Layer: 6
-  m_Name: TouchCollider
+  m_Name: BoxCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1374197957882804915}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cbf41950c94954eb4821fccfb055d8, type: 3}
+  m_Script: {fileID: 11500000, guid: 96be04787cd6ac3459e8695d279c5178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unidad: {fileID: 4781153408217072296}
@@ -659,7 +659,7 @@ MonoBehaviour:
   unitCollider: {fileID: 4631364838723344586}
   attackCollider: {fileID: 5004726096515216064}
   skillCollider: {fileID: 497229657999507490}
-  touchCollider: {fileID: 6129342343192927101}
+  boxCollider: {fileID: 0}
   damageUiPosition: {fileID: 4892709537515427125}
   statusUiPosition: {fileID: 9206378180646387357}
   audioHandle: {fileID: 4648712360873556466}
@@ -967,7 +967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCoefficient: 100
-  effect: {fileID: 0}
+  effectManager: {fileID: 0}
 --- !u!1 &6612018800831520400
 GameObject:
   m_ObjectHideFlags: 0
