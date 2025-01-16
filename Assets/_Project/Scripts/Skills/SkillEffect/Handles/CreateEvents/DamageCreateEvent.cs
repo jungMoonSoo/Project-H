@@ -8,7 +8,7 @@ public class DamageCreateEvent : MonoBehaviour, ISkillEffectCreateEvent
 
     public void OnCreate(SkillEffectHandlerBase handler)
     {
-        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
+        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.AttackStatus, handler.DefenceStatus, skillCoefficient, 0, ElementType.None);
 
         foreach (Unidad unit in handler.Targets) unit.OnDamage((int)callback.value, callback.type);
     }

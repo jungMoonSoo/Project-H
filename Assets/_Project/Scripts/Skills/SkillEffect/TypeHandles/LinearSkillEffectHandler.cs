@@ -8,5 +8,5 @@ public class LinearSkillEffectHandler : SkillEffectHandlerBase
 
     public override Vector2 GetAreaSize() => new(size.y, size.x);
 
-    protected override Unidad[] Targeting() => TargetingSystem.GetTargets(Caster.Owner, TargetType, Caster.transform.position, transform.position, size);
+    protected override Unidad[] Targeting() => TargetingSystem.GetTargets(Owner, TargetType, CastingPosition, transform.position, size);
 }

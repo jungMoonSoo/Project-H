@@ -78,6 +78,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     public void OnExit()
     {
         PhaseManager.Instance.wave++;
+        ActionSkillManager.Instance.OnCancel();
         ActionSkillManager.Instance.ClearSkillButtons();
         timerCount = 0f;
         UpdateTimerText(timerCount);

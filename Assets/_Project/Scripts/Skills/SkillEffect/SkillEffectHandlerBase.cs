@@ -13,12 +13,30 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
     private ISkillEffectFinishEvent skillEffectFinishEvent;
     private ISkillEffectPositioner skillEffectPositioner;
 
-    public Unidad Caster { get; private set; }
+    private Unidad Caster
+    {
+        set
+        {
+            CastingPosition = value.transform.position;
+            Owner = value.Owner;
+            AttackStatus = value.NowAttackStatus;
+            DefenceStatus = value.NowDefenceStatus;
+            NormalStatus = value.NowNormalStatus;
+        }
+    }
     public Unidad[] Targets { get; private set; }
 
     public TargetType TargetType => targetType;
     public ITargetingSystem TargetingSystem { get; private set; }
 
+
+    public Vector2 CastingPosition { get; private set; }
+    public UnitType Owner { get; private set; }
+    public AttackStatus AttackStatus { get; private set; }
+    public DefenceStatus DefenceStatus { get; private set; }
+    public NormalStatus NormalStatus { get; private set; }
+
+    
     public virtual void Init(Unidad caster, Vector2 position)
     {
         Caster = caster;
