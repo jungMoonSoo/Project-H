@@ -95,6 +95,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
             handler.Init(CastingCaster, (Vector2)target);
 
             CastingCaster.ChangeState(UnitState.Skill);
+            CastingCaster.Mp.Value = 0;
         }
         
         // Skill 제거
