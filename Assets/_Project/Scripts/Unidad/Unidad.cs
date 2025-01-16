@@ -159,6 +159,8 @@ public class Unidad : MonoBehaviour
         {
             Vector3 pos = VectorCalc.GetRandomPositionInBoxCollider(boxCollider.Size);
 
+            pos.x -= boxCollider.Size.x * 0.5f;
+
             effect.transform.position = transform.position + pos;
         }
 
