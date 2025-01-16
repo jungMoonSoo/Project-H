@@ -7,9 +7,9 @@ using UnityEngine.UI;
 
 public class RunPhaseState : MonoBehaviour, IPhaseState
 {
-    [Header("SetActive Objects")]
-    [SerializeField] private GameObject[] enableObjects;
-    [SerializeField] private GameObject[] disableObjects;
+    //[Header("SetActive Objects")]
+    //[SerializeField] private GameObject[] enableObjects;
+    //[SerializeField] private GameObject[] disableObjects;
     
     [Header("Unit Groups")]
     [SerializeField] private GameObject allyGroup;
@@ -18,10 +18,6 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
     [Header("Timer")]
     [SerializeField] private Text txtCounter;
     [SerializeField] private float timeInSeconds = 120f;
-    
-    [Header("Object 연결")]
-    [SerializeField] private GameObject optionObject;
-    
     
     //타이머 관련 함수
     private float timerCount;     //초기 타이머 시간(한판에 걸리는 시간)
@@ -40,9 +36,9 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         UnidadManager.Instance.ChangeAllUnitState(UnitState.Idle);
 
         
-        // 사용 및 비사용 오브젝트 Active 처리
-        foreach (var obj in enableObjects) obj.SetActive(true);
-        foreach (var obj in disableObjects) obj.SetActive(false);
+        //// 사용 및 비사용 오브젝트 Active 처리
+        //foreach (var obj in enableObjects) obj.SetActive(true);
+        //foreach (var obj in disableObjects) obj.SetActive(false);
     }
 
     public void OnUpdate()
@@ -86,22 +82,6 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         timerCount = 0f;
         UpdateTimerText(timerCount);
         StopTimer();
-    }
-    
-
-    public void OptionButton() //게임 옵션창 
-    {
-        Debug.Log("[Ui Manager] 옵션창이 열렸습니다.");
-        StopTimer();
-        optionObject.transform.GetChild(1).gameObject.SetActive(true);
-    }
-
-    public void CloseOptionWindowButton() //옵션창 닫기
-    {
-        Debug.Log("[Ui Manager] 옵션창이 닫혔습니다.");
-        StartTimer();
-        optionObject.transform.GetChild(1).gameObject.SetActive(false);
-        Time.timeScale = 1f;
     }
 
     //Timer 관련 함수 
