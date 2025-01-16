@@ -68,7 +68,6 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         if (!ActionSkillManager.Instance.IsUsingSkill)
         {
             ActionSkillManager.Instance.OnSelect(Caster);
-            _Caster.Mp.Value = 0;
         }
         else if (ActionSkillManager.Instance.CastingCaster == Caster)
         {
