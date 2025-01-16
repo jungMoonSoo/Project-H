@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AttackSingleTarget : MonoBehaviour, IUnidadAttack
+public class SingleUniAttack : MonoBehaviour, IUnidadAttack
 {
     [SerializeField] private float skillCoefficient = 100f;
     [SerializeField] private EffectManager effectManager;
