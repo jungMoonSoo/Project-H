@@ -35,7 +35,7 @@ public class StatusManager
         if (newValue <= 0)
         {
             currentValue = 0;
-            unidad.DieEvent?.Invoke();
+            unidad.ChangeState(UnitState.Die);
         }
         else if (newValue > NormalStatus.maxHp) currentValue = NormalStatus.maxHp;
         else currentValue = newValue;

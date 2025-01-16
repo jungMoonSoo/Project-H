@@ -22,6 +22,7 @@ public class DieUniState: MonoBehaviour, IUnidadState
 
     public void OnEnter()
     {
+        Unit.DieEvent?.Invoke();
         Destroy(Unit.gameObject);
     }
 

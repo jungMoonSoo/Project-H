@@ -33,6 +33,11 @@ public class Unidad : MonoBehaviour
     [SerializeField] private Transform damageUiPosition; // 
     [SerializeField] private Transform statusUiPosition; // 
 
+    [Header("Other")]
+    public UnidadAudioHandle audioHandle;
+    private UnidadStatusBar statusBar;
+
+    
     public UnitType Owner
     {
         get => owner;
@@ -44,10 +49,6 @@ public class Unidad : MonoBehaviour
             owner = value;
         }
     }
-
-    [Header("Ather")]
-    public UnidadAudioHandle audioHandle;
-    private UnidadStatusBar statusBar;
 
     public UnidadStatus Status => status;
 
@@ -122,8 +123,6 @@ public class Unidad : MonoBehaviour
         }
 
         ChangeState(UnitState.Ready);
-
-        DieEvent += () => ChangeState(UnitState.Die);
     }
 
     public void SetStatusBar(UnidadStatusBar statusBar)
