@@ -75,5 +75,16 @@ public static class VectorCalc
         return ellipsePosition + new Vector2(normalizedX / Mathf.Sqrt(distanceSquared), normalizedY / Mathf.Sqrt(distanceSquared)) * colliderRadius;
     }
 
-    public static Vector2 GetRandomPositionInBoxCollider(Vector2 size) => new(Random.Range(0, size.x), Random.Range(0, size.y));
+    public static Vector2 GetRandomPositionInBoxCollider(Vector2 size, Vector2 pivot, Vector2 border)
+    {
+        size *= 0.5f;
+        border *= size;
+
+        Vector2 result = -size - (size * pivot);
+
+        result.x += Random.Range(border.x, size.x * 2 - border.x);
+        result.y += Random.Range(border.y, size.y * 2 - border.y);
+
+        return result;
+    }
 }
