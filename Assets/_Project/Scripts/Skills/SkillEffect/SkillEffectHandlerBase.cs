@@ -4,7 +4,6 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private TargetType targetType;
-    [SerializeField] private TargetingTimingType targetingTimingType;
     [SerializeField] private TargetingSystemType targetingSystemType;
     [SerializeField] private AnimatorEventHandler animatorEventHandler;
     
@@ -13,67 +12,60 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
     private ISkillEffectFinishEvent skillEffectFinishEvent;
     private ISkillEffectPositioner skillEffectPositioner;
 
-    private Unidad Caster
+    public Unidad Caster { get; set; }
+    public Vector2 CastingPosition { get; private set; }
+
+    private Unidad[] targets;
+    public Unidad[] Targets
     {
-        set
-        {
-            CastingPosition = value.transform.position;
-            Owner = value.Owner;
-            AttackStatus = value.NowAttackStatus;
-            DefenceStatus = value.NowDefenceStatus;
-            NormalStatus = value.NowNormalStatus;
-        }
+        get => targets;
+        private set => targets = TargetType == TargetType.Me ? new Unidad[] { Caster } : value;
     }
-    public Unidad[] Targets { get; private set; }
 
     public TargetType TargetType => targetType;
     public ITargetingSystem TargetingSystem { get; private set; }
 
+    public UnitType Owner => Caster.Owner;
+    public NormalStatus NormalStatus => Caster.NowNormalStatus;
+    public AttackStatus AttackStatus => Caster.NowAttackStatus;
+    public DefenceStatus DefenceStatus => Caster.NowDefenceStatus;
 
-    public Vector2 CastingPosition { get; private set; }
-    public UnitType Owner { get; private set; }
-    public AttackStatus AttackStatus { get; private set; }
-    public DefenceStatus DefenceStatus { get; private set; }
-    public NormalStatus NormalStatus { get; private set; }
-
-    
     public virtual void Init(Unidad caster, Vector2 position)
     {
         Caster = caster;
+        CastingPosition = caster.transform.position;
 
         skillEffectCreateEvent = GetComponent<ISkillEffectCreateEvent>();
         skillEffectTriggerEvent = GetComponent<ISkillEffectTriggerEvent>();
         skillEffectFinishEvent = GetComponent<ISkillEffectFinishEvent>();
         skillEffectPositioner = GetComponent<ISkillEffectPositioner>();
 
-        skillEffectPositioner?.SetPosition(this, position);
-
         TargetingSystem = SkillTypeHub.GetTargetingSystem(targetingSystemType);
 
-        switch (targetingTimingType)
-        {
-            case TargetingTimingType.OnCreate:
-                Targets = Targeting();
-                skillEffectCreateEvent?.OnCreate(this);
-                break;
+        SetPosition(position);
+        OnCreate();
 
-            case TargetingTimingType.OnTrigger:
-                animatorEventHandler.OnTriggerEvent = OnTrigger;
-                break;
-        }
-
+        animatorEventHandler.OnTriggerEvent = OnTrigger;
         animatorEventHandler.OnFinishEvent = OnFinish;
     }
 
     public abstract Vector2 GetAreaSize();
 
-    private void OnTrigger()
+    protected void SetPosition(Vector2 position) => skillEffectPositioner?.SetPosition(this, position);
+
+    protected void OnCreate()
+    {
+        Targets = Targeting();
+        skillEffectCreateEvent?.OnCreate(this);
+    }
+
+    protected void OnTrigger()
     {
         Targets = Targeting();
         skillEffectTriggerEvent?.OnTrigger(this);
     }
 
-    private void OnFinish() => skillEffectFinishEvent?.OnFinish(this);
+    protected void OnFinish() => skillEffectFinishEvent?.OnFinish(this);
 
     protected abstract Unidad[] Targeting();
 }
