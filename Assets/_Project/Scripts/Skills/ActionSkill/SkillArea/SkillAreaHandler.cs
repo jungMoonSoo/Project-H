@@ -19,9 +19,16 @@ public class SkillAreaHandler : MonoBehaviour
     }
     public void SetPosition(TargetType targetType, Unidad caster, Vector2 target)
     {
+        transform.eulerAngles = Vector3.zero;
+
         if (SkillArea is not null)
         {
-            LastPosition = SkillArea.SetPosition(transform, targetType, caster, target);
+            if (targetType == TargetType.Me)
+            {
+                LastPosition = caster.transform.position;
+                transform.position = LastPosition.Value;
+            }
+            else LastPosition = SkillArea.SetPosition(transform, targetType, caster, target);
         }
     }
     
