@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 1, a: 1}
   center: {x: 0, y: 0}
-  size: {x: 6, y: 3}
+  size: {x: 2, y: 1}
 --- !u!1 &3792025657868637557
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,9 +59,9 @@ GameObject:
   - component: {fileID: 2655237496323968454}
   - component: {fileID: 8841968534178399513}
   - component: {fileID: 5362146125081823029}
-  - component: {fileID: 4288427183755041319}
+  - component: {fileID: 7101620801996370876}
   m_Layer: 0
-  m_Name: TestSkillEffect
+  m_Name: TA001Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,8 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  targetingTimingType: 1
-  targetingSystemType: 0
+  targetingSystemType: 1
   animatorEventHandler: {fileID: 4213904965122752113}
   effectCollider: {fileID: 2315179243541150760}
 --- !u!114 &8841968534178399513
@@ -113,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6b54761116745f9b0e4b6c8525701c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillCoefficient: 2500
 --- !u!114 &5362146125081823029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebf697f768e4da7b02ad76134c21011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4288427183755041319
+--- !u!114 &7101620801996370876
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792025657868637557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48555cc178434849a102572ee624672e, type: 3}
+  m_Script: {fileID: 11500000, guid: 6075908aeccd4d488e278c85864a4e3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7096449219032708577
@@ -165,7 +165,7 @@ Transform:
   m_GameObject: {fileID: 7096449219032708577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -233,7 +233,7 @@ Animator:
   m_GameObject: {fileID: 7096449219032708577}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5b4fcef8c9c2d19468a5aa551235fcc1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 2ae82e585f14c334192e746877cdb182, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

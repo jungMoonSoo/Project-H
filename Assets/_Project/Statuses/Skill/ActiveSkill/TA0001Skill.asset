@@ -15,5 +15,5 @@ MonoBehaviour:
   code: 4
   skillName: TA0001Skill
   sprite: {fileID: -536195216, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
-  effectPrefab: {fileID: 2655237496323968454, guid: 630f992fdf1c0e9428f00625867e0e71, type: 3}
-  skillArea: {fileID: 11400000, guid: 7ac1b7d5fa626b94c91e61bf70e431ef, type: 2}
+  effectPrefab: {fileID: 2655237496323968454, guid: 770006e89a3f075489a85bf74301cf68, type: 3}
+  skillArea: {fileID: 11400000, guid: 7859e0b5fe17ad94a82574832d0de228, type: 2}

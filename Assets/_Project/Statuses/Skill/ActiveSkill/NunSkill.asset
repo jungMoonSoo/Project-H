@@ -15,5 +15,5 @@ MonoBehaviour:
   code: 2
   skillName: NunSkill
   sprite: {fileID: 301113313, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
-  effectPrefab: {fileID: 2655237496323968454, guid: 630f992fdf1c0e9428f00625867e0e71, type: 3}
+  effectPrefab: {fileID: 2655237496323968454, guid: 4a88772d3146c30469d628984113bc3a, type: 3}
   skillArea: {fileID: 11400000, guid: 7ac1b7d5fa626b94c91e61bf70e431ef, type: 2}
