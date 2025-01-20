@@ -46,10 +46,8 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         }
 
         //TEST => 적군 소환 
-        spawnManager.Spawn(10000, 2 ,UnitType.Enemy);
-        spawnManager.Spawn(10001, 7, UnitType.Enemy);
-        spawnManager.Spawn(10000, new Vector2(10, 10), UnitType.Enemy);
-        UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
+        TestEmenySpanw(PhaseManager.Instance.wave);
+
     }
 
     public void OnUpdate()
@@ -144,5 +142,35 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
     public void WaveTextChange(int wave)
     {
         waveText.text = wave.ToString() + "Wave";
+    }
+
+    /// <summary>
+    ///  임시로 만들어 놓은 적 스폰 함수 -> 이후 업데이트하면서 wave 데이터를 받아서 스폰하도록 만드는 편이 좋아보임
+    ///  => 파일 형태를 잡으면 그에 맞추어 다시 제작
+    /// </summary>
+    /// <param name="wave"></param>
+    void TestEmenySpanw(int wave)
+    {
+        switch (wave) 
+        {
+            case 1:
+                spawnManager.Spawn(10000, 1, UnitType.Enemy);
+                spawnManager.Spawn(10000, 2, UnitType.Enemy);
+                spawnManager.Spawn(10000, new Vector2(5, 5), UnitType.Enemy);
+                UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
+                break;
+            case 2:
+                spawnManager.Spawn(10000, 2, UnitType.Enemy);
+                spawnManager.Spawn(10001, 7, UnitType.Enemy);
+                break;
+            case 3:
+                spawnManager.Spawn(10000, 2, UnitType.Enemy);
+                spawnManager.Spawn(10001, 7, UnitType.Enemy);
+                spawnManager.Spawn(10001, 8, UnitType.Enemy);
+                break;
+        }
+
+        UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
+
     }
 }
