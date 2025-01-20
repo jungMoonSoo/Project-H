@@ -19,11 +19,11 @@ public class StatusManager
 
         modifierManager = new(unidad);
 
-        hp.SetCallback(BindHp, SetCallbackType.Set);
         hp.Value = NormalStatus.maxHp;
+        hp.SetCallback(BindHp, SetCallbackType.Set);
 
-        mp.SetCallback(BindMp, SetCallbackType.Set);
         mp.Value = 0;
+        mp.SetCallback(BindMp, SetCallbackType.Set);
     }
     
     public void OnDamage(int damage) => hp.Value -= damage;
