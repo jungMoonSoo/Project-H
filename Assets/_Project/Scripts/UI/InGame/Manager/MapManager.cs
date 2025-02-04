@@ -7,7 +7,7 @@ public class MapManager : Singleton<MapManager>
     public Vector2 mapPos;
     public Vector2 mapSize;
 
-    public Vector2 ClampPositionToMap(Vector3 pos, Vector2 colliderSize)
+    public Vector3 ClampPositionToMap(Vector3 pos, Vector2 colliderSize)
     {
         float dist = (mapPos.x - mapSize.x * 0.5f) - (pos.x - colliderSize.x);
 
@@ -17,13 +17,13 @@ public class MapManager : Singleton<MapManager>
 
         if (dist < 0) pos.x += dist;
 
-        dist = (mapPos.y - mapSize.y * 0.5f) - (pos.y - colliderSize.y);
+        dist = (mapPos.y - mapSize.y * 0.5f) - (pos.z - colliderSize.y);
 
-        if (dist > 0) pos.y += dist;
+        if (dist > 0) pos.z += dist;
 
-        dist = (mapPos.y + mapSize.y * 0.5f) - (pos.y + colliderSize.y);
+        dist = (mapPos.y + mapSize.y * 0.5f) - (pos.z + colliderSize.y);
 
-        if (dist < 0) pos.y += dist;
+        if (dist < 0) pos.z += dist;
 
         return pos;
     }
@@ -33,14 +33,16 @@ public class MapManager : Singleton<MapManager>
     {
         Gizmos.color = Color.black;
 
-        // 직사각형의 중심과 크기를 기반으로 기즈모 그리기
-        Vector3 bottomLeft = mapPos + new Vector2(-mapSize.x / 2, -mapSize.y / 2);
-        Vector3 topRight = mapPos + new Vector2(mapSize.x / 2, mapSize.y / 2);
+        Vector3 mapSize = new Vector3(this.mapSize.x, 0, this.mapSize.y) * 0.5f;
+        Vector3 mapPos = new(this.mapPos.x, 0, this.mapPos.y);
 
-        Gizmos.DrawLine(bottomLeft, new Vector2(bottomLeft.x, topRight.y)); // 왼쪽 선
-        Gizmos.DrawLine(bottomLeft, new Vector2(topRight.x, bottomLeft.y)); // 아래 선
-        Gizmos.DrawLine(new Vector2(topRight.x, bottomLeft.y), topRight); // 오른쪽 선
-        Gizmos.DrawLine(new Vector2(bottomLeft.x, topRight.y), topRight); // 위쪽 선
+        Vector3 bottomLeft = mapPos - mapSize;
+        Vector3 topRight = mapPos + mapSize;
+
+        Gizmos.DrawLine(bottomLeft, new Vector3(bottomLeft.x, 0, topRight.z));
+        Gizmos.DrawLine(bottomLeft, new Vector3(topRight.x, 0, bottomLeft.z));
+        Gizmos.DrawLine(new Vector3(topRight.x, 0, bottomLeft.z), topRight);
+        Gizmos.DrawLine(new Vector3(bottomLeft.x, 0, topRight.z), topRight);
     }
 #endif
 }
