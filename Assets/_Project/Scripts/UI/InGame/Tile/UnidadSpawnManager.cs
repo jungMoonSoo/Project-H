@@ -51,7 +51,7 @@ public class UnidadSpawnManager : MonoBehaviour
         return tiles[tileId].Unit != null;
     }
 
-    public Unidad Spawn(uint unitId, Vector2 pos, UnitType owner)
+    public Unidad Spawn(uint unitId, Vector3 pos, UnitType owner)
     {
         UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
 
