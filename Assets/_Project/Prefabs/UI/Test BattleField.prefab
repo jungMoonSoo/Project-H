@@ -3146,7 +3146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8191637967172017699}
   m_Layer: 0
-  m_Name: Standard core
+  m_Name: Test BattleField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
