@@ -1,20 +1,26 @@
 using UnityEngine;
 
-public struct TouchInfo
+public class TouchInfo
 {
     public int count;
-    public Vector2 pos;
-
     public int fingerId;
-    public TouchPhase phase;
+    public TouchPhase phase = TouchPhase.Ended;
 
-    public RaycastHit2D[] hits;
+    public int length = 0;
+    public RaycastHit[] hits = new RaycastHit[5];
 
-    public readonly GameObject this[int index]
+    public Vector3 GetPos(int index)
+    {
+        if (length <= index) return Vector3.zero;
+
+        return hits[index].point;
+    }
+
+    public GameObject this[int index]
     {
         get
         {
-            if (hits == null || hits.Length <= index) return null;
+            if (length <= index) return null;
 
             if (hits[index].collider == null) return null;
             else return hits[index].collider.gameObject;

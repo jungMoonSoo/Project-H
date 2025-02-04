@@ -6,14 +6,13 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
 {
     private readonly Dictionary<UnitType, List<TileHandle>> tiles = new();
 
-    private Vector2 offsetPos;
-
     private TileHandle selectedTile;
     private BoxColliderManager selectedUnit;
 
     [Header("설정")]
     [SerializeField] private UnitType selectableType;
     [SerializeField] private LayerMask unitLayerMask;
+    [SerializeField] private LayerMask tileLayerMask;
 
     void Awake()
     {
@@ -85,8 +84,7 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
                     if (selectedUnit.UnitType != selectableType) selectedUnit = null;
                     else
                     {
-                        offsetPos = (Vector2)selectedUnit.transform.position - info.pos;
-                        selectedUnit.TryGetHitComponent(out selectedTile, ~unitLayerMask);
+                        selectedUnit.TryGetHitComponent(out selectedTile, tileLayerMask);
 
                         selectedUnit.PickUnit();
                     }
@@ -99,14 +97,14 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
                 break;
 
             default:
-                if (selectedUnit != null) selectedUnit.SetUnitPos(offsetPos + info.pos);
+                if (selectedUnit != null) selectedUnit.SetUnitPos(TouchSystem.GetTouch(0, ~unitLayerMask).GetPos(0));
                 break;
         }
     }
 
     private void TouchEnded()
     {
-        if (selectedUnit.TryGetHitComponent(out TileHandle targetTile, ~unitLayerMask) && targetTile.Type == selectableType) selectedTile.SwapUnits(targetTile);
+        if (selectedUnit.TryGetHitComponent(out TileHandle targetTile, tileLayerMask) && targetTile.Type == selectableType) selectedTile.SwapUnits(targetTile);
         else selectedTile.ReturnPos();
 
         selectedUnit.DropUnit();

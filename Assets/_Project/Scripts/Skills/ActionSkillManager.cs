@@ -35,7 +35,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
                 }
                 else
                 {
-                    OnDrag(touchInfo.pos);
+                    OnDrag(touchInfo.GetPos(0));
                 }
             }
             else if(hasPosition)

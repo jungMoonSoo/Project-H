@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class TouchSystem
 {
-    public static Vector2 TouchBeganPosition { get; private set; }
+    public readonly static Dictionary<int, TouchInfo> infos = new();
 
+    private static Vector2 beganPosition;
     private static Camera mainCamera;
 
 #if UNITY_EDITOR
@@ -11,52 +13,65 @@ public static class TouchSystem
     {
         if (mainCamera == null) mainCamera = Camera.main;
 
-        TouchInfo info = new();
         Vector2 pos = Input.mousePosition;
+        Vector2 screenScale = new(mainCamera.scaledPixelWidth, mainCamera.scaledPixelHeight);
 
-        if (pos.x > mainCamera.scaledPixelWidth || pos.y > mainCamera.scaledPixelHeight) return info;
+        if (!infos.ContainsKey(layerMask)) infos.Add(layerMask, new());
 
-        info.pos = mainCamera.ScreenToWorldPoint(pos);
+        if (pos.x > screenScale.x || pos.y > screenScale.y) return infos[layerMask];
+
+        Ray ray = mainCamera.ScreenPointToRay(pos);
 
         if (Input.GetMouseButton(index))
         {
+            infos[layerMask].length = Physics.RaycastNonAlloc(ray, infos[layerMask].hits, Mathf.Infinity, layerMask);
+
+            infos[layerMask].phase = (infos[layerMask].phase == TouchPhase.Began || infos[layerMask].phase == TouchPhase.Stationary) && beganPosition == pos ? TouchPhase.Stationary : TouchPhase.Moved;
+
             if (Input.GetMouseButtonDown(index))
             {
-                info.phase = TouchPhase.Began;
-                TouchBeganPosition = info.pos;
+                infos[layerMask].phase = TouchPhase.Began;
+                beganPosition = pos;
             }
-            else info.phase = TouchBeganPosition == info.pos ? TouchPhase.Stationary : TouchPhase.Moved;
 
-            info.count = index + 1;
-            info.fingerId = -1;
+            infos[layerMask].count = index + 1;
+            infos[layerMask].fingerId = -1;
+        }
+        else
+        {
+            infos[layerMask].phase = infos[layerMask].phase == TouchPhase.Stationary && beganPosition == pos ? TouchPhase.Canceled : TouchPhase.Ended;
+
+            TouchInfo returnInfo = infos[layerMask];
+
+            infos.Remove(layerMask);
+
+            return returnInfo;
         }
 
-        if (info.count > index) info.hits = Physics2D.RaycastAll(info.pos, Vector2.zero, 1f, layerMask);
-        else info.phase = TouchBeganPosition == info.pos ? TouchPhase.Canceled : TouchPhase.Ended;
-
-        return info;
+        return infos[layerMask];
     }
 #else
     public static TouchInfo GetTouch(int index, int layerMask = -1)
     {
         if (mainCamera == null) mainCamera = Camera.main;
 
-        TouchInfo info = new() { count = Input.touchCount };
-
-        if (info.count > index)
+        if (Input.touchCount > index)
         {
+            if (!infos.ContainsKey(layerMask)) infos.Add(layerMask, new());
+
+            infos[layerMask].count = Input.touchCount;
+
             Touch touch = Input.GetTouch(index);
             
-            info.fingerId = touch.fingerId;
-            info.phase = touch.phase;
-            info.pos = mainCamera.ScreenToWorldPoint(touch.position);
+            infos[layerMask].fingerId = touch.fingerId;
+            infos[layerMask].phase = touch.phase;
 
-            if (info.phase == TouchPhase.Began) TouchBeganPosition = info.pos;
-
-            info.hits = Physics2D.RaycastAll(info.pos, Vector2.zero, 1f, layerMask);
+            Ray ray = mainCamera.ScreenPointToRay(touch.position);
+            
+            infos[layerMask].length = Physics.RaycastNonAlloc(ray, infos[layerMask].hits, Mathf.Infinity, layerMask);
         }
 
-        return info;
+        return infos[layerMask];
     }
 #endif
 }

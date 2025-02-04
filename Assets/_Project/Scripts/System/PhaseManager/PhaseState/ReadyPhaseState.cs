@@ -60,7 +60,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
                 if (touch[0] != null)
                 {
                     targetUnit = touch[0].transform.parent.parent.gameObject;
-                    initialTouchPosition = touch.pos;
+                    initialTouchPosition = touch.GetPos(0);
                     pressStartTime = Time.time;
                     isPressing = true;
                 }
@@ -69,7 +69,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
                 if (isPressing)
                 {
                     float pressDuration = Time.time - pressStartTime;
-                    float distance = Vector2.Distance(initialTouchPosition, touch.pos);
+                    float distance = Vector2.Distance(initialTouchPosition, touch.GetPos(0));
 
                     if (distance > stationaryThreshold) //Hold 취소
                     {
