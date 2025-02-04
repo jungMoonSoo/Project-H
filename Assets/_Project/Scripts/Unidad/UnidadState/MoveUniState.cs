@@ -32,11 +32,11 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
     public void OnUpdate()
     {
-        Vector2 movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Radius);
+        Vector3 movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Radius);
 
-        if ((Vector2)Unit.transform.position != movePos)
+        if (Unit.transform.position != movePos)
         {
-            Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, movePos, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
+            Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, movePos, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
 
             return;
         }
@@ -47,10 +47,10 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
             if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
             {
-                Vector2 direction = target.unitCollider.transform.position - transform.position;
+                Vector3 direction = target.unitCollider.transform.position - transform.position;
 
                 Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
-                Unit.transform.position = Vector2.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
+                Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
             }
             else Unit.ChangeState(UnitState.Attack);
         }
