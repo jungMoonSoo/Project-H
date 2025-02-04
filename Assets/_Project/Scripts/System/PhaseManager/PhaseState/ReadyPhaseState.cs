@@ -156,7 +156,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
             case 1:
                 spawnManager.Spawn(10000, 1, UnitType.Enemy);
                 spawnManager.Spawn(10000, 2, UnitType.Enemy);
-                spawnManager.Spawn(10000, new Vector2(5, 5), UnitType.Enemy);
+                spawnManager.Spawn(10000, new Vector3(5, 0, 5), UnitType.Enemy);
                 UnidadManager.Instance.ChangeAllUnitState(UnitState.Ready);
                 break;
             case 2:
