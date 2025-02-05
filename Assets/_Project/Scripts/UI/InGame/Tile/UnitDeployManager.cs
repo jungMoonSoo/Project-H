@@ -86,7 +86,8 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
                     {
                         selectedUnit.TryGetHitComponent(out selectedTile, tileLayerMask);
 
-                        selectedUnit.PickUnit();
+                        if (selectedTile == null) selectedUnit = null;
+                        else selectedUnit.PickUnit();
                     }
                 }
                 break;
@@ -97,7 +98,9 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
                 break;
 
             default:
-                if (selectedUnit != null) selectedUnit.SetUnitPos(TouchSystem.GetTouch(0, ~unitLayerMask).GetPos(0));
+                TouchInfo groundInfo = TouchSystem.GetTouch(0, ~unitLayerMask);
+
+                if (groundInfo.length != 0 && selectedUnit != null) selectedUnit.SetUnitPos(groundInfo.GetPos(0));
                 break;
         }
     }
