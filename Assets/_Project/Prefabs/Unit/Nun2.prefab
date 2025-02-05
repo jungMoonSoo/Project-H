@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 1, g: 0, b: 0, a: 1}
   center: {x: 0, y: 0}
-  size: {x: 9, y: 4.5}
+  size: {x: 9, y: 9}
 --- !u!1 &841806244704469025
 GameObject:
   m_ObjectHideFlags: 0
@@ -781,7 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 0, b: 0, a: 1}
   center: {x: 0, y: 0}
-  size: {x: 7, y: 3.5}
+  size: {x: 7, y: 7}
 --- !u!1 &7167320053235744595
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 0, a: 1}
   center: {x: 0, y: 0}
-  size: {x: 2, y: 1}
+  size: {x: 2, y: 2}
 --- !u!1 &8411213805730792512
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,13 +1157,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9166212650040122973}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1392622495035082249}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!65 &5935009414949231074
 BoxCollider:
   m_ObjectHideFlags: 0
