@@ -47,9 +47,8 @@ public class MoveUniState: MonoBehaviour, IUnidadState
 
             if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
             {
-                Vector3 direction = target.unitCollider.transform.position - transform.position;
+                Flip(target.unitCollider.transform.position.x - transform.position.x > 0);
 
-                Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
                 Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
             }
             else Unit.ChangeState(UnitState.Attack);
@@ -60,5 +59,17 @@ public class MoveUniState: MonoBehaviour, IUnidadState
     public void OnExit()
     {
         
+    }
+
+    private void Flip(bool right)
+    {
+        if (right)
+        {
+            if (Unit.transform.localScale.x < 0) Unit.transform.localScale += new Vector3(Unit.transform.localScale.x * 2, 0, 0);
+        }
+        else
+        {
+            if (Unit.transform.localScale.x > 0) Unit.transform.localScale -= new Vector3(Unit.transform.localScale.x * 2, 0, 0);
+        }
     }
 }

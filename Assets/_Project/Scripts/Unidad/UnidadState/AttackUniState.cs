@@ -79,9 +79,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         {
             Unidad target = targets[0];
 
-            Vector2 direction = target.unitCollider.transform.position - transform.position;
-
-            Unit.transform.eulerAngles = new Vector2(0, direction.x < 0 ? 180 : 0);
+            Flip(target.unitCollider.transform.position.x - transform.position.x > 0);
 
             if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackPoint)
             {
@@ -112,7 +110,19 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     public void OnExit()
     {
-        
+
+    }
+
+    private void Flip(bool right)
+    {
+        if (right)
+        {
+            if (Unit.transform.localScale.x < 0) Unit.transform.localScale += new Vector3(Unit.transform.localScale.x * 2, 0, 0);
+        }
+        else
+        {
+            if (Unit.transform.localScale.x > 0) Unit.transform.localScale -= new Vector3(Unit.transform.localScale.x * 2, 0, 0);
+        }
     }
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e) => eventHandles[e.Data.Name]?.Invoke();
