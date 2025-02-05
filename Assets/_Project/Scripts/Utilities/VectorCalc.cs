@@ -30,7 +30,7 @@ public static class VectorCalc
     /// <param name="centerRadius">A타원의 반지름</param>
     /// <param name="targetRadius">B타원의 반지름</param>
     /// <returns>타원방정식 결과 값, 1이하면 접촉상태</returns>
-    public static float CalcEllipse(Vector2 center, Vector2 target, Vector2 centerRadius, Vector2 targetRadius) =>
+    public static float CalcEllipse(Vector3 center, Vector3 target, Vector2 centerRadius, Vector2 targetRadius) =>
         CalcEllipse(target - center, centerRadius, targetRadius);
     /// <summary>
     /// 타원방정식에서 두 타원이 접해있는지 계산하는 Method
@@ -39,10 +39,10 @@ public static class VectorCalc
     /// <param name="centerRadius">A타원의 반지름</param>
     /// <param name="targetRadius">B타원의 반지름</param>
     /// <returns>타원방정식 결과 값, 1이하면 접촉상태</returns>
-    public static float CalcEllipse(Vector2 direction, Vector2 centerRadius, Vector2 targetRadius)
+    public static float CalcEllipse(Vector3 direction, Vector2 centerRadius, Vector2 targetRadius)
     {
         return Mathf.Pow(direction.x / (centerRadius.x + targetRadius.x), 2) +
-               Mathf.Pow(direction.y / (centerRadius.y + targetRadius.y), 2);
+               Mathf.Pow(direction.z / (centerRadius.y + targetRadius.y), 2);
     }
 
     /// <summary>
