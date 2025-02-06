@@ -1,9 +1,8 @@
-using System.Linq;
 using UnityEngine;
 
 public class SingleTargetingSystem: ITargetingSystem
 {
-    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
+    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)
     {
         Unidad[] targets = UnidadManager.Instance.GetUnidads(targetOwner, targetType).ToArray();
         Unidad target = null;
@@ -11,7 +10,7 @@ public class SingleTargetingSystem: ITargetingSystem
             
         foreach (Unidad enemy in targets)
         {
-            Vector2 dir = (Vector2)enemy.transform.position - castedPosition;
+            Vector3 dir = enemy.transform.position - castedPosition;
             float range = dir.magnitude;
             
             if (range < minRange)

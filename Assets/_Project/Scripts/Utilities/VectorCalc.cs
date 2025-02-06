@@ -52,7 +52,7 @@ public static class VectorCalc
     /// <param name="point">특정 지점</param>
     /// <returns>특정 지점 조정 값</returns>
     public static Vector3 GetPointOnEllipse(EllipseCollider ellipseCollider, Vector3 point) =>
-        GetPointOnEllipse(ellipseCollider.transform.position + new Vector3(ellipseCollider.center.x, 0, ellipseCollider.center.y), ellipseCollider.size, point);
+        GetPointOnEllipse(ellipseCollider.transform.position + ellipseCollider.Center, ellipseCollider.size, point);
 
     /// <summary>
     /// 특정 지점이 타원 밖으로 나가면, 최대 위치로 반환하는 Method

@@ -16,6 +16,8 @@ public class EllipseCollider : MonoBehaviour
     /// </summary>
     public Vector2 Radius => size * 0.5f;
 
+    public Vector3 Center => new(center.x, 0, center.y);
+
     /// <summary>
     /// Target과의 충돌 확인
     /// </summary>
@@ -39,7 +41,7 @@ public class EllipseCollider : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        GizmosDrawer.DrawEllipse(transform.position + (Vector3)center, Radius, 50, lineColor);
+        GizmosDrawer.DrawEllipse(transform.position + Center, Radius, 50, lineColor);
     }
 #endif
 }

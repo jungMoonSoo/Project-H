@@ -8,5 +8,5 @@ public class EllipseSkillEffectHandler : SkillEffectHandlerBase
 
     public override Vector2 GetAreaSize() => effectCollider.size;
 
-    protected override Unidad[] Targeting() => TargetingSystem.GetTargets(Owner, TargetType, CastingPosition, (Vector2)transform.position + effectCollider.center, effectCollider.Radius);
+    protected override Unidad[] Targeting() => TargetingSystem.GetTargets(Owner, TargetType, CastingPosition, transform.position + effectCollider.Center, effectCollider.Radius);
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class ArcTargetingSystem: ITargetingSystem
 {
     /// <param name="rangeSize"> x : 범위각, y : 길이 </param>
-    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector2 casterPosition, Vector2 castedPosition, Vector2 rangeSize)
+    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)
     {
         List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner, targetType));
 
@@ -14,7 +14,7 @@ public class ArcTargetingSystem: ITargetingSystem
 
         for (int i = targets.Count - 1; i >= 0; i--)
         {
-            Vector2 targetPos = (Vector2)targets[i].transform.position + targets[i].unitCollider.center;
+            Vector3 targetPos = targets[i].transform.position + targets[i].unitCollider.Center;
 
             if (!CheckTargetInArea(casterPosition, areaSize, targetPos, targets[i].unitCollider.Radius, range)) targets.Remove(targets[i]);
         }
@@ -22,11 +22,11 @@ public class ArcTargetingSystem: ITargetingSystem
         return targets.ToArray();
     }
 
-    private bool CheckTargetInArea(Vector2 areaPos, Vector2 areaSize, Vector2 targetPos, Vector2 targetSize, Vector2 range)
+    private bool CheckTargetInArea(Vector3 areaPos, Vector2 areaSize, Vector3 targetPos, Vector2 targetSize, Vector2 range)
     {
         if (VectorCalc.CalcEllipse(areaPos, targetPos, areaSize, targetSize) > 1f) return false;
 
-        foreach (Vector2 point in GetContactPoints(targetPos, targetSize))
+        foreach (Vector3 point in GetContactPoints(targetPos, targetSize))
         {
             if (CheckDirectionInAngle(GetDirectionToAngle(point - areaPos), range)) return true;
         }
@@ -50,7 +50,7 @@ public class ArcTargetingSystem: ITargetingSystem
         return false;
     }
 
-    private float GetDirectionToAngle(Vector2 direction) => Mathf.Repeat(Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg, 360);
+    private float GetDirectionToAngle(Vector3 direction) => Mathf.Repeat(Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg, 360);
 
-    private Vector2[] GetContactPoints(Vector2 pos, Vector2 size) => new Vector2[] { pos + new Vector2(-size.x, 0), pos + new Vector2(size.x, 0), pos + new Vector2(0, -size.y), pos + new Vector2(0, size.y) };
+    private Vector3[] GetContactPoints(Vector3 pos, Vector2 size) => new Vector3[] { pos + new Vector3(-size.x, 0), pos + new Vector3(size.x, 0), pos + new Vector3(0, -size.y), pos + new Vector3(0, size.y) };
 }
