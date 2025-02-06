@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class TrackingPositioner: MonoBehaviour, ISkillEffectPositioner
 {
-    public void SetPosition(SkillEffectHandlerBase handler, Vector2 position)
+    public void SetPosition(SkillEffectHandlerBase handler, Vector3 position)
     {
         List<Unidad> targets = UnidadManager.Instance.GetUnidads(handler.Caster.Owner, handler.TargetType);
         float minRange = float.MaxValue;
         Unidad target = null;
+
         foreach (Unidad unidad in targets)
         {
-            Vector2 direction = (Vector2)unidad.transform.position - position;
+            Vector3 direction = unidad.transform.position - position;
             float directionRange = direction.magnitude;
+
             if (directionRange < minRange)
             {
                 target = unidad;

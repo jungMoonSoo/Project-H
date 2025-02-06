@@ -6,7 +6,7 @@ public class SkillAreaHandler : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private SpriteRenderer spriteRenderer;
 
-    [NonSerialized] public Vector2? LastPosition;
+    [NonSerialized] public Vector3? LastPosition;
     public ISkillArea SkillArea;
 
     public void SetSize(Vector2 size)
@@ -17,9 +17,9 @@ public class SkillAreaHandler : MonoBehaviour
     {
         spriteRenderer.sprite = sprite;
     }
-    public void SetPosition(TargetType targetType, Unidad caster, Vector2 target)
+    public void SetPosition(TargetType targetType, Unidad caster, Vector3 target)
     {
-        transform.eulerAngles = Vector3.zero;
+        transform.eulerAngles = new Vector3(90, 0, 0);
 
         if (SkillArea is not null)
         {

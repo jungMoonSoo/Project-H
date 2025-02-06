@@ -6,7 +6,7 @@ public class CasterFallowPositioner : MonoBehaviour, ISkillEffectPositioner
 {
     private SkillEffectHandlerBase handler;
 
-    public void SetPosition(SkillEffectHandlerBase handler, Vector2 position)
+    public void SetPosition(SkillEffectHandlerBase handler, Vector3 position)
     {
         this.handler = handler;
 

@@ -16,7 +16,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     private bool hasPosition = false;
     private List<SkillButton> createdSkillButtons = new();
 
-    
+    [SerializeField] private LayerMask unitLayerMask;
+
     void Start()
     {
         skillAreaHandler.SetActive(false);
@@ -26,7 +27,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     {
         if (IsUsingSkill)
         {
-            TouchInfo touchInfo = TouchSystem.GetTouch(0);
+            TouchInfo touchInfo = TouchSystem.GetTouch(0, ~unitLayerMask);
             if (touchInfo.count > 0)
             {
                 if (!hasPosition)
@@ -85,14 +86,14 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         skillAreaHandler.SetActive(false);
     }
 
-    private void OnApplySkill(Vector2? target)
+    private void OnApplySkill(Vector3? target)
     {
         InGameManager.Instance.ResumeGame(PauseType.UseSkill);
 
         if (target is not null) // 미존재면 스킬사용 실패
         {
             SkillEffectHandlerBase handler = Instantiate(UsingSkill?.effectPrefab, CastingCaster.transform.position, Quaternion.identity);
-            handler.Init(CastingCaster, (Vector2)target);
+            handler.Init(CastingCaster, (Vector3)target);
 
             CastingCaster.ChangeState(UnitState.Skill);
             CastingCaster.Mp.Value = 0;
@@ -103,7 +104,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         skillAreaHandler.SetActive(false);
     }
 
-    private void OnDrag(Vector2 target)
+    private void OnDrag(Vector3 target)
     {
         if (!skillAreaHandler.gameObject.activeSelf) skillAreaHandler.SetActive(true);
 

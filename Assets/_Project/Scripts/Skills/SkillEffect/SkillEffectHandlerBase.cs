@@ -13,7 +13,7 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
     private ISkillEffectPositioner skillEffectPositioner;
 
     public Unidad Caster { get; set; }
-    public Vector2 CastingPosition { get; private set; }
+    public Vector3 CastingPosition { get; private set; }
 
     private Unidad[] targets;
     public Unidad[] Targets
@@ -30,7 +30,7 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
     public AttackStatus AttackStatus => Caster.NowAttackStatus;
     public DefenceStatus DefenceStatus => Caster.NowDefenceStatus;
 
-    public virtual void Init(Unidad caster, Vector2 position)
+    public virtual void Init(Unidad caster, Vector3 position)
     {
         Caster = caster;
         CastingPosition = caster.transform.position;
@@ -51,7 +51,7 @@ public abstract class SkillEffectHandlerBase : MonoBehaviour
 
     public abstract Vector2 GetAreaSize();
 
-    protected void SetPosition(Vector2 position) => skillEffectPositioner?.SetPosition(this, position);
+    protected void SetPosition(Vector3 position) => skillEffectPositioner?.SetPosition(this, position);
 
     protected void OnCreate()
     {

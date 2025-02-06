@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class SingleSkillArea: ISkillArea
 {
-    public Vector2? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector2 castedPosition)
+    public Vector3? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector3 castedPosition)
     {
-        Vector2 realPosition = VectorCalc.GetPointOnEllipse(caster.skillCollider, castedPosition);
+        Vector3 realPosition = VectorCalc.GetPointOnEllipse(caster.skillCollider, castedPosition);
         List<Unidad> targets = UnidadManager.Instance.GetUnidads(caster.Owner, targetType);
         Unidad target = null;
 
@@ -17,7 +17,7 @@ public class SingleSkillArea: ISkillArea
             {
                 if (!enemy.unitCollider.OnEllipseEnter(caster.skillCollider)) continue;
 
-                Vector2 dir = (Vector2)enemy.transform.position - castedPosition;
+                Vector3 dir = enemy.transform.position - castedPosition;
                 float range = dir.magnitude;
 
                 if (range < minRange)
@@ -31,15 +31,15 @@ public class SingleSkillArea: ISkillArea
         if (target is not null) // Target 존재
         {
             transform.position = target.transform.position;
-            transform.eulerAngles = Vector3.zero;
-            
+            transform.eulerAngles = new Vector3(90, 0, 0);
+
             return transform.position;
         }
         else // Target 미존재 
         {
             transform.position = realPosition;
-            transform.eulerAngles = Vector3.zero;
-            
+            transform.eulerAngles = new Vector3(90, 0, 0);
+
             return null;
         }
     }

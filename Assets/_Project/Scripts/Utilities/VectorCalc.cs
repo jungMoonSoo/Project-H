@@ -9,7 +9,7 @@ public static class VectorCalc
     /// <returns>오일러 각도</returns>
     public static float CalcRotation(Vector3 distance)
     {
-        return Mathf.Atan2(distance.y, distance.x) * Mathf.Rad2Deg;
+        return Mathf.Atan2(distance.z, distance.x) * Mathf.Rad2Deg;
     }
 
     /// <summary>
@@ -51,8 +51,9 @@ public static class VectorCalc
     /// <param name="ellipseCollider">타원 충돌체</param>
     /// <param name="point">특정 지점</param>
     /// <returns>특정 지점 조정 값</returns>
-    public static Vector2 GetPointOnEllipse(EllipseCollider ellipseCollider, Vector2 point) =>
-        GetPointOnEllipse((Vector2)ellipseCollider.transform.position + ellipseCollider.center, ellipseCollider.size, point);
+    public static Vector3 GetPointOnEllipse(EllipseCollider ellipseCollider, Vector3 point) =>
+        GetPointOnEllipse(ellipseCollider.transform.position + new Vector3(ellipseCollider.center.x, 0, ellipseCollider.center.y), ellipseCollider.size, point);
+
     /// <summary>
     /// 특정 지점이 타원 밖으로 나가면, 최대 위치로 반환하는 Method
     /// </summary>
@@ -60,19 +61,21 @@ public static class VectorCalc
     /// <param name="ellipseSize">타원 크기</param>
     /// <param name="point">특정 지점</param>
     /// <returns>수정된 특정 지점의 위치</returns>
-    public static Vector2 GetPointOnEllipse(Vector2 ellipsePosition, Vector2 ellipseSize, Vector2 point)
+    public static Vector3 GetPointOnEllipse(Vector3 ellipsePosition, Vector2 ellipseSize, Vector3 point)
     {
         Vector2 colliderRadius = ellipseSize * 0.5f;
-        Vector2 dir = point - ellipsePosition;
+        Vector3 dir = point - ellipsePosition;
 
         float normalizedX = dir.x / colliderRadius.x;
-        float normalizedY = dir.y / colliderRadius.y;
+        float normalizedZ = dir.z / colliderRadius.y;
 
-        float distanceSquared = normalizedX * normalizedX + normalizedY * normalizedY;
+        float distanceSquared = normalizedX * normalizedX + normalizedZ * normalizedZ;
 
         if (distanceSquared <= 1f) return point;
 
-        return ellipsePosition + new Vector2(normalizedX / Mathf.Sqrt(distanceSquared), normalizedY / Mathf.Sqrt(distanceSquared)) * colliderRadius;
+        distanceSquared = Mathf.Sqrt(distanceSquared);
+
+        return ellipsePosition + new Vector3(normalizedX * colliderRadius.x, 0, normalizedZ * colliderRadius.y) / distanceSquared;
     }
 
     public static Vector2 GetRandomPositionInBoxCollider(Vector2 size, Vector2 pivot, Vector2 border)
