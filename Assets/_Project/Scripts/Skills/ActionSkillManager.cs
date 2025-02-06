@@ -16,8 +16,6 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     private bool hasPosition = false;
     private List<SkillButton> createdSkillButtons = new();
 
-    [SerializeField] private LayerMask unitLayerMask;
-
     void Start()
     {
         skillAreaHandler.SetActive(false);
@@ -27,7 +25,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     {
         if (IsUsingSkill)
         {
-            TouchInfo touchInfo = TouchSystem.GetTouch(0, ~unitLayerMask);
+            TouchInfo touchInfo = TouchSystem.GetTouch(0);
+
             if (touchInfo.count > 0)
             {
                 if (!hasPosition)
@@ -36,7 +35,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
                 }
                 else
                 {
-                    OnDrag(touchInfo.GetPos(0));
+                    OnDrag(touchInfo.GetSpecificYPos(0));
                 }
             }
             else if(hasPosition)

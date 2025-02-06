@@ -9,11 +9,23 @@ public class TouchInfo
     public int length = 0;
     public RaycastHit[] hits = new RaycastHit[5];
 
+    public Vector3 origin;
+    public Vector3 direction;
+
     public Vector3 GetPos(int index)
     {
         if (length <= index) return Vector3.zero;
 
         return hits[index].point;
+    }
+
+    public Vector3 GetSpecificYPos(float yPos)
+    {
+        if (direction.y == 0) return origin;
+
+        float t = (yPos - origin.y) / direction.y;
+
+        return origin + direction * t;
     }
 
     public GameObject this[int index]

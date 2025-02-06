@@ -22,6 +22,9 @@ public static class TouchSystem
 
         Ray ray = mainCamera.ScreenPointToRay(pos);
 
+        infos[layerMask].origin = ray.origin;
+        infos[layerMask].direction = ray.direction;
+
         if (Input.GetMouseButton(index))
         {
             infos[layerMask].length = Physics.RaycastNonAlloc(ray, infos[layerMask].hits, Mathf.Infinity, layerMask);
@@ -67,6 +70,9 @@ public static class TouchSystem
             infos[layerMask].phase = touch.phase;
 
             Ray ray = mainCamera.ScreenPointToRay(touch.position);
+
+            infos[layerMask].origin = ray.origin;
+            infos[layerMask].direction = ray.direction;
             
             infos[layerMask].length = Physics.RaycastNonAlloc(ray, infos[layerMask].hits, Mathf.Infinity, layerMask);
         }
