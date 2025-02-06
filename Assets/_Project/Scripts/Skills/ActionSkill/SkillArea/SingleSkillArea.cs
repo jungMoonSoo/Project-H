@@ -31,14 +31,14 @@ public class SingleSkillArea: ISkillArea
         if (target is not null) // Target 존재
         {
             transform.position = target.transform.position;
-            transform.eulerAngles = new Vector3(90, 0, 0);
+            transform.eulerAngles = Vector3.zero;
 
             return transform.position;
         }
         else // Target 미존재 
         {
             transform.position = realPosition;
-            transform.eulerAngles = new Vector3(90, 0, 0);
+            transform.eulerAngles = Vector3.zero;
 
             return null;
         }

@@ -1073,6 +1073,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkillArea
       objectReference: {fileID: 0}
+    - target: {fileID: 8292844415845989797, guid: e93e3672803949d41a8ae0fd55732ea6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6486,9 +6490,6 @@ MonoBehaviour:
   skillAreaHandler: {fileID: 1978133721}
   skillButtonGroup: {fileID: 6822641409764344392}
   skillButtonPrefab: {fileID: 5698164872460316663, guid: 3dbcfb04319bb7140858b20ebc594e2b, type: 3}
-  unitLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
 --- !u!114 &7262404461506088978
 MonoBehaviour:
   m_ObjectHideFlags: 0

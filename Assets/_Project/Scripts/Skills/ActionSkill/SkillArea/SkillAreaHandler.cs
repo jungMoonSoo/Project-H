@@ -19,7 +19,7 @@ public class SkillAreaHandler : MonoBehaviour
     }
     public void SetPosition(TargetType targetType, Unidad caster, Vector3 target)
     {
-        transform.eulerAngles = new Vector3(90, 0, 0);
+        transform.eulerAngles = Vector3.zero;
 
         if (SkillArea is not null)
         {
