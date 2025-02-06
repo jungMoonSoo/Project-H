@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 1, a: 1}
   center: {x: 0, y: 0}
-  size: {x: 15, y: 8}
+  size: {x: 15, y: 15}
 --- !u!1 &7096449219032708577
 GameObject:
   m_ObjectHideFlags: 0
