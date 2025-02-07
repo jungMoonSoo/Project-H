@@ -40,16 +40,7 @@ public static class TouchSystem
             infos[layerMask].count = index + 1;
             infos[layerMask].fingerId = -1;
         }
-        else
-        {
-            infos[layerMask].phase = infos[layerMask].phase == TouchPhase.Stationary && beganPosition == pos ? TouchPhase.Canceled : TouchPhase.Ended;
-
-            TouchInfo returnInfo = infos[layerMask];
-
-            infos.Remove(layerMask);
-
-            return returnInfo;
-        }
+        else infos[layerMask].phase = infos[layerMask].phase == TouchPhase.Stationary && beganPosition == pos ? TouchPhase.Canceled : TouchPhase.Ended;
 
         return infos[layerMask];
     }
@@ -58,12 +49,12 @@ public static class TouchSystem
     {
         if (mainCamera == null) mainCamera = Camera.main;
 
+        if (!infos.ContainsKey(layerMask)) infos.Add(layerMask, new());
+
+        infos[layerMask].count = Input.touchCount;
+
         if (Input.touchCount > index)
         {
-            if (!infos.ContainsKey(layerMask)) infos.Add(layerMask, new());
-
-            infos[layerMask].count = Input.touchCount;
-
             Touch touch = Input.GetTouch(index);
             
             infos[layerMask].fingerId = touch.fingerId;
@@ -76,6 +67,7 @@ public static class TouchSystem
             
             infos[layerMask].length = Physics.RaycastNonAlloc(ray, infos[layerMask].hits, Mathf.Infinity, layerMask);
         }
+        else infos[layerMask].phase = infos[layerMask].phase == TouchPhase.Stationary && beganPosition == pos ? TouchPhase.Canceled : TouchPhase.Ended;
 
         return infos[layerMask];
     }
