@@ -62,35 +62,29 @@ Shader "Spine/Skeleton Look"
 			VertexOutput vert(VertexInput v) {
 			    VertexOutput o;
 
-			    float4x4 objectToWorld = unity_ObjectToWorld;
-
-			    float3 objectScale = float3(
-			        length(objectToWorld[0].xyz),
-			        length(objectToWorld[1].xyz),
-			        length(objectToWorld[2].xyz)
-			    );
-
 			    float3 worldCenter = mul(unity_ObjectToWorld, float4(0, 0, 0, 1)).xyz;
-
-			    float3 cameraPos = _WorldSpaceCameraPos;
-
-			    float3 toCamera = normalize(cameraPos - worldCenter);
 
 				float3 cameraRight = normalize((float3)UNITY_MATRIX_V[0].xyz);
 				float3 cameraUp = normalize((float3)UNITY_MATRIX_V[1].xyz);
-				
-				objectScale.x *= sign(objectToWorld._11);
-				objectScale.y *= sign(objectToWorld._22);
-				objectScale.z *= sign(objectToWorld._33);
 
 				if (_FlipX == 1.0) cameraRight *= -1;
+
+			    float3 objectScale = float3(
+			        length(unity_ObjectToWorld[0].xyz),
+			        length(unity_ObjectToWorld[1].xyz),
+			        length(unity_ObjectToWorld[2].xyz)
+			    );
+				
+				objectScale.x *= sign(unity_ObjectToWorld._11) < 0 ? -1 : 1;
+				objectScale.y *= sign(unity_ObjectToWorld._22) < 0 ? -1 : 1;
+				objectScale.z *= sign(unity_ObjectToWorld._33) < 0 ? -1 : 1;
 
 			    float3 newPos = worldCenter
 			                    + v.vertex.x * cameraRight * objectScale.x
 			                    + v.vertex.y * cameraUp * objectScale.y
 			                    + v.vertex.z * objectScale.z;
 			
-			    o.pos = UnityWorldToClipPos(float4(newPos, 1.0));
+			    o.pos = UnityWorldToClipPos(newPos);
 			
 			    o.uv = v.uv;
 			    o.vertexColor = PMAGammaToTargetSpace(v.vertexColor);
