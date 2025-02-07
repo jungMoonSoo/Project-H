@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe04e5a52d9bd34ea0386d1a56a1e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetType: 1
-  targetingSystemType: 0
+  targetType: 2
+  targetingSystemType: 2
   animatorEventHandler: {fileID: 4213904965122752113}
   size: {x: 8, y: 8}
 --- !u!114 &2161218180872838424

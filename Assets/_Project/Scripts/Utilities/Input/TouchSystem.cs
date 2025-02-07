@@ -40,7 +40,11 @@ public static class TouchSystem
             infos[layerMask].count = index + 1;
             infos[layerMask].fingerId = -1;
         }
-        else infos[layerMask].phase = infos[layerMask].phase == TouchPhase.Stationary && beganPosition == pos ? TouchPhase.Canceled : TouchPhase.Ended;
+        else
+        {
+            infos[layerMask].count = 0;
+            infos[layerMask].phase = infos[layerMask].phase == TouchPhase.Stationary && beganPosition == pos ? TouchPhase.Canceled : TouchPhase.Ended;
+        }
 
         return infos[layerMask];
     }
