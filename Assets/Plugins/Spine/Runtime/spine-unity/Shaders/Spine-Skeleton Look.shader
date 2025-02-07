@@ -66,6 +66,7 @@ Shader "Spine/Skeleton Look"
 
 				float3 cameraRight = normalize((float3)UNITY_MATRIX_V[0].xyz);
 				float3 cameraUp = normalize((float3)UNITY_MATRIX_V[1].xyz);
+				float3 cameraForward = normalize((float3)UNITY_MATRIX_V[2].xyz);
 
 				if (_FlipX == 1.0) cameraRight *= -1;
 
@@ -80,9 +81,9 @@ Shader "Spine/Skeleton Look"
 				objectScale.z *= sign(unity_ObjectToWorld._33) < 0 ? -1 : 1;
 
 			    float3 newPos = worldCenter
-			                    + v.vertex.x * cameraRight * objectScale.x
-			                    + v.vertex.y * cameraUp * objectScale.y
-			                    + v.vertex.z * objectScale.z;
+			                    + v.vertex.x * objectScale.x * cameraRight
+			                    + v.vertex.y * objectScale.y * cameraUp
+			                    + v.vertex.z * objectScale.z * cameraForward;
 			
 			    o.pos = UnityWorldToClipPos(newPos);
 			
