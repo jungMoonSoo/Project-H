@@ -1,0 +1,4 @@
+Key,Id,English(en),Korean(ko)
+"Deploy Number",56598634496,"Deploy Number ({deployNumber.CurrentUnitNumber} / {deployNumber.MaxUnitNumber})","배치수 ({deployNumber.CurrentUnitNumber} / {deployNumber.MaxUnitNumber})"
+"Max Deploy Warning",10931720069120,""" Characters can no longer be placed """,""" 캐릭터를 더 이상 배치할 수 없습니다 """
+"Enter",11744551018496,"Start","입장"
