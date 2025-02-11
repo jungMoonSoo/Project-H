@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Localization.Components;
 
 public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
 {
     [Header("GameObject 연결")]
     [SerializeField] private GameObject maxWarnningObject;
-    [SerializeField] private Text unitNumberText;
+    [SerializeField] private LocalizeStringEvent unitNumberText;
 
     [Header("Unit 관리 메니져")]
     [SerializeField] private GameObject unitManagerObject;
@@ -28,7 +28,7 @@ public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
         maxWarnningObject.SetActive(false);
     }
 
-    public void UnitDeployTextUpdate(int newValue) => unitNumberText.text = $"배치수 ({newValue} / {maxUnitNumber})";
+    public void UnitDeployTextUpdate(int newValue) => unitNumberText.RefreshString();
 
     IEnumerator WarningTextPrint() //경고 문구
     {
