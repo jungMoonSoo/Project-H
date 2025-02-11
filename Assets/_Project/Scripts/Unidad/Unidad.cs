@@ -157,7 +157,7 @@ public class Unidad : MonoBehaviour
     {
         if (effect != null)
         {
-            Vector3 pos = VectorCalc.GetRandomPositionInBoxCollider(boxCollider.Size, Vector2.down, Vector2.one * 0.2f);
+            Vector3 pos = VectorCalc.GetRandomPositionInBoxCollider(boxCollider.Size, Vector2.one * 0.2f);
 
             effect.transform.position = transform.position + pos;
         }

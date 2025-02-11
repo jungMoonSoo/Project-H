@@ -7,7 +7,7 @@ public class BoxColliderManager : MonoBehaviour
 
     public UnitType UnitType => unidad.Owner;
 
-    public Vector2 Size => unitCollider.size;
+    public Vector3 Size => unitCollider.size;
 
     private BoxCollider unitCollider;
 
