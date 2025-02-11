@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +17,9 @@ public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
 
     //Unit Spawn 여부 판단 변수(일단 아군 유닛 5종류로 설정)
     private bool[] unitSpawn = new bool[5];
+
+    public int CurrentUnitNumber => currentUnitNumber.Value;
+    public int MaxUnitNumber => maxUnitNumber;
 
     private void Start()
     {
