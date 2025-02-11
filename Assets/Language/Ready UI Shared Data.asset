@@ -10,13 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Unit Spawn UI Shared Data
+  m_Name: Ready UI Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Unit Spawn UI
+  m_TableCollectionName: Ready UI
   m_TableCollectionNameGuidString: ce4e7ebbc0af0ab4f85ff35f69865fc7
   m_Entries:
   - m_Id: 56598634496
     m_Key: Deploy Number
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10931720069120
+    m_Key: Max Deploy Warning
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11744551018496
+    m_Key: Enter
     m_Metadata:
       m_Items: []
   m_Metadata:

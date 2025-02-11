@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: Unit Spawn UI_ko
+  m_Name: Ready UI_ko
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: ko
@@ -24,6 +24,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 6029913335964106788
+  - m_Id: 10931720069120
+    m_Localized: "\" \uCE90\uB9AD\uD130\uB97C \uB354 \uC774\uC0C1 \uBC30\uCE58\uD560
+      \uC218 \uC5C6\uC2B5\uB2C8\uB2E4 \""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11744551018496
+    m_Localized: "\uC785\uC7A5"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
