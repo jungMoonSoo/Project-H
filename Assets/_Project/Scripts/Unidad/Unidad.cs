@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +33,7 @@ public class Unidad : MonoBehaviour
     [SerializeField] private Transform statusUiPosition; // 
 
     [Header("Other")]
+    public GameObject view;
     public UnidadAudioHandle audioHandle;
     private UnidadStatusBar statusBar;
 

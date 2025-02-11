@@ -601,6 +601,7 @@ MonoBehaviour:
   boxCollider: {fileID: 6906340378737884186}
   damageUiPosition: {fileID: 2148299900033807527}
   statusUiPosition: {fileID: 299211262487084961}
+  view: {fileID: 5595231065775486412}
   audioHandle: {fileID: 7623632101259076590}
 --- !u!1 &3978585670354251226
 GameObject:
@@ -741,14 +742,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5595231065775486412}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6829609566403078499}
   m_Father: {fileID: 895724413413281411}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6388310146735592024
 GameObject:
   m_ObjectHideFlags: 0

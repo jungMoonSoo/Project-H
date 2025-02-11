@@ -117,12 +117,14 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     {
         if (right)
         {
-            if (Unit.transform.localScale.x < 0) Unit.transform.localScale += new Vector3(Unit.transform.localScale.x * 2, 0, 0);
+            if (Unit.view.transform.localScale.x > 0) return;
         }
         else
         {
-            if (Unit.transform.localScale.x > 0) Unit.transform.localScale -= new Vector3(Unit.transform.localScale.x * 2, 0, 0);
+            if (Unit.view.transform.localScale.x < 0) return;
         }
+
+        Unit.view.transform.localScale = new Vector3(-Unit.view.transform.localScale.x, 1, 1);
     }
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e) => eventHandles[e.Data.Name]?.Invoke();
