@@ -1,12 +1,30 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SingleSkillArea: ISkillArea
 {
-    public Vector3? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector3 castedPosition)
+    private readonly SingleTargetType targetType;
+    
+    
+    public SingleSkillArea(SingleTargetType targetType)
     {
+        this.targetType = targetType;
+    }
+    
+    
+    public Vector3? SetPosition(Transform transform, Unidad caster, Vector3 castedPosition)
+    {
+        TargetType type = targetType switch
+        {
+            SingleTargetType.Ally => TargetType.We,
+            SingleTargetType.We => TargetType.We,
+            SingleTargetType.They => TargetType.They,
+            _ => throw new Exception("SingleTargetType 이상")
+        };
         Vector3 realPosition = VectorCalc.GetPointOnEllipse(caster.skillCollider, castedPosition);
-        List<Unidad> targets = UnidadManager.Instance.GetUnidads(caster.Owner, targetType);
+        List<Unidad> targets = UnidadManager.Instance.GetUnidads(caster.Owner, type);
+        if (targetType == SingleTargetType.Ally) targets.Remove(caster);
         Unidad target = null;
 
         if (targets.Count > 0) // 선택될 수 있는 Target이 존재함.
@@ -42,5 +60,12 @@ public class SingleSkillArea: ISkillArea
 
             return null;
         }
+    }
+
+    public enum SingleTargetType
+    {
+        Ally,
+        We,
+        They
     }
 }

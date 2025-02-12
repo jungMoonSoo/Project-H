@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class LinearSkillArea: ISkillArea
+public class RotateSkillArea: ISkillArea
 {
-    public Vector3? SetPosition(Transform transform, TargetType targetType, Unidad caster, Vector3 castedPosition)
+    public Vector3? SetPosition(Transform transform, Unidad caster, Vector3 castedPosition)
     {
         Vector3 casterPosition = caster.transform.position;
         transform.position = casterPosition;

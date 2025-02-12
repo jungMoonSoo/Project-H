@@ -17,18 +17,13 @@ public class SkillAreaHandler : MonoBehaviour
     {
         spriteRenderer.sprite = sprite;
     }
-    public void SetPosition(TargetType targetType, Unidad caster, Vector3 target)
+    public void SetPosition(Unidad caster, Vector3 target)
     {
         transform.eulerAngles = Vector3.zero;
 
         if (SkillArea is not null)
         {
-            if (targetType == TargetType.Me)
-            {
-                LastPosition = caster.transform.position;
-                transform.position = LastPosition.Value;
-            }
-            else LastPosition = SkillArea.SetPosition(transform, targetType, caster, target);
+            LastPosition = SkillArea.SetPosition(transform, caster, target);
         }
     }
     
