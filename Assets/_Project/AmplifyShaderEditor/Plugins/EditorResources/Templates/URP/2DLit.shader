@@ -184,7 +184,7 @@ Shader /*ase_name*/ "Hidden/Universal/2D Lit" /*end*/
 				InitializeSurfaceData(Color.rgb, Color.a, Mask, surfaceData);
 				InputData2D inputData;
 				InitializeInputData(IN.texCoord0.xy, half2(IN.screenPosition.xy / IN.screenPosition.w), inputData);
-				SETUP_DEBUG_DATA_2D(inputData, positionWS);
+				SETUP_DEBUG_DATA_2D(inputData, positionWS, 0);
 				return CombinedShapeLightShared(surfaceData, inputData);
 			}
 
