@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class UnidadAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Unidad parent;
+    private Unidad target;
+
+    public void Init(Unidad parent, Unidad target)
     {
-        
+        this.parent = parent;
+        this.target = target;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator Action()
     {
-        
+        while (true)
+        {
+            yield return null;
+        }
     }
 }

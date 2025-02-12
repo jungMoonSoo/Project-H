@@ -28,11 +28,6 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     private bool attack;
     private bool sound;
 
-    private Unidad[] targets;
-
-    private UnidadTargetingType targetingType = UnidadTargetingType.Near;
-
-    private IUnidadTargeting unidadTargeting;
     private IUnidadAttack unidadAttack;
 
     public Unidad Unit
@@ -60,71 +55,56 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
-
-        unidadTargeting = TargetingTypeHub.GetTargetingSystem(targetingType);
     }
 
     public void OnUpdate()
     {
-        Vector2 movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Radius);
+        Vector3 movePos = MapManager.Instance.ClampPositionToMap(Unit.transform.position, Unit.unitCollider.Radius);
 
-        if ((Vector2)Unit.transform.position != movePos)
+        if (Unit.transform.position != movePos)
         {
             Unit.ChangeState(UnitState.Move);
 
             return;
         }
 
-        if (unidadTargeting.TryGetTargets(out targets, Unit.Owner, Unit.attackCollider, 1))
+        UnitState state = unidadAttack.Check(Unit);
+
+        switch (state)
         {
-            Unidad target = targets[0];
-
-            Flip(target.unitCollider.transform.position.x - transform.position.x > 0);
-
-            if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackPoint)
-            {
-                if (!attack)
+            case UnitState.Attack:
+                if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackPoint)
                 {
-                    OnAttack();
+                    if (!attack)
+                    {
+                        OnAttack();
 
-                    attack = true;
+                        attack = true;
+                    }
                 }
-            }
-            else attack = false;
+                else attack = false;
 
-            if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackSoundPoint)
-            {
-                if (!sound)
+                if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackSoundPoint)
                 {
-                    PlaySound();
+                    if (!sound)
+                    {
+                        PlaySound();
 
-                    sound = true;
+                        sound = true;
+                    }
                 }
-            }
-            else sound = false;
+                else sound = false;
+                break;
 
-            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider)) Unit.ChangeState(UnitState.Move);
+            default:
+                Unit.ChangeState(state);
+                break;
         }
-        else Unit.ChangeState(UnitState.Move);
     }
 
     public void OnExit()
     {
 
-    }
-
-    private void Flip(bool right)
-    {
-        if (right)
-        {
-            if (Unit.view.transform.localScale.x > 0) return;
-        }
-        else
-        {
-            if (Unit.view.transform.localScale.x < 0) return;
-        }
-
-        Unit.view.transform.localScale = new Vector3(-Unit.view.transform.localScale.x, 1, 1);
     }
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e) => eventHandles[e.Data.Name]?.Invoke();
@@ -133,7 +113,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     {
         // if (attackEffect != null) attackEffect.SetActive(true);
 
-        unidadAttack.OnAttack(Unit, targets);
+        unidadAttack.Attack(Unit);
     }
 
     public void PlaySound()

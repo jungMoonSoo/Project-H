@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4878625194061487093}
   animationName: walk
+  attackEventHandle: {fileID: 6004814293672522744}
 --- !u!1 &608611847517619456
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,6 +832,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -943,6 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfa707669b181b44485751095c82c1bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unidad: {fileID: 4781153408217072296}
   skillCoefficient: 100
   effectManager: {fileID: 0}
 --- !u!1 &6612018800831520400
@@ -1068,6 +1073,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6506463170040872403, guid: 9c764e4087d6f90488d4d0c10705ee3a, type: 2}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
