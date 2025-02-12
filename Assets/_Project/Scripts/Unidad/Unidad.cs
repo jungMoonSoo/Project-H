@@ -162,7 +162,7 @@ public class Unidad : MonoBehaviour
             effect.transform.localPosition = pos;
         }
 
-        TextPopupManager.Instance.PopupDamage(damage.ToString(), DamageUiPosition.position);
+        TextPopupManager.Instance.PopupDamage(damage.ToString(), transform.position, DamageUiPosition.position);
 
         statusManager?.OnDamage(damage);
 
@@ -171,7 +171,7 @@ public class Unidad : MonoBehaviour
 
     public void OnHeal(int heal, DamageType healType)
     {
-        TextPopupManager.Instance.PopupHeal(heal.ToString(), transform.position);
+        TextPopupManager.Instance.PopupHeal(heal.ToString(), transform.position, transform.position);
 
         statusManager?.OnHeal(heal);
     }

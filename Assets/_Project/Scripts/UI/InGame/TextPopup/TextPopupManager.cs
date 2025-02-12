@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TextPopupManager : Singleton<TextPopupManager>
@@ -28,17 +26,20 @@ public class TextPopupManager : Singleton<TextPopupManager>
         for (int i = 0; i < 10; i++) popupObjects.CreateDefault(popupParent);
     }
 
-    public void PopupDamage(string text, Vector2 position) => PopupText(text, position, onDamageColor);
+    public void PopupDamage(string text, Vector3 parentPos, Vector3 noticePos) => PopupText(text, parentPos, noticePos, onDamageColor);
 
-    public void PopupHeal(string text, Vector2 position) => PopupText(text, position, onHealColor);
+    public void PopupHeal(string text, Vector3 parentPos, Vector3 noticePos) => PopupText(text, parentPos, noticePos, onHealColor);
 
-    private void PopupText(string text, Vector2 position, Color32 color)
+    private void PopupText(string text, Vector3 parentPos, Vector3 noticePos, Color32 color)
     {
         TextPopup _textPopup = popupObjects.Dequeue(popupParent);
 
+        Vector3 dir = cam.transform.rotation * (noticePos - parentPos);
+
         _textPopup.SetText(text);
         _textPopup.SetColor(color);
-        _textPopup.SetPosition(cam.WorldToScreenPoint(position));
+
+        _textPopup.SetPosition(cam.WorldToScreenPoint(parentPos + dir));
 
         _textPopup.Show();
     }

@@ -29,7 +29,7 @@ public class TextPopup : MonoBehaviour
 
     public void SetColor(Color32 color) => handle.SetColor(color);
 
-    public void SetPosition(Vector2 position) => handle.SetPosition(position);
+    public void SetPosition(Vector3 position) => handle.SetPosition(position);
 
     private IEnumerator TextAnim()
     {
@@ -38,7 +38,7 @@ public class TextPopup : MonoBehaviour
         while (handle.GetAlpha() > 0f)
         {
             handle.SetAlpha(handle.GetAlpha() - Time.deltaTime * 3);
-            handle.SetPosition(handle.GetPosition() + 100 * Time.deltaTime * Vector2.up);
+            handle.SetPosition(handle.GetPosition() + 100 * Time.deltaTime * Vector3.up);
 
             yield return null;
         }
