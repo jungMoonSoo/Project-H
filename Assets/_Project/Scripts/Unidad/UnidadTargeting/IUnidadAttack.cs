@@ -5,5 +5,5 @@ public interface IUnidadAttack
     public void SetType(UnidadTargetingType type);
 
     public UnitState Check(Unidad unidad);
-    public void Attack(Unidad unidad);
+    public void CreateHitObject(Unidad unidad);
 }

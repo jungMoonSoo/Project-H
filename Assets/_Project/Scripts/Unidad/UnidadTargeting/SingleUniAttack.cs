@@ -3,12 +3,20 @@ using UnityEngine;
 public class SingleUniAttack : MonoBehaviour, IUnidadAttack
 {
     [SerializeField] private float skillCoefficient = 100f;
-    [SerializeField] private EffectManager effectManager;
+
+    private HitObjectManager hitObjectManager;
+    private EffectManager effectManager;
 
     private Unidad[] targets;
     public Unidad[] Targets => targets;
 
     private UnidadTargetingType targetingType = UnidadTargetingType.Near;
+
+    private void Start()
+    {
+        TryGetComponent(out hitObjectManager);
+        TryGetComponent(out effectManager);
+    }
 
     public void SetType(UnidadTargetingType type) => targetingType = type;
 
@@ -29,7 +37,9 @@ public class SingleUniAttack : MonoBehaviour, IUnidadAttack
         return UnitState.Idle;
     }
 
-    public void Attack(Unidad unidad)
+    public void CreateHitObject(Unidad unidad) => hitObjectManager.GetHitObject(transform).Init(unidad, Attack);
+
+    private void Attack(Unidad unidad)
     {
         Unidad target = targets[0];
 

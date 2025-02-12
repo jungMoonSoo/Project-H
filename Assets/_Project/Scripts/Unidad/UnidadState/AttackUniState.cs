@@ -113,7 +113,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     {
         // if (attackEffect != null) attackEffect.SetActive(true);
 
-        unidadAttack.Attack(Unit);
+        unidadAttack.CreateHitObject(Unit);
     }
 
     public void PlaySound()
