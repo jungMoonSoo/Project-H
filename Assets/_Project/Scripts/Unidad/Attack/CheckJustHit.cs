@@ -10,10 +10,10 @@ public class CheckJustHit : MonoBehaviour, ICheckHitable
     {
         ITrackingSystem trackingSystem = TrackingTypeHub.GetSystem(trackingType);
 
-        if (trackingSystem.TryGetTargets(out Unidad[] targets, HitObject.Unidad.Owner, HitObject.Unidad.attackCollider, 1)) HitObject.Attack(targets[0]);
+        if (trackingSystem.TryGetTargets(out Unidad[] targets, HitObject.Unidad.Owner, HitObject.Unidad.attackCollider)) HitObject.Attack(targets[0]);
 
         Remove();
     }
 
-    public void Remove() => HitObject.Remove();
+    private void Remove() => HitObject.Remove();
 }

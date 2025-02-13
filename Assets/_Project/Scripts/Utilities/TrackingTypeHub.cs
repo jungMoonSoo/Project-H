@@ -2,7 +2,7 @@ using System;
 
 public static class TrackingTypeHub
 {
-    private readonly static NearUniTargeting nearFirstTarget = new();
+    private readonly static TrackingNearTarget nearFirstTarget = new();
 
     public static ITrackingSystem GetSystem(TrackingType type)
     {

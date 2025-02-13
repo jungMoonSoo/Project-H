@@ -22,7 +22,7 @@ public class TrackingManager : MonoBehaviour
     {
         ITrackingSystem trackingSystem = TrackingTypeHub.GetSystem(trackingType);
 
-        if (trackingSystem.TryGetTargets(out targets, unidad.Owner, unidad.attackCollider, 1))
+        if (trackingSystem.TryGetTargets(out targets, unidad.Owner, unidad.attackCollider))
         {
             Unidad target = targets[0];
 
@@ -39,9 +39,9 @@ public class TrackingManager : MonoBehaviour
     {
         HitObject hitObject = hitObjectManager.GetHitObject(transform);
 
-        if (hitObject.Unidad == null) hitObject.Init(unidad, effectManager);
+        hitObject.SetTargetPos(targets[0].transform.position);
 
-        hitObject.SetPos(transform.position);
+        if (hitObject.Unidad == null) hitObject.Init(unidad, effectManager);
     }
 
     private void FlipX(Transform trans, bool right)

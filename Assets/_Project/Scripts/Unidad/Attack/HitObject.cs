@@ -5,6 +5,7 @@ public class HitObject : MonoBehaviour
     [SerializeField] private float coefficient = 100f;
 
     public Unidad Unidad { get; private set; }
+    public Vector3 TargetPos { get; private set; }
 
     private ICheckHitable hitableCheck;
     private EffectManager effectManager;
@@ -25,7 +26,7 @@ public class HitObject : MonoBehaviour
 
     private void Update() => hitableCheck.Hit();
 
-    public void SetPos(Vector3 pos) => transform.position = pos;
+    public void SetTargetPos(Vector3 pos) => TargetPos = pos;
 
     public void Remove() => hitObjects.Enqueue(this);
 

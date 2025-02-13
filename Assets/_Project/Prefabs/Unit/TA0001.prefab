@@ -960,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 7695914751967787326, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+  hitObject: {fileID: 7695914751967787326, guid: 124a0c8d95ceda4488730de206c442b3, type: 3}
 --- !u!1 &6612018800831520400
 GameObject:
   m_ObjectHideFlags: 0
