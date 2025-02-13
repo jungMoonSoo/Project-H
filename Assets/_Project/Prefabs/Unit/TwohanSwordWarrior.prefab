@@ -92,7 +92,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 394629217938483237}
   animationName: walk
-  attackEventHandle: {fileID: 6388310146735592024}
+  trackingManager: {fileID: 8952038365802904251}
 --- !u!1 &232671305383094776
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,10 +796,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6388310146735592024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa707669b181b44485751095c82c1bb, type: 3}
+  m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCoefficient: 100
 --- !u!114 &2400198913260137750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -940,7 +939,7 @@ MonoBehaviour:
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
-  attackEventHandle: {fileID: 6388310146735592024}
+  trackingManager: {fileID: 8952038365802904251}
   attackEffect: {fileID: 0}
 --- !u!1 &8130310277408952869
 GameObject:

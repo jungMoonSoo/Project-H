@@ -22,13 +22,11 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     [SerializeField] private float attackPoint = 0.5f;
     [SerializeField] private float attackSoundPoint = 0.5f;
 
-    [SerializeField] private GameObject attackEventHandle;
+    [SerializeField] private TrackingManager trackingManager;
     [SerializeField] private GameObject attackEffect;
 
     private bool attack;
     private bool sound;
-
-    private IUnidadAttack unidadAttack;
 
     public Unidad Unit
     {
@@ -48,8 +46,6 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         }
 
         skeletonAnimation.AnimationState.Event += AnimationEvent;
-
-        attackEventHandle.TryGetComponent(out unidadAttack);
     }
 
     public void OnEnter()
@@ -68,7 +64,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        UnitState state = unidadAttack.Check(Unit);
+        UnitState state = trackingManager.CheckState(Unit);
 
         switch (state)
         {
@@ -113,7 +109,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     {
         // if (attackEffect != null) attackEffect.SetActive(true);
 
-        unidadAttack.CreateHitObject(Unit);
+        trackingManager.CreateHitObject(Unit);
     }
 
     public void PlaySound()

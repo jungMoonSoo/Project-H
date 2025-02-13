@@ -1,35 +1,40 @@
-using System;
 using UnityEngine;
 
 public class HitObject : MonoBehaviour
 {
-    private IHitableCheck hitableCheck;
+    [SerializeField] private float coefficient = 100f;
 
-    private Unidad unidad;
-    private Action<Unidad> callback;
+    public Unidad Unidad { get; private set; }
+
+    private ICheckHitable hitableCheck;
+    private EffectManager effectManager;
 
     private ObjectPool<HitObject> hitObjects;
 
     public void Init(ObjectPool<HitObject> hitObjects) => this.hitObjects = hitObjects;
 
-    public void Init(Unidad unidad, Action<Unidad> callback)
+    public void Init(Unidad unidad, EffectManager effectManager)
     {
-        if (hitableCheck == null)
-        {
-            this.unidad = unidad;
-            this.callback = callback;
+        Unidad = unidad;
+        this.effectManager = effectManager;
 
-            TryGetComponent(out hitableCheck);
-        }
+        TryGetComponent(out hitableCheck);
+
+        hitableCheck.HitObject = this;
     }
 
-    private void Update()
-    {
-        if (hitableCheck.Check())
-        {
-            callback?.Invoke(unidad);
+    private void Update() => hitableCheck.Hit();
 
-            hitObjects.Enqueue(this);
-        }
+    public void SetPos(Vector3 pos) => transform.position = pos;
+
+    public void Remove() => hitObjects.Enqueue(this);
+
+    public void Attack(Unidad target)
+    {
+        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(Unidad.NowAttackStatus, target.NowDefenceStatus, coefficient, 0, ElementType.None);
+
+        target.OnDamage((int)callback.value, callback.type, effectManager?.GetEffect(target.transform));
+
+        Unidad.IncreaseMp(callback.type == DamageType.Miss ? 0.5f : 1);
     }
 }

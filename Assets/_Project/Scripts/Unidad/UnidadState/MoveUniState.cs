@@ -12,9 +12,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
     private Spine.Animation playAnimation;
     #endregion
 
-    [SerializeField] private GameObject attackEventHandle;
-
-    private IUnidadAttack unidadAttack;
+    [SerializeField] private TrackingManager trackingManager;
 
     public Unidad Unit
     {
@@ -25,8 +23,6 @@ public class MoveUniState: MonoBehaviour, IUnidadState
     public void Init()
     {
         playAnimation = skeletonAnimation.skeleton.Data.FindAnimation(animationName);
-
-        attackEventHandle.TryGetComponent(out unidadAttack);
     }
 
     public void OnEnter()
@@ -45,12 +41,12 @@ public class MoveUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        UnitState state = unidadAttack.Check(Unit);
+        UnitState state = trackingManager.CheckState(Unit);
 
         switch (state)
         {
             case UnitState.Move:
-                Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, unidadAttack.Targets[0].transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
+                Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, trackingManager.Targets[0].transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
                 break;
 
             default:

@@ -1,14 +1,14 @@
 using System;
 
-public static class TargetingTypeHub
+public static class TrackingTypeHub
 {
     private readonly static NearUniTargeting nearFirstTarget = new();
 
-    public static IUnidadTargeting GetTargetingSystem(UnidadTargetingType type)
+    public static ITrackingSystem GetSystem(TrackingType type)
     {
         return type switch
         {
-            UnidadTargetingType.Near => nearFirstTarget,
+            TrackingType.Near => nearFirstTarget,
             _ => throw new Exception("UnidadTargeting Type 미존재."),
         };
     }
