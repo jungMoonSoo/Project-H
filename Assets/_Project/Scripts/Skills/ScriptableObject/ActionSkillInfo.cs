@@ -8,6 +8,5 @@ public class ActionSkillInfo: SkillInfoBase
     
     [Header("Area System Info")]
     [SerializeField] public Sprite areaImage;
-    [SerializeField] public TargetType targetType;
     [SerializeField] public SkillAreaType skillAreaType;
 }

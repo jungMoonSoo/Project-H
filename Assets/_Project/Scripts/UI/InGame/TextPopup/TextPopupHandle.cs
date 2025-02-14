@@ -18,9 +18,9 @@ public class TextPopupHandle : MonoBehaviour
 
     public void SetAlpha(int alpha) => text.alpha = alpha / 255f;
 
-    public void SetPosition(Vector2 position) => transform.position = position;
+    public void SetPosition(Vector3 position) => transform.position = position;
 
     public float GetAlpha() => text.alpha;
 
-    public Vector2 GetPosition() => transform.position;
+    public Vector3 GetPosition() => transform.position;
 }

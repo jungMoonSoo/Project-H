@@ -136,6 +136,9 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -294,6 +297,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2178206962377291495}
   - component: {fileID: 3623906243289643518}
+  - component: {fileID: 8598794570671557568}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -325,11 +329,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 2383411821755416375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfa707669b181b44485751095c82c1bb, type: 3}
+  m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCoefficient: 100
-  effectManager: {fileID: 0}
+--- !u!114 &8598794570671557568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383411821755416375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObject: {fileID: 7695914751967787326, guid: f9ad75a28de7c2c418390acada201156, type: 3}
 --- !u!1 &2700773208615494481
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,6 +712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 8646774152702649249}
   animationName: warking
+  trackingManager: {fileID: 3623906243289643518}
 --- !u!1 &5351865268343234963
 GameObject:
   m_ObjectHideFlags: 0
@@ -841,6 +857,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6506463170040872403, guid: 9c764e4087d6f90488d4d0c10705ee3a, type: 2}
   m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1153,7 +1170,7 @@ MonoBehaviour:
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
-  attackEventHandle: {fileID: 2383411821755416375}
+  trackingManager: {fileID: 3623906243289643518}
   attackEffect: {fileID: 0}
 --- !u!1 &9005462229041010550
 GameObject:

@@ -1,0 +1,4 @@
+public enum TrackingType
+{
+    Near,
+}

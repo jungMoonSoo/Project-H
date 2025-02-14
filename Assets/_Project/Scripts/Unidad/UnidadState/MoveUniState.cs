@@ -4,13 +4,15 @@ using UnityEngine;
 public class MoveUniState: MonoBehaviour, IUnidadState
 {
     [Header("Settings")]
+
+    #region ◇ Spine Settings ◇
     [SerializeField] private SkeletonAnimation skeletonAnimation;
     [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
 
     private Spine.Animation playAnimation;
+    #endregion
 
-    private UnidadTargetingType targetingType = UnidadTargetingType.Near;
-    private IUnidadTargeting unidadTargeting;
+    [SerializeField] private TrackingManager trackingManager;
 
     public Unidad Unit
     {
@@ -26,8 +28,6 @@ public class MoveUniState: MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
-
-        unidadTargeting = TargetingTypeHub.GetTargetingSystem(targetingType);
     }
 
     public void OnUpdate()
@@ -41,37 +41,22 @@ public class MoveUniState: MonoBehaviour, IUnidadState
             return;
         }
 
-        if (unidadTargeting.TryGetTargets(out Unidad[] enemys, Unit.Owner, Unit.attackCollider, 1))
+        UnitState state = trackingManager.CheckState(Unit);
+
+        switch (state)
         {
-            Unidad target = enemys[0];
+            case UnitState.Move:
+                Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, trackingManager.Targets[0].transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
+                break;
 
-            if (!Unit.attackCollider.OnEllipseEnter(target.unitCollider))
-            {
-                Flip(target.unitCollider.transform.position.x - transform.position.x > 0);
-
-                Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, target.transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
-            }
-            else Unit.ChangeState(UnitState.Attack);
+            default:
+                Unit.ChangeState(state);
+                break;
         }
-        else Unit.ChangeState(UnitState.Idle);
     }
 
     public void OnExit()
     {
 
-    }
-
-    private void Flip(bool right)
-    {
-        if (right)
-        {
-            if (Unit.view.transform.localScale.x > 0) return;
-        }
-        else
-        {
-            if (Unit.view.transform.localScale.x < 0) return;
-        }
-
-        Unit.view.transform.localScale = new Vector3(-Unit.view.transform.localScale.x, 1, 1);
     }
 }
