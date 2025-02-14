@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AreaTargetingSystem: ITargetingSystem
+public class AreaTargetingSystem: IRangeTargeting
 {
     private readonly List<Unidad> unidads = new();
     

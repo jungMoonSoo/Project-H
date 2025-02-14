@@ -4,7 +4,7 @@ using UnityEngine;
 public class ActionSkillInfo: SkillInfoBase
 {
     [Header("Active Skill Info")] [SerializeField]
-    public SkillEffectHandlerBase effectPrefab;
+    public HitObjectBase effectPrefab;
     
     [Header("Area System Info")]
     [SerializeField] public Sprite areaImage;

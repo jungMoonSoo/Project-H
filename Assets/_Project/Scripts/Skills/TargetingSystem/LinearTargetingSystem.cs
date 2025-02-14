@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LinearTargetingSystem : ITargetingSystem
+public class LinearTargetingSystem : IRangeTargeting
 {
     /// <param name="rangeSize"> x : 너비, y : 길이 </param>
     public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)

@@ -6,13 +6,13 @@ public static class SkillTypeHub
     private readonly static LinearTargetingSystem linearTargetingSystem = new();
     private readonly static AreaTargetingSystem areaTargetingSystem = new();
 
-    public static ITargetingSystem GetTargetingSystem(TargetingSystemType type)
+    public static IRangeTargeting GetTargetingSystem(RangeType type)
     {
         return type switch
         {
-            TargetingSystemType.Single => singleTargetingSystem,
-            TargetingSystemType.Linear => linearTargetingSystem,
-            TargetingSystemType.Area => areaTargetingSystem,
+            RangeType.Single => singleTargetingSystem,
+            RangeType.Linear => linearTargetingSystem,
+            RangeType.Area => areaTargetingSystem,
             _ => throw new Exception("TargetingSystem Type 미존재."),
         };
     }

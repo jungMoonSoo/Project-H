@@ -22,7 +22,7 @@ public class StatusManager
         hp.Value = NormalStatus.maxHp;
         hp.SetCallback(BindHp, SetCallbackType.Set);
 
-        mp.Value = 0;
+        mp.Value = 100;
         mp.SetCallback(BindMp, SetCallbackType.Set);
     }
     

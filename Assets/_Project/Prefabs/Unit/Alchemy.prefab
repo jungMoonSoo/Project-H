@@ -1168,7 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3382645806987501034}
   - component: {fileID: 1706487571459985532}
-  - component: {fileID: 8124904785077051725}
+  - component: {fileID: 6946498646291355558}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -1203,7 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8124904785077051725
+--- !u!114 &6946498646291355558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

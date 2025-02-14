@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SingleTargetingSystem: ITargetingSystem
+public class SingleTargetingSystem: IRangeTargeting
 {
     public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)
     {

@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 8315809148090144939}
   - component: {fileID: 6713006755917299810}
   - component: {fileID: 5683554780865074300}
-  - component: {fileID: 184563663872582057}
+  - component: {fileID: 6864943005887859358}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectObject: {fileID: 2762027924426178495, guid: b5a83dfe7b8f53549bf2d65902e63bbb, type: 3}
---- !u!114 &184563663872582057
+--- !u!114 &6864943005887859358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 7695914751967787326, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+  hitObject: {fileID: 5981504158332086902, guid: f9ad75a28de7c2c418390acada201156, type: 3}
 --- !u!1 &903063753515070715
 GameObject:
   m_ObjectHideFlags: 0

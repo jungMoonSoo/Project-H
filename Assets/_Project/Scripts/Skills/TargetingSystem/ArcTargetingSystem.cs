@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcTargetingSystem: ITargetingSystem
+public class ArcTargetingSystem: IRangeTargeting
 {
     /// <param name="rangeSize"> x : 범위각, y : 길이 </param>
     public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)

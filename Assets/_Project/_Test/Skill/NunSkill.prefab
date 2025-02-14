@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 2655237496323968454}
   - component: {fileID: 5336005455277993938}
   - component: {fileID: 5362146125081823029}
-  - component: {fileID: 4288427183755041319}
+  - component: {fileID: 6441211018213522273}
   m_Layer: 0
   m_Name: NunSkill
   m_TagString: Untagged
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 1
-  targetingSystemType: 0
+  rangeType: 0
   animatorEventHandler: {fileID: 4213904965122752113}
   effectCollider: {fileID: 2315179243541150760}
 --- !u!114 &5336005455277993938
@@ -113,6 +113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCoefficient: 1000
+  hitCount: 10
 --- !u!114 &5362146125081823029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ebf697f768e4da7b02ad76134c21011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4288427183755041319
+--- !u!114 &6441211018213522273
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,7 +135,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792025657868637557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48555cc178434849a102572ee624672e, type: 3}
+  m_Script: {fileID: 11500000, guid: bf3f0eeeecd8b3c4ab7f2bd20e7c666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7096449219032708577

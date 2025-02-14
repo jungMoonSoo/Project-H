@@ -37,11 +37,11 @@ public class TrackingManager : MonoBehaviour
 
     public void CreateHitObject(Unidad unidad)
     {
-        HitObject hitObject = hitObjectManager.GetHitObject(transform);
+        HitObjectBase hitObject = hitObjectManager.GetHitObject(transform);
 
         hitObject.SetTargetPos(targets[0].transform.position);
 
-        if (hitObject.Unidad == null) hitObject.Init(unidad, effectManager);
+        if (hitObject.Caster == null) hitObject.Init(unidad, effectManager, unidad.transform.position + Vector3.up);
     }
 
     private void FlipX(Transform trans, bool right)

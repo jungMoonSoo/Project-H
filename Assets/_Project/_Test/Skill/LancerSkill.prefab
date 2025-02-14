@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1026856397095710534}
   - component: {fileID: 8770459583381645957}
   - component: {fileID: 2161218180872838424}
-  - component: {fileID: 6359042895824178822}
   - component: {fileID: 1229189589653453615}
+  - component: {fileID: 7081599559815072629}
   m_Layer: 0
   m_Name: LancerSkill
   m_TagString: Untagged
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  targetingSystemType: 2
+  rangeType: 0
   animatorEventHandler: {fileID: 4213904965122752113}
   size: {x: 8, y: 8}
 --- !u!114 &2161218180872838424
@@ -64,19 +64,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e40d9d679980441afb57743f8cae2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillCoefficient: 200
---- !u!114 &6359042895824178822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3792025657868637557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48555cc178434849a102572ee624672e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  coefficient: 200
+  hitCount: 10
 --- !u!114 &1229189589653453615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,6 +76,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ebf697f768e4da7b02ad76134c21011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7081599559815072629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792025657868637557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3f0eeeecd8b3c4ab7f2bd20e7c666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7096449219032708577
