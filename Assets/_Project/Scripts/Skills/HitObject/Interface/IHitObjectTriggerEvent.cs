@@ -1,4 +1,4 @@
 public interface IHitObjectTriggerEvent
 {
-    public void OnTrigger(HitObjectBase handler);
+    public void OnTrigger(HitObjectBase @base);
 }

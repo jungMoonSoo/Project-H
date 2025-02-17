@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class HitObjectBase : MonoBehaviour
@@ -7,10 +8,10 @@ public abstract class HitObjectBase : MonoBehaviour
     [SerializeField] private RangeType rangeType;
     [SerializeField] private AnimatorEventHandler animatorEventHandler;
 
-    private IHitObjectCheckEvent checkEvent;
-    private IHitObjectCreateEvent createEvent;
-    private IHitObjectTriggerEvent triggerEvent;
-    private IHitObjectFinishEvent finishEvent;
+    private Action<HitObjectBase> checkEvent;
+    private Action<HitObjectBase> createEvent;
+    private Action<HitObjectBase> triggerEvent;
+    private Action<HitObjectBase> finishEvent;
 
     public Unidad Caster { get; set; }
     public Vector3 TargetPos { get; private set; }
@@ -30,13 +31,15 @@ public abstract class HitObjectBase : MonoBehaviour
         Caster = caster;
         EffectManager = effectManager;
 
-        TryGetComponent(out checkEvent);
+        checkEvent = null;
+        createEvent = null;
+        triggerEvent = null;
+        finishEvent = null;
 
-        checkEvent.HitObject = this;
-
-        createEvent = GetComponent<IHitObjectCreateEvent>();
-        triggerEvent = GetComponent<IHitObjectTriggerEvent>();
-        finishEvent = GetComponent<IHitObjectFinishEvent>();
+        foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>()) checkEvent += @event.Check;
+        foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
+        foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>()) triggerEvent += @event.OnTrigger;
+        foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
 
         RangeTargeting = SkillTypeHub.GetTargetingSystem(rangeType);
 
@@ -51,22 +54,20 @@ public abstract class HitObjectBase : MonoBehaviour
         OnCreate();
     }
 
-    private void Update() => checkEvent.Check();
+    private void Update() => checkEvent?.Invoke(this);
 
     public void SetTargetPos(Vector3 pos) => TargetPos = pos;
 
-    public void Remove() => hitObjects.Enqueue(this);
+    public void OnCreate() => createEvent?.Invoke(this);
 
-    public void OnCreate() => createEvent?.OnCreate(this);
-
-    public void OnTrigger() => triggerEvent?.OnTrigger(this);
+    public void OnTrigger() => triggerEvent?.Invoke(this);
 
     public void OnFinish()
     {
-        finishEvent?.OnFinish(this);
+        finishEvent?.Invoke(this);
 
         if (hitObjects == null) Destroy(gameObject);
-        else Remove();
+        else hitObjects.Enqueue(this);
     }
 
     public abstract Vector2 GetAreaSize();

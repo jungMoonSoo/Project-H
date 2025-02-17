@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class CheckTrackingCaster : MonoBehaviour, IHitObjectCheckEvent
 {
-    public HitObjectBase HitObject { get; set; }
-
-    public void Check()
+    public void Check(HitObjectBase @base)
     {
-        if (HitObject.Caster == null)
+        if (@base.Caster == null)
         {
-            HitObject.OnFinish();
+            @base.OnFinish();
 
             return;
         }
 
-        transform.position = HitObject.Caster.transform.position;
+        transform.position = @base.Caster.transform.position;
 
-        HitObject.OnTrigger();
+        @base.OnTrigger();
     }
 }

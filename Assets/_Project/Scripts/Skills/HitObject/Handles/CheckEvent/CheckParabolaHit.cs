@@ -5,8 +5,6 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
     [SerializeField] private float height = 5;
     [SerializeField] private float endYPos = 0;
 
-    public HitObjectBase HitObject { get; set; }
-
     private bool init;
 
     private Vector3 startPos;
@@ -14,29 +12,29 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 
     private float timer;
 
-    public void Check()
+    public void Check(HitObjectBase @base)
     {
-        if (!init) Init();
+        if (!init) Init(@base);
 
         if (MoveParabola()) return;
 
-        HitObject.OnTrigger();
+        @base.OnTrigger();
 
         init = false;
 
-        HitObject.OnFinish();
+        @base.OnFinish();
     }
 
-    private void Init()
+    private void Init(HitObjectBase @base)
     {
         init = true;
 
         timer = 0;
 
-        transform.position = HitObject.Caster.transform.position + Vector3.up;
+        transform.position = @base.Caster.transform.position + Vector3.up;
 
         startPos = transform.position;
-        targetPos = HitObject.TargetPos;
+        targetPos = @base.TargetPos;
     }
 
     private bool MoveParabola()

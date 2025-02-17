@@ -2,13 +2,11 @@ using UnityEngine;
 
 public class CheckJustHit : MonoBehaviour, IHitObjectCheckEvent
 {
-    public HitObjectBase HitObject { get; set; }
-
-    public void Check()
+    public void Check(HitObjectBase @base)
     {
-        transform.position = HitObject.TargetPos;
+        transform.position = @base.TargetPos;
 
-        HitObject.OnTrigger();
-        HitObject.OnFinish();
+        @base.OnTrigger();
+        @base.OnFinish();
     }
 }
