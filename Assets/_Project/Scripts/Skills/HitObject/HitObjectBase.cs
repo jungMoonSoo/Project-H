@@ -63,8 +63,10 @@ public abstract class HitObjectBase : MonoBehaviour
 
     public void OnFinish()
     {
-        if (finishEvent == null) Remove();
-        else finishEvent?.OnFinish(this);
+        finishEvent?.OnFinish(this);
+
+        if (hitObjects == null) Destroy(gameObject);
+        else Remove();
     }
 
     public abstract Vector2 GetAreaSize();
