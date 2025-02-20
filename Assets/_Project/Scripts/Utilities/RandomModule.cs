@@ -1,7 +1,5 @@
-using AmplifyShaderEditor;
 using System;
 using System.Security.Cryptography;
-using UnityEngine;
 
 public static class RandomModule
 {
