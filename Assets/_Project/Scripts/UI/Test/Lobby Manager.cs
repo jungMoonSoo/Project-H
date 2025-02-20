@@ -4,7 +4,7 @@ using static UnityEngine.Rendering.GPUSort;
 
 public class LobbyManager : MonoBehaviour
 {
-    [SerializeField] LobbyPlayer player;
+    [SerializeField] private LobbyPlayer player;
 
     public void DrawingCards(int num)// 카드 num회번 뽑기
     {

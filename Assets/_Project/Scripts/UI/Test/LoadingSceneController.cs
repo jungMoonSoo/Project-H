@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class LoadingSceneController : Singleton<LoadingSceneController>
 {
-    static string nextScene;
+    private static string nextScene;
 
-    [SerializeField] Slider progressBar;
+    [SerializeField] private Slider progressBar;
 
     private void Start()
     {
