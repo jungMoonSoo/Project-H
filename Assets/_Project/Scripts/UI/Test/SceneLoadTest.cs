@@ -4,13 +4,8 @@ using UnityEngine;
 
 public class SceneLoadTest : MonoBehaviour
 {
-
-    void Update()
+    public void ChangeScene()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadingSceneController.LoadScene("main");
-
-        }
+        LoadingSceneController.LoadScene("main");
     }
 }

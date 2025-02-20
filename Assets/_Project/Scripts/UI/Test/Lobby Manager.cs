@@ -16,16 +16,19 @@ public class LobbyManager : MonoBehaviour
         Debug.Log($"{num}번 모집 완료하였습니다.");
     }
 
-    public void Cardinfo()
+    public void Cardinfo() //카드 정보
     {
         string s = "";
         foreach (var i in player.inventory)
         {
            s += i.itemName.ToString() + " ";   
         }
-
-
         Debug.Log($"{s}");
+    }
+
+    public void ChangeScene() // 씬체인지
+    {
+        LoadingSceneController.LoadScene("main");
     }
 #if UNITY_EDITOR
     public void ResetItem() //데이터 리셋
