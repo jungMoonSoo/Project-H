@@ -14,7 +14,10 @@ public abstract class HitObjectBase : MonoBehaviour
     private Action<HitObjectBase> finishEvent;
 
     public Unidad Caster { get; set; }
+
+    public Vector3 CreatePos { get; private set; }
     public Vector3 TargetPos { get; private set; }
+
     public EffectManager EffectManager { get; private set; }
 
     private ObjectPool<HitObjectBase> hitObjects;
@@ -43,6 +46,7 @@ public abstract class HitObjectBase : MonoBehaviour
 
         RangeTargeting = SkillTypeHub.GetTargetingSystem(rangeType);
 
+        CreatePos = createPos;
         transform.position = createPos;
 
         if (animatorEventHandler != null)

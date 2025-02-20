@@ -19,18 +19,21 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     {
         if (!init) Init(@base);
 
-        if (Move()) return;
+        if (Move())
+        {
+            if (nowDist < 0.01f)
+            {
+                init = false;
+                applyCount = 0;
+
+                @base.OnFinish();
+            }
+
+            return;
+        }
 
         @base.OnTrigger();
         applyCount++;
-
-        if (nowDist < 0.01f)
-        {
-            init = false;
-            applyCount = 0;
-
-            @base.OnFinish();
-        }
     }
 
     private void Init(HitObjectBase @base)
