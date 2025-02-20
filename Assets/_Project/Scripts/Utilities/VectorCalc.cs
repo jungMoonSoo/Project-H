@@ -1,3 +1,4 @@
+using System.Drawing;
 using UnityEngine;
 
 public static class VectorCalc
@@ -19,7 +20,7 @@ public static class VectorCalc
     /// <param name="centerRadius">타원의 반지름</param>
     /// <param name="point">특정 지점</param>
     /// <returns>타원방정식 결과 값, 1이하면 접촉상태</returns>
-    public static float CalcEllipsePoint(Vector2 center, Vector2 centerRadius, Vector2 point) =>
+    public static float CalcEllipsePoint(Vector3 center, Vector2 centerRadius, Vector3 point) =>
         CalcEllipse(center, point, centerRadius, Vector2.zero);
     
     /// <summary>
@@ -32,6 +33,7 @@ public static class VectorCalc
     /// <returns>타원방정식 결과 값, 1이하면 접촉상태</returns>
     public static float CalcEllipse(Vector3 center, Vector3 target, Vector2 centerRadius, Vector2 targetRadius) =>
         CalcEllipse(target - center, centerRadius, targetRadius);
+
     /// <summary>
     /// 타원방정식에서 두 타원이 접해있는지 계산하는 Method
     /// </summary>
@@ -43,6 +45,25 @@ public static class VectorCalc
     {
         return Mathf.Pow(direction.x / (centerRadius.x + targetRadius.x), 2) +
                Mathf.Pow(direction.z / (centerRadius.y + targetRadius.y), 2);
+    }
+
+    /// <summary>
+    /// 타원방정식에서 B타원이 A타원 내부에 있는지 반환하는 Method
+    /// </summary>
+    /// <param name="center">A타원의 중심 위치</param>
+    /// <param name="target">B타원의 중심 위치</param>
+    /// <param name="centerRadius">A타원의 반지름</param>
+    /// <param name="targetRadius">B타원의 반지름</param>
+    public static bool CalcInsideEllipse(Vector3 center, Vector3 target, Vector2 centerRadius, Vector2 targetRadius)
+    {
+        if (CalcEllipse(target - center, centerRadius, targetRadius) > 1) return false;
+
+        if (CalcEllipsePoint(center, centerRadius, target + Vector3.right * targetRadius.x) > 1) return false;
+        if (CalcEllipsePoint(center, centerRadius, target + Vector3.left * targetRadius.x) > 1) return false;
+        if (CalcEllipsePoint(center, centerRadius, target + Vector3.forward * targetRadius.y) > 1) return false;
+        if (CalcEllipsePoint(center, centerRadius, target + Vector3.back * targetRadius.y) > 1) return false;
+
+        return true;
     }
 
     /// <summary>
