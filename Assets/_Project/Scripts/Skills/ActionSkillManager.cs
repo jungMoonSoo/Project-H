@@ -91,8 +91,10 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
         if (target is not null && CastingCaster is not null) // 타겟이 미존재거나, 시전자가 미존재면 스킬사용 실패
         {
-            HitObjectBase handler = Instantiate(UsingSkill?.effectPrefab, CastingCaster.transform.position, Quaternion.identity);
-            handler.Init(CastingCaster, null, (Vector3)target);
+            HitObjectBase handler = Instantiate(UsingSkill?.effectPrefab);
+
+            handler.SetTargetPos((Vector3)target);
+            handler.Init(CastingCaster, null, CastingCaster.transform.position);
 
             CastingCaster.ChangeState(UnitState.Skill);
             CastingCaster.Mp.Value = 0;
