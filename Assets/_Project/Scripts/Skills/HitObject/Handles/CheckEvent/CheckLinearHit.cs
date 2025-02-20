@@ -3,8 +3,15 @@ using UnityEngine;
 public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 {
     [SerializeField] private float speed = 10;
+    [SerializeField] private float splitCount = 1;
 
     private bool init;
+
+    private float nowDist;
+    private float endDist;
+    private float splitDist;
+
+    private int applyCount;
 
     private Vector3 targetPos;
 
@@ -15,10 +22,15 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         if (Move()) return;
 
         @base.OnTrigger();
+        applyCount++;
 
-        init = false;
+        if (nowDist < 0.01f)
+        {
+            init = false;
+            applyCount = 0;
 
-        @base.OnFinish();
+            @base.OnFinish();
+        }
     }
 
     private void Init(HitObjectBase @base)
@@ -28,6 +40,9 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         transform.position = @base.Caster.transform.position;
 
         targetPos = @base.TargetPos;
+
+        endDist = Vector3.Distance(transform.position, targetPos);
+        splitDist = endDist / splitCount;
     }
 
     private bool Move()
@@ -36,6 +51,8 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
         transform.position = pos;
 
-        return Vector3.Distance(transform.position, targetPos) > 0.01f;
+        nowDist = Vector3.Distance(transform.position, targetPos);
+
+        return endDist - nowDist < splitDist * (applyCount + 1);
     }
 }
