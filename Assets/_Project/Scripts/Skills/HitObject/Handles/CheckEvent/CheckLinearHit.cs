@@ -15,8 +15,6 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private Vector3 targetPos;
 
-    private readonly float offset = 0.01f;
-
     public void Check(HitObjectBase @base)
     {
         if (!init) Init(@base);
@@ -26,7 +24,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         @base.OnTrigger();
         applyCount++;
 
-        if (nowDist < offset)
+        if (nowDist < 0.01f)
         {
             init = false;
             applyCount = 0;
@@ -53,6 +51,6 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
         nowDist = Vector3.Distance(transform.position, targetPos);
 
-        return endDist - splitDist * (applyCount + 1) < nowDist + offset;
+        return endDist - nowDist > splitDist * applyCount;
     }
 }
