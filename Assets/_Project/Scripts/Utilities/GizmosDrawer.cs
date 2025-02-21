@@ -34,6 +34,16 @@ public static class GizmosDrawer
         }
     }
 
+    public static void DrawBox(Vector3[] points, Color color)
+    {
+        Gizmos.color = color;
+
+        Gizmos.DrawLine(points[0], points[1]);
+        Gizmos.DrawLine(points[1], points[2]);
+        Gizmos.DrawLine(points[2], points[3]);
+        Gizmos.DrawLine(points[3], points[0]);
+    }
+
     private static Vector3 GetEllipsePoint(Vector3 center, float angleIdx, Vector2 size)
     {
         return center + new Vector3(Mathf.Sin(angleIdx) * size.x, 0, Mathf.Cos(angleIdx) * size.y);

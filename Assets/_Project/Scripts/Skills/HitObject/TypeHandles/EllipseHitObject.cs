@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EllipseHitObject : HitObjectBase
 {
-    [SerializeField] private EllipseCollider effectCollider;
+    [SerializeField] private EllipseCollider coll;
 
-    public override Vector2 GetAreaSize() => effectCollider.size;
+    public override Vector2 GetAreaSize() => coll.size;
 
-    protected override Unidad[] Targeting() => RangeTargeting.GetTargets(Caster.Owner, TargetType, CreatePos, TargetPos, effectCollider.Radius);
+    protected override Unidad[] Targeting() => RangeTargeting.GetTargets(Caster.Owner, TargetType, CreatePos, TargetPos, coll.Radius);
 }

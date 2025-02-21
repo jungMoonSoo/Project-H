@@ -98,7 +98,7 @@ MonoBehaviour:
   targetType: 2
   rangeType: 0
   animatorEventHandler: {fileID: 4213904965122752113}
-  effectCollider: {fileID: 2315179243541150760}
+  coll: {fileID: 2315179243541150760}
 --- !u!114 &8841968534178399513
 MonoBehaviour:
   m_ObjectHideFlags: 0

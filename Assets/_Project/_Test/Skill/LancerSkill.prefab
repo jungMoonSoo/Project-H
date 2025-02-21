@@ -33,6 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4890457478920855243}
+  - {fileID: 6131804233937107572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8770459583381645957
@@ -50,7 +51,8 @@ MonoBehaviour:
   targetType: 2
   rangeType: 0
   animatorEventHandler: {fileID: 4213904965122752113}
-  size: {x: 8, y: 8}
+  coll: {fileID: 6552588754818680970}
+  splitCount: 1
 --- !u!114 &2161218180872838424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,3 +202,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f7bac349feabb4cb0dba7d0d255fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &9068491044647885948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6131804233937107572}
+  - component: {fileID: 6552588754818680970}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6131804233937107572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068491044647885948}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1026856397095710534}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6552588754818680970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9068491044647885948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea2b57db50ac9f840b0d05cf378d4343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lineColor: {r: 0, g: 0, b: 0, a: 1}
+  direction: {x: 0, y: 0, z: 0}
+  size: {x: 8, y: 8}

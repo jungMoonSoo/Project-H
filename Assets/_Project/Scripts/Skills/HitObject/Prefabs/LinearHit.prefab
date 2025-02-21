@@ -50,7 +50,7 @@ MonoBehaviour:
   targetType: 2
   rangeType: 0
   animatorEventHandler: {fileID: 0}
-  effectCollider: {fileID: 2273795921878840642}
+  coll: {fileID: 2273795921878840642}
 --- !u!114 &91234901092444314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 659c30ad7ca931c48a7050e3521f9103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 10
+  splitCount: 1
 --- !u!114 &8708706264386118130
 MonoBehaviour:
   m_ObjectHideFlags: 0
