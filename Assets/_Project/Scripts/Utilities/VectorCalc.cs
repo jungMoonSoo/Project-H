@@ -66,6 +66,22 @@ public static class VectorCalc
     }
 
     /// <summary>
+    /// 타원방정식에서 B타원이 링 형태의 A타원 내부에 있는지 반환하는 Method
+    /// </summary>
+    /// <param name="center">A타원의 중심 위치</param>
+    /// <param name="target">B타원의 중심 위치</param>
+    /// <param name="inRadius">A타원의 내부 반지름</param>
+    /// <param name="outRadius">A타원의 외부 반지름</param>
+    /// <param name="targetRadius">B타원의 반지름</param>
+    public static bool CalcInsideEllipseRing(Vector3 center, Vector3 target, Vector2 inRadius, Vector2 outRadius, Vector2 targetRadius)
+    {
+        if (CalcEllipse(center, target, outRadius, targetRadius) > 1) return false;
+        if (CalcInsideEllipse(center, target, inRadius, targetRadius)) return false;
+
+        return true;
+    }
+
+    /// <summary>
     /// 특정 지점이 타원 밖으로 나가면, 최대 위치로 반환하는 Method
     /// </summary>
     /// <param name="ellipseCollider">타원 충돌체</param>
