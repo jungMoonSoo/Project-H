@@ -104,9 +104,6 @@
         },
         {
             "m_Id": "b863ba87c8f749d1bdb197cb44cea1c3"
-        },
-        {
-            "m_Id": "9696c5dc3e78426fba52a759b3ff8ca0"
         }
     ],
     "m_GroupDatas": [
@@ -509,9 +506,6 @@
             },
             {
                 "m_Id": "bf669e9491f6492280fe9c7c78719c79"
-            },
-            {
-                "m_Id": "9696c5dc3e78426fba52a759b3ff8ca0"
             }
         ]
     },
@@ -620,10 +614,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2448.000244140625,
-            "y": -249.00006103515626,
+            "x": -2445.999755859375,
+            "y": -248.99996948242188,
             "width": 110.0,
-            "height": 34.00004577636719
+            "height": 33.99998474121094
         }
     },
     "m_Slots": [
@@ -867,7 +861,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 10.0,
+    "m_Value": 0.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -1329,8 +1323,8 @@
     "m_ObjectId": "3dd7fe6b459948b0aaf99fda37a05d66",
     "m_Title": "DrewArc",
     "m_Position": {
-        "x": -3041.0,
-        "y": -916.0000610351563
+        "x": -3040.999755859375,
+        "y": -916.0
     }
 }
 
@@ -1354,7 +1348,7 @@
     "overrideHLSLDeclaration": false,
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
-    "m_Value": 30.0,
+    "m_Value": 360.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,
@@ -2130,40 +2124,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.BlockNode",
-    "m_ObjectId": "9696c5dc3e78426fba52a759b3ff8ca0",
-    "m_Group": {
-        "m_Id": ""
-    },
-    "m_Name": "SurfaceDescription.AlphaClipThreshold",
-    "m_DrawState": {
-        "m_Expanded": true,
-        "m_Position": {
-            "serializedVersion": "2",
-            "x": 0.0,
-            "y": 0.0,
-            "width": 0.0,
-            "height": 0.0
-        }
-    },
-    "m_Slots": [
-        {
-            "m_Id": "bc6ac1abcbcb4e90895fdc1ac480bab0"
-        }
-    ],
-    "synonyms": [],
-    "m_Precision": 0,
-    "m_PreviewExpanded": true,
-    "m_DismissedVersion": 0,
-    "m_PreviewMode": 0,
-    "m_CustomColors": {
-        "m_SerializableColors": []
-    },
-    "m_SerializedDescriptor": "SurfaceDescription.AlphaClipThreshold"
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "96fe137a055f41fb8bec1da2ad302093",
     "m_Id": 2,
@@ -2652,21 +2612,6 @@
 
 {
     "m_SGVersion": 0,
-    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
-    "m_ObjectId": "bc6ac1abcbcb4e90895fdc1ac480bab0",
-    "m_Id": 0,
-    "m_DisplayName": "Alpha Clip Threshold",
-    "m_SlotType": 0,
-    "m_Hidden": false,
-    "m_ShaderOutputName": "AlphaClipThreshold",
-    "m_StageCapability": 2,
-    "m_Value": 0.5,
-    "m_DefaultValue": 0.5,
-    "m_Labels": []
-}
-
-{
-    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.BlockNode",
     "m_ObjectId": "bf669e9491f6492280fe9c7c78719c79",
     "m_Group": {
@@ -3140,7 +3085,7 @@
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
     "m_RenderFace": 2,
-    "m_AlphaClip": true,
+    "m_AlphaClip": false,
     "m_CastShadows": true,
     "m_ReceiveShadows": true,
     "m_DisableTint": false,

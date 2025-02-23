@@ -11,7 +11,7 @@ public class ArcCollider : MonoBehaviour
 
     public float Length => size.x;
 
-    public Vector2 Radius => new Vector2(size.y, size.y) * 0.5f;
+    public Vector2 Radius => new Vector2(size.y, size.y);
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()
