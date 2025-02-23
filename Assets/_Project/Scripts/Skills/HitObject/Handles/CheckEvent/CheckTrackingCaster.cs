@@ -2,6 +2,11 @@ using UnityEngine;
 
 public class CheckTrackingCaster : MonoBehaviour, IHitObjectCheckEvent
 {
+    public void Init(HitObjectBase @base)
+    {
+
+    }
+
     public void Check(HitObjectBase @base)
     {
         if (@base.Caster == null)

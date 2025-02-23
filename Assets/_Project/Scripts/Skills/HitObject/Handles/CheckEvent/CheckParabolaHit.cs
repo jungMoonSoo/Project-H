@@ -2,46 +2,37 @@ using UnityEngine;
 
 public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 {
+    [SerializeField] private float speed = 1;
+
     [SerializeField] private float height = 5;
     [SerializeField] private float endYPos = 0;
-
-    private bool init;
 
     private Vector3 startPos;
     private Vector3 targetPos;
 
     private float timer;
 
-    public void Check(HitObjectBase @base)
+    public void Init(HitObjectBase @base)
     {
-        if (!init) Init(@base);
-
-        if (MoveParabola()) return;
-
-        @base.OnTrigger();
-
-        init = false;
-
-        @base.OnFinish();
-    }
-
-    private void Init(HitObjectBase @base)
-    {
-        init = true;
-
         timer = 0;
-
-        transform.position = @base.Caster.transform.position + Vector3.up;
 
         startPos = transform.position;
         targetPos = @base.TargetPos;
     }
 
+    public void Check(HitObjectBase @base)
+    {
+        if (MoveParabola()) return;
+
+        @base.OnTrigger();
+        @base.OnFinish();
+    }
+
     private bool MoveParabola()
     {
-        if (transform.position.y >= endYPos)
+        if (Vector3.Distance(transform.position, targetPos) > 0.01f && transform.position.y >= endYPos)
         {
-            timer += Time.deltaTime;
+            timer += Time.deltaTime * speed;
 
             Vector3 pos = Vector3.Lerp(startPos, targetPos, timer);
 

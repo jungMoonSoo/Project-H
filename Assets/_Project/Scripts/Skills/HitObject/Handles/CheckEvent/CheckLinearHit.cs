@@ -5,7 +5,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     [SerializeField] private float speed = 10;
     [SerializeField] private float splitCount = 1;
 
-    private bool init;
+    private Vector3 targetPos;
 
     private float nowDist;
     private float endDist;
@@ -13,12 +13,16 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private int applyCount;
 
-    private Vector3 targetPos;
+    public void Init(HitObjectBase @base)
+    {
+        targetPos = @base.TargetPos;
+
+        endDist = Vector3.Distance(transform.position, targetPos);
+        splitDist = endDist / splitCount;
+    }
 
     public void Check(HitObjectBase @base)
     {
-        if (!init) Init(@base);
-
         if (Move()) return;
 
         @base.OnTrigger();
@@ -26,23 +30,10 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
         if (nowDist < 0.01f)
         {
-            init = false;
             applyCount = 0;
 
             @base.OnFinish();
         }
-    }
-
-    private void Init(HitObjectBase @base)
-    {
-        init = true;
-
-        transform.position = @base.Caster.transform.position;
-
-        targetPos = @base.TargetPos;
-
-        endDist = Vector3.Distance(transform.position, targetPos);
-        splitDist = endDist / splitCount;
     }
 
     private bool Move()

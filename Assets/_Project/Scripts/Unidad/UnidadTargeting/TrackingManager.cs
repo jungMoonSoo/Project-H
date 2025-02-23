@@ -41,7 +41,7 @@ public class TrackingManager : MonoBehaviour
 
         hitObject.SetTargetPos(targets[0].transform.position);
 
-        if (hitObject.Caster == null) hitObject.Init(unidad, effectManager, unidad.transform.position + Vector3.up);
+        if (hitObject.Caster == null) hitObject.Init(unidad, effectManager, unidad.transform.position);
     }
 
     private void FlipX(Transform trans, bool right)

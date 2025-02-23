@@ -8,6 +8,8 @@ public abstract class HitObjectBase : MonoBehaviour
     [SerializeField] private RangeType rangeType;
     [SerializeField] private AnimatorEventHandler animatorEventHandler;
 
+    private Action<HitObjectBase> inits;
+
     private Action<HitObjectBase> checkEvent;
     private Action<HitObjectBase> createEvent;
     private Action<HitObjectBase> triggerEvent;
@@ -34,26 +36,31 @@ public abstract class HitObjectBase : MonoBehaviour
         Caster = caster;
         EffectManager = effectManager;
 
-        checkEvent = null;
-        createEvent = null;
-        triggerEvent = null;
-        finishEvent = null;
-
-        foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>()) checkEvent += @event.Check;
-        foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
-        foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>()) triggerEvent += @event.OnTrigger;
-        foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
-
-        RangeTargeting = SkillTypeHub.GetTargetingSystem(rangeType);
-
         CreatePos = createPos;
         transform.position = createPos;
 
-        if (animatorEventHandler != null)
+        if (inits == null)
         {
-            animatorEventHandler.OnTriggerEvent = OnTrigger;
-            animatorEventHandler.OnFinishEvent = OnFinish;
+            foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
+            {
+                inits += @event.Init;
+                checkEvent += @event.Check;
+            }
+
+            foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
+            foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>()) triggerEvent += @event.OnTrigger;
+            foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
+
+            if (animatorEventHandler != null)
+            {
+                animatorEventHandler.OnTriggerEvent = OnTrigger;
+                animatorEventHandler.OnFinishEvent = OnFinish;
+            }
         }
+
+        RangeTargeting = SkillTypeHub.GetTargetingSystem(rangeType);
+
+        inits?.Invoke(this);
 
         OnCreate();
     }
