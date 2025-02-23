@@ -11,5 +11,10 @@ public class LinearHitObject : HitObjectBase
 
     public override Vector2 GetAreaSize() => new(coll.size.y, coll.size.x);
 
-    protected override Unidad[] Targeting() => RangeTargeting.GetTargets(Caster.Owner, TargetType, transform.position, TargetPos, SplitSize);
+    protected override Unidad[] Targeting()
+    {
+        coll.direction = TargetPos.normalized;
+
+        return RangeTargeting.GetTargets(Caster.Owner, TargetType, transform.position, TargetPos, SplitSize);
+    }
 }

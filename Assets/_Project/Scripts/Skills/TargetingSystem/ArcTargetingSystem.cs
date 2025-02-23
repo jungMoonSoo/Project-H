@@ -52,5 +52,5 @@ public class ArcTargetingSystem: IRangeTargeting
 
     private float GetDirectionToAngle(Vector3 direction) => Mathf.Repeat(Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg, 360);
 
-    private Vector3[] GetContactPoints(Vector3 pos, Vector2 size) => new Vector3[] { pos + new Vector3(-size.x, 0), pos + new Vector3(size.x, 0), pos + new Vector3(0, -size.y), pos + new Vector3(0, size.y) };
+    private Vector3[] GetContactPoints(Vector3 pos, Vector2 size) => new Vector3[] { pos + new Vector3(-size.x, 0), pos + new Vector3(size.x, 0), pos + new Vector3(0, 0, -size.y), pos + new Vector3(0, 0, size.y) };
 }

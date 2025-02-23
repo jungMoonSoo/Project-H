@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026856397095710534}
-  - component: {fileID: 5206850319509490950}
+  - component: {fileID: 8579866311255789768}
   - component: {fileID: 2214146251224801098}
   - component: {fileID: 9001607245387041535}
   m_Layer: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 5416034389628058173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5206850319509490950
+--- !u!114 &8579866311255789768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,13 +45,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792025657868637557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76b0129bc3d10a4b80937418caaa491, type: 3}
+  m_Script: {fileID: 11500000, guid: ee44eaf4ea1b79441818430de85248cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  rangeType: 0
-  animatorEventHandler: {fileID: 4213904965122752113}
-  coll: {fileID: 3648539323497798792}
+  rangeType: 3
+  animatorEventHandler: {fileID: 0}
+  coll: {fileID: 5094719299880950034}
 --- !u!114 &2214146251224801098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5416034389628058173}
-  - component: {fileID: 3648539323497798792}
+  - component: {fileID: 5094719299880950034}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Untagged
@@ -110,7 +110,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1026856397095710534}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3648539323497798792
+--- !u!114 &5094719299880950034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,12 +119,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4927346028005429929}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b08a7ed2e5ef233408ef9dbb98e2a07a, type: 3}
+  m_Script: {fileID: 11500000, guid: 048c80cc864595940b55e293c62b6dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lineColor: {r: 0, g: 1, b: 1, a: 1}
-  center: {x: 0, y: 0}
-  size: {x: 15, y: 15}
+  lineColor: {r: 0, g: 0, b: 0, a: 1}
+  direction: {x: 1, y: 0, z: 1}
+  size: {x: 60, y: 1}
 --- !u!1 &7096449219032708577
 GameObject:
   m_ObjectHideFlags: 0

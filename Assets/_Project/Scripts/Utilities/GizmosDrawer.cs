@@ -44,6 +44,37 @@ public static class GizmosDrawer
         Gizmos.DrawLine(points[3], points[0]);
     }
 
+    public static void DrawArc(Vector3 center, Vector2 size, float length, Vector3 direction, int angleCount, Color color)
+    {
+        Gizmos.color = color;
+        
+        Vector2 range = GetDirectionToAngle(length, direction);
+
+        Vector3 pos1 = VectorCalc.GetPointOnEllipse(center, size, Quaternion.Euler(0, range.x, 0) * Vector3.forward, true);
+        Vector3 pos2 = VectorCalc.GetPointOnEllipse(center, size, Quaternion.Euler(0, range.y, 0) * Vector3.forward, true);
+
+        Gizmos.DrawLine(center, pos1);
+        Gizmos.DrawLine(center, pos2);
+
+        float rangeCalc = Mathf.Repeat(range.y - range.x, 360) / angleCount;
+
+        for (int i = 1; i <= angleCount; i++)
+        {
+            pos2 = VectorCalc.GetPointOnEllipse(center, size, Quaternion.Euler(0, range.x + rangeCalc * i, 0) * Vector3.forward, true);
+
+            Gizmos.DrawLine(pos1, pos2);
+
+            pos1 = pos2;
+        }
+    }
+
+    private static Vector2 GetDirectionToAngle(float length, Vector3 direction)
+    {
+        float dirAngle = Mathf.Repeat(Mathf.Atan2(direction.z, direction.x) * Mathf.Rad2Deg, 360);
+
+        return new(Mathf.Repeat(dirAngle - length * 0.5f, 360), Mathf.Repeat(dirAngle + length * 0.5f, 360));
+    }
+
     private static Vector3 GetEllipsePoint(Vector3 center, float angleIdx, Vector2 size)
     {
         return center + new Vector3(Mathf.Sin(angleIdx) * size.x, 0, Mathf.Cos(angleIdx) * size.y);

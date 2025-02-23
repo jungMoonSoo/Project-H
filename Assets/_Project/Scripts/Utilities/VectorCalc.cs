@@ -96,8 +96,9 @@ public static class VectorCalc
     /// <param name="ellipsePosition">타원 위치</param>
     /// <param name="ellipseSize">타원 크기</param>
     /// <param name="point">특정 지점</param>
+    /// <param name="onlyMax">반드시 최대 사거리를 반환</param>
     /// <returns>수정된 특정 지점의 위치</returns>
-    public static Vector3 GetPointOnEllipse(Vector3 ellipsePosition, Vector2 ellipseSize, Vector3 point)
+    public static Vector3 GetPointOnEllipse(Vector3 ellipsePosition, Vector2 ellipseSize, Vector3 point, bool onlyMax = false)
     {
         Vector2 colliderRadius = ellipseSize * 0.5f;
         Vector3 dir = point - ellipsePosition;
@@ -107,7 +108,7 @@ public static class VectorCalc
 
         float distanceSquared = normalizedX * normalizedX + normalizedZ * normalizedZ;
 
-        if (distanceSquared <= 1f) return point;
+        if (!onlyMax && distanceSquared <= 1f) return point;
 
         distanceSquared = Mathf.Sqrt(distanceSquared);
 
