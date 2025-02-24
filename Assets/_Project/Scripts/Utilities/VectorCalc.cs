@@ -88,7 +88,7 @@ public static class VectorCalc
     /// <param name="point">특정 지점</param>
     /// <returns>특정 지점 조정 값</returns>
     public static Vector3 GetPointOnEllipse(EllipseCollider ellipseCollider, Vector3 point) =>
-        GetPointOnEllipse(ellipseCollider.transform.position + ellipseCollider.Center, ellipseCollider.size, point);
+        GetPointOnEllipse(ellipseCollider.Center, ellipseCollider.Radius, point);
 
     /// <summary>
     /// 특정 지점이 타원 밖으로 나가면, 최대 위치로 반환하는 Method
@@ -100,11 +100,10 @@ public static class VectorCalc
     /// <returns>수정된 특정 지점의 위치</returns>
     public static Vector3 GetPointOnEllipse(Vector3 ellipsePosition, Vector2 ellipseSize, Vector3 point, bool onlyMax = false)
     {
-        Vector2 colliderRadius = ellipseSize * 0.5f;
         Vector3 dir = point - ellipsePosition;
 
-        float normalizedX = dir.x / colliderRadius.x;
-        float normalizedZ = dir.z / colliderRadius.y;
+        float normalizedX = dir.x / ellipseSize.x;
+        float normalizedZ = dir.z / ellipseSize.y;
 
         float distanceSquared = normalizedX * normalizedX + normalizedZ * normalizedZ;
 
@@ -112,7 +111,7 @@ public static class VectorCalc
 
         distanceSquared = Mathf.Sqrt(distanceSquared);
 
-        return ellipsePosition + new Vector3(normalizedX * colliderRadius.x, 0, normalizedZ * colliderRadius.y) / distanceSquared;
+        return ellipsePosition + new Vector3(normalizedX * ellipseSize.x, 0, normalizedZ * ellipseSize.y) / distanceSquared;
     }
 
     public static Vector3 GetRandomPositionInBoxCollider(Vector3 size, Vector2 pivot, Vector2 border)

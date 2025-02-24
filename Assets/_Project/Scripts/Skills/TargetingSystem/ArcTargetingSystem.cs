@@ -14,9 +14,7 @@ public class ArcTargetingSystem: IRangeTargeting
 
         for (int i = targets.Count - 1; i >= 0; i--)
         {
-            Vector3 targetPos = targets[i].transform.position + targets[i].unitCollider.Center;
-
-            if (!CheckTargetInArea(casterPosition, areaSize, targetPos, targets[i].unitCollider.Radius, range)) targets.Remove(targets[i]);
+            if (!CheckTargetInArea(casterPosition, areaSize, targets[i].unitCollider.Center, targets[i].unitCollider.Radius, range)) targets.Remove(targets[i]);
         }
 
         return targets.ToArray();

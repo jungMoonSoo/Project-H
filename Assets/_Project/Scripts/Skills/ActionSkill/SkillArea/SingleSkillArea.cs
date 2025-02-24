@@ -33,7 +33,7 @@ public class SingleSkillArea: ISkillArea
 
             foreach (Unidad enemy in targets)
             {
-                if (!enemy.unitCollider.OnEllipseEnter(caster.skillCollider)) continue;
+                if (!enemy.unitCollider.OnEnter(caster.skillCollider)) continue;
 
                 Vector3 dir = enemy.transform.position - castedPosition;
                 float range = dir.magnitude;

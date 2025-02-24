@@ -12,11 +12,9 @@ public class LinearTargetingSystem : IRangeTargeting
 
         for (int i = targets.Count - 1; i >= 0; i--)
         {
-            Vector3 targetPos = targets[i].transform.position + targets[i].unitCollider.Center;
-
-            if (!CheckEllipseHitLines(targetPos, targets[i].unitCollider.Radius, points))
+            if (!CheckEllipseHitLines(targets[i].unitCollider.Center, targets[i].unitCollider.Radius, points))
             {
-                if (!CheckEllipseInBox(points, targetPos)) targets.Remove(targets[i]);
+                if (!CheckEllipseInBox(points, targets[i].unitCollider.Center)) targets.Remove(targets[i]);
             }
         }
 

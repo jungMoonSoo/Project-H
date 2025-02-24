@@ -28,7 +28,7 @@ public class TrackingManager : MonoBehaviour
 
             FlipX(unidad.view.transform, target.transform.position.x - unidad.transform.position.x > 0);
 
-            if (unidad.attackCollider.OnEllipseEnter(target.unitCollider)) return UnitState.Attack;
+            if (unidad.attackCollider.OnEnter(target.unitCollider)) return UnitState.Attack;
             else return UnitState.Move;
         }
 
@@ -41,7 +41,7 @@ public class TrackingManager : MonoBehaviour
 
         hitObject.SetTargetPos(targets[0].transform.position);
 
-        if (hitObject.Caster == null) hitObject.Init(unidad, effectManager, unidad.transform.position);
+        hitObject.Init(unidad, effectManager, unidad.transform.position);
     }
 
     private void FlipX(Transform trans, bool right)
