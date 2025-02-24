@@ -16,6 +16,8 @@ public class EllipseCollider : MonoBehaviour, ICustomCollider
     public Vector2 Radius => size * 0.5f;
     public Vector3 Center => transform.position;
 
+    public Vector3 Direction { get; set; }
+
     /// <summary>
     /// Target과의 충돌 확인
     /// </summary>

@@ -6,21 +6,20 @@ public class ArcCollider : MonoBehaviour, ICustomCollider
     [SerializeField] public Color lineColor;
 
     [Header("Collider Settings")]
-    [SerializeField] public Vector3 direction;
     [SerializeField] public Vector2 size = new(2, 1);
-
-    public float Length => size.x;
 
     public Vector2 Radius => new(size.y, size.y);
     public Vector3 Center => transform.position;
 
-    public Vector2 Range
+    public Vector3 Direction { get; set; }
+
+    private Vector2 Range
     {
         get
         {
-            float dirAngle = GetDirectionToAngle(direction);
+            float dirAngle = GetDirectionToAngle(Direction);
 
-            return new(Mathf.Repeat(dirAngle - Length * 0.5f, 360), Mathf.Repeat(dirAngle + Length * 0.5f, 360));
+            return new(Mathf.Repeat(dirAngle - size.x * 0.5f, 360), Mathf.Repeat(dirAngle + size.x * 0.5f, 360));
         }
     }
 
@@ -67,7 +66,7 @@ public class ArcCollider : MonoBehaviour, ICustomCollider
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        GizmosDrawer.DrawArc(Center, Radius * 0.5f, Range, (int)(Length / 6), lineColor);
+        GizmosDrawer.DrawArc(Center, Radius, Range, (int)(size.x / 6), lineColor);
     }
 #endif
 }

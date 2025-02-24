@@ -10,7 +10,7 @@ public class ArcHitObject : HitObjectBase
 
     protected override Unidad[] Targeting()
     {
-        coll.direction = TargetPos.normalized;
+        coll.Direction = TargetPos - transform.position;
 
         return RangeTargeting.GetTargets(Caster.Owner, TargetType, transform.position, TargetPos, coll.size);
     }

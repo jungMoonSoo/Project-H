@@ -6,13 +6,14 @@ public class LinearCollider : MonoBehaviour, ICustomCollider
     [SerializeField] public Color lineColor;
 
     [Header("Collider Settings")]
-    [SerializeField] public Vector3 direction;
     [SerializeField] public Vector2 size = new(2, 1);
 
     public Vector2 Radius => new(size.x * 0.5f, size.y);
     public Vector3 Center => transform.position;
 
-    public Vector3[] Points => new Vector3[]
+    public Vector3 Direction { get; set; }
+
+    private Vector3[] Points => new Vector3[]
     {
         Center + RotatePoint(new Vector3(-Radius.x, 0, 0)),
         Center + RotatePoint(new Vector3(-Radius.x, 0, Radius.y)),
@@ -59,7 +60,7 @@ public class LinearCollider : MonoBehaviour, ICustomCollider
 
     private Vector3 RotatePoint(Vector3 point)
     {
-        float angle = Mathf.Atan2(direction.z, direction.x);
+        float angle = Mathf.Atan2(Direction.z, Direction.x);
         float cosAngle = Mathf.Cos(angle);
         float sinAngle = Mathf.Sin(angle);
 

@@ -3,6 +3,18 @@ using UnityEngine;
 
 public class ArcTargetingSystem: IRangeTargeting
 {
+    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, ICustomCollider coll)
+    {
+        List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner, targetType));
+
+        for (int i = targets.Count - 1; i >= 0; i--)
+        {
+            if (!coll.OnEnter(targets[i].unitCollider)) targets.Remove(targets[i]);
+        }
+
+        return targets.ToArray();
+    }
+
     /// <param name="rangeSize"> x : 범위각, y : 길이 </param>
     public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)
     {
