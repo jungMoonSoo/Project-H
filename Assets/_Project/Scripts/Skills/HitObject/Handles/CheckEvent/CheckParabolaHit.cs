@@ -10,11 +10,13 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
     private Vector3 startPos;
     private Vector3 targetPos;
 
+    private bool check;
     private float timer;
 
     public void Init(HitObjectBase @base)
     {
         timer = 0;
+        check = false;
 
         startPos = transform.position;
         targetPos = @base.TargetPos;
@@ -30,7 +32,9 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 
     private bool MoveParabola()
     {
-        if (Vector3.Distance(transform.position, targetPos) > 0.01f && transform.position.y >= endYPos)
+        if (transform.position.y > endYPos) check = true;
+
+        if (!check || transform.position.y >= endYPos)
         {
             timer += Time.deltaTime * speed;
 

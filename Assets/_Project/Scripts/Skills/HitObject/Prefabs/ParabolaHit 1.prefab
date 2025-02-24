@@ -122,12 +122,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1a903435d9bb9ab4a8e649c4af623a0a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ce3828a1a518f9a4db1808c4a850d1fa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.82, y: 1.585}
+  m_Size: {x: 1.28, y: 1.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: -7567386191353224259}
   - component: {fileID: 342068236020380028}
   m_Layer: 6
-  m_Name: ParabolaHit
+  m_Name: ParabolaHit 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
