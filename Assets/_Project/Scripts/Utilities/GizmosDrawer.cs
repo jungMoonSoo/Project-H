@@ -48,8 +48,8 @@ public static class GizmosDrawer
     {
         Gizmos.color = color;
 
-        Vector3 pos1 = VectorCalc.GetPointOnEllipse(center, size, Quaternion.Euler(0, range.x, 0) * Vector3.forward, true);
-        Vector3 pos2 = VectorCalc.GetPointOnEllipse(center, size, Quaternion.Euler(0, range.y, 0) * Vector3.forward, true);
+        Vector3 pos1 = VectorCalc.GetPointOnEllipse(center, size, center + Quaternion.Euler(0, range.x, 0) * Vector3.forward, true);
+        Vector3 pos2 = VectorCalc.GetPointOnEllipse(center, size, center + Quaternion.Euler(0, range.y, 0) * Vector3.forward, true);
 
         Gizmos.DrawLine(center, pos1);
         Gizmos.DrawLine(center, pos2);
@@ -58,7 +58,7 @@ public static class GizmosDrawer
 
         for (int i = 1; i <= angleCount; i++)
         {
-            pos2 = VectorCalc.GetPointOnEllipse(center, size, Quaternion.Euler(0, range.x + rangeCalc * i, 0) * Vector3.forward, true);
+            pos2 = VectorCalc.GetPointOnEllipse(center, size, center + Quaternion.Euler(0, range.x + rangeCalc * i, 0) * Vector3.forward, true);
 
             Gizmos.DrawLine(pos1, pos2);
 
