@@ -4,7 +4,7 @@ using UnityEngine;
 public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 {
     [SerializeField] private float speed = 10;
-    [SerializeField] private float splitCount = 1;
+    [SerializeField] private float splitCount = 0;
 
     private Vector3 targetPos;
 
@@ -25,21 +25,28 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     public void Check(HitObjectBase @base)
     {
-        if (Move())
+        if (transform.position == targetPos)
         {
-            @base.OnTrigger();
-            applyCount++;
-        }
+            if (splitCount == 0) @base.OnTrigger();
 
-        if (transform.position == targetPos) @base.OnFinish();
+            @base.OnFinish();
+        }
+        else
+        {
+            Move();
+
+            if (nowDist < endDist - splitDist * applyCount)
+            {
+                @base.OnTrigger();
+                applyCount++;
+            }
+        }
     }
 
-    private bool Move()
+    private void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
 
         nowDist = Vector3.Distance(transform.position, targetPos);
-
-        return nowDist <= endDist - splitDist * (applyCount + 1);
     }
 }

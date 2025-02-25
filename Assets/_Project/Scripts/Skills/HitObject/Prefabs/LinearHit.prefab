@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  splitCount: 1
+  splitCount: 0
 --- !u!114 &8708706264386118130
 MonoBehaviour:
   m_ObjectHideFlags: 0
