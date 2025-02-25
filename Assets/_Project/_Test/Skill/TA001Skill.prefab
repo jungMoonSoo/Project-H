@@ -111,7 +111,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCoefficient: 2500
-  hitCount: 10
+  maxHitTarget: 10
+  maxHitsOnTarget: 1
 --- !u!114 &3322891289314397570
 MonoBehaviour:
   m_ObjectHideFlags: 0

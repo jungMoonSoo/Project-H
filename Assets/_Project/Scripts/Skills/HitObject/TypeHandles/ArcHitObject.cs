@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,12 +5,31 @@ public class ArcHitObject : HitObjectBase
 {
     [SerializeField] private ArcCollider coll;
 
-    public override Vector2 GetAreaSize() => coll.Radius;
+    private readonly List<Unidad> targets = new();
 
-    protected override Unidad[] Targeting()
+    public override Unidad[] Targets
     {
-        coll.Direction = TargetPos - transform.position;
+        get
+        {
+            targets.Clear();
 
-        return TargetingFilter.GetFilteredTargets(GetTargets(Caster.Owner, TargetType, coll), TargetPos);
+            if (TargetType == TargetType.Me)
+            {
+                targets.Add(Caster);
+
+                return targets.ToArray();
+            }
+
+            coll.Direction = TargetPos - CreatePos;
+
+            foreach (Unidad unidad in UnidadManager.Instance.GetUnidads(Caster.Owner, TargetType))
+            {
+                if (coll.OnEnter(unidad.unitCollider)) targets.Add(unidad);
+            }
+
+            return TargetingFilter.GetFilteredTargets(targets, TargetPos);
+        }
     }
+
+    public override Vector2 GetAreaSize() => coll.Radius * 2;
 }

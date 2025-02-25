@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 1, a: 1}
-  center: {x: 0, y: 0}
   size: {x: 8, y: 8}
 --- !u!1 &3792025657868637557
 GameObject:
@@ -96,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 1
-  rangeType: 0
+  filterType: 0
   animatorEventHandler: {fileID: 4213904965122752113}
   coll: {fileID: 2315179243541150760}
 --- !u!114 &5336005455277993938
@@ -112,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCoefficient: 1000
-  hitCount: 10
+  maxHitTarget: 10
 --- !u!114 &6441211018213522273
 MonoBehaviour:
   m_ObjectHideFlags: 0

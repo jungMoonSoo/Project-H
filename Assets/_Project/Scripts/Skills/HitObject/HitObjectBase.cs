@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class HitObjectBase : MonoBehaviour
@@ -25,7 +24,7 @@ public abstract class HitObjectBase : MonoBehaviour
 
     private ObjectPool<HitObjectBase> hitObjects;
 
-    public Unidad[] Targets => TargetType == TargetType.Me ? new Unidad[] { Caster } : Targeting();
+    public abstract Unidad[] Targets { get; }
 
     public TargetType TargetType => targetType;
     public ITargetingFilter TargetingFilter { get; private set; }
@@ -49,7 +48,13 @@ public abstract class HitObjectBase : MonoBehaviour
             }
 
             foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
-            foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>()) triggerEvent += @event.OnTrigger;
+
+            foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>())
+            {
+                inits += @event.Init;
+                triggerEvent += @event.OnTrigger;
+            }
+
             foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
 
             if (animatorEventHandler != null)
@@ -83,18 +88,4 @@ public abstract class HitObjectBase : MonoBehaviour
     }
 
     public abstract Vector2 GetAreaSize();
-
-    protected abstract Unidad[] Targeting();
-
-    protected List<Unidad> GetTargets(UnitType targetOwner, TargetType targetType, ICustomCollider coll)
-    {
-        List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner, targetType));
-
-        for (int i = targets.Count - 1; i >= 0; i--)
-        {
-            if (!coll.OnEnter(targets[i].unitCollider)) targets.Remove(targets[i]);
-        }
-
-        return targets;
-    }
 }

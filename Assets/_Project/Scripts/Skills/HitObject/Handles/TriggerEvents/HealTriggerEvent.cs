@@ -3,7 +3,12 @@ using UnityEngine;
 public class HealTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
 {
     [SerializeField] private float skillCoefficient = 200f;
-    [SerializeField] private int hitCount = 1;
+    [SerializeField] private int maxHitTarget = 1;
+
+    public void Init(HitObjectBase hitObject)
+    {
+
+    }
 
     public void OnTrigger(HitObjectBase handler)
     {
@@ -13,7 +18,7 @@ public class HealTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
 
         for (int i = 0; i < targets.Length; i++)
         {
-            if (i == hitCount) break;
+            if (i == maxHitTarget) break;
 
             targets[i].OnHeal((int)callback.value, callback.type);
         }
