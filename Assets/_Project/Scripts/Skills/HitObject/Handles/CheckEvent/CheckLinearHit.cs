@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
@@ -15,6 +16,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     public void Init(HitObjectBase @base)
     {
+        applyCount = 0;
         targetPos = @base.TargetPos;
 
         endDist = Vector3.Distance(transform.position, targetPos);
@@ -23,17 +25,13 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     public void Check(HitObjectBase @base)
     {
-        if (Move()) return;
-
-        @base.OnTrigger();
-        applyCount++;
-
-        if (nowDist < 0.01f)
+        if (Move())
         {
-            applyCount = 0;
-
-            @base.OnFinish();
+            @base.OnTrigger();
+            applyCount++;
         }
+
+        if (transform.position == targetPos) @base.OnFinish();
     }
 
     private bool Move()
@@ -42,6 +40,6 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
         nowDist = Vector3.Distance(transform.position, targetPos);
 
-        return endDist - nowDist > splitDist * applyCount;
+        return nowDist <= endDist - splitDist * (applyCount + 1);
     }
 }
