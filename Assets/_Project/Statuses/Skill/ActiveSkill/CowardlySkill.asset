@@ -16,5 +16,6 @@ MonoBehaviour:
   skillName: CowardlySkill
   sprite: {fileID: 7412202, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
   effectPrefab: {fileID: 8579866311255789768, guid: 741b34f300116524e8d4eec09961561f, type: 3}
+  manaCost: 5
   areaImage: {fileID: 21300000, guid: 249a516ddc0a4aa468d1bd1d850e2b2a, type: 3}
   skillAreaType: 5
