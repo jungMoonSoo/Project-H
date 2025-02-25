@@ -5,9 +5,6 @@ using UnityEngine;
 public class LinearHitObject : HitObjectBase
 {
     [SerializeField] private LinearCollider coll;
-    [SerializeField] private int splitCount = 1;
-
-    private Vector2 SplitSize => new(coll.size.x, coll.size.y / splitCount);
 
     public override Vector2 GetAreaSize() => new(coll.size.y, coll.size.x);
 
@@ -15,6 +12,6 @@ public class LinearHitObject : HitObjectBase
     {
         coll.Direction = TargetPos - transform.position;
 
-        return RangeTargeting.GetTargets(Caster.Owner, TargetType, transform.position, TargetPos, SplitSize);
+        return TargetingFilter.GetFilteredTargets(GetTargets(Caster.Owner, TargetType, coll), TargetPos);
     }
 }

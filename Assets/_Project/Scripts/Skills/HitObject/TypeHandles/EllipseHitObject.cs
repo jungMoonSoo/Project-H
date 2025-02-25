@@ -8,5 +8,5 @@ public class EllipseHitObject : HitObjectBase
 
     public override Vector2 GetAreaSize() => coll.size;
 
-    protected override Unidad[] Targeting() => RangeTargeting.GetTargets(Caster.Owner, TargetType, CreatePos, TargetPos, coll.Radius);
+    protected override Unidad[] Targeting() => TargetingFilter.GetFilteredTargets(GetTargets(Caster.Owner, TargetType, coll), TargetPos);
 }

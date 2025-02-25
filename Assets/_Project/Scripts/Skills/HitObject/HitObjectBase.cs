@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class HitObjectBase : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private TargetType targetType;
-    [SerializeField] private RangeType rangeType;
+    [SerializeField] private FilterType filterType;
     [SerializeField] private AnimatorEventHandler animatorEventHandler;
 
     private Action<HitObjectBase> inits;
@@ -27,7 +28,7 @@ public abstract class HitObjectBase : MonoBehaviour
     public Unidad[] Targets => TargetType == TargetType.Me ? new Unidad[] { Caster } : Targeting();
 
     public TargetType TargetType => targetType;
-    public IRangeTargeting RangeTargeting { get; private set; }
+    public ITargetingFilter TargetingFilter { get; private set; }
 
     public void Init(ObjectPool<HitObjectBase> hitObjects) => this.hitObjects = hitObjects;
 
@@ -58,7 +59,7 @@ public abstract class HitObjectBase : MonoBehaviour
             }
         }
 
-        RangeTargeting = SkillTypeHub.GetTargetingSystem(rangeType);
+        TargetingFilter = TargetingFilterHub.GetFilter(filterType);
 
         inits?.Invoke(this);
 
@@ -84,4 +85,16 @@ public abstract class HitObjectBase : MonoBehaviour
     public abstract Vector2 GetAreaSize();
 
     protected abstract Unidad[] Targeting();
+
+    protected List<Unidad> GetTargets(UnitType targetOwner, TargetType targetType, ICustomCollider coll)
+    {
+        List<Unidad> targets = new(UnidadManager.Instance.GetUnidads(targetOwner, targetType));
+
+        for (int i = targets.Count - 1; i >= 0; i--)
+        {
+            if (!coll.OnEnter(targets[i].unitCollider)) targets.Remove(targets[i]);
+        }
+
+        return targets;
+    }
 }

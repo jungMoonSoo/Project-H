@@ -1,14 +1,14 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SingleTargetingSystem: IRangeTargeting
+public class SingleTargetingFilter : ITargetingFilter
 {
-    public Unidad[] GetTargets(UnitType targetOwner, TargetType targetType, Vector3 casterPosition, Vector3 castedPosition, Vector2 rangeSize)
+    public Unidad[] GetFilteredTargets(List<Unidad> unidads, Vector3 castedPosition)
     {
-        Unidad[] targets = UnidadManager.Instance.GetUnidads(targetOwner, targetType).ToArray();
         Unidad target = null;
         float minRange = float.MaxValue;
             
-        foreach (Unidad enemy in targets)
+        foreach (Unidad enemy in unidads)
         {
             Vector3 dir = enemy.transform.position - castedPosition;
             float range = dir.magnitude;

@@ -12,6 +12,6 @@ public class ArcHitObject : HitObjectBase
     {
         coll.Direction = TargetPos - transform.position;
 
-        return RangeTargeting.GetTargets(Caster.Owner, TargetType, transform.position, TargetPos, coll.size);
+        return TargetingFilter.GetFilteredTargets(GetTargets(Caster.Owner, TargetType, coll), TargetPos);
     }
 }

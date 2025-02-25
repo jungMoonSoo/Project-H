@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 1, a: 1}
-  center: {x: 0, y: 0}
   size: {x: 7, y: 7}
 --- !u!1 &3792025657868637557
 GameObject:
@@ -96,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  rangeType: 0
+  filterType: 0
   animatorEventHandler: {fileID: 4213904965122752113}
   coll: {fileID: 2315179243541150760}
 --- !u!114 &8841968534178399513
@@ -125,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ad9eb3a8f2dff41baa8dc6b8a851f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
   height: 5
   endYPos: 0
 --- !u!1 &7096449219032708577
