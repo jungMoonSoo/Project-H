@@ -31,6 +31,7 @@ public class Unidad : MonoBehaviour
     // Damage UI를 띄울 위치
     [SerializeField] private Transform damageUiPosition; // 
     [SerializeField] private Transform statusUiPosition; // 
+    [SerializeField] private Transform hitObjectPosition; // 
 
     [Header("Other")]
     public GameObject view;
@@ -63,6 +64,7 @@ public class Unidad : MonoBehaviour
 
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
+    public Transform HitObjectPosition => hitObjectPosition == null ? transform : hitObjectPosition;
 
     private StatusManager statusManager = null;
 

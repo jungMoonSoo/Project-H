@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
@@ -17,7 +16,9 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     public void Init(HitObjectBase @base)
     {
         applyCount = 0;
+
         targetPos = @base.TargetPos;
+        targetPos.y = transform.position.y;
 
         endDist = Vector3.Distance(transform.position, targetPos);
         splitDist = endDist / splitCount;
