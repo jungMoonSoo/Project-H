@@ -15,7 +15,7 @@ public class DamageCreateEvent : MonoBehaviour, IHitObjectCreateEvent
         {
             if (i == maxHitTarget) break;
 
-            targets[i].OnDamage((int)callback.value, callback.type, handler.EffectManager?.GetEffect(targets[i].transform));
+            targets[i].OnDamage((int)callback.value, callback.type, handler.GetEffect(targets[i].transform));
         }
     }
 }

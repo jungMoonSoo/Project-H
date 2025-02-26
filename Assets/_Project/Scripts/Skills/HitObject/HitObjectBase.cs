@@ -20,8 +20,7 @@ public abstract class HitObjectBase : MonoBehaviour
     public Vector3 CreatePos { get; private set; }
     public Vector3 TargetPos { get; private set; }
 
-    public EffectManager EffectManager { get; private set; }
-
+    private EffectManager effectManager;
     private ObjectPool<HitObjectBase> hitObjects;
 
     public abstract Unidad[] Targets { get; }
@@ -29,12 +28,12 @@ public abstract class HitObjectBase : MonoBehaviour
     public TargetType TargetType => targetType;
     public ITargetingFilter TargetingFilter { get; private set; }
 
-    public void Init(ObjectPool<HitObjectBase> hitObjects) => this.hitObjects = hitObjects;
+    public void SetPool(ObjectPool<HitObjectBase> hitObjects) => this.hitObjects = hitObjects;
 
     public virtual void Init(Unidad caster, EffectManager effectManager, Vector3 createPos)
     {
         Caster = caster;
-        EffectManager = effectManager;
+        this.effectManager = effectManager;
 
         CreatePos = createPos;
         transform.position = createPos;
@@ -85,6 +84,13 @@ public abstract class HitObjectBase : MonoBehaviour
 
         if (hitObjects == null) Destroy(gameObject);
         else hitObjects.Enqueue(this);
+    }
+
+    public EffectSystem GetEffect(Transform parent)
+    {
+        if (effectManager == null) return null;
+
+        return effectManager.GetEffect(parent);
     }
 
     public abstract Vector2 GetAreaSize();

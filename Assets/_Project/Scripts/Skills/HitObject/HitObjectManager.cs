@@ -32,7 +32,7 @@ public class HitObjectManager : MonoBehaviour
 
     private void OnDequeue(HitObjectBase hitObject)
     {
-        hitObject.Init(hitObjects);
+        hitObject.SetPool(hitObjects);
         hitObject.gameObject.SetActive(true);
     }
 }

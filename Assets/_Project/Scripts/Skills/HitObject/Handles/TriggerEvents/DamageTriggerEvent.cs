@@ -33,7 +33,7 @@ public class DamageTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
             }
             else hitsOnTargets.Add(targets[i], 0);
 
-            targets[i].OnDamage((int)callback.value, callback.type, handler.EffectManager?.GetEffect(targets[i].transform));
+            targets[i].OnDamage((int)callback.value, callback.type, handler.GetEffect(targets[i].transform));
 
             hitsOnTargets[targets[i]]++;
             nowHitTarget++;
