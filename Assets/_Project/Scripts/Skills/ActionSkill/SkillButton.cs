@@ -1,15 +1,18 @@
 using System;
-using System.Threading.Tasks;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    [Header("UI Elements")]
-    [SerializeField] private Slider mpSlider;
-    [SerializeField] private Image skillImage;
+    [Header("Skill Info")]
+    [SerializeField] private Image imgIcon;
+    [SerializeField] private TextMeshProUGUI txtCost;
+    
+    [Header("CoolTime UI")]
+    [SerializeField] private Image imgCoolMask;
+    [SerializeField] private TextMeshProUGUI txtTimer;
 
     /// <summary>
     /// SkillButton은 Caster만 지정해주면, 나머지는 자동으로 할당 됨
@@ -22,11 +25,9 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             Clear();
             
             _Caster = value;
-            actionSkill = value.Status.skillInfo;
-            skillImage.sprite = actionSkill.sprite;
-
-            mpSlider.maxValue = _Caster.NowNormalStatus.maxMp;
-            _Caster.Mp.SetCallback(OnMpChanged, SetCallbackType.Add);
+            skillInfo = value.Status.skillInfo;
+            imgIcon.sprite = skillInfo.sprite;
+            txtCost.text = $"{skillInfo.manaCost}";
 
             _Caster.DieEvent += OnCasterDie;
         }
@@ -34,7 +35,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     private Unidad _Caster;
     
     
-    private ActionSkillInfo actionSkill = null;
+    private ActionSkillInfo skillInfo = null;
+    private bool cooled = false;
 
 
     void OnDestroy()
@@ -57,40 +59,67 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     #endregion
 
 
+    /// <summary>
+    /// 해당 스킬 버튼이 선택됐을 때 동작하는 Method
+    /// </summary>
     private void Select()
     {
-        if (_Caster.Mp.Value == _Caster.NowNormalStatus.maxMp && _Caster.Hp.Value > 0)
+        // 사용가능 조건 확인
+        if (cooled) return; // 쿨 상태인지
+        if (Caster is null) return; // 스킬 주인이 존재하는지
+        if (Caster.Hp.Value <= 0) return;// 스킬 주인의 체력이 1이상인지
+        
+        
+        if (!ActionSkillManager.Instance.IsUsingSkill)
         {
-            if (!ActionSkillManager.Instance.IsUsingSkill)
-            {
-                ActionSkillManager.Instance.OnSelect(Caster);
-            }
-            else if (ActionSkillManager.Instance.CastingCaster == Caster)
-            {
-                ActionSkillManager.Instance.OnCancel();
-            }
+            // 스킬이 미선택된 상태일 때는 해당 스킬을 선택되게
+            ActionSkillManager.Instance.OnSelect(Caster, OnUse);
         }
-    }
-    
-    private void OnMpChanged(int currentMp)
-    {
-        mpSlider.value = currentMp;
+        else if (ActionSkillManager.Instance.CastingCaster == Caster)
+        {
+            // 스킬이 재선택 됐을 때는 취소되게
+            ActionSkillManager.Instance.OnCancel();
+        }
     }
 
     private void OnCasterDie()
     {
-        skillImage.color = Color.red;
+        imgIcon.color = Color.red;
         if (ActionSkillManager.Instance.CastingCaster == Caster) ActionSkillManager.Instance.OnCancel();
+    }
+    
+    private void OnUse()
+    {
+        CoolingAsync();
     }
 
     private void Clear()
     {
-        mpSlider.value = 0;
-        
-        if (_Caster is not null)
+        if (Caster is not null)
         {
-            _Caster.Mp.SetCallback(OnMpChanged, SetCallbackType.Remove);
-            _Caster.DieEvent -= OnCasterDie;
+            Caster.DieEvent -= OnCasterDie;
         }
+    }
+
+    
+    private async Awaitable CoolingAsync()
+    {
+        cooled = true;
+        float timeCount = 0;
+        imgCoolMask.gameObject.SetActive(true);
+        
+        while (timeCount < skillInfo.cooltime)
+        {
+            timeCount += Time.deltaTime;
+            float leftTime = skillInfo.cooltime - timeCount;
+            
+            txtTimer.text = $"{leftTime:00}";
+            imgCoolMask.fillAmount = leftTime / skillInfo.cooltime;
+            
+            await Awaitable.NextFrameAsync();
+        }
+        
+        cooled = false;
+        imgCoolMask.gameObject.SetActive(false);
     }
 }

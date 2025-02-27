@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     private List<SkillButton> createdSkillButtons = new(); // 스킬 버튼 리스트, 생성했을 때 Stack하여 버튼을 삭제할 때 사용하기 위한 리스트
     
     private readonly BindData<float> nowMana = new(); // 플레이어의 현재 마나
+    private Action skillButtonCallback = null;
 
     
     void Start()
@@ -90,7 +92,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     /// 사용을 위한 스킬 선택
     /// </summary>
     /// <param name="caster">스킬을 가진 캐릭터</param>
-    public void OnSelect(Unidad caster)
+    public void OnSelect(Unidad caster, Action callback)
     {
         if(caster is null) return;
         if(nowMana.Value < caster.Status.skillInfo.manaCost) return;
@@ -103,6 +105,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
 
         skillAreaHandler.SetSprite(UsingSkill.areaImage);
         skillAreaHandler.SkillArea = SkillAreaHub.GetSkillArea(UsingSkill.skillAreaType);
+        skillButtonCallback = callback;
     }
     /// <summary>
     /// 스킬 사용 취소
@@ -136,6 +139,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
             CastingCaster.ChangeState(UnitState.Skill);
             //CastingCaster.Mp.Value = 0;
             nowMana.Value -= CastingCaster.Status.skillInfo.manaCost;
+            skillButtonCallback();
         }
         
         // Skill 제거
