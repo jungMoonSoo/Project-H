@@ -11,13 +11,13 @@ public class DamageTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
 
     private readonly Dictionary<Unidad, int> hitsOnTargets = new();
 
-    public void Init(HitObjectBase handler)
+    public void Init(HitObject handler)
     {
         nowHitTarget = 0;
         hitsOnTargets.Clear();
     }
 
-    public void OnTrigger(HitObjectBase handler)
+    public void OnTrigger(HitObject handler)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
 

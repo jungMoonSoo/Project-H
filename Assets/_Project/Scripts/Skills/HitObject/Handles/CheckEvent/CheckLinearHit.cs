@@ -13,7 +13,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private int applyCount;
 
-    public void Init(HitObjectBase @base)
+    public void Init(HitObject @base)
     {
         applyCount = 0;
 
@@ -24,7 +24,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         splitDist = endDist / splitCount;
     }
 
-    public void Check(HitObjectBase @base)
+    public void Check(HitObject @base)
     {
         if (transform.position == targetPos)
         {

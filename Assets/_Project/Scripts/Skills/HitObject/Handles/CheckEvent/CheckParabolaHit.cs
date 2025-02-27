@@ -13,7 +13,7 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
     private bool check;
     private float timer;
 
-    public void Init(HitObjectBase @base)
+    public void Init(HitObject @base)
     {
         timer = 0;
         check = false;
@@ -22,7 +22,7 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
         targetPos = @base.TargetPos;
     }
 
-    public void Check(HitObjectBase @base)
+    public void Check(HitObject @base)
     {
         if (MoveParabola()) return;
 

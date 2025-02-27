@@ -10,6 +10,8 @@ public class EllipseCollider : MonoBehaviour, ICustomCollider
     [Header("Collider Settings")]
     [SerializeField] public Vector2 size = new(2, 1);
 
+    public Vector2 AreaSize => size;
+
     /// <summary>
     /// 충돌체 반지름
     /// </summary>

@@ -37,7 +37,7 @@ public class TrackingManager : MonoBehaviour
 
     public void CreateHitObject(Unidad unidad)
     {
-        HitObjectBase hitObject = hitObjectManager.GetHitObject(transform);
+        HitObject hitObject = hitObjectManager.GetHitObject(transform);
 
         hitObject.SetTargetPos(targets[0].transform.position);
 

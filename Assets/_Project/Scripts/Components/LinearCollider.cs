@@ -8,6 +8,8 @@ public class LinearCollider : MonoBehaviour, ICustomCollider
     [Header("Collider Settings")]
     [SerializeField] public Vector2 size = new(2, 1);
 
+    public Vector2 AreaSize => new(size.y, size.x);
+
     public Vector2 Radius => new(size.x * 0.5f, size.y);
     public Vector3 Center => transform.position;
 

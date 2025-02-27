@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026856397095710534}
-  - component: {fileID: 8770459583381645957}
+  - component: {fileID: 2804930676665983442}
   - component: {fileID: 2161218180872838424}
   - component: {fileID: 7081599559815072629}
   m_Layer: 0
@@ -36,7 +36,7 @@ Transform:
   - {fileID: 6131804233937107572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8770459583381645957
+--- !u!114 &2804930676665983442
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45,13 +45,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792025657868637557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fe04e5a52d9bd34ea0386d1a56a1e3b, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ec5e4180078684e8f1aeb4cd0e4732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
   filterType: 0
+  customColliderObject: {fileID: 9068491044647885948}
   animatorEventHandler: {fileID: 4213904965122752113}
-  coll: {fileID: 6552588754818680970}
 --- !u!114 &2161218180872838424
 MonoBehaviour:
   m_ObjectHideFlags: 0

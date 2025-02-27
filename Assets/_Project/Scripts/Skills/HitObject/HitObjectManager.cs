@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HitObjectManager : MonoBehaviour
 {
-    [SerializeField] private HitObjectBase hitObject;
+    [SerializeField] private HitObject hitObject;
 
-    private ObjectPool<HitObjectBase> hitObjects;
+    private ObjectPool<HitObject> hitObjects;
 
     private void Start()
     {
@@ -22,15 +22,15 @@ public class HitObjectManager : MonoBehaviour
         for (int i = hitObjects.Count - 1; i < count; i++) hitObjects.CreateDefault(transform);
     }
 
-    public HitObjectBase GetHitObject(Transform parent) => hitObjects.Dequeue(parent);
+    public HitObject GetHitObject(Transform parent) => hitObjects.Dequeue(parent);
 
-    private void OnEnqueue(HitObjectBase hitObject)
+    private void OnEnqueue(HitObject hitObject)
     {
         hitObject.transform.SetParent(transform);
         hitObject.gameObject.SetActive(false);
     }
 
-    private void OnDequeue(HitObjectBase hitObject)
+    private void OnDequeue(HitObject hitObject)
     {
         hitObject.SetPool(hitObjects);
         hitObject.gameObject.SetActive(true);

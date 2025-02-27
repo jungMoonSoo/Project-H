@@ -8,6 +8,8 @@ public class ArcCollider : MonoBehaviour, ICustomCollider
     [Header("Collider Settings")]
     [SerializeField] public Vector2 size = new(2, 1);
 
+    public Vector2 AreaSize => Radius * 2;
+
     public Vector2 Radius => new(size.y, size.y);
     public Vector3 Center => transform.position;
 

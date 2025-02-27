@@ -1,5 +1,5 @@
 public interface IHitObjectCheckEvent
 {
-    public void Init(HitObjectBase @base);
-    public void Check(HitObjectBase @base);
+    public void Init(HitObject @base);
+    public void Check(HitObject @base);
 }

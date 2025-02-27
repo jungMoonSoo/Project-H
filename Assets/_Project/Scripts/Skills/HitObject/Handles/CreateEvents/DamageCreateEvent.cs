@@ -5,7 +5,7 @@ public class DamageCreateEvent : MonoBehaviour, IHitObjectCreateEvent
     [SerializeField] private float coefficient = 200f;
     [SerializeField] private int maxHitTarget = 1;
 
-    public void OnCreate(HitObjectBase handler)
+    public void OnCreate(HitObject handler)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, coefficient, 0, ElementType.None);
 

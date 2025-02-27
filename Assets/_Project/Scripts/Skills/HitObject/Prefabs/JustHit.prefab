@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 730604579105519689}
-  - component: {fileID: 5981504158332086902}
+  - component: {fileID: 690249846789167234}
   - component: {fileID: 2981698620202049960}
   - component: {fileID: 8708706264386118130}
   m_Layer: 6
@@ -35,7 +35,7 @@ Transform:
   - {fileID: 5430895217888176621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5981504158332086902
+--- !u!114 &690249846789167234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,13 +44,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 8171957070924050383}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e76b0129bc3d10a4b80937418caaa491, type: 3}
+  m_Script: {fileID: 11500000, guid: d0ec5e4180078684e8f1aeb4cd0e4732, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetType: 2
-  rangeType: 0
+  filterType: 0
+  customColliderObject: {fileID: 8777587850126990244}
   animatorEventHandler: {fileID: 0}
-  coll: {fileID: 2273795921878840642}
 --- !u!114 &2981698620202049960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3f0eeeecd8b3c4ab7f2bd20e7c666b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveToTarget: 1
 --- !u!114 &8708706264386118130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +77,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillCoefficient: 100
-  hitCount: 1
+  maxHitTarget: 1
+  maxHitsOnTarget: 1
 --- !u!1 &8777587850126990244
 GameObject:
   m_ObjectHideFlags: 0
@@ -122,5 +124,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 0, b: 0, a: 1}
-  center: {x: 0, y: 0}
   size: {x: 1, y: 1}

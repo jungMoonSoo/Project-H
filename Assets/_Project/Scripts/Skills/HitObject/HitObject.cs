@@ -1,19 +1,24 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class HitObjectBase : MonoBehaviour
+public class HitObject : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private TargetType targetType;
     [SerializeField] private FilterType filterType;
+
+    [SerializeField] private GameObject customColliderObject;
     [SerializeField] private AnimatorEventHandler animatorEventHandler;
 
-    private Action<HitObjectBase> inits;
+    private Action<HitObject> inits;
 
-    private Action<HitObjectBase> checkEvent;
-    private Action<HitObjectBase> createEvent;
-    private Action<HitObjectBase> triggerEvent;
-    private Action<HitObjectBase> finishEvent;
+    private Action<HitObject> checkEvent;
+    private Action<HitObject> createEvent;
+    private Action<HitObject> triggerEvent;
+    private Action<HitObject> finishEvent;
+
+    private ICustomCollider customCollider;
 
     public Unidad Caster { get; set; }
 
@@ -21,14 +26,36 @@ public abstract class HitObjectBase : MonoBehaviour
     public Vector3 TargetPos { get; private set; }
 
     private EffectManager effectManager;
-    private ObjectPool<HitObjectBase> hitObjects;
+    private ObjectPool<HitObject> hitObjects;
 
-    public abstract Unidad[] Targets { get; }
+    private readonly List<Unidad> targets = new();
+
+    public Unidad[] Targets
+    {
+        get
+        {
+            targets.Clear();
+
+            if (TargetType == TargetType.Me)
+            {
+                targets.Add(Caster);
+
+                return targets.ToArray();
+            }
+
+            foreach (Unidad unidad in UnidadManager.Instance.GetUnidads(Caster.Owner, TargetType))
+            {
+                if (customCollider.OnEnter(unidad.unitCollider)) targets.Add(unidad);
+            }
+
+            return TargetingFilter.GetFilteredTargets(targets, TargetPos);
+        }
+    }
 
     public TargetType TargetType => targetType;
     public ITargetingFilter TargetingFilter { get; private set; }
 
-    public void SetPool(ObjectPool<HitObjectBase> hitObjects) => this.hitObjects = hitObjects;
+    public void SetPool(ObjectPool<HitObject> hitObjects) => this.hitObjects = hitObjects;
 
     public virtual void Init(Unidad caster, EffectManager effectManager, Vector3 createPos)
     {
@@ -40,6 +67,8 @@ public abstract class HitObjectBase : MonoBehaviour
 
         if (inits == null)
         {
+            customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
+
             foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
             {
                 inits += @event.Init;
@@ -93,5 +122,10 @@ public abstract class HitObjectBase : MonoBehaviour
         return effectManager.GetEffect(parent);
     }
 
-    public abstract Vector2 GetAreaSize();
+    public Vector2 GetAreaSize()
+    {
+        customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
+
+        return customCollider.AreaSize;
+    }
 }

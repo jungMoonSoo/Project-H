@@ -1011,6 +1011,7 @@ MonoBehaviour:
   boxCollider: {fileID: 3192946597709317300}
   damageUiPosition: {fileID: 1945676781002861287}
   statusUiPosition: {fileID: 3984195991756771338}
+  hitObjectPosition: {fileID: 0}
   view: {fileID: 6234352431916946155}
   audioHandle: {fileID: 6604994404387091370}
 --- !u!1 &6234352431916946155
@@ -1212,4 +1213,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 7695914751967787326, guid: 83fb0b76b1e54254895968acea22d711, type: 3}
+  hitObject: {fileID: 6836992869138537039, guid: 83fb0b76b1e54254895968acea22d711, type: 3}

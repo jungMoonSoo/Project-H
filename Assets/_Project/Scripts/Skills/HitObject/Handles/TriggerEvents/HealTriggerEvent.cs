@@ -5,12 +5,12 @@ public class HealTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
     [SerializeField] private float skillCoefficient = 200f;
     [SerializeField] private int maxHitTarget = 1;
 
-    public void Init(HitObjectBase hitObject)
+    public void Init(HitObject hitObject)
     {
 
     }
 
-    public void OnTrigger(HitObjectBase handler)
+    public void OnTrigger(HitObject handler)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
 

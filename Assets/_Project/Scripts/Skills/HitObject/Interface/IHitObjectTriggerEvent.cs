@@ -1,5 +1,5 @@
 public interface IHitObjectTriggerEvent
 {
-    public void Init(HitObjectBase @base);
-    public void OnTrigger(HitObjectBase @base);
+    public void Init(HitObject @base);
+    public void OnTrigger(HitObject @base);
 }

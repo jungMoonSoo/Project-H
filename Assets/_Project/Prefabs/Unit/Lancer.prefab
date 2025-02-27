@@ -65,6 +65,7 @@ MonoBehaviour:
   boxCollider: {fileID: 5611226495777423036}
   damageUiPosition: {fileID: 932216763197087120}
   statusUiPosition: {fileID: 4984339051083944605}
+  hitObjectPosition: {fileID: 0}
   view: {fileID: 4177288233451244337}
   audioHandle: {fileID: 3602437712221219532}
 --- !u!1 &215734985363013526
@@ -224,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 5981504158332086902, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+  hitObject: {fileID: 690249846789167234, guid: f9ad75a28de7c2c418390acada201156, type: 3}
 --- !u!1 &903063753515070715
 GameObject:
   m_ObjectHideFlags: 0
@@ -700,7 +701,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 0, b: 0, a: 1}
-  center: {x: 0, y: 0}
   size: {x: 7, y: 7}
 --- !u!1 &4158194301593464135
 GameObject:
@@ -909,7 +909,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 0, a: 1}
-  center: {x: 0, y: 0}
   size: {x: 2, y: 2}
 --- !u!1 &5167372855026194696
 GameObject:
@@ -991,7 +990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 1, g: 0, b: 0, a: 1}
-  center: {x: 0, y: 0}
   size: {x: 5, y: 5}
 --- !u!1 &6371428716971917037
 GameObject:

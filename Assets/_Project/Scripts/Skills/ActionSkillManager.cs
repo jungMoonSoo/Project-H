@@ -128,7 +128,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
             CastingCaster is not null && // 스킬 시전자가 존재하지 않거나 = 시전자 사망 
             nowMana.Value >= CastingCaster.Status.skillInfo.manaCost) // 마나가 없으면
         {
-            HitObjectBase handler = Instantiate(UsingSkill?.effectPrefab);
+            HitObject handler = Instantiate(UsingSkill?.effectPrefab);
 
             handler.SetTargetPos((Vector3)target);
             handler.Init(CastingCaster, null, CastingCaster.transform.position);

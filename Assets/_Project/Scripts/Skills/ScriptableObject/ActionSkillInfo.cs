@@ -4,7 +4,7 @@ using UnityEngine;
 public class ActionSkillInfo: SkillInfoBase
 {
     [Header("Active Skill Info")] [SerializeField]
-    public HitObjectBase effectPrefab;
+    public HitObject effectPrefab;
     public float manaCost;
     
     [Header("Area System Info")]

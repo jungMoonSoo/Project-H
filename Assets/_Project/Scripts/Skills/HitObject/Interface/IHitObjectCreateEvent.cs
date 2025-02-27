@@ -1,4 +1,4 @@
 public interface IHitObjectCreateEvent
 {
-    public void OnCreate(HitObjectBase @base);
+    public void OnCreate(HitObject @base);
 }

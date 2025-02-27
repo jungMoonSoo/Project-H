@@ -2,6 +2,8 @@ using UnityEngine;
 
 public interface ICustomCollider
 {
+    public Vector2 AreaSize { get; }
+
     public Vector2 Radius { get; }
     public Vector3 Center { get; }
 
