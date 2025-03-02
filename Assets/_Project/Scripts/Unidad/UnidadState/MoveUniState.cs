@@ -47,6 +47,10 @@ public class MoveUniState: MonoBehaviour, IUnidadState
         {
             case UnitState.Move:
                 Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, trackingManager.Targets[0].transform.position, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
+
+                // Vector3 pos = Teeeest.GetEvasiveVector(Unit, trackingManager.Targets[0]);
+                // 
+                // Unit.transform.position = Vector3.MoveTowards(Unit.transform.position, pos, Unit.NowNormalStatus.moveSpeed * Time.deltaTime);
                 break;
 
             default:

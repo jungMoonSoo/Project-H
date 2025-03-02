@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using static UnityEngine.Rendering.GPUSort;
 
 public class LobbyManager : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public class LobbyManager : MonoBehaviour
     {
         for (int i = 0; i < num; i++)
         {
-            int cardId = UnityEngine.Random.Range(0, 10);
+            int cardId = Random.Range(0, 10);
             player.AddItem(cardId.ToString(), cardId, 1);
         }
         Debug.Log($"{num}번 모집 완료하였습니다.");
