@@ -26,7 +26,7 @@ public class LobbyManager : MonoBehaviour
 
     public void ChangeScene() // 씬체인지
     {
-        LoadingSceneController.LoadScene("main");
+        LoadingSceneController.LoadScene("InGame");
     }
 #if UNITY_EDITOR
     public void ResetItem() //데이터 리셋
