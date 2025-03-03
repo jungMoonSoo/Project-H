@@ -6094,7 +6094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deployUi: {fileID: 2040266764048107657}
   stageText: {fileID: 5175808047226397024}
-  spawnButton: {fileID: 2755324965393674185, guid: 3923fe67f214bd849b1ac8349da3679d, type: 3}
+  spawnButton: {fileID: 8892927961079169928, guid: 3923fe67f214bd849b1ac8349da3679d, type: 3}
   spawnParent: {fileID: 8313699858263859912}
 --- !u!224 &8861135611363502115
 RectTransform:
