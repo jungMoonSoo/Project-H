@@ -52,14 +52,14 @@ public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
         {
             spawnManager.Spawn(id);
             units.Add(id);
+
+            currentUnitNumber.Value++;
         }
         else
         {
             StartCoroutine(WarningTextPrint());
             Debug.Log("[Ui Manager]유닛 배치 최대입니다.");
         }
-
-        currentUnitNumber.Value++;
     }
 
     private void DestroyUnit(uint id)
