@@ -8,11 +8,11 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject deployUi;
     [SerializeField] private Text stageText;
 
-    [SerializeField] private Button spawnButton;
+    [SerializeField] private SpawnButtonHandle spawnButton;
     [SerializeField] private Transform spawnParent;
 
-    private List<Button> spawnButtons = new();
-    private ObjectPool<Button> spawnButtonsPool;
+    private List<SpawnButtonHandle> spawnButtons = new();
+    private ObjectPool<SpawnButtonHandle> spawnButtonsPool;
 
     private int frontStageNumber = 0;
     private int backStageNumber = 0;
@@ -31,13 +31,12 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         foreach (uint id in DataManager.Instance.units)
         {
-            Button button = spawnButtonsPool.Dequeue(spawnParent);
+            SpawnButtonHandle button = spawnButtonsPool.Dequeue(spawnParent);
 
             button.gameObject.SetActive(true);
             button.transform.localScale = Vector3.one;
 
-            button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => AllyUnitDeployment.Instance.UnitButton(id));
+            button.SetID(id);
 
             spawnButtons.Add(button);
         }
@@ -51,7 +50,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     {
         deployUi.SetActive(false);
 
-        foreach (Button button in spawnButtons)
+        foreach (SpawnButtonHandle button in spawnButtons)
         {
             button.gameObject.SetActive(false);
             spawnButtonsPool.Enqueue(button);

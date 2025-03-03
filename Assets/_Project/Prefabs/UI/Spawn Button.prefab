@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 3782915610868155790}
   - component: {fileID: 1166363414074114848}
   - component: {fileID: 2755324965393674185}
+  - component: {fileID: 8892927961079169928}
   m_Layer: 0
   m_Name: Spawn Button
   m_TagString: Untagged
@@ -256,16 +257,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1166363414074114848}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnitDeploymentButton, Assembly-CSharp
-        m_MethodName: UnitButton
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+--- !u!114 &8892927961079169928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5524135347450468338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ae9eb38ad40d4f4fade0c3db3896a29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  button: {fileID: 2755324965393674185}
+  text: {fileID: 1678506970793924614}
