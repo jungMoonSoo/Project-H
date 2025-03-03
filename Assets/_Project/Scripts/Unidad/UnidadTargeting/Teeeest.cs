@@ -33,11 +33,20 @@ public static class Teeeest
 
         if (dot > 0)
         {
-            Vector3 projectiondir = targetDir * (dot * targetDir).magnitude;
+            Vector3 projectionPoint = targetDir * (dot * targetDir).magnitude;
+            float dist = targetDist - projectionPoint.magnitude;
+            float depth = current.unitCollider.OnEllipseDepth(obstacle.unitCollider, projectionPoint);
 
-            if (VectorCalc.CalcEllipse(current.unitCollider.Center, obstacle.unitCollider.Center - projectiondir, current.unitCollider.Radius, obstacle.unitCollider.Radius) <= 1f)
+            if (dist > 0 && depth <= 1f)
             {
-                return (targetDist - obstacleDir.magnitude) * 2 * -obstacleDir.normalized;
+                if (depth == 0)
+                {
+                    Quaternion rotate = Quaternion.Euler(0, Random.Range(0, 2) == 0 ? 90 : -90, 0);
+
+                    return rotate * -obstacleDir.normalized * dist;
+                }
+
+                return dist * -obstacleDir.normalized;
             }
         }
 

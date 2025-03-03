@@ -40,6 +40,11 @@ public class EllipseCollider : MonoBehaviour, ICustomCollider
         return VectorCalc.CalcEllipse(Center, target.Center, Radius, target.Radius);
     }
 
+    public float OnEllipseDepth(ICustomCollider target, Vector3 offset)
+    {
+        return VectorCalc.CalcEllipse(Center + offset, target.Center, Radius, target.Radius);
+    }
+
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
