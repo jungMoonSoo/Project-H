@@ -42,7 +42,7 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         {
             WaveTextChange(PhaseManager.Instance.wave);
             UnitDeployManager.Instance.SetAllTileActive(true);
-            spawnManager.RedeployUnits();
+            UnitDeployManager.Instance.ReturnUnits();
         }
 
         //TEST => 적군 소환 

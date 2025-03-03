@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 [System.Serializable]
 public class TestItem //테스트용 아이템 생성
@@ -8,11 +7,12 @@ public class TestItem //테스트용 아이템 생성
     public string itemName;
     public int itemId;
     public int quantity;
+
     public TestItem(string name, int id, int qty)
     {
         itemName = name;
         itemId = id;
-        this.quantity = qty;
+        quantity = qty;
     }
 }
 

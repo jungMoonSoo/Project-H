@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class UnidadSpawnManager : MonoBehaviour
 {
-    [Header("테스트")]
-    [SerializeField] private bool spawnAlly;
-    [SerializeField] private bool spawnEnemy;
-
     [Header("스폰 정보")]
     [SerializeField] private Transform spawnPointAlly;
     [SerializeField] private Transform spawnPointEnemy;
@@ -15,23 +11,6 @@ public class UnidadSpawnManager : MonoBehaviour
     [Header("스테이터스 바")]
     [SerializeField] private UnidadStatusBar unidadHpBar;
     [SerializeField] private Transform hpBarParent;
-
-    private void Update()
-    {
-        if (spawnAlly)
-        {
-            spawnAlly = false;
-
-            Spawn(0, 0, UnitType.Ally);
-        }
-
-        if (spawnEnemy)
-        {
-            spawnEnemy = false;
-
-            Spawn(0, 0, UnitType.Enemy);
-        }
-    }
 
     public bool Spawn(uint unitId, UnitType owner = UnitType.Ally) => Spawn(unitId, 0, owner);
 
@@ -78,16 +57,5 @@ public class UnidadSpawnManager : MonoBehaviour
         }
 
         return null;
-    }
-
-    public void RedeployUnits()
-    {
-        List<TileHandle> allyTiles = new List<TileHandle>(GameObject.Find("Tiles").GetComponentsInChildren<TileHandle>());
-
-        foreach (TileHandle tileHandle in allyTiles)
-        {
-            tileHandle.ReturnPos();
-        }
-
     }
 }
