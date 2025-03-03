@@ -10,14 +10,14 @@ public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
     [SerializeField] private LocalizeStringEvent unitNumberText;
 
     [Header("Unit 관리 메니져")]
-    [SerializeField] private GameObject unitManagerObject;
+    [SerializeField] private UnidadSpawnManager spawnManager;
 
     private BindData<int> currentUnitNumber = new(); //현재 필드에 있는 unit 수
     private int maxUnitNumber = 5;     //필드 최대 unit 수
 
-    //Unit Spawn 여부 판단 변수(일단 아군 유닛 5종류로 설정)
-    private bool[] unitSpawn = new bool[5];
+    private HashSet<uint> units = new();
 
+    // Localize 용 변수
     public int CurrentUnitNumber => currentUnitNumber.Value;
     public int MaxUnitNumber => maxUnitNumber;
 
@@ -30,46 +30,45 @@ public class AllyUnitDeployment : Singleton<AllyUnitDeployment>
 
     public void UnitDeployTextUpdate(int newValue) => unitNumberText.RefreshString();
 
-    IEnumerator WarningTextPrint() //경고 문구
+    private IEnumerator WarningTextPrint() //경고 문구
     {
         maxWarnningObject.SetActive(true);
+
         yield return new WaitForSeconds(1f);
+
         maxWarnningObject.SetActive(false);
     }
 
     //Unit 생성&삭제 Button
-    public void UnitButton(int num)
+    public void UnitButton(uint id)
     {
-        if (!unitSpawn[num])
-        {
-            CreateUnit((uint)num);
-            unitSpawn[num] = true;
-            currentUnitNumber.Value++;
-        }
-        else
-        {
-            DestroyUnit((uint)num);
-            unitSpawn[num] = false;
-            currentUnitNumber.Value--;
-        }
+        if (units.Contains(id)) DestroyUnit(id);
+        else CreateUnit(id);
     }
 
-    //unit  생성 & Unit 삭제에 대한 메서드 작성
-
-    void CreateUnit(uint num) //Unit 생성 
+    private void CreateUnit(uint id)
     {
         if (currentUnitNumber.Value < maxUnitNumber)
         {
-            unitManagerObject.GetComponent<UnidadSpawnManager>().Spawn(num);
+            spawnManager.Spawn(id);
+            units.Add(id);
         }
         else
         {
             StartCoroutine(WarningTextPrint());
             Debug.Log("[Ui Manager]유닛 배치 최대입니다.");
         }
+
+        currentUnitNumber.Value++;
     }
 
-    void DestroyUnit(uint num) => UnitDeployManager.Instance.RemoveSpawnUnit(num);
+    private void DestroyUnit(uint id)
+    {
+        UnitDeployManager.Instance.RemoveSpawnUnit(id);
+        units.Remove(id);
+
+        currentUnitNumber.Value--;
+    }
 
     public void CreateSkillButton()
     {

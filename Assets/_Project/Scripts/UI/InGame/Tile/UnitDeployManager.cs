@@ -22,6 +22,11 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
 
     private void Update() => CheckTouch();
 
+    public void ReturnUnits()
+    {
+        foreach (TileHandle tile in tiles[UnitType.Ally]) tile.ReturnPos();
+    }
+
     public void RemoveSpawnUnit(uint unitId)
     {
         UnidadStatus unidadStatus = UnidadManager.Instance.GetStatus(unitId);
