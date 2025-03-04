@@ -9,24 +9,28 @@ public static class Teeeest
         float targetDist = dir.magnitude;
         Vector3 targetDir = dir.normalized;
 
+        byte check = 0;
+
         foreach (Unidad obstacle in UnidadManager.Instance.GetUnidads(current.Owner, TargetType.We))
         {
             if (obstacle == current) continue;
 
-            dir += GetReflectVector(current, obstacle, targetDist, targetDir);
+            dir += GetReflectVector(current, obstacle, targetDist, targetDir, ref check);
         }
 
         foreach (Unidad obstacle in UnidadManager.Instance.GetUnidads(current.Owner, TargetType.They))
         {
             if (obstacle == target) continue;
 
-            dir += GetReflectVector(current, obstacle, targetDist, targetDir);
+            dir += GetReflectVector(current, obstacle, targetDist, targetDir, ref check);
         }
+
+        if (check > 1) dir = Quaternion.Euler(0, 90, 0) * targetDir;
 
         return current.unitCollider.Center + dir.normalized * targetDist;
     }
 
-    private static Vector3 GetReflectVector(Unidad current, Unidad obstacle, float targetDist, Vector3 targetDir)
+    private static Vector3 GetReflectVector(Unidad current, Unidad obstacle, float targetDist, Vector3 targetDir, ref byte check)
     {
         Vector3 obstacleDir = obstacle.unitCollider.Center - current.unitCollider.Center;
         float dot = Vector3.Dot(obstacleDir, targetDir);
@@ -39,14 +43,11 @@ public static class Teeeest
 
             if (dist > 0 && depth <= 1f)
             {
-                if (depth == 0)
-                {
-                    Quaternion rotate = Quaternion.Euler(0, Random.Range(0, 2) == 0 ? 90 : -90, 0);
+                check++;
 
-                    return rotate * -obstacleDir.normalized * dist;
-                }
+                float angle = Vector3.SignedAngle(targetDir, obstacleDir, Vector3.up);
 
-                return dist * -obstacleDir.normalized;
+                return -(Quaternion.Euler(0, (angle > 0 ? 90 : -90) - angle, 0) * obstacleDir.normalized) * dist;
             }
         }
 

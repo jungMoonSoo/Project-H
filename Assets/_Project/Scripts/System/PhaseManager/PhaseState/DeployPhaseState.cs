@@ -29,7 +29,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         StageTextUpdate(1, 1);
 
-        foreach (uint id in DataManager.Instance.units)
+        foreach (uint id in PlayerManager.Instance.units)
         {
             SpawnButtonHandle button = spawnButtonsPool.Dequeue(spawnParent);
 
