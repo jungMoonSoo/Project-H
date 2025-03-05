@@ -16,8 +16,6 @@ public class HealTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
 
         Unidad[] targets = handler.Targets;
 
-        Debug.Log(targets.Length);
-
         for (int i = 0; i < targets.Length; i++)
         {
             if (i == maxHitTarget) break;

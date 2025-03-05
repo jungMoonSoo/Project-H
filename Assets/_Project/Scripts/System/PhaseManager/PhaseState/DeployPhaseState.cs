@@ -34,7 +34,6 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
             SpawnButtonHandle button = spawnButtonsPool.Dequeue(spawnParent);
 
             button.gameObject.SetActive(true);
-            button.transform.localScale = Vector3.one;
 
             button.SetID(id);
 
