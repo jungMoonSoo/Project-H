@@ -6,8 +6,6 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
 {
     private readonly Dictionary<UnitType, List<TileHandle>> tiles = new();
 
-    private Vector3 offset;
-
     private TileHandle selectedTile;
     private BoxColliderManager selectedUnit;
 
@@ -90,8 +88,6 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
                     if (selectedUnit.UnitType != selectableType) selectedUnit = null;
                     else
                     {
-                        offset = selectedUnit.transform.position - info.GetSpecificYPos(0);
-
                         selectedUnit.TryGetHitComponent(out selectedTile, ~unitLayerMask);
 
                         if (selectedTile == null) selectedUnit = null;
@@ -106,7 +102,7 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
                 break;
 
             default:
-                if (selectedUnit != null) selectedUnit.SetUnitPos(MapManager.Instance.ClampPositionToMap(info.GetSpecificYPos(0) + offset, Vector2.zero));
+                if (selectedUnit != null) selectedUnit.SetUnitPos(MapManager.Instance.ClampPositionToMap(info.GetSpecificYPos(0), Vector2.zero));
                 break;
         }
     }
