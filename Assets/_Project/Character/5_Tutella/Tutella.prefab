@@ -235,7 +235,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  useSpineEvent: 0
+  useSpineEvent: 1
   audioClipNumber: 2
   attackPoint: 0.5
   attackSoundPoint: 0.5

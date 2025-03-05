@@ -46,6 +46,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
             eventHandles.Add(events[i].eventName, events[i].unityEvent);
         }
 
+        skeletonAnimation.AnimationState.Event -= AnimationEvent;
         skeletonAnimation.AnimationState.Event += AnimationEvent;
     }
 
@@ -108,9 +109,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
     {
-        if (!useSpineEvent) return;
-
-        eventHandles[e.Data.Name]?.Invoke();
+        if (eventHandles.ContainsKey(e.Data.Name)) eventHandles[e.Data.Name].Invoke();
     }
 
     public void OnAttack()

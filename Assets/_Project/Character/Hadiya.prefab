@@ -234,6 +234,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  useSpineEvent: 1
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
@@ -851,7 +852,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a8b100b31e0b38e4bbaee85af4ad7e92, type: 2}
+  - {fileID: 2100000, guid: 3c4b32c43d31ef74491878b842fdd04f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
