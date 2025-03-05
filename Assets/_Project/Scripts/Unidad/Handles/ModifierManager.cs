@@ -27,9 +27,11 @@ public class ModifierManager
     {
         if (level < 0) level = 0;
 
-        defaultNormalStatus = unidad.Status.normalStatus[unidad.Status.normalStatus.Length > level ? level : unidad.Status.normalStatus.Length - 1];
-        defaultAttackStatus = unidad.Status.attackStatus[unidad.Status.attackStatus.Length > level ? level : unidad.Status.attackStatus.Length - 1];
-        defaultDefenceStatus = unidad.Status.defenceStatus[unidad.Status.defenceStatus.Length > level ? level : unidad.Status.defenceStatus.Length - 1];
+        if (unidad.Status.statuses.Length <= level) level = unidad.Status.statuses.Length - 1;
+
+        defaultNormalStatus = unidad.Status.statuses[level].normal;
+        defaultAttackStatus = unidad.Status.statuses[level].attack;
+        defaultDefenceStatus = unidad.Status.statuses[level].defence;
 
         SetNowNormalStatus();
         SetNowAttackStatus();
@@ -101,7 +103,6 @@ public class ModifierManager
     private void InitNormalStatus(NormalStatus status, int value)
     {
         status.maxHp = value;
-        status.maxMp = value;
 
         status.attackSpeed = value;
         status.moveSpeed = value;
@@ -151,7 +152,6 @@ public class ModifierManager
     private void SetNormalStatus(NormalStatus status, NormalStatus modifierStatus, int value)
     {
         status.maxHp += modifierStatus.maxHp * value;
-        status.maxMp += modifierStatus.maxMp * value;
 
         status.attackSpeed += modifierStatus.attackSpeed * value;
         status.moveSpeed += modifierStatus.moveSpeed * value;
@@ -221,7 +221,6 @@ public class ModifierManager
     private void SetNowNormalStatus()
     {
         nowNormalStatus.maxHp = StatusCalc(defaultNormalStatus.maxHp, normalModifier.maxHp, normalModifierMultiply.maxHp);
-        nowNormalStatus.maxMp = StatusCalc(defaultNormalStatus.maxMp, normalModifier.maxMp, normalModifierMultiply.maxMp);
 
         nowNormalStatus.attackSpeed = StatusCalc(defaultNormalStatus.attackSpeed, normalModifier.attackSpeed, normalModifierMultiply.attackSpeed);
         nowNormalStatus.moveSpeed = StatusCalc(defaultNormalStatus.moveSpeed, normalModifier.moveSpeed, normalModifierMultiply.moveSpeed);

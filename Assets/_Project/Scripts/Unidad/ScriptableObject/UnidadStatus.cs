@@ -12,13 +12,7 @@ public class UnidadStatus : ScriptableObject
     
     [Header("Skill Info")]
     public ActionSkillInfo skillInfo;
-    
-    [Header("기본 스테이터스")]
-    public NormalStatus[] normalStatus;
 
-    [Header("공격 스테이터스")]
-    public AttackStatus[] attackStatus;
-    
-    [Header("방어 스테이터스")]
-    public DefenceStatus[] defenceStatus;
+    [Header("Status Info")]
+    public UnidadStatuses[] statuses;
 }

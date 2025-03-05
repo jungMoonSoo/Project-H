@@ -4,7 +4,6 @@ using System;
 public class NormalStatus
 {
     public int maxHp = 100;
-    public int maxMp = 100;
     
     public float moveSpeed = 2;
     public float attackSpeed = 1;

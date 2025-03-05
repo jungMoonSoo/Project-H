@@ -17,11 +17,9 @@ MonoBehaviour:
   skillInfo: {fileID: 0}
   normalStatus:
   - maxHp: 100
-    maxMp: 100
     moveSpeed: 2
     attackSpeed: 0.5
   - maxHp: 150
-    maxMp: 100
     moveSpeed: 2
     attackSpeed: 0.5
   attackStatus:
@@ -74,3 +72,64 @@ MonoBehaviour:
     earthResistanceBonus: 0
     lightResistanceBonus: 0
     darkResistanceBonus: 0
+  statuses:
+  - normal:
+      maxHp: 100
+      moveSpeed: 2
+      attackSpeed: 0.5
+    attack:
+      physicalDamage: 10
+      magicDamage: 15
+      physicalCriticalDamage: 150
+      magicCriticalDamage: 150
+      physicalCriticalProbability: 10
+      magicCriticalProbability: 10
+      accuracy: 100
+      fireDamageBonus: 0
+      waterDamageBonus: 0
+      airDamageBonus: 0
+      earthDamageBonus: 0
+      lightDamageBonus: 0
+      darkDamageBonus: 0
+    defence:
+      physicalDefence: 1
+      magicDefence: 1
+      physicalCriticalResistance: 0
+      magicCriticalResistance: 0
+      dodgeProbability: 5
+      fireResistanceBonus: 0
+      waterResistanceBonus: 0
+      airResistanceBonus: 0
+      earthResistanceBonus: 0
+      lightResistanceBonus: 0
+      darkResistanceBonus: 0
+  - normal:
+      maxHp: 150
+      moveSpeed: 2
+      attackSpeed: 0.5
+    attack:
+      physicalDamage: 15
+      magicDamage: 15
+      physicalCriticalDamage: 150
+      magicCriticalDamage: 150
+      physicalCriticalProbability: 10
+      magicCriticalProbability: 10
+      accuracy: 100
+      fireDamageBonus: 0
+      waterDamageBonus: 0
+      airDamageBonus: 0
+      earthDamageBonus: 0
+      lightDamageBonus: 0
+      darkDamageBonus: 0
+    defence:
+      physicalDefence: 1
+      magicDefence: 1
+      physicalCriticalResistance: 0
+      magicCriticalResistance: 0
+      dodgeProbability: 5
+      fireResistanceBonus: 0
+      waterResistanceBonus: 0
+      airResistanceBonus: 0
+      earthResistanceBonus: 0
+      lightResistanceBonus: 0
+      darkResistanceBonus: 0
