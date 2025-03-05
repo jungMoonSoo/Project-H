@@ -1,20 +1,10 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AnimatorEventHandler : MonoBehaviour
 {
-    public Action OnTriggerEvent = null;
-    public Action OnFinishEvent = null;
-    
-    public void OnTrigger()
-    {
-        OnTriggerEvent?.Invoke();
-    }
+    public List<UnityEvent> events;
 
-    public void OnFinish()
-    {
-        OnFinishEvent?.Invoke();
-    }
+    public void OnEvent(int index) => events[index].Invoke();
 }

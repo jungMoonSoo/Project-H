@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 2209526317378047955}
   - component: {fileID: 8841968534178399513}
   - component: {fileID: 1965033588501084660}
+  - component: {fileID: 311812836666444578}
   m_Layer: 0
   m_Name: AlchemySkill
   m_TagString: Untagged
@@ -97,7 +98,7 @@ MonoBehaviour:
   targetType: 2
   filterType: 0
   customColliderObject: {fileID: 3786523137820473533}
-  animatorEventHandler: {fileID: 4213904965122752113}
+  animController: {fileID: 5853737012246825776}
 --- !u!114 &8841968534178399513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +129,18 @@ MonoBehaviour:
   speed: 1
   height: 5
   endYPos: 0
+--- !u!114 &311812836666444578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3792025657868637557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a6b7c8aa0d582a4ba3b9b2bcb189c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7096449219032708577
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,6 +152,7 @@ GameObject:
   - component: {fileID: 4890457478920855243}
   - component: {fileID: 3155227446251930560}
   - component: {fileID: 2283048150457470346}
+  - component: {fileID: 5853737012246825776}
   - component: {fileID: 4213904965122752113}
   m_Layer: 0
   m_Name: Animator
@@ -239,6 +253,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5853737012246825776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7096449219032708577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4cbf1d20d2c2824aa010971df8d5a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2283048150457470346}
 --- !u!114 &4213904965122752113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,3 +278,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91f7bac349feabb4cb0dba7d0d255fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  events:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2209526317378047955}
+        m_TargetAssemblyTypeName: HitObject, Assembly-CSharp
+        m_MethodName: Remove
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

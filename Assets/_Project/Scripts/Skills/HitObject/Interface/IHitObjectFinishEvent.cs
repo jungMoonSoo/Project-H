@@ -1,4 +1,4 @@
 public interface IHitObjectFinishEvent
 {
-    public void OnFinish(HitObject handler);
+    public void OnFinish(HitObject hitObject);
 }

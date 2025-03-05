@@ -9,7 +9,9 @@ public class HitObject : MonoBehaviour
     [SerializeField] private FilterType filterType;
 
     [SerializeField] private GameObject customColliderObject;
-    [SerializeField] private AnimatorEventHandler animatorEventHandler;
+    [SerializeField] private AnimationEventController animController;
+
+    private bool isFinished;
 
     private Action<HitObject> inits;
 
@@ -24,6 +26,8 @@ public class HitObject : MonoBehaviour
 
     public Vector3 CreatePos { get; private set; }
     public Vector3 TargetPos { get; private set; }
+
+    public AnimationEventController AnimController => animController;
 
     private EffectManager effectManager;
     private ObjectPool<HitObject> hitObjects;
@@ -59,6 +63,8 @@ public class HitObject : MonoBehaviour
 
     public virtual void Init(Unidad caster, EffectManager effectManager, Vector3 createPos)
     {
+        isFinished = false;
+
         Caster = caster;
         this.effectManager = effectManager;
 
@@ -84,12 +90,6 @@ public class HitObject : MonoBehaviour
             }
 
             foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
-
-            if (animatorEventHandler != null)
-            {
-                animatorEventHandler.OnTriggerEvent = OnTrigger;
-                animatorEventHandler.OnFinishEvent = OnFinish;
-            }
         }
 
         TargetingFilter = TargetingFilterHub.GetFilter(filterType);
@@ -99,7 +99,10 @@ public class HitObject : MonoBehaviour
         OnCreate();
     }
 
-    private void Update() => checkEvent?.Invoke(this);
+    private void Update()
+    {
+        if (!isFinished) checkEvent?.Invoke(this);
+    }
 
     public void SetTargetPos(Vector3 pos) => TargetPos = pos;
 
@@ -109,10 +112,10 @@ public class HitObject : MonoBehaviour
 
     public void OnFinish()
     {
-        finishEvent?.Invoke(this);
+        isFinished = true;
 
-        if (hitObjects == null) Destroy(gameObject);
-        else hitObjects.Enqueue(this);
+        if (finishEvent == null) Remove();
+        else finishEvent.Invoke(this);
     }
 
     public EffectSystem GetEffect(Transform parent)
@@ -127,5 +130,11 @@ public class HitObject : MonoBehaviour
         customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
 
         return customCollider.AreaSize;
+    }
+
+    public void Remove()
+    {
+        if (hitObjects == null) Destroy(gameObject);
+        else hitObjects.Enqueue(this);
     }
 }
