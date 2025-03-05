@@ -12,5 +12,6 @@ public class PlayerManager : Singleton<PlayerManager>
         units.Add(2);
         units.Add(3);
         units.Add(4);
+        units.Add(5);
     }
 }
