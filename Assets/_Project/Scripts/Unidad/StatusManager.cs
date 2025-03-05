@@ -5,7 +5,6 @@ public class StatusManager
     private readonly Unidad unidad;
 
     public BindData<int> hp = new();
-    public BindData<int> mp = new();
 
     public ModifierManager modifierManager;
 
@@ -21,9 +20,6 @@ public class StatusManager
 
         hp.Value = NormalStatus.maxHp;
         hp.SetCallback(BindHp, SetCallbackType.Set);
-
-        mp.Value = 100;
-        mp.SetCallback(BindMp, SetCallbackType.Set);
     }
     
     public void OnDamage(int damage) => hp.Value -= damage;
@@ -38,13 +34,6 @@ public class StatusManager
             unidad.ChangeState(UnitState.Die);
         }
         else if (newValue > NormalStatus.maxHp) currentValue = NormalStatus.maxHp;
-        else currentValue = newValue;
-    }
-
-    public void BindMp(ref int currentValue, int newValue)
-    {
-        if (newValue <= 0) currentValue = 0;
-        else if (newValue > NormalStatus.maxMp) currentValue = NormalStatus.maxMp;
         else currentValue = newValue;
     }
 }

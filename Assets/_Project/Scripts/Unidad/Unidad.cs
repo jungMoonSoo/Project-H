@@ -54,7 +54,6 @@ public class Unidad : MonoBehaviour
     public UnidadStatus Status => status;
 
     public BindData<int> Hp => statusManager.hp;
-    public BindData<int> Mp => statusManager.mp;
 
     public NormalStatus NowNormalStatus => statusManager.NormalStatus;
     public AttackStatus NowAttackStatus => statusManager.AttackStatus;
@@ -167,8 +166,6 @@ public class Unidad : MonoBehaviour
         TextPopupManager.Instance.PopupDamage(damage.ToString(), transform.position, DamageUiPosition.position);
 
         statusManager?.OnDamage(damage);
-
-        IncreaseMp(0.5f);
     }
 
     public void OnHeal(int heal, DamageType healType)
@@ -177,8 +174,6 @@ public class Unidad : MonoBehaviour
 
         statusManager?.OnHeal(heal);
     }
-
-    public void IncreaseMp(float value) => statusManager.mp.Value += (int)(StatusCalc.MP_REGEN * value);
 
     public void SetLevel(int level) => ModifierManager.SetUnitDefaltStatus(level);
 
