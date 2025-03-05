@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b399a808fa8774190645441f631627, type: 3}
+  m_Name: Tutella
+  m_EditorClassIdentifier: 
+  id: 5
+  unidadPrefab: {fileID: 5813261068209667863, guid: f4ddb4dc7c615304a8c666d39c05ff96, type: 3}
+  skillInfo: {fileID: 11400000, guid: e5381019091a7804a85a89305ccb629d, type: 2}
+  normalStatus:
+  - maxHp: 80
+    maxMp: 100
+    moveSpeed: 1.5
+    attackSpeed: 0.8
+  - maxHp: 100
+    maxMp: 100
+    moveSpeed: 1.5
+    attackSpeed: 0.8
+  attackStatus:
+  - physicalDamage: 20
+    magicDamage: 30
+    physicalCriticalDamage: 150
+    magicCriticalDamage: 150
+    physicalCriticalProbability: 10
+    magicCriticalProbability: 10
+    accuracy: 100
+    fireDamageBonus: 80
+    waterDamageBonus: 80
+    airDamageBonus: 80
+    earthDamageBonus: 80
+    lightDamageBonus: 80
+    darkDamageBonus: 80
+  - physicalDamage: 20
+    magicDamage: 30
+    physicalCriticalDamage: 150
+    magicCriticalDamage: 150
+    physicalCriticalProbability: 10
+    magicCriticalProbability: 10
+    accuracy: 100
+    fireDamageBonus: 80
+    waterDamageBonus: 80
+    airDamageBonus: 80
+    earthDamageBonus: 80
+    lightDamageBonus: 80
+    darkDamageBonus: 80
+  defenceStatus:
+  - physicalDefence: 1
+    magicDefence: 1
+    physicalCriticalResistance: 0
+    magicCriticalResistance: 0
+    dodgeProbability: 5
+    fireResistanceBonus: 0
+    waterResistanceBonus: 0
+    airResistanceBonus: 0
+    earthResistanceBonus: 0
+    lightResistanceBonus: 0
+    darkResistanceBonus: 0
+  - physicalDefence: 1
+    magicDefence: 1
+    physicalCriticalResistance: 0
+    magicCriticalResistance: 0
+    dodgeProbability: 5
+    fireResistanceBonus: 0
+    waterResistanceBonus: 0
+    airResistanceBonus: 0
+    earthResistanceBonus: 0
+    lightResistanceBonus: 0
+    darkResistanceBonus: 0
