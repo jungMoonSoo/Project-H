@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hadiya_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 7b50a9a457f4a8949b6b6441e5108725, type: 2}
+  - {fileID: 11400000, guid: 79ead561fdc29bd4e90ea334c285a4c3, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: b015b14b1437eb540b4b83fbc8afbd2d, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 3c986ddec3fdd8e4facddacc7863c698, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0

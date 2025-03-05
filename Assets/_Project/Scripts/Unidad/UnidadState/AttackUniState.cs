@@ -18,6 +18,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     #endregion
 
     [Header("임시 설정")]
+    [SerializeField] private bool useSpineEvent = false;
     [SerializeField] private int audioClipNumber = -1;
     [SerializeField] private float attackPoint = 0.5f;
     [SerializeField] private float attackSoundPoint = 0.5f;
@@ -69,6 +70,8 @@ public class AttackUniState: MonoBehaviour, IUnidadState
         switch (state)
         {
             case UnitState.Attack:
+                if (useSpineEvent) break;
+
                 if (skeletonAnimation.AnimationState.GetCurrent(0).AnimationTime > attackPoint)
                 {
                     if (!attack)
@@ -103,7 +106,12 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     }
 
-    private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e) => eventHandles[e.Data.Name]?.Invoke();
+    private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
+    {
+        if (!useSpineEvent) return;
+
+        eventHandles[e.Data.Name]?.Invoke();
+    }
 
     public void OnAttack()
     {

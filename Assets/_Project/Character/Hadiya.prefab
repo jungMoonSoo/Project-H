@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fb32fc7b1e8b4f4bbf01789e60a7024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: idle
 --- !u!1 &1022970637295440420
 GameObject:
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1b5eb8e1e844b46a94b97c4498796a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: idle
 --- !u!1 &1804586812015424919
 GameObject:
@@ -215,9 +215,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29550b5fa41f4f7cac9695e7f83fb9ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: attack
-  events: []
+  events:
+  - eventName: Attack/Attack_evt
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1706487571459985532}
+          m_TargetAssemblyTypeName: TrackingManager, Assembly-CSharp
+          m_MethodName: CreateHitObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2959052554162630870}
+            m_ObjectArgumentAssemblyTypeName: Unidad, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
@@ -267,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e81d7c31f9c344269c1100b75f0df788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: skill
 --- !u!1 &3310141534252451116
 GameObject:
@@ -457,8 +473,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 601002fefe3948e5801b1a3ee3858579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
-  animationName: warking
+  skeletonAnimation: {fileID: 2720273147586726292}
+  animationName: walk
   trackingManager: {fileID: 1706487571459985532}
 --- !u!1 &3599388351949535259
 GameObject:
@@ -768,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae7d16e1370f6ea4bba3cabff7ad33da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: idle
 --- !u!1 &5417251780255694374
 GameObject:
@@ -869,7 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 705a87a65aec32b49b7875bb5e1f67d6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 82c9751109bbb7345a4a55c995a9d166, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
@@ -944,7 +960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 178260de0ebd4e39b93a1505fee6634f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: idle
 --- !u!1 &5813261068209667863
 GameObject:
@@ -1121,7 +1137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e62415e4b1443a081a6c23918c0ab59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 0}
+  skeletonAnimation: {fileID: 2720273147586726292}
   animationName: idle
 --- !u!1 &8023815461430984841
 GameObject:

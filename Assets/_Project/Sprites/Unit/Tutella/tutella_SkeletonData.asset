@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: tutella_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: b0cf8056e2c95354ea3d9b7b00b22688, type: 2}
+  - {fileID: 11400000, guid: 42f167a459fa7f147abdc8698921dcdb, type: 2}
   scale: 0.01
-  skeletonJSON: {fileID: 4900000, guid: b39d6d1fc2251dd4b8ad36e054d4580e, type: 3}
+  skeletonJSON: {fileID: 4900000, guid: 9f7fc81083edba946a46457eb83c1088, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
     requiresBlendModeMaterials: 0

@@ -219,10 +219,23 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 6651845745106748431}
   animationName: attack
   events:
-  - eventName: attack
+  - eventName: Attack_evt
     unityEvent:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1706487571459985532}
+          m_TargetAssemblyTypeName: TrackingManager, Assembly-CSharp
+          m_MethodName: CreateHitObject
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2959052554162630870}
+            m_ObjectArgumentAssemblyTypeName: Unidad, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  useSpineEvent: 0
   audioClipNumber: 2
   attackPoint: 0.5
   attackSoundPoint: 0.5
@@ -339,7 +352,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd73c96e970148245b5ceef909d235a4, type: 2}
+  - {fileID: 2100000, guid: edc7a2ccc42d4824cae94e9140ff9475, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -373,7 +386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: fab2e3ab856800d42af3644e53408e0e, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 186fe69b7ff7c5647b5a9b8116a94a01, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
   initialFlipX: 0
