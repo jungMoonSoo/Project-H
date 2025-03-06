@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : Component
@@ -13,9 +14,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
 
                 if (_Instance == null)
                 {
-                    GameObject obj = new() { name = typeof(T).Name };
-
-                    _Instance = obj.AddComponent<T>();
+                    throw new Exception("There is no instance of " + typeof(T).Name + " in the scene.");
                 }
             }
 
