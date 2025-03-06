@@ -1098,7 +1098,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 6651845745106748431}
   bones:
-  - boneName: arrow
+  - boneName: Hand_L
     effectManager: {fileID: 6100753868231637843}
 --- !u!1 &5805440082060491345
 GameObject:
