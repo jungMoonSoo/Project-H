@@ -17,6 +17,8 @@ public class SpineEffectHandle : MonoBehaviour
         }
     }
 
+    public SpineBoneData GetBoneInfo(int index) => bones[index];
+
     public void SpawnEffect(int index)
     {
         EffectSystem effect = bones[index].effectManager.GetEffect(transform);

@@ -200,7 +200,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectManager: {fileID: 5786679666066946083}
+  skeletonAnimation: {fileID: 8097800729834599896}
+  bone:
+    boneName: head1
+    effectManager: {fileID: 5786679666066946083}
 --- !u!114 &6864943005887859358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 8097800729834599896}
   animationName: skill2
+  events: []
 --- !u!1 &3952068039426333518
 GameObject:
   m_ObjectHideFlags: 0

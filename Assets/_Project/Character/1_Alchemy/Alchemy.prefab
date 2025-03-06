@@ -1252,7 +1252,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectManager: {fileID: 0}
+  skeletonAnimation: {fileID: 8129655833158462561}
+  bone:
+    boneName: Hand_L
+    effectManager: {fileID: 0}
 --- !u!114 &6946498646291355558
 MonoBehaviour:
   m_ObjectHideFlags: 0

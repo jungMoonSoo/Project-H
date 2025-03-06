@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 2720273147586726292}
   animationName: skill
+  events: []
 --- !u!1 &3310141534252451116
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 2720273147586726292}
   animationName: walk
+  events: []
   trackingManager: {fileID: 1706487571459985532}
 --- !u!1 &3599388351949535259
 GameObject:
@@ -1218,6 +1220,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 2720273147586726292}
+  bone:
+    boneName: Arm_R_1
+    effectManager: {fileID: 0}
 --- !u!114 &6946498646291355558
 MonoBehaviour:
   m_ObjectHideFlags: 0

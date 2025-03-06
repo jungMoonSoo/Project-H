@@ -1100,6 +1100,8 @@ MonoBehaviour:
   bones:
   - boneName: Hand_L
     effectManager: {fileID: 6100753868231637843}
+  - boneName: Hand_L
+    effectManager: {fileID: 4205724512610747140}
 --- !u!1 &5805440082060491345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,7 +1448,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectManager: {fileID: 4205724512610747140}
+  effectHandle: {fileID: 4502017327992583218}
+  effectIndex: 1
 --- !u!114 &6946498646291355558
 MonoBehaviour:
   m_ObjectHideFlags: 0

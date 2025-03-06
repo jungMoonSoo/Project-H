@@ -1,8 +1,10 @@
+using Spine.Unity;
 using UnityEngine;
 
 public class TrackingManager : MonoBehaviour
 {
-    [SerializeField] private EffectManager effectManager;
+    [SerializeField] private SpineEffectHandle effectHandle;
+    [SerializeField] private int effectIndex;
 
     private HitObjectManager hitObjectManager;
 
@@ -38,7 +40,13 @@ public class TrackingManager : MonoBehaviour
 
         hitObject.SetTargetPos(targets[0].transform.position);
 
-        hitObject.Init(unidad, effectManager, unidad.HitObjectPosition.position);
+        if (effectHandle != null)
+        {
+            SpineBoneData bone = effectHandle.GetBoneInfo(effectIndex);
+
+            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(transform));
+        }
+        else hitObject.Init(unidad, null, unidad.HitObjectPosition.position);
     }
 
     private void FlipX(Transform trans, bool right)

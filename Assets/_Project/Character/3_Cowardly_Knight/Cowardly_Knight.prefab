@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 5956113524412148244}
   animationName: wallking
+  events: []
   trackingManager: {fileID: 7662047842114841241}
 --- !u!1 &2678979453664997323
 GameObject:
@@ -735,6 +736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 5956113524412148244}
   animationName: skill
+  events: []
 --- !u!1 &4649172305670424198
 GameObject:
   m_ObjectHideFlags: 0
@@ -828,6 +830,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 5956113524412148244}
   animationName: attack
   events: []
+  useSpineEvent: 0
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
@@ -1168,6 +1171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 5956113524412148244}
+  bone:
+    boneName: 
+    effectManager: {fileID: 0}
 --- !u!114 &7691698314627174089
 MonoBehaviour:
   m_ObjectHideFlags: 0

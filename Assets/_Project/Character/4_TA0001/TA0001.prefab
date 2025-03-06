@@ -47,6 +47,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 4878625194061487093}
   animationName: a1
   events: []
+  useSpineEvent: 0
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
@@ -132,6 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4878625194061487093}
   animationName: walk
+  events: []
   trackingManager: {fileID: 8466369064688922282}
 --- !u!1 &608611847517619456
 GameObject:
@@ -179,6 +181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4878625194061487093}
   animationName: a2
+  events: []
 --- !u!1 &1115495703003695230
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,6 +950,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 4878625194061487093}
+  bone:
+    boneName: 
+    effectManager: {fileID: 0}
 --- !u!114 &4122390566406169492
 MonoBehaviour:
   m_ObjectHideFlags: 0

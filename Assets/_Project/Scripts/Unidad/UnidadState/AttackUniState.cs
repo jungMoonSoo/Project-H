@@ -109,6 +109,8 @@ public class AttackUniState: MonoBehaviour, IUnidadState
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
     {
+        if (!useSpineEvent) return;
+
         if (eventHandles.ContainsKey(e.Data.Name)) eventHandles[e.Data.Name].Invoke();
     }
 
