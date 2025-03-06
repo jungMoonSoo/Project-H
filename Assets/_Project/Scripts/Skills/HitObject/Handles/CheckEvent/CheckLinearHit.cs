@@ -5,6 +5,8 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     [SerializeField] private float speed = 10;
     [SerializeField] private float splitCount = 0;
 
+    [SerializeField] private bool straight = true;
+
     private Vector3 targetPos;
 
     private float nowDist;
@@ -18,7 +20,8 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         applyCount = 0;
 
         targetPos = @base.TargetPos;
-        targetPos.y = transform.position.y;
+
+        if (straight) targetPos.y = transform.position.y;
 
         endDist = Vector3.Distance(transform.position, targetPos);
         splitDist = endDist / splitCount;

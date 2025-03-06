@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineColor: {r: 0, g: 1, b: 1, a: 1}
-  size: {x: 2, y: 2}
+  size: {x: 5, y: 5}
 --- !u!1 &3792025657868637557
 GameObject:
   m_ObjectHideFlags: 0
@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   splitCount: 0
+  straight: 0
 --- !u!1 &4017590513030972592
 GameObject:
   m_ObjectHideFlags: 0
