@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   code: 5
   skillName: TutellaSkill
-  sprite: {fileID: 2071257902, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
+  sprite: {fileID: -518922485, guid: b47e3fde5a1526240b71424520dd7942, type: 3}
   effectPrefab: {fileID: 7613593162823736888, guid: 9238bc2052828994e8da07fa1adbe050, type: 3}
   manaCost: 10
   cooltime: 10
