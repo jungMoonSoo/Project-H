@@ -6,9 +6,7 @@ using UnityEngine.UI;
 
 public class InGameManager : Singleton<InGameManager>
 {
-    [SerializeField] public Transform PlayerTransform;
-
-    private readonly List<PauseType> pauseList = new();
+    private readonly HashSet<PauseType> pauseList = new();
 
     private readonly Dictionary<PauseType, float> pauseSpeed = new()
     {
@@ -16,12 +14,7 @@ public class InGameManager : Singleton<InGameManager>
         {PauseType.OpenMenu, 0f},
         {PauseType.OpenOption, 0f},
     };
-
-
-    void Start()
-    {
-        
-    }
+    
 
     /// <summary>
     /// 게임 일시정지 Method
@@ -42,7 +35,7 @@ public class InGameManager : Singleton<InGameManager>
     /// <param name="pauseType">일시정지 사유</param>
     public void ResumeGame(PauseType pauseType)
     {
-        pauseList.RemoveAll(x => x == pauseType);
+        pauseList.Clear();
         CheckPause();
     }
     /// <summary>
