@@ -2,19 +2,16 @@ using UnityEngine;
 
 public class TrackingManager : MonoBehaviour
 {
+    [SerializeField] private EffectManager effectManager;
+
     private HitObjectManager hitObjectManager;
-    private EffectManager effectManager;
 
     private Unidad[] targets;
     public Unidad[] Targets => targets;
 
     private TrackingType trackingType = TrackingType.Near;
 
-    private void Start()
-    {
-        TryGetComponent(out hitObjectManager);
-        TryGetComponent(out effectManager);
-    }
+    private void Start() => TryGetComponent(out hitObjectManager);
 
     public void SetType(TrackingType type) => trackingType = type;
 
