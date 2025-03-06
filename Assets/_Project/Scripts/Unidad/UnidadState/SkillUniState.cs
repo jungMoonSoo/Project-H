@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class SkillUniState: MonoBehaviour, IUnidadState
 {
     [Header("Settings")]
+
+    #region ◇ Spine Settings ◇
     [SerializeField] private SkeletonAnimation skeletonAnimation;
     [SerializeField, SpineAnimation(dataField: "skeletonAnimation")] private string animationName;
 
@@ -13,6 +15,9 @@ public class SkillUniState: MonoBehaviour, IUnidadState
 
     private Spine.Animation playAnimation;
     private readonly Dictionary<string, UnityEvent> eventHandles = new();
+    #endregion
+
+    [SerializeField] private bool useSpineEvent = false;
 
     public Unidad Unit
     {
@@ -47,11 +52,13 @@ public class SkillUniState: MonoBehaviour, IUnidadState
 
     public void OnExit()
     {
-
+        if (!useSpineEvent) Unit.SkillHandle.Spawn(Unit);
     }
 
     private void AnimationEvent(Spine.TrackEntry trackEntry, Spine.Event e)
     {
+        if (!useSpineEvent) return;
+
         if (eventHandles.ContainsKey(e.Data.Name)) eventHandles[e.Data.Name].Invoke();
     }
 

@@ -34,6 +34,8 @@ public class Unidad : MonoBehaviour
     [SerializeField] private Transform hitObjectPosition; // 
 
     [Header("Other")]
+    [SerializeField] private SpineSkillHandle skillHandle;
+
     public GameObject view;
     public UnidadAudioHandle audioHandle;
     private UnidadStatusBar statusBar;
@@ -64,6 +66,8 @@ public class Unidad : MonoBehaviour
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
     public Transform HitObjectPosition => hitObjectPosition == null ? transform : hitObjectPosition;
+
+    public SpineSkillHandle SkillHandle => skillHandle;
 
     private StatusManager statusManager = null;
 

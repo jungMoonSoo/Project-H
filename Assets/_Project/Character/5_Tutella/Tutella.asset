@@ -14,64 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 5
   unidadPrefab: {fileID: 5813261068209667863, guid: f4ddb4dc7c615304a8c666d39c05ff96, type: 3}
-  skillInfo: {fileID: 11400000, guid: e5381019091a7804a85a89305ccb629d, type: 2}
-  normalStatus:
-  - maxHp: 80
-    moveSpeed: 1.5
-    attackSpeed: 0.8
-  - maxHp: 100
-    moveSpeed: 1.5
-    attackSpeed: 0.8
-  attackStatus:
-  - physicalDamage: 20
-    magicDamage: 30
-    physicalCriticalDamage: 150
-    magicCriticalDamage: 150
-    physicalCriticalProbability: 10
-    magicCriticalProbability: 10
-    accuracy: 100
-    fireDamageBonus: 80
-    waterDamageBonus: 80
-    airDamageBonus: 80
-    earthDamageBonus: 80
-    lightDamageBonus: 80
-    darkDamageBonus: 80
-  - physicalDamage: 20
-    magicDamage: 30
-    physicalCriticalDamage: 150
-    magicCriticalDamage: 150
-    physicalCriticalProbability: 10
-    magicCriticalProbability: 10
-    accuracy: 100
-    fireDamageBonus: 80
-    waterDamageBonus: 80
-    airDamageBonus: 80
-    earthDamageBonus: 80
-    lightDamageBonus: 80
-    darkDamageBonus: 80
-  defenceStatus:
-  - physicalDefence: 1
-    magicDefence: 1
-    physicalCriticalResistance: 0
-    magicCriticalResistance: 0
-    dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
-  - physicalDefence: 1
-    magicDefence: 1
-    physicalCriticalResistance: 0
-    magicCriticalResistance: 0
-    dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
+  skillInfo: {fileID: 11400000, guid: 59747d040c1fc6b40abfdbe4aee1e62f, type: 2}
   statuses:
   - normal:
       maxHp: 100

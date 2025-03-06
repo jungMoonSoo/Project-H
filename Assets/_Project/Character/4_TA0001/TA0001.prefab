@@ -182,6 +182,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 4878625194061487093}
   animationName: a2
   events: []
+  useSpineEvent: 0
 --- !u!1 &1115495703003695230
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +643,7 @@ MonoBehaviour:
   damageUiPosition: {fileID: 4892709537515427125}
   statusUiPosition: {fileID: 9206378180646387357}
   hitObjectPosition: {fileID: 391461323688462536}
+  skillHandle: {fileID: 3389304418468235371}
   view: {fileID: 8816945805528239237}
   audioHandle: {fileID: 4648712360873556466}
 --- !u!1 &5129920097593706054
@@ -916,6 +918,7 @@ GameObject:
   - component: {fileID: 5376440039889042837}
   - component: {fileID: 8466369064688922282}
   - component: {fileID: 4122390566406169492}
+  - component: {fileID: 3389304418468235371}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -950,10 +953,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonAnimation: {fileID: 4878625194061487093}
-  bone:
-    boneName: 
-    effectManager: {fileID: 0}
+  effectHandle: {fileID: 0}
+  effectIndex: 0
 --- !u!114 &4122390566406169492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,6 +968,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObject: {fileID: 2077749959588913920, guid: 855e9e609e6868b4eb96df774e0d5947, type: 3}
+--- !u!114 &3389304418468235371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6004814293672522744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectHandle: {fileID: 0}
+  effectIndex: 0
 --- !u!1 &6612018800831520400
 GameObject:
   m_ObjectHideFlags: 0

@@ -239,14 +239,14 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4502017327992583218}
-          m_TargetAssemblyTypeName: SpineEffectHandle, Assembly-CSharp
-          m_MethodName: SpawnEffect
+        - m_Target: {fileID: 6604994404387091370}
+          m_TargetAssemblyTypeName: UnidadAudioHandle, Assembly-CSharp
+          m_MethodName: OnPlay
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -303,7 +303,56 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 6651845745106748431}
   animationName: skill
-  events: []
+  events:
+  - eventName: Skill_evt
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 3923744470971958728}
+          m_TargetAssemblyTypeName: SpineSkillHandle, Assembly-CSharp
+          m_MethodName: Spawn
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 2959052554162630870}
+            m_ObjectArgumentAssemblyTypeName: Unidad, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventName: Skill_fx
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4502017327992583218}
+          m_TargetAssemblyTypeName: SpineEffectHandle, Assembly-CSharp
+          m_MethodName: SpawnEffect
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventName: Skill_sfx
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6604994404387091370}
+          m_TargetAssemblyTypeName: UnidadAudioHandle, Assembly-CSharp
+          m_MethodName: OnPlay
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  useSpineEvent: 1
 --- !u!1 &2658207558824378110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1151,8 @@ MonoBehaviour:
     effectManager: {fileID: 6100753868231637843}
   - boneName: Hand_L
     effectManager: {fileID: 4205724512610747140}
+  - boneName: Hand_L
+    effectManager: {fileID: 8249806007779576822}
 --- !u!1 &5805440082060491345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1213,6 +1264,7 @@ MonoBehaviour:
   damageUiPosition: {fileID: 1945676781002861287}
   statusUiPosition: {fileID: 3984195991756771338}
   hitObjectPosition: {fileID: 5226447662181291698}
+  skillHandle: {fileID: 3923744470971958728}
   view: {fileID: 6234352431916946155}
   audioHandle: {fileID: 6604994404387091370}
 --- !u!1 &5989429375699862009
@@ -1414,6 +1466,7 @@ GameObject:
   - component: {fileID: 3382645806987501034}
   - component: {fileID: 1706487571459985532}
   - component: {fileID: 6946498646291355558}
+  - component: {fileID: 3923744470971958728}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -1463,6 +1516,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObject: {fileID: 2077749959588913920, guid: 855e9e609e6868b4eb96df774e0d5947, type: 3}
+--- !u!114 &3923744470971958728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8156880993226957303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectHandle: {fileID: 4502017327992583218}
+  effectIndex: 2
 --- !u!1 &8366226564108712757
 GameObject:
   m_ObjectHideFlags: 0

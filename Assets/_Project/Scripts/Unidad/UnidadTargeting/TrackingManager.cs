@@ -46,7 +46,7 @@ public class TrackingManager : MonoBehaviour
 
             hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(transform));
         }
-        else hitObject.Init(unidad, null, unidad.HitObjectPosition.position);
+        else hitObject.Init(unidad, null, unidad.transform.position);
     }
 
     private void FlipX(Transform trans, bool right)
