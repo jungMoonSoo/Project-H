@@ -239,13 +239,13 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 6100753868231637843}
-          m_TargetAssemblyTypeName: EffectManager, Assembly-CSharp
-          m_MethodName: Spawn
-          m_Mode: 2
+        - m_Target: {fileID: 4502017327992583218}
+          m_TargetAssemblyTypeName: SpineEffectHandle, Assembly-CSharp
+          m_MethodName: SpawnEffect
+          m_Mode: 3
           m_Arguments:
-            m_ObjectArgument: {fileID: 6364800661045028223}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1058,6 +1058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8001484933686495358}
+  - component: {fileID: 4502017327992583218}
   m_Layer: 6
   m_Name: Effects
   m_TagString: Untagged
@@ -1083,6 +1084,22 @@ Transform:
   - {fileID: 4712656162631440779}
   m_Father: {fileID: 2646625728065960136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4502017327992583218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537153210820677251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785f5de548f3d2942b528eab1e6b70f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skeletonAnimation: {fileID: 6651845745106748431}
+  bones:
+  - boneName: arrow
+    effectManager: {fileID: 6100753868231637843}
 --- !u!1 &5805440082060491345
 GameObject:
   m_ObjectHideFlags: 0

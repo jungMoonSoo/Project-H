@@ -234,7 +234,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  useSpineEvent: 1
+  useSpineEvent: 0
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
@@ -286,6 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 8129655833158462561}
   animationName: skill
+  events: []
 --- !u!1 &3310141534252451116
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,6 +477,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 8129655833158462561}
   animationName: walk
+  events: []
   trackingManager: {fileID: 1706487571459985532}
 --- !u!1 &3599388351949535259
 GameObject:
@@ -793,6 +795,37 @@ Transform:
   - {fileID: 625609432171024588}
   - {fileID: 4154104672724743035}
   m_Father: {fileID: 5016539478356696857}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4693056895009737285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7123879852153191005}
+  m_Layer: 6
+  m_Name: Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7123879852153191005
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4693056895009737285}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2646625728065960136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4925312484086883303
 GameObject:
@@ -1171,6 +1204,7 @@ Transform:
   m_Children:
   - {fileID: 5031205723670645443}
   - {fileID: 3382645806987501034}
+  - {fileID: 7123879852153191005}
   m_Father: {fileID: 5016539478356696857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8156880993226957303
@@ -1218,6 +1252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectManager: {fileID: 0}
 --- !u!114 &6946498646291355558
 MonoBehaviour:
   m_ObjectHideFlags: 0
