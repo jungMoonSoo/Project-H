@@ -22,6 +22,8 @@ public class EffectManager : MonoBehaviour
         for (int i = effectObjects.Count - 1; i < count; i++) effectObjects.CreateDefault(transform);
     }
 
+    public void Spawn(Transform parent) => effectObjects.Dequeue(parent);
+
     public EffectSystem GetEffect(Transform parent) => effectObjects.Dequeue(parent);
 
     private void OnEnqueue(EffectSystem effect)
