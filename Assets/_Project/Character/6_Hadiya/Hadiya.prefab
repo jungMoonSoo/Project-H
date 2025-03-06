@@ -1012,7 +1012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5770f04502196f9438a4374b96a67b8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status: {fileID: 11400000, guid: 4da4569559fd930489ad598c45dba35f, type: 2}
+  status: {fileID: 11400000, guid: 808e53975e1314946b297c2628d678e7, type: 2}
   owner: 0
   idleState: {fileID: 5478406636706014046}
   moveState: {fileID: 3330013546351739462}
