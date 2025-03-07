@@ -46,6 +46,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 394629217938483237}
   animationName: at2
+  events: []
+  useSpineEvent: 0
 --- !u!1 &63261014196105247
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +94,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 394629217938483237}
   animationName: walk
+  events: []
   trackingManager: {fileID: 8952038365802904251}
 --- !u!1 &232671305383094776
 GameObject:
@@ -359,13 +362,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770851478104048931}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6145630389235008822}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_Father: {fileID: 5414482290265195701}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2231467003475659225
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -571,7 +574,6 @@ Transform:
   - {fileID: 5414482290265195701}
   - {fileID: 7946790399229908595}
   - {fileID: 6145630389235008822}
-  - {fileID: 7259141411825872933}
   - {fileID: 4450715006155680964}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -603,7 +605,7 @@ MonoBehaviour:
   boxCollider: {fileID: 6906340378737884186}
   damageUiPosition: {fileID: 2148299900033807527}
   statusUiPosition: {fileID: 299211262487084961}
-  hitObjectPosition: {fileID: 0}
+  skillHandle: {fileID: 3458300521352484401}
   view: {fileID: 5595231065775486412}
   audioHandle: {fileID: 7623632101259076590}
 --- !u!1 &3978585670354251226
@@ -683,7 +685,7 @@ Transform:
   m_Children:
   - {fileID: 2148299900033807527}
   - {fileID: 299211262487084961}
-  m_Father: {fileID: 895724413413281411}
+  m_Father: {fileID: 5414482290265195701}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5168247012214405430
 GameObject:
@@ -717,7 +719,6 @@ Transform:
   - {fileID: 5428080988892044751}
   - {fileID: 2550343561932198100}
   - {fileID: 2120720001456500679}
-  - {fileID: 4369544384340895778}
   m_Father: {fileID: 895724413413281411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5595231065775486412
@@ -729,6 +730,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5414482290265195701}
+  - component: {fileID: 8442669504246278097}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -750,8 +752,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6829609566403078499}
+  - {fileID: 4369544384340895778}
+  - {fileID: 7259141411825872933}
   m_Father: {fileID: 895724413413281411}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8442669504246278097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5595231065775486412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6388310146735592024
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,6 +779,7 @@ GameObject:
   - component: {fileID: 5544917998525746202}
   - component: {fileID: 8952038365802904251}
   - component: {fileID: 7772364958231320753}
+  - component: {fileID: 3458300521352484401}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -797,6 +814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectHandle: {fileID: 0}
+  effectIndex: 0
 --- !u!114 &7772364958231320753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -810,6 +829,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObject: {fileID: 690249846789167234, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+--- !u!114 &3458300521352484401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6388310146735592024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectHandle: {fileID: 0}
+  effectIndex: 0
 --- !u!1 &7012972880007876563
 GameObject:
   m_ObjectHideFlags: 0
@@ -934,6 +967,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 394629217938483237}
   animationName: at1
   events: []
+  useSpineEvent: 0
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5

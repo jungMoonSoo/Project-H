@@ -51,7 +51,7 @@ public class UnidadSpawnManager : MonoBehaviour
             UnidadStatusBar statusBar = Instantiate(unidadHpBar, hpBarParent);
 
             unit.SetStatusBar(statusBar);
-            statusBar.Init(unit, unit.StatusUiPosition);
+            statusBar.Init(unit.StatusUiPosition);
 
             return unit;
         }

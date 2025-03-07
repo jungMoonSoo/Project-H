@@ -33,7 +33,6 @@ Transform:
   - {fileID: 1225343869885444444}
   - {fileID: 7908489775586935258}
   - {fileID: 6765203827925869446}
-  - {fileID: 506173306955294695}
   - {fileID: 1623798992841486704}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -65,7 +64,6 @@ MonoBehaviour:
   boxCollider: {fileID: 5611226495777423036}
   damageUiPosition: {fileID: 932216763197087120}
   statusUiPosition: {fileID: 4984339051083944605}
-  hitObjectPosition: {fileID: 0}
   skillHandle: {fileID: 1379185354846586821}
   view: {fileID: 4177288233451244337}
   audioHandle: {fileID: 3602437712221219532}
@@ -426,13 +424,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2542579093503189066}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6765203827925869446}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_Father: {fileID: 1225343869885444444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5611226495777423036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,7 +660,7 @@ Transform:
   m_Children:
   - {fileID: 932216763197087120}
   - {fileID: 4984339051083944605}
-  m_Father: {fileID: 408193235041528853}
+  m_Father: {fileID: 1225343869885444444}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3998117480297206303
 GameObject:
@@ -812,7 +810,7 @@ MonoBehaviour:
   skeletonDataAsset: {fileID: 11400000, guid: 57a1372ea5ef3df42b25e76727b5d991, type: 2}
   initialSkinName: 
   fixPrefabOverrideViaMeshFilter: 2
-  initialFlipX: 0
+  initialFlipX: 1
   initialFlipY: 0
   updateWhenInvisible: 3
   separatorSlotNames: []
@@ -849,6 +847,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1225343869885444444}
+  - component: {fileID: 7619544325762881186}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -870,8 +869,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2698204616226187667}
+  - {fileID: 1999099115688728678}
+  - {fileID: 506173306955294695}
   m_Father: {fileID: 408193235041528853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7619544325762881186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4177288233451244337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4824402776716207308
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +963,6 @@ Transform:
   - {fileID: 8399816568964110317}
   - {fileID: 4773572345799753613}
   - {fileID: 159183818838833284}
-  - {fileID: 1999099115688728678}
   m_Father: {fileID: 408193235041528853}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5307138647544249373

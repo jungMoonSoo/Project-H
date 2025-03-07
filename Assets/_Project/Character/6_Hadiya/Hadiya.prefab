@@ -123,7 +123,7 @@ Transform:
   m_Children:
   - {fileID: 1945676781002861287}
   - {fileID: 3984195991756771338}
-  m_Father: {fileID: 5016539478356696857}
+  m_Father: {fileID: 631427363531939612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1428637960288460385
 GameObject:
@@ -506,13 +506,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3599388351949535259}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1692906242187001485}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_Father: {fileID: 631427363531939612}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1342218772480784745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -625,7 +625,6 @@ Transform:
   - {fileID: 4115152502929950813}
   - {fileID: 70249076880513719}
   - {fileID: 4387403226647942060}
-  - {fileID: 8545936320092667090}
   m_Father: {fileID: 5016539478356696857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4688430083141757368
@@ -999,7 +998,6 @@ Transform:
   - {fileID: 631427363531939612}
   - {fileID: 3063804284255676604}
   - {fileID: 1692906242187001485}
-  - {fileID: 4015958737561947288}
   - {fileID: 2646625728065960136}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1031,7 +1029,6 @@ MonoBehaviour:
   boxCollider: {fileID: 3192946597709317300}
   damageUiPosition: {fileID: 1945676781002861287}
   statusUiPosition: {fileID: 3984195991756771338}
-  hitObjectPosition: {fileID: 0}
   skillHandle: {fileID: 4271511513010201706}
   view: {fileID: 6234352431916946155}
   audioHandle: {fileID: 6604994404387091370}
@@ -1044,6 +1041,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 631427363531939612}
+  - component: {fileID: 8775590385475471738}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -1065,8 +1063,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1128746814768339107}
+  - {fileID: 8545936320092667090}
+  - {fileID: 4015958737561947288}
   m_Father: {fileID: 5016539478356696857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8775590385475471738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6234352431916946155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6864574925046251924
 GameObject:
   m_ObjectHideFlags: 0

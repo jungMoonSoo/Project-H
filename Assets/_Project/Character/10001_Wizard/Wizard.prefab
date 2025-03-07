@@ -297,6 +297,7 @@ GameObject:
   - component: {fileID: 2178206962377291495}
   - component: {fileID: 3623906243289643518}
   - component: {fileID: 6587440754603079762}
+  - component: {fileID: 5352160218399858840}
   m_Layer: 6
   m_Name: Event
   m_TagString: Untagged
@@ -331,6 +332,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64c810c512223488568e0e967abe8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  effectHandle: {fileID: 0}
+  effectIndex: 0
 --- !u!114 &6587440754603079762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +347,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObject: {fileID: 690249846789167234, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+--- !u!114 &5352160218399858840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2383411821755416375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectHandle: {fileID: 0}
+  effectIndex: 0
 --- !u!1 &2700773208615494481
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,7 +531,6 @@ Transform:
   - {fileID: 5259665171680752265}
   - {fileID: 8729876466290421993}
   - {fileID: 3466774092319790259}
-  - {fileID: 3611135328524703851}
   m_Father: {fileID: 5359489139056643601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3841339033730155720
@@ -576,13 +592,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3926754587599869614}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6881980001068715264}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_Father: {fileID: 6597715027046978405}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3187347270402461777
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -709,6 +725,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 8646774152702649249}
   animationName: warking
+  events: []
   trackingManager: {fileID: 3623906243289643518}
 --- !u!1 &5351865268343234963
 GameObject:
@@ -743,7 +760,6 @@ Transform:
   - {fileID: 6597715027046978405}
   - {fileID: 8802975724551801356}
   - {fileID: 6881980001068715264}
-  - {fileID: 8911991816552697281}
   - {fileID: 537042276948726542}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -775,7 +791,7 @@ MonoBehaviour:
   boxCollider: {fileID: 7620397301410438379}
   damageUiPosition: {fileID: 952858709166677585}
   statusUiPosition: {fileID: 2266256906273583055}
-  hitObjectPosition: {fileID: 0}
+  skillHandle: {fileID: 5352160218399858840}
   view: {fileID: 6047548688867321117}
   audioHandle: {fileID: 7302166329040648536}
 --- !u!1 &5414788270252214515
@@ -809,7 +825,7 @@ Transform:
   m_Children:
   - {fileID: 952858709166677585}
   - {fileID: 2266256906273583055}
-  m_Father: {fileID: 5359489139056643601}
+  m_Father: {fileID: 6597715027046978405}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5883983868902393867
 GameObject:
@@ -964,6 +980,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6597715027046978405}
+  - component: {fileID: 2014081338772731882}
   m_Layer: 6
   m_Name: View
   m_TagString: Untagged
@@ -985,8 +1002,22 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8923091216644773854}
+  - {fileID: 3611135328524703851}
+  - {fileID: 8911991816552697281}
   m_Father: {fileID: 5359489139056643601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2014081338772731882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6047548688867321117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6057472001168239194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1064,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 8646774152702649249}
   animationName: skill
+  events: []
+  useSpineEvent: 0
 --- !u!1 &6359133139880821068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1165,6 +1198,7 @@ MonoBehaviour:
   skeletonAnimation: {fileID: 8646774152702649249}
   animationName: atack
   events: []
+  useSpineEvent: 0
   audioClipNumber: -1
   attackPoint: 0.5
   attackSoundPoint: 0.5
