@@ -56,9 +56,9 @@ public class Unidad : MonoBehaviour
 
     public BindData<int> Hp => statusManager.hp;
 
-    public NormalStatus NowNormalStatus => statusManager.NormalStatus;
-    public AttackStatus NowAttackStatus => statusManager.AttackStatus;
-    public DefenceStatus NowDefenceStatus => statusManager.DefenceStatus;
+    public NormalStatus NowNormalStatus => ModifierManager.NowNormalStatus;
+    public AttackStatus NowAttackStatus => ModifierManager.NowAttackStatus;
+    public DefenceStatus NowDefenceStatus => ModifierManager.NowDefenceStatus;
 
     public ModifierManager ModifierManager => statusManager.modifierManager;
 

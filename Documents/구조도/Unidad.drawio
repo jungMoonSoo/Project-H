@@ -1,90 +1,101 @@
-<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
-  <diagram name="페이지-1" id="bqC54BUZXKGNaRBznjDi">
-    <mxGraphModel dx="1098" dy="740" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.1.0">
+  <diagram name="페이지-1" id="L1aYaSCd-GyulzkjM_zr">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-1" value="Unidad" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="40" y="40" width="560" height="660" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-1" value="Unidad" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="890" height="890" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-2" value="IUnidadState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-1">
-          <mxGeometry x="60" y="40" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-1" source="ZC2QyLM272x37QZf_0l0-4" target="ZC2QyLM272x37QZf_0l0-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-3" value="RunPhase States" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-1">
-          <mxGeometry x="20" y="100" width="520" height="380" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-4" value="SpineSkillHandle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="30" y="50" width="180" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-5" value="StayUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="40" y="20" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-5" value="스킬 사용 시&amp;nbsp;HitObject에 Target 위치 및 생성 위치를&lt;div&gt;할당하기 위해 사용&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="320" y="40" width="490" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-6" value="IdleUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-1" source="ZC2QyLM272x37QZf_0l0-7" target="ZC2QyLM272x37QZf_0l0-8">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-12" value="AttackUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="40" y="200" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-7" value="StatusManager" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="30" y="120" width="180" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-3" source="uF1tXid41fVSmVaFJd1Q-13" target="uF1tXid41fVSmVaFJd1Q-6">
+        <mxCell id="ZC2QyLM272x37QZf_0l0-8" value="Unit의 HP,&amp;nbsp;ModifierManager 관리" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="320" y="120" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-11" value="Unit의&amp;nbsp;NormalStatus,&amp;nbsp;AttackStatus,&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;DefenceStatus 관리&lt;/span&gt;&lt;div&gt;&lt;div&gt;Level 별 Status 처리 및&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Buff, Debuff 관리&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="185" y="700" width="520" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-12" value="ModifierManager" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="30" y="190" width="830" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-12" source="ZC2QyLM272x37QZf_0l0-13" target="ZC2QyLM272x37QZf_0l0-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-13" value="SetUnitDefaltStatus" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="20" y="40" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-14" value="Level 설정 및 변경" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="290" y="45" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-12" source="ZC2QyLM272x37QZf_0l0-17" target="ZC2QyLM272x37QZf_0l0-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-17" value="Add, Remove" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="20" y="110" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-18" value="Buff, Debuff 추가 및 제거" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="290" y="115" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-12" source="ZC2QyLM272x37QZf_0l0-20" target="ZC2QyLM272x37QZf_0l0-21">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="30" y="280" />
-              <mxPoint x="30" y="100" />
+              <mxPoint x="280" y="205" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-13" value="SkillUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="40" y="260" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-20" value="CheckCycle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="20" y="180" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-14" value="DieUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="40" y="320" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-21" value="Modifier를 제거하는 시점을 확인 해 제거" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="290" y="185" width="380" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-20" value="준 Idle 상태, 아무것도 하지 않는 상태이며,&lt;div&gt;&lt;b&gt;상태 전환은 외부에서 진행해야만 함.&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="180" y="20" width="320" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-22" value="ModifierBase" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-12">
+          <mxGeometry x="20" y="260" width="790" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-21" value="적이 있으면 MoveState로 전환하는 기본 상태." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="180" y="80" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-22" value="적을 향해 이동하며,&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;b&gt;사거리 내 적이 존재하면 AttackState로 전환&lt;/b&gt;, 적이 존재하지 않으면 IdleState로 전환&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="180" y="140" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-23" value="사거리 내에 존재하는 적을 공격하는 상태,&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Spine2D 애니메이션 Event를 기준으로 데미지를 입힘, &lt;b&gt;사거리 내 적이 없으면 Move State로 전환&lt;/b&gt;&lt;/span&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="180" y="200" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-24" value="ActionSkill을 사용하면 강제로 전환되는 상태,&lt;div&gt;&lt;b&gt;종료 후 IdleState로 전환&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="180" y="260" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-25" value="체력이 0이하가 되면 강제적으로 전환되는 상태,&lt;div&gt;GameObject Destroy까지 진행.&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
-          <mxGeometry x="180" y="320" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-1" source="uF1tXid41fVSmVaFJd1Q-7" target="uF1tXid41fVSmVaFJd1Q-6">
+        <mxCell id="ZC2QyLM272x37QZf_0l0-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-22" source="ZC2QyLM272x37QZf_0l0-24" target="ZC2QyLM272x37QZf_0l0-25">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-7" value="MoveUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-1">
-          <mxGeometry x="60" y="240" width="120" height="40" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-24" value="IntervalTime" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-22">
+          <mxGeometry x="20" y="40" width="160" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-4" value="ReadyPhase States" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-1">
-          <mxGeometry x="20" y="500" width="520" height="140" as="geometry" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-25" value="Cycle 함수를 발생 시킬 시간&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;(Time.time 기반)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-22">
+          <mxGeometry x="270" y="45" width="430" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-15" value="ReadyUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-4">
-          <mxGeometry x="40" y="20" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-16" value="PickUniState" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-4">
-          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-26" value="현재 캐릭터를 Drag&amp;amp;Drop으로 스왑하거나, &lt;b&gt;이동시킬 수 있는 상태.&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-4">
-          <mxGeometry x="180" y="20" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-27" value="캐릭터를 Drag중일 때의 상태." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-4">
-          <mxGeometry x="180" y="80" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-19" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-1">
-          <mxGeometry x="200" y="40" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=classic;endFill=1;startArrow=classic;startFill=1;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-1" source="uF1tXid41fVSmVaFJd1Q-6" target="uF1tXid41fVSmVaFJd1Q-7">
+        <mxCell id="ZC2QyLM272x37QZf_0l0-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-22" source="ZC2QyLM272x37QZf_0l0-28" target="ZC2QyLM272x37QZf_0l0-29">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="uF1tXid41fVSmVaFJd1Q-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-1" source="uF1tXid41fVSmVaFJd1Q-12" target="uF1tXid41fVSmVaFJd1Q-7">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="130" y="250" as="sourcePoint" />
-            <mxPoint x="130" y="230" as="targetPoint" />
+        <mxCell id="ZC2QyLM272x37QZf_0l0-28" value="Cycle" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-22">
+          <mxGeometry x="20" y="110" width="160" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-29" value="cycleCount를 감소시키는 정도 반환&lt;div&gt;IntervalTime 당 n씩 감소 와 같은 기능 또는&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;IntervalTime&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;당 n의 피해를 입히는 용도&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-22">
+          <mxGeometry x="270" y="90" width="400" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="ZC2QyLM272x37QZf_0l0-1" source="ZC2QyLM272x37QZf_0l0-31" target="ZC2QyLM272x37QZf_0l0-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-31" value="OnDamage" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="30" y="820" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-32" value="Damage 처리 및 effect를 전달 받아&amp;nbsp;&lt;div&gt;VectorCalc.GetRandomPositionInBoxCollider 함수를 사용해&lt;/div&gt;&lt;div&gt;Unit의 콜라이더 범위 내부의 랜덤한 영역에 effect를 표시&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="ZC2QyLM272x37QZf_0l0-1">
+          <mxGeometry x="320" y="795" width="550" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="ZC2QyLM272x37QZf_0l0-33" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="40" y="830" as="sourcePoint" />
+            <mxPoint x="930" y="830" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>

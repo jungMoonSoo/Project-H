@@ -8,17 +8,13 @@ public class StatusManager
 
     public ModifierManager modifierManager;
 
-    public NormalStatus NormalStatus => modifierManager.NowNormalStatus;
-    public AttackStatus AttackStatus => modifierManager.NowAttackStatus;
-    public DefenceStatus DefenceStatus => modifierManager.NowDefenceStatus;
-
     public StatusManager(Unidad unidad)
     {
         this.unidad = unidad;
 
         modifierManager = new(unidad);
 
-        hp.Value = NormalStatus.maxHp;
+        hp.Value = modifierManager.NowNormalStatus.maxHp;
         hp.SetCallback(BindHp, SetCallbackType.Set);
     }
     
@@ -33,7 +29,7 @@ public class StatusManager
             currentValue = 0;
             unidad.ChangeState(UnitState.Die);
         }
-        else if (newValue > NormalStatus.maxHp) currentValue = NormalStatus.maxHp;
+        else if (newValue > modifierManager.NowNormalStatus.maxHp) currentValue = modifierManager.NowNormalStatus.maxHp;
         else currentValue = newValue;
     }
 }

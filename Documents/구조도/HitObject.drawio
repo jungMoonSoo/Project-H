@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36" version="26.1.0">
+  <diagram name="페이지-1" id="2mG5g3mn1gVikXHXEm1A">
+    <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="8npNKYCjtlDMxCNLChg7-4" value="HitObject" style="swimlane;whiteSpace=wrap;html=1;startSize=23;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="890" height="920" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-24" value="Interface" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="50" width="180" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-5" value="IHitObjectCheckEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-24">
+          <mxGeometry x="20" y="40" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-8" value="IHitObjectFinishEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-24">
+          <mxGeometry x="20" y="190" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-6" value="IHitObjectCreateEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-24">
+          <mxGeometry x="20" y="90" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-7" value="IHitObjectTriggerEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-24">
+          <mxGeometry x="20" y="140" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-25" value="Action" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="50" width="180" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-17" value="finishEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-25">
+          <mxGeometry x="20" y="190" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-16" value="triggerEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-25">
+          <mxGeometry x="20" y="140" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-15" value="createEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-25">
+          <mxGeometry x="20" y="90" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-9" value="checkEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-25">
+          <mxGeometry x="20" y="40" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-23" value="GetComponents" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-8" target="8npNKYCjtlDMxCNLChg7-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-22" value="GetComponents" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-7" target="8npNKYCjtlDMxCNLChg7-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-21" value="GetComponents" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-6" target="8npNKYCjtlDMxCNLChg7-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-10" value="GetComponents" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-5" target="8npNKYCjtlDMxCNLChg7-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-26" value="오브젝트에 부착된 인터페이스를&lt;div&gt;GetComponents로&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;전부&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Action에 등록 후 사용&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="520" y="120" width="310" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-27" target="8npNKYCjtlDMxCNLChg7-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-27" value="SetPool" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="330" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-29" value="오브젝트를 풀링 하려는 경우, 풀링 클래스를 등록하는 함수&lt;div&gt;설정하지 않는 경우 오브젝트&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;파괴&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="320" width="550" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-33" target="8npNKYCjtlDMxCNLChg7-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-33" value="GetAreaSize" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="400" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-34" value="스킬 사용 시 영역의 크기를 반환하는 함수" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="400" width="400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-36" target="8npNKYCjtlDMxCNLChg7-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-36" value="Init" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="32" y="470" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-37" value="오브젝트를 생성하는 Caster와 발생하는 Effect,&lt;div&gt;오브젝트 생성 위치를&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;결정하는 함수 함수의 마지막에&lt;/span&gt;&lt;/div&gt;&lt;div&gt;Interface의 Init과 createEvent 실행&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="445" width="500" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-39" target="8npNKYCjtlDMxCNLChg7-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-39" value="Update" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="32" y="540" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-40" value="finishEvent가 호출되지 않은 경우 checkEvent를 지속 호출" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="540" width="540" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-42" target="8npNKYCjtlDMxCNLChg7-43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-42" value="OnFinish" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="610" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-43" value="finishEvent를 호출하며 없는 경우 Remove 함수 호출" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="610" width="490" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-45" target="8npNKYCjtlDMxCNLChg7-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-45" value="Targets" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="680" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-46" value="등록된&amp;nbsp;ICustomCollider를 사용하여 충돌한 Target을&lt;div&gt;ITargetingFilter를 사용해 특정 조건에 부합한 Target을 반환&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="670" width="540" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-49" target="8npNKYCjtlDMxCNLChg7-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-49" value="AnimationEventController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="780" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-50" value="Animation의 실행과 중지를 관리,&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;특정 조건에서&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;실행하게 하기 위함&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="770" width="450" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="8npNKYCjtlDMxCNLChg7-4" source="8npNKYCjtlDMxCNLChg7-54" target="8npNKYCjtlDMxCNLChg7-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-54" value="AnimatorEventHandler" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="30" y="850" width="180" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-55" value="List&amp;lt;UnityEvent&amp;gt;를 이용하여 Animation Clip에&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;OnEvent&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;함수를&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;호출하여 사용, Animation의 특정 지점에&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Event를 호출하기 위함&lt;/span&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="8npNKYCjtlDMxCNLChg7-4">
+          <mxGeometry x="320" y="825" width="530" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="8npNKYCjtlDMxCNLChg7-51" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="40" y="790" as="sourcePoint" />
+            <mxPoint x="930" y="790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
