@@ -25,7 +25,7 @@ public class TrackingManager : MonoBehaviour
         {
             Unidad target = targets[0];
 
-            FlipX(unidad.view.transform, target.transform.position.x - unidad.transform.position.x > 0);
+            FlipX(unidad.transform, target.transform.position.x - unidad.transform.position.x > 0);
 
             if (unidad.attackCollider.OnEnter(target.unitCollider)) return UnitState.Attack;
             else return UnitState.Move;

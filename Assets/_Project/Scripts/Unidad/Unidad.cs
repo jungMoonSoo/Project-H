@@ -35,7 +35,6 @@ public class Unidad : MonoBehaviour
     [Header("Other")]
     [SerializeField] private SpineSkillHandle skillHandle;
 
-    public GameObject view;
     public UnidadAudioHandle audioHandle;
     private UnidadStatusBar statusBar;
 
