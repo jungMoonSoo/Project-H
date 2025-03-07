@@ -31,7 +31,6 @@ public class Unidad : MonoBehaviour
     // Damage UI를 띄울 위치
     [SerializeField] private Transform damageUiPosition; // 
     [SerializeField] private Transform statusUiPosition; // 
-    [SerializeField] private Transform hitObjectPosition; // 
 
     [Header("Other")]
     [SerializeField] private SpineSkillHandle skillHandle;
@@ -65,7 +64,6 @@ public class Unidad : MonoBehaviour
 
     public Transform DamageUiPosition => damageUiPosition == null ? transform : damageUiPosition;
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
-    public Transform HitObjectPosition => hitObjectPosition == null ? transform : hitObjectPosition;
 
     public SpineSkillHandle SkillHandle => skillHandle;
 
@@ -92,7 +90,7 @@ public class Unidad : MonoBehaviour
     private void Update()
     {
         nowState?.OnUpdate();
-        CheckModifierCycle();
+        ModifierManager.CheckCycle();
     }
 
     private void OnDestroy()
@@ -179,15 +177,13 @@ public class Unidad : MonoBehaviour
         statusManager?.OnHeal(heal);
     }
 
+    #region ◇ Modifier ◇
     public void SetLevel(int level) => ModifierManager.SetUnitDefaltStatus(level);
 
-    #region ◇ Modifier ◇
     public void AddModifier(ModifierBase modifier) => ModifierManager.Add(modifier);
 
     public void RemoveModifier(ModifierBase modifier) => ModifierManager.Remove(modifier);
 
     public void ClearModifier() => ModifierManager.Clear();
-
-    public void CheckModifierCycle() => ModifierManager.CheckCycle();
     #endregion
 }
