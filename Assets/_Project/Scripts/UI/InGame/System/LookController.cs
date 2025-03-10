@@ -17,4 +17,6 @@ public class LookController : Singleton<LookController>
 
         Rotation = eulerAngles;
     }
+
+    public void SetLook(Transform trans, Vector3 angles) => trans.eulerAngles = angles + transform.eulerAngles;
 }
