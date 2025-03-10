@@ -5,6 +5,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     [SerializeField] private float speed = 10;
     [SerializeField] private float splitCount = 0;
 
+    [SerializeField] private bool rotate = true;
     [SerializeField] private bool straight = true;
 
     private Vector3 targetPos;
@@ -15,11 +16,11 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private int applyCount;
 
-    public void Init(HitObject @base)
+    public void Init(HitObject hitObject)
     {
         applyCount = 0;
 
-        targetPos = @base.TargetPos;
+        targetPos = hitObject.TargetPos;
 
         if (straight) targetPos.y = transform.position.y;
 
@@ -27,13 +28,13 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         splitDist = endDist / splitCount;
     }
 
-    public void Check(HitObject @base)
+    public void Check(HitObject hitObject)
     {
         if (transform.position == targetPos)
         {
-            if (splitCount == 0) @base.OnTrigger();
+            if (splitCount == 0) hitObject.OnTrigger();
 
-            @base.OnFinish();
+            hitObject.OnFinish();
         }
         else
         {
@@ -41,7 +42,7 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
             if (nowDist < endDist - splitDist * applyCount)
             {
-                @base.OnTrigger();
+                hitObject.OnTrigger();
                 applyCount++;
             }
         }
@@ -49,6 +50,14 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private void Move()
     {
+        if (rotate)
+        {
+            Vector3 direction = targetPos - transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            transform.rotation = Quaternion.Euler(0, 0, angle < -90 ? angle + 180 : angle);
+        }
+
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
 
         nowDist = Vector3.Distance(transform.position, targetPos);
