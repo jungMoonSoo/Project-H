@@ -58,10 +58,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
         spawnButtons.Clear();
     }
 
-    public void BackWindowButton() //뒤로 가기 버튼
-    {
-        Debug.Log("[Ui Manager]뒤로가기 버튼을 눌렸습니다. ");
-    }
+    public void BackWindowButton() => LoadingSceneController.LoadScene("Lobby");
 
     public void StageTextUpdate(int front, int back) //Stage 정보 업데이트 함수 
     {

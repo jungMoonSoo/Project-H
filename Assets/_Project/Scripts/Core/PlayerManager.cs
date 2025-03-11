@@ -3,16 +3,42 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {
+    public string playerName = "Default";
+    public int level = 1;
+    public int exp = 0;
+    public int gold = 100;
+    public int diamonds = 100;
+    public int energy = 100;
+
     public HashSet<uint> units = new();
 
-    public void Awake()
+    public void Start() => LoadData();
+
+    private void OnApplicationQuit() => SaveData();
+
+    public void SaveData()
     {
-        units.Add(0);
-        units.Add(1);
-        units.Add(2);
-        units.Add(3);
-        units.Add(4);
-        units.Add(5);
-        units.Add(6);
+        PlayerPrefs.SetString("PlayerName", playerName);
+        PlayerPrefs.SetInt("Level", level);
+        PlayerPrefs.SetInt("Exp", exp);
+        PlayerPrefs.SetInt("Gold", gold);
+        PlayerPrefs.SetInt("Diamonds", diamonds);
+        PlayerPrefs.SetInt("Energy", energy);
+
+        PlayerPrefs.SetString("Inventory", JsonUtility.ToJson(new Wrapper<uint>(units), true));
+
+        PlayerPrefs.Save();
+    }
+
+    public void LoadData()
+    {
+        playerName = PlayerPrefs.GetString("PlayerName", "Default");
+        level = PlayerPrefs.GetInt("Level", 1);
+        exp = PlayerPrefs.GetInt("Exp", 0);
+        gold = PlayerPrefs.GetInt("Gold", 100);
+        diamonds = PlayerPrefs.GetInt("Diamonds", 1000);
+        energy = PlayerPrefs.GetInt("Energy", 100);
+
+        if (PlayerPrefs.HasKey("Inventory")) units = JsonUtility.FromJson<Wrapper<uint>>(PlayerPrefs.GetString("Inventory"));
     }
 }

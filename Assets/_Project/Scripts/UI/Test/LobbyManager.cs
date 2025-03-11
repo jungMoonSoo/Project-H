@@ -28,6 +28,12 @@ public class LobbyManager : MonoBehaviour
     {
         LoadingSceneController.LoadScene("InGame");
     }
+
+    public void GoGacha()
+    {
+        LoadingSceneController.LoadScene("Gacha");
+    }
+
 #if UNITY_EDITOR
     public void ResetItem() //데이터 리셋
     {
