@@ -11,8 +11,9 @@ public class MusicManager : Singleton<MusicManager>
     
     [Header("Music Settings")]
     [SerializeField] private MusicInfo[] audMusic;
-
-
+    [SerializeField] private MusicName selectedMusic = MusicName.None;
+    
+    
     private MusicName currentMusic = MusicName.None;
     private float loopWaitTime = 0;
     private Dictionary<MusicName, MusicInfo> musics = new Dictionary<MusicName, MusicInfo>();
@@ -25,10 +26,15 @@ public class MusicManager : Singleton<MusicManager>
             musics.Add(music.musicName, music);
         }
         
-        PlayMusic(MusicName.KingdomOfHailish);
+        PlayMusic(selectedMusic);
     }
 
-    public void PlayMusic(MusicName musicName)
+    void OnValidate()
+    {
+        PlayMusic(selectedMusic);
+    }
+
+    public async Awaitable PlayMusic(MusicName musicName)
     {
         if (musicName == currentMusic) return;
         
@@ -38,11 +44,12 @@ public class MusicManager : Singleton<MusicManager>
         audLoop.Stop();
         if (musics.TryGetValue(musicName, out MusicInfo music))
         {
-            audLoop.resource = music.loopClip;
+            audLoop.clip = music.loopClip;
+            currentMusic = musicName;
             
             if (music.introClip is not null)
             {
-                audIntro.resource = music.introClip;
+                audIntro.clip = music.introClip;
                 audIntro.Play();
                 
                 loopWaitTime = music.loopStartTime;
