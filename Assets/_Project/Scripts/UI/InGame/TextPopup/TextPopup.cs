@@ -1,23 +1,19 @@
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(TextPopupHandle))]
 public class TextPopup : MonoBehaviour
 {
-    private TextPopupHandle handle;
+    [SerializeField] private TMP_Text text;
+
     private ObjectPool<TextPopup> popupObjects;
 
     public void Init(ObjectPool<TextPopup> popupObjects)
     {
         this.popupObjects = popupObjects;
 
-        TryGetComponent(out handle);
-
-        handle.Init();
+        if (text == null) TryGetComponent(out text);
     }
-
-    public bool IsInitialized() => handle != null;
 
     public void Show() => StartCoroutine(TextAnim());
 
@@ -25,20 +21,28 @@ public class TextPopup : MonoBehaviour
 
     public void SetActive(bool value) => gameObject.SetActive(value);
 
-    public void SetText(string text) => handle.SetText(text);
+    public void SetText(string text) => this.text.text = text;
 
-    public void SetColor(Color32 color) => handle.SetColor(color);
+    public void SetColor(Color32 color) => text.color = color;
 
-    public void SetPosition(Vector3 position) => handle.SetPosition(position);
+    public void SetAlpha(float alpha) => text.alpha = alpha;
+
+    public void SetAlpha(int alpha) => text.alpha = alpha / 255f;
+
+    public void SetPosition(Vector3 position) => transform.position = position;
+
+    public float GetAlpha() => text.alpha;
+
+    public Vector3 GetPosition() => transform.position;
 
     private IEnumerator TextAnim()
     {
-        handle.SetAlpha(3f);
+        SetAlpha(3f);
 
-        while (handle.GetAlpha() > 0f)
+        while (GetAlpha() > 0f)
         {
-            handle.SetAlpha(handle.GetAlpha() - Time.deltaTime * 3);
-            handle.SetPosition(handle.GetPosition() + 100 * Time.deltaTime * Vector3.up);
+            SetAlpha(GetAlpha() - Time.deltaTime * 3);
+            SetPosition(GetPosition() + 100 * Time.deltaTime * Vector3.up);
 
             yield return null;
         }

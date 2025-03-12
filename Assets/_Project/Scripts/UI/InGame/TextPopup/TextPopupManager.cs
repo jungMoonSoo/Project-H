@@ -49,8 +49,7 @@ public class TextPopupManager : Singleton<TextPopupManager>
 
     private void OnDequeue(TextPopup textPopup)
     {
-        if (!textPopup.IsInitialized()) textPopup.Init(popupObjects);
-
+        textPopup.Init(popupObjects);
         textPopup.SetActive(true);
     }
 }
