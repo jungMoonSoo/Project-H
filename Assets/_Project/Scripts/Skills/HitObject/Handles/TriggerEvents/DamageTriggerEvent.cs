@@ -7,19 +7,25 @@ public class DamageTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
     [SerializeField] private int maxHitTarget = 1;
     [SerializeField] private int maxHitsOnTarget = 1;
 
+    private AttackStatus attackStatus;
+    private DefenceStatus defenceStatus;
+
     private int nowHitTarget;
 
     private readonly Dictionary<Unidad, int> hitsOnTargets = new();
 
-    public void Init(HitObject handler)
+    public void Init(Unidad caster)
     {
         nowHitTarget = 0;
         hitsOnTargets.Clear();
+
+        attackStatus = caster.NowAttackStatus;
+        defenceStatus = caster.NowDefenceStatus;
     }
 
     public void OnTrigger(HitObject handler)
     {
-        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(handler.Caster.NowAttackStatus, handler.Caster.NowDefenceStatus, skillCoefficient, 0, ElementType.None);
+        CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(attackStatus, defenceStatus, skillCoefficient, 0, ElementType.None);
 
         Unidad[] targets = handler.Targets;
 

@@ -14,14 +14,15 @@ public class SpineSkillHandle : MonoBehaviour
     {
         HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab, transform);
 
-        hitObject.SetTargetPos(targetPos);
+        hitObject.SetTarget(targetPos);
 
         if (effectHandle != null)
         {
             SpineBoneData bone = effectHandle.GetBoneInfo(effectIndex);
 
-            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(unidad.View));
+            hitObject.SetEffect(bone.effectManager);
+            hitObject.Init(unidad, bone.bone.GetWorldPosition(unidad.View));
         }
-        else hitObject.Init(unidad, null, unidad.transform.position);
+        else hitObject.Init(unidad, unidad.transform.position);
     }
 }

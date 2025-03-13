@@ -19,11 +19,11 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private bool lookAtRight;
 
-    public void Init(HitObject hitObject)
+    public void Init(Unidad caster)
     {
         applyCount = 0;
 
-        lookAtRight = hitObject.Caster.transform.localScale.x > 0;
+        lookAtRight = caster.transform.localScale.x > 0;
     }
 
     public void Check(HitObject hitObject)

@@ -9,11 +9,10 @@ public class HitObject : MonoBehaviour
     [SerializeField] private FilterType filterType;
 
     [SerializeField] private GameObject customColliderObject;
-    [SerializeField] private AnimationEventController animController;
 
     private bool isFinished;
 
-    private Action<HitObject> inits;
+    private Action<Unidad> inits;
 
     private Action<HitObject> checkEvent;
     private Action<HitObject> createEvent;
@@ -22,35 +21,26 @@ public class HitObject : MonoBehaviour
 
     private ICustomCollider customCollider;
 
+    private UnitType owner;
+
+    private Transform target;
     private Vector3 targetPos;
 
-    public Unidad Caster { get; set; }
-    public Unidad Target { get; set; }
-
-    public Vector3 CreatePos { get; private set; }
-    public Vector3 TargetPos => Target == null ? targetPos : Target.View.transform.position;
-
-    public AnimationEventController AnimController => animController;
+    public Vector3 TargetPos => target == null ? targetPos : target.transform.position;
 
     private EffectManager effectManager;
     private ObjectPool<HitObject> hitObjects;
 
     private readonly List<Unidad> targets = new();
-
     public Unidad[] Targets
     {
         get
         {
+            if (TargetType == TargetType.Me) return targets.ToArray();
+
             targets.Clear();
 
-            if (TargetType == TargetType.Me)
-            {
-                targets.Add(Caster);
-
-                return targets.ToArray();
-            }
-
-            foreach (Unidad unidad in UnidadManager.Instance.GetUnidads(Caster.Owner, TargetType))
+            foreach (Unidad unidad in UnidadManager.Instance.GetUnidads(owner, TargetType))
             {
                 if (customCollider.OnEnter(unidad.unitCollider)) targets.Add(unidad);
             }
@@ -64,50 +54,37 @@ public class HitObject : MonoBehaviour
 
     public void SetPool(ObjectPool<HitObject> hitObjects) => this.hitObjects = hitObjects;
 
-    public virtual void Init(Unidad caster, EffectManager effectManager, Vector3 createPos)
+    public void SetEffect(EffectManager effectManager) => this.effectManager = effectManager;
+
+    public void Init(Unidad caster, Vector3 createPos)
     {
         isFinished = false;
 
-        Caster = caster;
-        this.effectManager = effectManager;
+        owner = caster.Owner;
 
-        CreatePos = createPos;
         transform.position = createPos;
 
-        if (inits == null)
-        {
-            customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
-
-            foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
-            {
-                inits += @event.Init;
-                checkEvent += @event.Check;
-            }
-
-            foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
-
-            foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>())
-            {
-                inits += @event.Init;
-                triggerEvent += @event.OnTrigger;
-            }
-
-            foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
-        }
+        if (inits == null) SetEvents();
 
         TargetingFilter = TargetingFilterHub.GetFilter(filterType);
 
-        inits?.Invoke(this);
+        if (TargetType == TargetType.Me) targets.Add(caster);
+
+        inits?.Invoke(caster);
 
         OnCreate();
     }
 
     private void Update()
     {
-        if (!isFinished) checkEvent?.Invoke(this);
+        if (!isFinished) OnCheck();
     }
 
-    public void SetTargetPos(Vector3 pos) => targetPos = pos;
+    public void SetTarget(Vector3 targetPos) => this.targetPos = targetPos;
+
+    public void SetTarget(Transform target) => this.target = target;
+
+    public void OnCheck() => checkEvent?.Invoke(this);
 
     public void OnCreate() => createEvent?.Invoke(this);
 
@@ -130,7 +107,7 @@ public class HitObject : MonoBehaviour
 
     public Vector2 GetAreaSize()
     {
-        customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
+        SetCollider();
 
         return customCollider.AreaSize;
     }
@@ -140,4 +117,27 @@ public class HitObject : MonoBehaviour
         if (hitObjects == null) Destroy(gameObject);
         else hitObjects.Enqueue(this);
     }
+
+    private void SetEvents()
+    {
+        SetCollider();
+
+        foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
+        {
+            inits += @event.Init;
+            checkEvent += @event.Check;
+        }
+
+        foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
+
+        foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>())
+        {
+            inits += @event.Init;
+            triggerEvent += @event.OnTrigger;
+        }
+
+        foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
+    }
+
+    private void SetCollider() => customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
 }

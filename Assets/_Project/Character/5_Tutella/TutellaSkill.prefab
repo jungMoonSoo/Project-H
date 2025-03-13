@@ -97,7 +97,6 @@ MonoBehaviour:
   targetType: 2
   filterType: 0
   customColliderObject: {fileID: 3786523137820473533}
-  animController: {fileID: 0}
 --- !u!114 &8841968534178399513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +127,6 @@ MonoBehaviour:
   speed: 10
   splitCount: 0
   rotate: 1
-  straight: 0
   lookCamera: {fileID: 116184608578537087}
 --- !u!1 &4017590513030972592
 GameObject:

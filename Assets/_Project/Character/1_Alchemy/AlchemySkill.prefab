@@ -99,7 +99,6 @@ MonoBehaviour:
   targetType: 2
   filterType: 0
   customColliderObject: {fileID: 3786523137820473533}
-  animController: {fileID: 5853737012246825776}
 --- !u!114 &8841968534178399513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,6 +130,7 @@ MonoBehaviour:
   height: 5
   endYPos: 0
   rotate: 0
+  lookCamera: {fileID: 0}
 --- !u!114 &311812836666444578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6b7c8aa0d582a4ba3b9b2bcb189c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animController: {fileID: 5853737012246825776}
 --- !u!1 &7096449219032708577
 GameObject:
   m_ObjectHideFlags: 0
@@ -395,3 +396,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flip: 0

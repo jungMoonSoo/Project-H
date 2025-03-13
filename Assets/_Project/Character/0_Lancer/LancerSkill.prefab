@@ -52,7 +52,6 @@ MonoBehaviour:
   targetType: 2
   filterType: 0
   customColliderObject: {fileID: 9068491044647885948}
-  animController: {fileID: 5947634812324443428}
 --- !u!114 &2161218180872838424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a6b7c8aa0d582a4ba3b9b2bcb189c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animController: {fileID: 5947634812324443428}
 --- !u!1 &7096449219032708577
 GameObject:
   m_ObjectHideFlags: 0

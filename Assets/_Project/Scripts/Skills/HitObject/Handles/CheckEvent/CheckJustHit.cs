@@ -4,14 +4,16 @@ public class CheckJustHit : MonoBehaviour, IHitObjectCheckEvent
 {
     public bool moveToTarget = true;
 
-    public void Init(HitObject @base)
+    public void Init(Unidad caster)
     {
-        if (moveToTarget) transform.position = @base.TargetPos;
+
     }
 
-    public void Check(HitObject @base)
+    public void Check(HitObject hitObject)
     {
-        @base.OnTrigger();
-        @base.OnFinish();
+        if (moveToTarget) transform.position = hitObject.TargetPos;
+
+        hitObject.OnTrigger();
+        hitObject.OnFinish();
     }
 }

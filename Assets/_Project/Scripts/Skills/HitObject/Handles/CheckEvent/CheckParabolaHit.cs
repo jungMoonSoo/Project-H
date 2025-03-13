@@ -19,14 +19,14 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 
     private bool lookAtRight;
 
-    public void Init(HitObject hitObject)
+    public void Init(Unidad caster)
     {
         timer = 0;
         check = false;
 
         startPos = transform.position;
 
-        lookAtRight = hitObject.Caster.transform.localScale.x > 0;
+        lookAtRight = caster.transform.localScale.x > 0;
     }
 
     public void Check(HitObject hitObject)

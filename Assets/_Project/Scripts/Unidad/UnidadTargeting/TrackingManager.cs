@@ -38,15 +38,16 @@ public class TrackingManager : MonoBehaviour
     {
         HitObject hitObject = hitObjectManager.GetHitObject(transform);
 
-        hitObject.Target = targets[0];
+        hitObject.SetTarget(targets[0].View);
 
         if (effectHandle != null)
         {
             SpineBoneData bone = effectHandle.GetBoneInfo(effectIndex);
 
-            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(unidad.View));
+            hitObject.SetEffect(bone.effectManager);
+            hitObject.Init(unidad, bone.bone.GetWorldPosition(unidad.View));
         }
-        else hitObject.Init(unidad, null, unidad.transform.position);
+        else hitObject.Init(unidad, unidad.transform.position);
     }
 
     private void FlipX(Transform trans, bool right)
