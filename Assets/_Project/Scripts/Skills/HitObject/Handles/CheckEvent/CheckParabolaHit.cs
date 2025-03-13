@@ -19,14 +19,15 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
     {
         timer = 0;
         check = false;
+
+        startPos = transform.position;
     }
 
     public void Check(HitObject hitObject)
     {
-        if (MoveParabola()) return;
-
-        startPos = transform.position;
         targetPos = hitObject.TargetPos;
+
+        if (MoveParabola()) return;
 
         hitObject.OnTrigger();
         hitObject.OnFinish();
