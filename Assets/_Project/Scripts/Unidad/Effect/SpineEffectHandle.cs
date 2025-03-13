@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpineEffectHandle : MonoBehaviour
 {
+    [SerializeField] private Transform view;
     [SerializeField] private SkeletonAnimation skeletonAnimation;
 
     [SerializeField] private SpineBoneData[] bones;
@@ -21,8 +22,10 @@ public class SpineEffectHandle : MonoBehaviour
 
     public void SpawnEffect(int index)
     {
+        if (bones[index].effectManager == null) return;
+
         EffectSystem effect = bones[index].effectManager.GetEffect(transform);
 
-        effect.transform.position = bones[index].bone.GetWorldPosition(transform);
+        effect.transform.position = bones[index].bone.GetWorldPosition(view);
     }
 }

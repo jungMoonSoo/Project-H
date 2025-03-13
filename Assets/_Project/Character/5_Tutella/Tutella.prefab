@@ -1112,6 +1112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 785f5de548f3d2942b528eab1e6b70f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 631427363531939612}
   skeletonAnimation: {fileID: 6651845745106748431}
   bones:
   - boneName: Hand_L
@@ -1131,7 +1132,7 @@ GameObject:
   - component: {fileID: 4712656162631440779}
   - component: {fileID: 8249806007779576822}
   m_Layer: 6
-  m_Name: Vine
+  m_Name: Skill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1230,7 +1231,6 @@ MonoBehaviour:
   damageUiPosition: {fileID: 1945676781002861287}
   statusUiPosition: {fileID: 3984195991756771338}
   skillHandle: {fileID: 3923744470971958728}
-  view: {fileID: 6234352431916946155}
   audioHandle: {fileID: 6604994404387091370}
 --- !u!1 &5989429375699862009
 GameObject:
