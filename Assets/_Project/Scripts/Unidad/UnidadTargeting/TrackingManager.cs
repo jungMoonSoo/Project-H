@@ -38,7 +38,7 @@ public class TrackingManager : MonoBehaviour
     {
         HitObject hitObject = hitObjectManager.GetHitObject(transform);
 
-        hitObject.SetTargetPos(targets[0].transform.position);
+        hitObject.SetTargetPos(targets[0].boxCollider.GetColliderPos());
 
         if (effectHandle != null)
         {

@@ -17,6 +17,8 @@ public class BoxColliderManager : MonoBehaviour
 
     public void DropUnit() => unidad.ChangeState(UnitState.Ready);
 
+    public Vector3 GetColliderPos() => transform.position;
+
     public void SetUnitPos(Vector3 pos) => unidad.transform.position = pos;
 
     public void SetActiveCollider(bool _active) => unitCollider.enabled = _active;
