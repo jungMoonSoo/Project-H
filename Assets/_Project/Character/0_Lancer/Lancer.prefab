@@ -65,7 +65,7 @@ MonoBehaviour:
   damageUiPosition: {fileID: 932216763197087120}
   statusUiPosition: {fileID: 4984339051083944605}
   skillHandle: {fileID: 1379185354846586821}
-  view: {fileID: 4177288233451244337}
+  view: {fileID: 1225343869885444444}
   audioHandle: {fileID: 3602437712221219532}
 --- !u!1 &215734985363013526
 GameObject:
@@ -885,6 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flip: 0
 --- !u!1 &4824402776716207308
 GameObject:
   m_ObjectHideFlags: 0

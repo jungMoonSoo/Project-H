@@ -12,24 +12,15 @@ public class SpineSkillHandle : MonoBehaviour
 
     public void Spawn(Unidad unidad)
     {
-        HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab);
+        HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab, transform);
 
         hitObject.SetTargetPos(targetPos);
-
-        if (targetPos.x - unidad.transform.position.x < 0)
-        {
-            Vector3 scale = hitObject.transform.localScale;
-
-            scale.x = -scale.x;
-
-            hitObject.transform.localScale = scale;
-        }
 
         if (effectHandle != null)
         {
             SpineBoneData bone = effectHandle.GetBoneInfo(effectIndex);
 
-            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(transform));
+            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(unidad.View));
         }
         else hitObject.Init(unidad, null, unidad.transform.position);
     }

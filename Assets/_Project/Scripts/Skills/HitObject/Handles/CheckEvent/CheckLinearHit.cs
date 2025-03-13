@@ -6,7 +6,8 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     [SerializeField] private float splitCount = 0;
 
     [SerializeField] private bool rotate = true;
-    [SerializeField] private bool straight = true;
+
+    [SerializeField] private LookCameraSystem lookCamera;
 
     private Vector3 targetPos;
 
@@ -16,9 +17,13 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private int applyCount;
 
+    private bool lookAtRight;
+
     public void Init(HitObject hitObject)
     {
         applyCount = 0;
+
+        lookAtRight = hitObject.Caster.transform.localScale.x > 0;
     }
 
     public void Check(HitObject hitObject)
@@ -47,8 +52,6 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private void Refresh()
     {
-        if (straight) targetPos.y = transform.position.y;
-
         nowDist = Vector3.Distance(transform.position, targetPos);
         endDist = nowDist;
 
@@ -66,12 +69,10 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
 
     private void Rotate()
     {
-        Vector3 direction = targetPos - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (targetPos.x - transform.position.x < 0) lookCamera.Flip(lookAtRight);
+        else lookCamera.Flip(!lookAtRight);
 
-        if (angle == 180) angle -= 180;
-        else if (angle <= -90) angle += 180;
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.LookAt(targetPos);
+        transform.Rotate(new(0, -90, 0));
     }
 }

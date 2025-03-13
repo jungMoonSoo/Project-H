@@ -44,7 +44,7 @@ public class TrackingManager : MonoBehaviour
         {
             SpineBoneData bone = effectHandle.GetBoneInfo(effectIndex);
 
-            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(transform));
+            hitObject.Init(unidad, bone.effectManager, bone.bone.GetWorldPosition(unidad.View));
         }
         else hitObject.Init(unidad, null, unidad.transform.position);
     }

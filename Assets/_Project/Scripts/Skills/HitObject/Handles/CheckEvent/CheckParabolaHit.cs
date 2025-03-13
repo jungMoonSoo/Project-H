@@ -9,11 +9,15 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 
     [SerializeField] private bool rotate = true;
 
+    [SerializeField] private LookCameraSystem lookCamera;
+
     private Vector3 startPos;
     private Vector3 targetPos;
 
     private bool check;
     private float timer;
+
+    private bool lookAtRight;
 
     public void Init(HitObject hitObject)
     {
@@ -21,6 +25,8 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
         check = false;
 
         startPos = transform.position;
+
+        lookAtRight = hitObject.Caster.transform.localScale.x > 0;
     }
 
     public void Check(HitObject hitObject)
@@ -57,12 +63,10 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 
     private void Rotate()
     {
-        Vector3 direction = targetPos - transform.position;
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        if (targetPos.x - transform.position.x < 0) lookCamera.Flip(lookAtRight);
+        else lookCamera.Flip(!lookAtRight);
 
-        if (angle == 180) angle -= 180;
-        else if (angle <= -90) angle += 180;
-
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        transform.LookAt(targetPos);
+        transform.Rotate(new(0, -90, 0));
     }
 }

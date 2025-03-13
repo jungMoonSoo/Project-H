@@ -28,7 +28,7 @@ public class HitObject : MonoBehaviour
     public Unidad Target { get; set; }
 
     public Vector3 CreatePos { get; private set; }
-    public Vector3 TargetPos => Target == null ? targetPos : Target.boxCollider.GetColliderPos();
+    public Vector3 TargetPos => Target == null ? targetPos : Target.View.transform.position;
 
     public AnimationEventController AnimController => animController;
 

@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31cf071658854c240bb57439aa8b043c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flip: 0
 --- !u!1 &8171957070924050383
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,7 +167,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   splitCount: 0
+  rotate: 1
   straight: 1
+  lookCamera: {fileID: 9139969643922548358}
 --- !u!114 &8708706264386118130
 MonoBehaviour:
   m_ObjectHideFlags: 0

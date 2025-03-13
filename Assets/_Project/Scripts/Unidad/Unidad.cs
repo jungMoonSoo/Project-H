@@ -34,6 +34,7 @@ public class Unidad : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] private SpineSkillHandle skillHandle;
+    [SerializeField] private Transform view;
 
     public UnidadAudioHandle audioHandle;
     private UnidadStatusBar statusBar;
@@ -65,6 +66,7 @@ public class Unidad : MonoBehaviour
     public Transform StatusUiPosition => statusUiPosition == null ? transform : statusUiPosition;
 
     public SpineSkillHandle SkillHandle => skillHandle;
+    public Transform View => view;
 
     private StatusManager statusManager = null;
 
