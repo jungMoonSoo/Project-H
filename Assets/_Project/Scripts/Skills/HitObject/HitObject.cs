@@ -128,7 +128,11 @@ public class HitObject : MonoBehaviour
             checkEvent += @event.Check;
         }
 
-        foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>()) createEvent += @event.OnCreate;
+        foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>())
+        {
+            inits += @event.Init;
+            createEvent += @event.OnCreate;
+        }
 
         foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>())
         {
