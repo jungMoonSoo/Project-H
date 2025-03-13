@@ -101,7 +101,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         
         CastingCaster = caster;
 
-        skillAreaHandler.SetSize(UsingSkill.effectPrefab.GetAreaSize());
+        skillAreaHandler.SetSize(UsingSkill.effectPrefab.GetComponentInChildren<ICustomCollider>().AreaSize);
 
         skillAreaHandler.SetSprite(UsingSkill.areaImage);
         skillAreaHandler.SkillArea = SkillAreaHub.GetSkillArea(UsingSkill.skillAreaType);

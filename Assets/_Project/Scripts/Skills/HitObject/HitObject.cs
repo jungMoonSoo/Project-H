@@ -105,13 +105,6 @@ public class HitObject : MonoBehaviour
         return effectManager.GetEffect(parent);
     }
 
-    public Vector2 GetAreaSize()
-    {
-        SetCollider();
-
-        return customCollider.AreaSize;
-    }
-
     public void Remove()
     {
         if (hitObjects == null) Destroy(gameObject);
@@ -120,7 +113,7 @@ public class HitObject : MonoBehaviour
 
     private void SetEvents()
     {
-        SetCollider();
+        customCollider = customColliderObject.GetComponent<ICustomCollider>();
 
         foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
         {
@@ -142,6 +135,4 @@ public class HitObject : MonoBehaviour
 
         foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
     }
-
-    private void SetCollider() => customCollider ??= customColliderObject.GetComponent<ICustomCollider>();
 }
