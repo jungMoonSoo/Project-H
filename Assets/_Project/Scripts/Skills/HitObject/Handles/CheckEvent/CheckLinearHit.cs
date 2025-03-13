@@ -19,18 +19,15 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
     public void Init(HitObject hitObject)
     {
         applyCount = 0;
-
-        targetPos = hitObject.TargetPos;
-
-        if (straight) targetPos.y = transform.position.y;
-
-        endDist = Vector3.Distance(transform.position, targetPos);
-        splitDist = endDist / splitCount;
     }
 
     public void Check(HitObject hitObject)
     {
-        if (transform.position == targetPos)
+        targetPos = hitObject.TargetPos;
+
+        Refresh();
+
+        if (nowDist < 0.01f)
         {
             if (splitCount == 0) hitObject.OnTrigger();
 
@@ -48,18 +45,33 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         }
     }
 
+    private void Refresh()
+    {
+        if (straight) targetPos.y = transform.position.y;
+
+        nowDist = Vector3.Distance(transform.position, targetPos);
+        endDist = nowDist;
+
+        splitDist = endDist / splitCount;
+    }
+
     private void Move()
     {
-        if (rotate)
-        {
-            Vector3 direction = targetPos - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            transform.rotation = Quaternion.Euler(0, 0, angle < -90 ? angle + 180 : angle);
-        }
+        if (rotate) Rotate();
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
 
         nowDist = Vector3.Distance(transform.position, targetPos);
+    }
+
+    private void Rotate()
+    {
+        Vector3 direction = targetPos - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        if (angle == 180) angle -= 180;
+        else if (angle <= -90) angle += 180;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

@@ -19,14 +19,14 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
     {
         timer = 0;
         check = false;
-
-        startPos = transform.position;
-        targetPos = hitObject.TargetPos;
     }
 
     public void Check(HitObject hitObject)
     {
         if (MoveParabola()) return;
+
+        startPos = transform.position;
+        targetPos = hitObject.TargetPos;
 
         hitObject.OnTrigger();
         hitObject.OnFinish();
@@ -44,13 +44,7 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
 
             pos.y = -4 * height * timer * timer + 4 * height * timer + Mathf.Lerp(startPos.y, endYPos, timer);
 
-            if (rotate)
-            {
-                Vector3 direction = pos - transform.position;
-                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                transform.rotation = Quaternion.Euler(0, 0, angle < -90 ? angle + 180 : angle);
-            }
+            if (rotate) Rotate();
 
             transform.position = pos;
 
@@ -58,5 +52,16 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
         }
 
         return false;
+    }
+
+    private void Rotate()
+    {
+        Vector3 direction = targetPos - transform.position;
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        if (angle == 180) angle -= 180;
+        else if (angle <= -90) angle += 180;
+
+        transform.rotation = Quaternion.Euler(0, 0, angle);
     }
 }

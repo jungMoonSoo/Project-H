@@ -22,10 +22,13 @@ public class HitObject : MonoBehaviour
 
     private ICustomCollider customCollider;
 
+    private Vector3 targetPos;
+
     public Unidad Caster { get; set; }
+    public Unidad Target { get; set; }
 
     public Vector3 CreatePos { get; private set; }
-    public Vector3 TargetPos { get; private set; }
+    public Vector3 TargetPos => Target == null ? targetPos : Target.boxCollider.GetColliderPos();
 
     public AnimationEventController AnimController => animController;
 
@@ -104,7 +107,7 @@ public class HitObject : MonoBehaviour
         if (!isFinished) checkEvent?.Invoke(this);
     }
 
-    public void SetTargetPos(Vector3 pos) => TargetPos = pos;
+    public void SetTargetPos(Vector3 pos) => targetPos = pos;
 
     public void OnCreate() => createEvent?.Invoke(this);
 
