@@ -8,8 +8,6 @@ public class HitObject : MonoBehaviour
     [SerializeField] private TargetType targetType;
     [SerializeField] private FilterType filterType;
 
-    [SerializeField] private GameObject customColliderObject;
-
     private bool isFinished;
 
     private Action<Unidad> inits;
@@ -68,6 +66,8 @@ public class HitObject : MonoBehaviour
 
         TargetingFilter = TargetingFilterHub.GetFilter(filterType);
 
+        targets.Clear();
+
         if (TargetType == TargetType.Me) targets.Add(caster);
 
         inits?.Invoke(caster);
@@ -113,7 +113,7 @@ public class HitObject : MonoBehaviour
 
     private void SetEvents()
     {
-        customCollider = customColliderObject.GetComponent<ICustomCollider>();
+        customCollider = GetComponentInChildren<ICustomCollider>();
 
         foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
         {
