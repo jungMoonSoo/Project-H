@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1026856397095710534}
   - component: {fileID: 2804930676665983442}
-  - component: {fileID: 2161218180872838424}
+  - component: {fileID: 7120639303812620889}
   - component: {fileID: 7081599559815072629}
   - component: {fileID: 1458947721843970812}
   m_Layer: 0
@@ -51,8 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetType: 2
   filterType: 0
-  customColliderObject: {fileID: 9068491044647885948}
---- !u!114 &2161218180872838424
+--- !u!114 &7120639303812620889
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -61,11 +60,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3792025657868637557}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e40d9d679980441afb57743f8cae2e, type: 3}
+  m_Script: {fileID: 11500000, guid: f6b54761116745f9b0e4b6c8525701c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coefficient: 200
+  skillCoefficient: 200
   maxHitTarget: 10
+  maxHitsOnTarget: 1
 --- !u!114 &7081599559815072629
 MonoBehaviour:
   m_ObjectHideFlags: 0

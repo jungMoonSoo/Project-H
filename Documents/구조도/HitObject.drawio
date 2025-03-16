@@ -1,170 +1,152 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.0">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.1">
   <diagram name="페이지-1" id="2mG5g3mn1gVikXHXEm1A">
     <mxGraphModel dx="1434" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="V7j1-HToApOXEgOqAHJT-1" value="HitObject (Class&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="20" width="1350" height="1180" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-1" value="HitObject (Class&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;)&lt;/span&gt;" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="20" y="20" width="1350" height="1060" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-2" value="IHitObjectCheckEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-2" value="IHitObjectCheckEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
           <mxGeometry x="20" y="40" width="780" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-4" target="V7j1-HToApOXEgOqAHJT-11">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-4" target="V7j1-HToApOXEgOqAHJT-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-4" value="CheckJustHit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-4" value="CheckJustHit" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="20" y="40" width="140" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-6" target="V7j1-HToApOXEgOqAHJT-12">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-6" target="V7j1-HToApOXEgOqAHJT-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-6" value="CheckLinearHit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-6" value="CheckLinearHit" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="20" y="100" width="140" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-8" target="V7j1-HToApOXEgOqAHJT-13">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-8" target="V7j1-HToApOXEgOqAHJT-13" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-8" value="CheckParabolaHit" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-8" value="CheckParabolaHit" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="20" y="160" width="140" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-10" target="V7j1-HToApOXEgOqAHJT-14">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" source="V7j1-HToApOXEgOqAHJT-10" target="V7j1-HToApOXEgOqAHJT-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-10" value="CheckTrackingCaster" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-10" value="CheckTrackingCaster" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="20" y="220" width="140" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-11" value="즉시 IHitObjectTriggerEvent 및 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-11" value="즉시 IHitObjectTriggerEvent 및 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="210" y="40" width="540" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-12" value="선형으로 이동하며 IHitObjectTriggerEvent 실행&#xa;및 목표지점 도달 시 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-12" value="선형으로 이동하며 IHitObjectTriggerEvent 실행&#xa;및 목표지점 도달 시 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="260" y="90" width="440" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-13" value="포물선으로 이동하며 IHitObjectTriggerEvent&#xa;실행 및 목표지점 도달 시 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-13" value="포물선으로 이동하며 IHitObjectTriggerEvent&#xa;실행 및 목표지점 도달 시 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="235" y="150" width="490" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-14" value="시전자에 고정 후 IHitObjectTriggerEvent 실행&#xa;및 시전자 사망 시 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-2">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-14" value="시전자에 고정 후 IHitObjectTriggerEvent 실행&#xa;및 시전자 사망 시 IHitObjectFinishEvent 실행" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-2" vertex="1">
           <mxGeometry x="265" y="210" width="430" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-15" value="IHitObjectCreateEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="20" y="340" width="780" height="100" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-19" value="IHitObjectFinishEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="20" y="340" width="780" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-15" source="V7j1-HToApOXEgOqAHJT-17" target="V7j1-HToApOXEgOqAHJT-18">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-17" value="DamageCreateEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-15">
-          <mxGeometry x="20" y="40" width="130" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-18" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;조건에 부합한 Target에 피해 입힘&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-15">
-          <mxGeometry x="320" y="40" width="320" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-19" value="IHitObjectFinishEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="20" y="460" width="780" height="280" as="geometry" />
-        </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-20" value="PlayAnimFinishEvent (Class)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-19">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-20" value="PlayAnimFinishEvent (Class)" style="swimlane;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-19" vertex="1">
           <mxGeometry x="20" y="40" width="740" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-21" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;애니메이션 실행 중 특정 스크립트 실행&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-20">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-21" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;애니메이션 실행 중 특정 스크립트 실행&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-20" vertex="1">
           <mxGeometry x="315" y="160" width="370" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-22" value="AnimatorEventHandler" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-20">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-22" value="AnimatorEventHandler" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-20" vertex="1">
           <mxGeometry x="20" y="160" width="160" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-20" source="V7j1-HToApOXEgOqAHJT-22" target="V7j1-HToApOXEgOqAHJT-21">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-20" source="V7j1-HToApOXEgOqAHJT-22" target="V7j1-HToApOXEgOqAHJT-21" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-24" value="AnimationEventController" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-20">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-24" value="AnimationEventController" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-20" vertex="1">
           <mxGeometry x="20" y="100" width="160" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-20" source="V7j1-HToApOXEgOqAHJT-24" target="V7j1-HToApOXEgOqAHJT-26">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-20" source="V7j1-HToApOXEgOqAHJT-24" target="V7j1-HToApOXEgOqAHJT-26" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-26" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;애니메이션 실행 및 중지 관리&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-20">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-26" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;애니메이션 실행 및 중지 관리&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-20" vertex="1">
           <mxGeometry x="355" y="100" width="290" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-27" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;애니메이션 실행&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-20">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-27" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;애니메이션 실행&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-20" vertex="1">
           <mxGeometry x="375" y="40" width="170" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-28" value="IHitObjectTriggerEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="20" y="760" width="780" height="160" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-28" value="IHitObjectTriggerEvent (Interface)" style="swimlane;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="20" y="640" width="780" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-28" source="V7j1-HToApOXEgOqAHJT-30" target="V7j1-HToApOXEgOqAHJT-33">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-28" source="V7j1-HToApOXEgOqAHJT-30" target="V7j1-HToApOXEgOqAHJT-33" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-30" value="DamageTriggerEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-28">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-30" value="DamageTriggerEvent" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-28" vertex="1">
           <mxGeometry x="20" y="40" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-28" source="V7j1-HToApOXEgOqAHJT-32" target="V7j1-HToApOXEgOqAHJT-34">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-28" source="V7j1-HToApOXEgOqAHJT-32" target="V7j1-HToApOXEgOqAHJT-34" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-32" value="HealTriggerEvent" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-28">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-32" value="HealTriggerEvent" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-28" vertex="1">
           <mxGeometry x="20" y="100" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-33" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;조건에 부합한 Target에 피해 입힘&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-28">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-33" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;조건에 부합한 Target에 피해 입힘&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-28" vertex="1">
           <mxGeometry x="320" y="40" width="320" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-34" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;조건에 부합한 Target 회복&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-28">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-34" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;조건에 부합한 Target 회복&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-28" vertex="1">
           <mxGeometry x="350" y="100" width="260" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-35" value="HitObjectManager" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="20" y="940" width="160" height="40" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-35" value="HitObjectManager" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="20" y="1000" width="160" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-35" target="V7j1-HToApOXEgOqAHJT-37">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-35" target="V7j1-HToApOXEgOqAHJT-37" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-37" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;HitObject 풀링 관리&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="400" y="940" width="200" height="40" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-37" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;HitObject 풀링 관리&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="400" y="1000" width="200" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-44" value="특정 조건 달성 시 마다 실행 되어야 하는 Event" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="900" y="820" width="440" height="40" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-44" value="특정 조건 달성 시 마다 실행 되어야 하는 Event" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="900" y="700" width="440" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-28" target="V7j1-HToApOXEgOqAHJT-44">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-28" target="V7j1-HToApOXEgOqAHJT-44" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-42" value="객체의 목적 달성 후 실행 되어야 하는 Event" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="900" y="580" width="410" height="40" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-42" value="객체의 목적 달성 후 실행 되어야 하는 Event" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="900" y="460" width="410" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-19" target="V7j1-HToApOXEgOqAHJT-42">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-19" target="V7j1-HToApOXEgOqAHJT-42" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-40" value="객체 생성 시 실행 되어야 하는 Event" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="900" y="370" width="350" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-15" target="V7j1-HToApOXEgOqAHJT-40">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-38" value="특정 Event를 실행해야 하는 지점 확인 용도" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-38" value="특정 Event를 실행해야 하는 지점 확인 용도" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
           <mxGeometry x="900" y="160" width="410" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-2" target="V7j1-HToApOXEgOqAHJT-38">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-2" target="V7j1-HToApOXEgOqAHJT-38" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-46" target="V7j1-HToApOXEgOqAHJT-53">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" source="V7j1-HToApOXEgOqAHJT-46" target="V7j1-HToApOXEgOqAHJT-53" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-46" value="ITargetingFilter (Interface)" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="20" y="1000" width="780" height="160" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-46" value="ITargetingFilter (Interface)" style="swimlane;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="20" y="820" width="780" height="160" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-46" source="V7j1-HToApOXEgOqAHJT-48" target="V7j1-HToApOXEgOqAHJT-49">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-46" source="V7j1-HToApOXEgOqAHJT-48" target="V7j1-HToApOXEgOqAHJT-49" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-48" value="AllTargetingFilter" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-46">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-48" value="AllTargetingFilter" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-46" vertex="1">
           <mxGeometry x="20" y="40" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-49" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;모든 Target 반환&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-46">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-49" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;모든 Target 반환&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-46" vertex="1">
           <mxGeometry x="395" y="40" width="170" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="V7j1-HToApOXEgOqAHJT-46" source="V7j1-HToApOXEgOqAHJT-51" target="V7j1-HToApOXEgOqAHJT-52">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="V7j1-HToApOXEgOqAHJT-46" source="V7j1-HToApOXEgOqAHJT-51" target="V7j1-HToApOXEgOqAHJT-52" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-51" value="SingleTargetingFilter" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-46">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-51" value="SingleTargetingFilter" style="rounded=0;whiteSpace=wrap;html=1;" parent="V7j1-HToApOXEgOqAHJT-46" vertex="1">
           <mxGeometry x="20" y="100" width="130" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-52" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;가장 가까운 Target 반환&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-46">
+        <mxCell id="V7j1-HToApOXEgOqAHJT-52" value="&lt;span style=&quot;font-size: 20px;&quot;&gt;가장 가까운 Target 반환&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="V7j1-HToApOXEgOqAHJT-46" vertex="1">
           <mxGeometry x="360" y="100" width="240" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="V7j1-HToApOXEgOqAHJT-53" value="TriggerEvent 실행 시 Collider에 충돌한 모든&#xa;Target 중 조건에 부합한 Target 반환" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="V7j1-HToApOXEgOqAHJT-1">
-          <mxGeometry x="915" y="1050" width="410" height="60" as="geometry" />
+        <mxCell id="V7j1-HToApOXEgOqAHJT-53" value="TriggerEvent 실행 시 Collider에 충돌한 모든&#xa;Target 중 조건에 부합한 Target 반환" style="text;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="V7j1-HToApOXEgOqAHJT-1" vertex="1">
+          <mxGeometry x="915" y="870" width="410" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

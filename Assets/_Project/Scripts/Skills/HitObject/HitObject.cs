@@ -13,7 +13,6 @@ public class HitObject : MonoBehaviour
     private Action<Unidad> inits;
 
     private Action<HitObject> checkEvent;
-    private Action<HitObject> createEvent;
     private Action<HitObject> triggerEvent;
     private Action<HitObject> finishEvent;
 
@@ -71,8 +70,6 @@ public class HitObject : MonoBehaviour
         if (TargetType == TargetType.Me) targets.Add(caster);
 
         inits?.Invoke(caster);
-
-        OnCreate();
     }
 
     private void Update()
@@ -85,8 +82,6 @@ public class HitObject : MonoBehaviour
     public void SetTarget(Transform target) => this.target = target;
 
     public void OnCheck() => checkEvent?.Invoke(this);
-
-    public void OnCreate() => createEvent?.Invoke(this);
 
     public void OnTrigger() => triggerEvent?.Invoke(this);
 
@@ -119,12 +114,6 @@ public class HitObject : MonoBehaviour
         {
             inits += @event.Init;
             checkEvent += @event.Check;
-        }
-
-        foreach (IHitObjectCreateEvent @event in GetComponents<IHitObjectCreateEvent>())
-        {
-            inits += @event.Init;
-            createEvent += @event.OnCreate;
         }
 
         foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>())
