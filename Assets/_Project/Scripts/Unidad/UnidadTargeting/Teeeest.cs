@@ -47,7 +47,10 @@ public static class Teeeest
 
                 float angle = Vector3.SignedAngle(targetDir, obstacleDir, Vector3.up);
 
-                return -(Quaternion.Euler(0, (angle > 0 ? 90 : -90) - angle, 0) * obstacleDir.normalized) * dist;
+                obstacleDir = -(Quaternion.Euler(0, (angle > 0 ? 90 : -90) - angle, 0) * obstacleDir.normalized);
+
+                if (check == 0) return obstacleDir * dist;
+                else return obstacleDir;
             }
         }
 

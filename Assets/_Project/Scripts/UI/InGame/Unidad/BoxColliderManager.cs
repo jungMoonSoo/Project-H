@@ -5,13 +5,19 @@ public class BoxColliderManager : MonoBehaviour
 {
     [SerializeField] private Unidad unidad;
 
-    public UnitType UnitType => unidad.Owner;
-
-    public Vector3 Size => unitCollider.size;
-
+    private Vector3 size;
     private BoxCollider unitCollider;
 
-    private void Awake() => TryGetComponent(out unitCollider);
+    public UnitType UnitType => unidad.Owner;
+
+    public Vector3 Size => size;
+
+    private void Awake()
+    {
+        TryGetComponent(out unitCollider);
+
+        size = unitCollider.size;
+    }
 
     public void PickUnit() => unidad.ChangeState(UnitState.Pick);
 
