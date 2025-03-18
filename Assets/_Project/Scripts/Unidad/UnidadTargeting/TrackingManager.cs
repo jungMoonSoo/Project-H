@@ -38,7 +38,7 @@ public class TrackingManager : MonoBehaviour
     {
         HitObject hitObject = hitObjectManager.HitObjectPool.Get();
 
-        hitObject.SetTarget(targets[0].View);
+        hitObject.SetTarget(targets[0].Body);
 
         if (effectHandle != null)
         {

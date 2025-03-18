@@ -340,6 +340,7 @@ Transform:
   m_Children:
   - {fileID: 4739341944829035793}
   - {fileID: 4355805304145455882}
+  - {fileID: 2593323133942245720}
   m_Father: {fileID: 7661298372120324403}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2388921733091099987
@@ -434,6 +435,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skeletonAnimation: {fileID: 4767147146677785965}
   animationName: idel
+--- !u!1 &3059760735696541926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2593323133942245720}
+  m_Layer: 6
+  m_Name: Body
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2593323133942245720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059760735696541926}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4084582041309409699}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3818699146757874092
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +532,7 @@ MonoBehaviour:
   statusUiPosition: {fileID: 4355805304145455882}
   skillHandle: {fileID: 7404789475397403444}
   view: {fileID: 7661298372120324403}
+  body: {fileID: 2593323133942245720}
   audioHandle: {fileID: 3716851205594525602}
 --- !u!1 &3916148993169026993
 GameObject:
