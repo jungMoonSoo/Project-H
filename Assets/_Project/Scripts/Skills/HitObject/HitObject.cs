@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine.Pool;
 using UnityEngine;
 
 public class HitObject : MonoBehaviour
@@ -23,7 +24,7 @@ public class HitObject : MonoBehaviour
     public Vector3 TargetPos => target == null ? targetPos : target.transform.position;
 
     private EffectManager effectManager;
-    private ObjectPool<HitObject> hitObjects;
+    private IObjectPool<HitObject> hitObjectPool;
 
     private readonly List<Unidad> targets = new();
     public Unidad[] Targets
@@ -46,7 +47,7 @@ public class HitObject : MonoBehaviour
     public TargetType TargetType => targetType;
     public ITargetingFilter TargetingFilter { get; private set; }
 
-    public void SetPool(ObjectPool<HitObject> hitObjects) => this.hitObjects = hitObjects;
+    public void SetPool(IObjectPool<HitObject> pool) => hitObjectPool = pool;
 
     public void SetEffect(EffectManager effectManager) => this.effectManager = effectManager;
 
@@ -101,13 +102,17 @@ public class HitObject : MonoBehaviour
     {
         if (effectManager == null) return null;
 
-        return effectManager.GetEffect(parent);
+        EffectSystem effect = effectManager.EffectPool.Get();
+
+        effect.transform.SetParent(parent);
+
+        return effect;
     }
 
     public void Remove()
     {
-        if (hitObjects == null) Destroy(gameObject);
-        else hitObjects.Enqueue(this);
+        if (hitObjectPool == null) Destroy(gameObject);
+        else hitObjectPool.Release(this);
     }
 
     private void SetEvents()

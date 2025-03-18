@@ -24,8 +24,9 @@ public class SpineEffectHandle : MonoBehaviour
     {
         if (bones[index].effectManager == null) return;
 
-        EffectSystem effect = bones[index].effectManager.GetEffect(transform);
+        EffectSystem effect = bones[index].effectManager.EffectPool.Get();
 
+        effect.transform.SetParent(transform);
         effect.transform.position = bones[index].bone.GetWorldPosition(view);
     }
 }

@@ -907,7 +907,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 690249846789167234, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+  hitObjectPrefab: {fileID: 690249846789167234, guid: 44e87e63b8de33f40a8464e432a061a3, type: 3}
 --- !u!114 &7404789475397403444
 MonoBehaviour:
   m_ObjectHideFlags: 0

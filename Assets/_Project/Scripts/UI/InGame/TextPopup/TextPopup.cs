@@ -1,37 +1,38 @@
 using System.Collections;
 using TMPro;
+using UnityEngine.Pool;
 using UnityEngine;
 
 public class TextPopup : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text;
+    [SerializeField] private TMP_Text textPrefab;
 
-    private ObjectPool<TextPopup> popupObjects;
+    private IObjectPool<TextPopup> popupPool;
 
-    public void Init(ObjectPool<TextPopup> popupObjects)
+    public void SetPool(IObjectPool<TextPopup> pool)
     {
-        this.popupObjects = popupObjects;
+        popupPool = pool;
 
-        if (text == null) TryGetComponent(out text);
+        if (textPrefab == null) TryGetComponent(out textPrefab);
     }
 
     public void Show() => StartCoroutine(TextAnim());
 
-    public void Hide() => popupObjects.Enqueue(this);
+    public void Hide() => popupPool.Release(this);
 
     public void SetActive(bool value) => gameObject.SetActive(value);
 
-    public void SetText(string text) => this.text.text = text;
+    public void SetText(string text) => this.textPrefab.text = text;
 
-    public void SetColor(Color32 color) => text.color = color;
+    public void SetColor(Color32 color) => textPrefab.color = color;
 
-    public void SetAlpha(float alpha) => text.alpha = alpha;
+    public void SetAlpha(float alpha) => textPrefab.alpha = alpha;
 
-    public void SetAlpha(int alpha) => text.alpha = alpha / 255f;
+    public void SetAlpha(int alpha) => textPrefab.alpha = alpha / 255f;
 
     public void SetPosition(Vector3 position) => transform.position = position;
 
-    public float GetAlpha() => text.alpha;
+    public float GetAlpha() => textPrefab.alpha;
 
     public Vector3 GetPosition() => transform.position;
 

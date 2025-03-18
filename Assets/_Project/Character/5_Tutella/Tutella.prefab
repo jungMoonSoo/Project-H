@@ -1165,7 +1165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b03e4e72c7aa8b4a89a5c41503d09cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectObject: {fileID: 5455612723261389156, guid: 4fc1d371e856a344096758bb0ae703d4, type: 3}
+  effectPrefab: {fileID: 5455612723261389156, guid: 4fc1d371e856a344096758bb0ae703d4, type: 3}
 --- !u!1 &5813261068209667863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b03e4e72c7aa8b4a89a5c41503d09cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectObject: {fileID: 8846903734216597095, guid: 7d2331a874e67a54da8429f3ab15b7f6, type: 3}
+  effectPrefab: {fileID: 8846903734216597095, guid: 7d2331a874e67a54da8429f3ab15b7f6, type: 3}
 --- !u!1 &6234352431916946155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 2077749959588913920, guid: 29bad2abef7fe004896ebd034aad6a88, type: 3}
+  hitObjectPrefab: {fileID: 2077749959588913920, guid: 29bad2abef7fe004896ebd034aad6a88, type: 3}
 --- !u!114 &3923744470971958728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,4 +1556,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b03e4e72c7aa8b4a89a5c41503d09cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectObject: {fileID: 1931464129639069266, guid: 2ee7782206720294c8af45e8896d3290, type: 3}
+  effectPrefab: {fileID: 1931464129639069266, guid: 2ee7782206720294c8af45e8896d3290, type: 3}

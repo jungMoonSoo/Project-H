@@ -1,15 +1,13 @@
+using UnityEngine.Pool;
 using UnityEngine;
 
 public class EffectSystem : MonoBehaviour
 {
-    private ObjectPool<EffectSystem> effects;
+    private IObjectPool<EffectSystem> effectPool;
 
-    public void Init(ObjectPool<EffectSystem> effects)
-    {
-        this.effects = effects;
-    }
+    public void SetPool(IObjectPool<EffectSystem> pool) => effectPool = pool;
 
     public void SetActive(bool active) => gameObject.SetActive(active);
 
-    private void OnParticleSystemStopped() => effects.Enqueue(this);
+    private void OnParticleSystemStopped() => effectPool.Release(this);
 }

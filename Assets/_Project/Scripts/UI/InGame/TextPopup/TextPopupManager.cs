@@ -1,11 +1,12 @@
+using UnityEngine.Pool;
 using UnityEngine;
 
 public class TextPopupManager : Singleton<TextPopupManager>
 {
     [Header("ObjectPool Settings")]
-    [SerializeField] private TextPopup popupObject;
+    [SerializeField] private TextPopup popupPrefab;
     [SerializeField] private Transform popupParent;
-    private ObjectPool<TextPopup> popupObjects;
+    private IObjectPool<TextPopup> popupPool;
 
     [Header("Color Settings")]
     [SerializeField] private Color32 onDamageColor;
@@ -17,13 +18,7 @@ public class TextPopupManager : Singleton<TextPopupManager>
     {
         cam = Camera.main;
 
-        popupObjects = new(popupObject)
-        {
-            OnEnqueue = OnEnqueue,
-            OnDequeue = OnDequeue
-        };
-
-        for (int i = 0; i < 10; i++) popupObjects.CreateDefault(popupParent);
+        popupPool = new ObjectPool<TextPopup>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
     }
 
     public void PopupDamage(string text, Vector3 noticePos) => PopupText(text, noticePos, onDamageColor);
@@ -32,7 +27,7 @@ public class TextPopupManager : Singleton<TextPopupManager>
 
     private void PopupText(string text, Vector3 noticePos, Color32 color)
     {
-        TextPopup _textPopup = popupObjects.Dequeue(popupParent);
+        TextPopup _textPopup = popupPool.Get();
 
         _textPopup.SetText(text);
         _textPopup.SetColor(color);
@@ -42,14 +37,18 @@ public class TextPopupManager : Singleton<TextPopupManager>
         _textPopup.Show();
     }
 
-    private void OnEnqueue(TextPopup textPopup)
+    private TextPopup CreateObject()
     {
-        textPopup.SetActive(false);
+        TextPopup textPopup = Instantiate(popupPrefab, popupParent);
+
+        textPopup.SetPool(popupPool);
+
+        return textPopup;
     }
 
-    private void OnDequeue(TextPopup textPopup)
-    {
-        textPopup.Init(popupObjects);
-        textPopup.SetActive(true);
-    }
+    private void OnGetObject(TextPopup textPopup) => textPopup.gameObject.SetActive(true);
+
+    private void OnReleseObject(TextPopup textPopup) => textPopup.gameObject.SetActive(false);
+
+    private void OnDestroyObject(TextPopup textPopup) => Destroy(textPopup.gameObject);
 }

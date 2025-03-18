@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitObject: {fileID: 690249846789167234, guid: f9ad75a28de7c2c418390acada201156, type: 3}
+  hitObjectPrefab: {fileID: 690249846789167234, guid: 87010c0fe5082b24dac4e98e391e07d4, type: 3}
 --- !u!114 &1379185354846586821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1234,7 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b03e4e72c7aa8b4a89a5c41503d09cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effectObject: {fileID: 2762027924426178495, guid: b5a83dfe7b8f53549bf2d65902e63bbb, type: 3}
+  effectPrefab: {fileID: 0}
 --- !u!1 &7951692349766632408
 GameObject:
   m_ObjectHideFlags: 0

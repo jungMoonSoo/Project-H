@@ -1,38 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Pool;
 using UnityEngine;
 
 public class HitObjectManager : MonoBehaviour
 {
-    [SerializeField] private HitObject hitObject;
+    [SerializeField] private HitObject hitObjectPrefab;
 
-    private ObjectPool<HitObject> hitObjects;
+    public IObjectPool<HitObject> HitObjectPool { get; private set; }
 
-    private void Start()
+    private void Start() => HitObjectPool = new ObjectPool<HitObject>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
+
+    private HitObject CreateObject()
     {
-        hitObjects = new(hitObject)
-        {
-            OnEnqueue = OnEnqueue,
-            OnDequeue = OnDequeue
-        };
+        HitObject hitObject = Instantiate(hitObjectPrefab);
+
+        hitObject.SetPool(HitObjectPool);
+
+        return hitObject;
     }
 
-    public void CreateDefaultHitObjects(int count)
-    {
-        for (int i = hitObjects.Count - 1; i < count; i++) hitObjects.CreateDefault(transform);
-    }
+    private void OnGetObject(HitObject hitObject) => hitObject.gameObject.SetActive(true);
 
-    public HitObject GetHitObject(Transform parent) => hitObjects.Dequeue(parent);
-
-    private void OnEnqueue(HitObject hitObject)
+    private void OnReleseObject(HitObject hitObject)
     {
         hitObject.transform.SetParent(transform);
         hitObject.gameObject.SetActive(false);
     }
 
-    private void OnDequeue(HitObject hitObject)
-    {
-        hitObject.SetPool(hitObjects);
-        hitObject.gameObject.SetActive(true);
-    }
+    private void OnDestroyObject(HitObject hitObject) => Destroy(hitObject.gameObject);
 }

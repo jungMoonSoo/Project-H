@@ -1,5 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Pool;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,18 +8,18 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private GameObject deployUi;
     [SerializeField] private Text stageText;
 
-    [SerializeField] private SpawnButtonHandle spawnButton;
+    [SerializeField] private SpawnButtonHandle spawnButtonPrefab;
     [SerializeField] private Transform spawnParent;
 
     private List<SpawnButtonHandle> spawnButtons = new();
-    private ObjectPool<SpawnButtonHandle> spawnButtonsPool;
+    private IObjectPool<SpawnButtonHandle> spawnButtonsPool;
 
     private int frontStageNumber = 0;
     private int backStageNumber = 0;
 
     private void Awake()
     {
-        spawnButtonsPool = new(spawnButton);
+        spawnButtonsPool = new ObjectPool<SpawnButtonHandle>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
     }
 
     public void OnEnter()
@@ -31,7 +31,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         foreach (uint id in PlayerManager.Instance.units)
         {
-            SpawnButtonHandle button = spawnButtonsPool.Dequeue(spawnParent);
+            SpawnButtonHandle button = spawnButtonsPool.Get();
 
             button.gameObject.SetActive(true);
 
@@ -52,7 +52,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
         foreach (SpawnButtonHandle button in spawnButtons)
         {
             button.gameObject.SetActive(false);
-            spawnButtonsPool.Enqueue(button);
+            spawnButtonsPool.Release(button);
         }
 
         spawnButtons.Clear();
@@ -67,4 +67,19 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         stageText.text = $"{frontStageNumber} - {backStageNumber}";
     }
+
+    private SpawnButtonHandle CreateObject()
+    {
+        SpawnButtonHandle spawnButtonHandle = Instantiate(spawnButtonPrefab, spawnParent);
+
+        spawnButtonHandle.SetPool(spawnButtonsPool);
+
+        return spawnButtonHandle;
+    }
+
+    private void OnGetObject(SpawnButtonHandle spawnButtonHandle) => spawnButtonHandle.gameObject.SetActive(true);
+
+    private void OnReleseObject(SpawnButtonHandle spawnButtonHandle) => spawnButtonHandle.gameObject.SetActive(false);
+
+    private void OnDestroyObject(SpawnButtonHandle spawnButtonHandle) => Destroy(spawnButtonHandle.gameObject);
 }

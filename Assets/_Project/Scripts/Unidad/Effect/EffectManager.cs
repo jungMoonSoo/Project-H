@@ -1,45 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Pool;
 using UnityEngine;
 
 public class EffectManager : MonoBehaviour
 {
-    [SerializeField] private EffectSystem effectObject;
+    [SerializeField] private EffectSystem effectPrefab;
 
-    private ObjectPool<EffectSystem> effectObjects;
+    public IObjectPool<EffectSystem> EffectPool { get; private set; }
 
-    private void Start()
+    private void Start() => EffectPool = new ObjectPool<EffectSystem>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
+
+    private EffectSystem CreateObject()
     {
-        effectObjects = new(effectObject)
-        {
-            OnEnqueue = OnEnqueue,
-            OnDequeue = OnDequeue
-        };
+        EffectSystem effectSystem = Instantiate(effectPrefab);
+
+        effectSystem.SetPool(EffectPool);
+
+        return effectSystem;
     }
 
-    public void CreateDefaultEffects(int count)
+    private void OnGetObject(EffectSystem effectSystem) => effectSystem.gameObject.SetActive(true);
+
+    private void OnReleseObject(EffectSystem effectSystem)
     {
-        for (int i = effectObjects.Count - 1; i < count; i++) effectObjects.CreateDefault(transform);
+        effectSystem.transform.SetParent(transform);
+        effectSystem.gameObject.SetActive(false);
     }
 
-    public EffectSystem GetEffect(Transform parent) => effectObjects.Dequeue(parent);
-
-    private void OnEnqueue(EffectSystem effect)
-    {
-        if (this == null)
-        {
-            Destroy(effect);
-
-            return;
-        }
-
-        effect.transform.SetParent(transform);
-        effect.SetActive(false);
-    }
-
-    private void OnDequeue(EffectSystem effect)
-    {
-        effect.Init(effectObjects);
-        effect.SetActive(true);
-    }
+    private void OnDestroyObject(EffectSystem effectSystem) => Destroy(effectSystem.gameObject);
 }

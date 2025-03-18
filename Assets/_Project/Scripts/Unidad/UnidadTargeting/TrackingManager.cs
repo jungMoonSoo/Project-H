@@ -36,7 +36,7 @@ public class TrackingManager : MonoBehaviour
 
     public void CreateHitObject(Unidad unidad)
     {
-        HitObject hitObject = hitObjectManager.GetHitObject(transform);
+        HitObject hitObject = hitObjectManager.HitObjectPool.Get();
 
         hitObject.SetTarget(targets[0].View);
 

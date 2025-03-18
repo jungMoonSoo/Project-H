@@ -5948,7 +5948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965fbe1a12b56b740b8ff1c1e80ac01b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupObject: {fileID: 7480797244531419745, guid: c72290d84f337534da10813fecb53ea5, type: 3}
+  popupPrefab: {fileID: 7480797244531419745, guid: c72290d84f337534da10813fecb53ea5, type: 3}
   popupParent: {fileID: 6365419200641895797}
   onDamageColor:
     serializedVersion: 2
@@ -6122,7 +6122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deployUi: {fileID: 2040266764048107657}
   stageText: {fileID: 5175808047226397024}
-  spawnButton: {fileID: 8892927961079169928, guid: 3923fe67f214bd849b1ac8349da3679d, type: 3}
+  spawnButtonPrefab: {fileID: 8892927961079169928, guid: 3923fe67f214bd849b1ac8349da3679d, type: 3}
   spawnParent: {fileID: 8313699858263859912}
 --- !u!224 &8861135611363502115
 RectTransform:
