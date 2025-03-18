@@ -12,7 +12,7 @@ public class SpineSkillHandle : MonoBehaviour
 
     public void Spawn(Unidad unidad)
     {
-        HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab, transform);
+        HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab);
 
         hitObject.SetTarget(targetPos);
 
