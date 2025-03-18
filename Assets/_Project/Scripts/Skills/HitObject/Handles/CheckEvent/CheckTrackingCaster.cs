@@ -9,7 +9,7 @@ public class CheckTrackingCaster : MonoBehaviour, IHitObjectCheckEvent
         this.caster = caster;
     }
 
-    public void Check(HitObject hitObject)
+    public void OnEvent(HitObject hitObject)
     {
         if (caster == null)
         {

@@ -23,11 +23,11 @@ public class DamageTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
         defenceStatus = caster.NowDefenceStatus;
     }
 
-    public void OnTrigger(HitObject handler)
+    public void OnEvent(HitObject hitObject)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(attackStatus, defenceStatus, skillCoefficient, 0, ElementType.None);
 
-        Unidad[] targets = handler.Targets;
+        Unidad[] targets = hitObject.Targets;
 
         for (int i = 0; i < targets.Length; i++)
         {
@@ -39,7 +39,7 @@ public class DamageTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
             }
             else hitsOnTargets.Add(targets[i], 0);
 
-            targets[i].OnDamage((int)callback.value, callback.type, handler.GetEffect(targets[i].transform));
+            targets[i].OnDamage((int)callback.value, callback.type, hitObject.GetEffect(targets[i].transform));
 
             hitsOnTargets[targets[i]]++;
             nowHitTarget++;

@@ -9,7 +9,7 @@ public class CheckJustHit : MonoBehaviour, IHitObjectCheckEvent
 
     }
 
-    public void Check(HitObject hitObject)
+    public void OnEvent(HitObject hitObject)
     {
         if (moveToTarget) transform.position = hitObject.TargetPos;
 

@@ -1,5 +1,5 @@
 public interface IHitObjectCheckEvent
 {
     public void Init(Unidad caster);
-    public void Check(HitObject hitObject);
+    public void OnEvent(HitObject hitObject);
 }

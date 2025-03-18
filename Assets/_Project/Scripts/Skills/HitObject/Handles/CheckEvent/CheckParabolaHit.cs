@@ -29,7 +29,7 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
         lookAtRight = caster.transform.localScale.x > 0;
     }
 
-    public void Check(HitObject hitObject)
+    public void OnEvent(HitObject hitObject)
     {
         targetPos = hitObject.TargetPos;
 

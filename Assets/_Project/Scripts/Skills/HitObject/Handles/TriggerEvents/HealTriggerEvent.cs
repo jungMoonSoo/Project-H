@@ -14,11 +14,11 @@ public class HealTriggerEvent: MonoBehaviour, IHitObjectTriggerEvent
         defenceStatus = caster.NowDefenceStatus;
     }
 
-    public void OnTrigger(HitObject handler)
+    public void OnEvent(HitObject hitObject)
     {
         CallbackValueInfo<DamageType> callback = StatusCalc.CalculateFinalPhysicalDamage(attackStatus, defenceStatus, skillCoefficient, 0, ElementType.None);
 
-        Unidad[] targets = handler.Targets;
+        Unidad[] targets = hitObject.Targets;
 
         for (int i = 0; i < targets.Length; i++)
         {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +9,9 @@ public class HitObject : MonoBehaviour
 
     private bool isFinished;
 
-    private Action<Unidad> inits;
-
-    private Action<HitObject> checkEvent;
-    private Action<HitObject> triggerEvent;
-    private Action<HitObject> finishEvent;
+    private IHitObjectCheckEvent[] checkEvent;
+    private IHitObjectTriggerEvent[] triggerEvent;
+    private IHitObjectFinishEvent[] finishEvent;
 
     private ICustomCollider customCollider;
 
@@ -61,7 +58,7 @@ public class HitObject : MonoBehaviour
 
         transform.position = createPos;
 
-        if (inits == null) SetEvents();
+        if (customCollider == null) SetEvents();
 
         TargetingFilter = TargetingFilterHub.GetFilter(filterType);
 
@@ -69,7 +66,8 @@ public class HitObject : MonoBehaviour
 
         if (TargetType == TargetType.Me) targets.Add(caster);
 
-        inits?.Invoke(caster);
+        for (int i = 0; i < checkEvent.Length; i++) checkEvent[i].Init(caster);
+        for (int i = 0; i < triggerEvent.Length; i++) triggerEvent[i].Init(caster);
     }
 
     private void Update()
@@ -81,16 +79,22 @@ public class HitObject : MonoBehaviour
 
     public void SetTarget(Transform target) => this.target = target;
 
-    public void OnCheck() => checkEvent?.Invoke(this);
+    public void OnCheck()
+    {
+        for (int i = 0; i < checkEvent.Length; i++) checkEvent[i].OnEvent(this);
+    }
 
-    public void OnTrigger() => triggerEvent?.Invoke(this);
+    public void OnTrigger()
+    {
+        for (int i = 0; i < triggerEvent.Length; i++) triggerEvent[i].OnEvent(this);
+    }
 
     public void OnFinish()
     {
         isFinished = true;
 
-        if (finishEvent == null) Remove();
-        else finishEvent.Invoke(this);
+        if (finishEvent.Length == 0) Remove();
+        else for (int i = 0; i < finishEvent.Length; i++) finishEvent[i].OnEvent(this);
     }
 
     public EffectSystem GetEffect(Transform parent)
@@ -110,18 +114,8 @@ public class HitObject : MonoBehaviour
     {
         customCollider = GetComponentInChildren<ICustomCollider>();
 
-        foreach (IHitObjectCheckEvent @event in GetComponents<IHitObjectCheckEvent>())
-        {
-            inits += @event.Init;
-            checkEvent += @event.Check;
-        }
-
-        foreach (IHitObjectTriggerEvent @event in GetComponents<IHitObjectTriggerEvent>())
-        {
-            inits += @event.Init;
-            triggerEvent += @event.OnTrigger;
-        }
-
-        foreach (IHitObjectFinishEvent @event in GetComponents<IHitObjectFinishEvent>()) finishEvent += @event.OnFinish;
+        checkEvent = GetComponents<IHitObjectCheckEvent>();
+        triggerEvent = GetComponents<IHitObjectTriggerEvent>();
+        finishEvent = GetComponents<IHitObjectFinishEvent>();
     }
 }
