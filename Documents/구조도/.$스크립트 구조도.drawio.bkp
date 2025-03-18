@@ -1,0 +1,131 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.4 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="26.0.4">
+  <diagram name="페이지-1" id="bqC54BUZXKGNaRBznjDi">
+    <mxGraphModel dx="1373" dy="925" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-1" value="Unidad" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="40" width="1170" height="950" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-14" value="UnidadState" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-1">
+          <mxGeometry x="20" y="40" width="560" height="660" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-4" value="ReadyPhase States" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" parent="nEbsdBZU3AJ5B0IcHxvJ-14" vertex="1">
+          <mxGeometry x="20" y="500" width="520" height="140" as="geometry">
+            <mxRectangle x="20" y="500" width="40" height="140" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-15" value="ReadyUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-4" vertex="1">
+          <mxGeometry x="40" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-16" value="PickUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-4" vertex="1">
+          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-25" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-4">
+          <mxGeometry x="180" y="20" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-26" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-4">
+          <mxGeometry x="180" y="80" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-3" value="RunPhase States" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" parent="nEbsdBZU3AJ5B0IcHxvJ-14" vertex="1">
+          <mxGeometry x="20" y="100" width="520" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-5" value="StayUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-3" vertex="1">
+          <mxGeometry x="40" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-3" source="uF1tXid41fVSmVaFJd1Q-6" target="uF1tXid41fVSmVaFJd1Q-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-6" value="IdleUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-3" vertex="1">
+          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-12" value="AttackUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-3" vertex="1">
+          <mxGeometry x="40" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-3" source="uF1tXid41fVSmVaFJd1Q-13" target="uF1tXid41fVSmVaFJd1Q-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="30" y="280" />
+              <mxPoint x="30" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-13" value="SkillUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-3" vertex="1">
+          <mxGeometry x="40" y="260" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-14" value="MoveUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-3" vertex="1">
+          <mxGeometry x="40" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="uF1tXid41fVSmVaFJd1Q-3" source="uF1tXid41fVSmVaFJd1Q-7" target="uF1tXid41fVSmVaFJd1Q-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-7" value="MoveUniState" style="rounded=0;whiteSpace=wrap;html=1;" parent="uF1tXid41fVSmVaFJd1Q-3" vertex="1">
+          <mxGeometry x="40" y="140" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-19" value="준 Idle 상태, 아무것도 하지 않는 상태이며,&lt;div&gt;&lt;b&gt;상태전환은 외부에서 진행해야 함.&lt;/b&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
+          <mxGeometry x="180" y="20" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-20" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
+          <mxGeometry x="180" y="80" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-21" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
+          <mxGeometry x="180" y="140" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-22" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
+          <mxGeometry x="180" y="200" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-23" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
+          <mxGeometry x="180" y="260" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-24" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="uF1tXid41fVSmVaFJd1Q-3">
+          <mxGeometry x="180" y="320" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-2" value="IUnidadState" style="rounded=0;whiteSpace=wrap;html=1;" parent="nEbsdBZU3AJ5B0IcHxvJ-14" vertex="1">
+          <mxGeometry x="60" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="uF1tXid41fVSmVaFJd1Q-19" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" parent="nEbsdBZU3AJ5B0IcHxvJ-14" vertex="1">
+          <mxGeometry x="200" y="40" width="320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-1" value="Vertical Container" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1074" width="560" height="680" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-2" value="IUnidadState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-1">
+          <mxGeometry x="60" y="40" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-3" value="RunPhase States" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-1">
+          <mxGeometry x="20" y="100" width="520" height="380" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-4" value="StayUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-3">
+          <mxGeometry x="40" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-5" value="IdleUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-3">
+          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-6" value="AttackUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-3">
+          <mxGeometry x="40" y="200" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-7" value="SkillUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-3">
+          <mxGeometry x="40" y="260" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-8" value="MoveUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-3">
+          <mxGeometry x="40" y="320" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-9" value="MoveUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-1">
+          <mxGeometry x="60" y="240" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-10" value="ReadyPhase States" style="swimlane;horizontal=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-1">
+          <mxGeometry x="20" y="500" width="520" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-11" value="ReadyUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-10">
+          <mxGeometry x="40" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-12" value="PickUniState" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-10">
+          <mxGeometry x="40" y="80" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="nEbsdBZU3AJ5B0IcHxvJ-13" value="State Pattern을 구현하기 위한, State interface." style="text;html=1;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;" vertex="1" parent="nEbsdBZU3AJ5B0IcHxvJ-1">
+          <mxGeometry x="200" y="40" width="320" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
