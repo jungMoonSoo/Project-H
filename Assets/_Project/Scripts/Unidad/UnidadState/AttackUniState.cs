@@ -53,6 +53,7 @@ public class AttackUniState: MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
+        skeletonAnimation.timeScale = Unit.NowNormalStatus.attackSpeed;
     }
 
     public void OnUpdate()

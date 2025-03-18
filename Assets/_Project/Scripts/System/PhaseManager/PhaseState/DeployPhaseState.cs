@@ -12,14 +12,14 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     [SerializeField] private Transform spawnParent;
 
     private List<SpawnButtonHandle> spawnButtons = new();
-    private IObjectPool<SpawnButtonHandle> spawnButtonsPool;
+    private IObjectPool<SpawnButtonHandle> spawnButtonPool;
 
     private int frontStageNumber = 0;
     private int backStageNumber = 0;
 
     private void Awake()
     {
-        spawnButtonsPool = new ObjectPool<SpawnButtonHandle>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
+        spawnButtonPool = new ObjectPool<SpawnButtonHandle>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
     }
 
     public void OnEnter()
@@ -31,7 +31,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         foreach (uint id in PlayerManager.Instance.units)
         {
-            SpawnButtonHandle button = spawnButtonsPool.Get();
+            SpawnButtonHandle button = spawnButtonPool.Get();
 
             button.gameObject.SetActive(true);
 
@@ -49,11 +49,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     {
         deployUi.SetActive(false);
 
-        foreach (SpawnButtonHandle button in spawnButtons)
-        {
-            button.gameObject.SetActive(false);
-            spawnButtonsPool.Release(button);
-        }
+        foreach (SpawnButtonHandle button in spawnButtons) spawnButtonPool.Release(button);
 
         spawnButtons.Clear();
     }
@@ -72,7 +68,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     {
         SpawnButtonHandle spawnButtonHandle = Instantiate(spawnButtonPrefab, spawnParent);
 
-        spawnButtonHandle.SetPool(spawnButtonsPool);
+        spawnButtonHandle.SetPool(spawnButtonPool);
 
         return spawnButtonHandle;
     }

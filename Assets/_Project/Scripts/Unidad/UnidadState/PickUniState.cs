@@ -23,6 +23,7 @@ public class PickUniState : MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
+        skeletonAnimation.timeScale = 1f;
     }
 
     public void OnUpdate()

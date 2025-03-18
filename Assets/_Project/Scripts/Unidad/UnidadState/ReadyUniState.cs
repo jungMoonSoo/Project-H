@@ -23,6 +23,7 @@ public class ReadyUniState : MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
+        skeletonAnimation.timeScale = 1f;
 
         Unit.boxCollider.SetActiveCollider(true);
     }

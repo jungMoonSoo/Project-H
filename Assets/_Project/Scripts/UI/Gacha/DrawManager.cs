@@ -26,7 +26,7 @@ public class DrawManager : MonoBehaviour
 
         for (int i = 0; i < count; i++)
         {
-            unitId = GetRandomUnitID(0, 6);
+            unitId = GetRandomUnitID(0, 7);
 
             AddUnit(unitId);
         }

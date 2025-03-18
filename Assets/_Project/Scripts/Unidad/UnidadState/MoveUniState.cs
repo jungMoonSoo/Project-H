@@ -43,6 +43,7 @@ public class MoveUniState: MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, true);
+        skeletonAnimation.timeScale = Unit.NowNormalStatus.moveSpeed;
     }
 
     public void OnUpdate()

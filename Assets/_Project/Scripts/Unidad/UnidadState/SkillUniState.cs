@@ -43,6 +43,7 @@ public class SkillUniState: MonoBehaviour, IUnidadState
     public void OnEnter()
     {
         skeletonAnimation.AnimationState.SetAnimation(0, playAnimation, false).Complete += EndUse;
+        skeletonAnimation.timeScale = Unit.NowNormalStatus.attackSpeed;
     }
 
     public void OnUpdate()

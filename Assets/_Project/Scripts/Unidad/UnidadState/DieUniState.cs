@@ -22,6 +22,8 @@ public class DieUniState: MonoBehaviour, IUnidadState
 
     public void OnEnter()
     {
+        skeletonAnimation.timeScale = 1f;
+
         Unit.DieEvent?.Invoke();
         Destroy(Unit.gameObject);
     }
