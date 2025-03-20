@@ -39,6 +39,10 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
         hitObject.OnFinish();
     }
 
+    /// <summary>
+    /// 포물선으로 이동, height y값 까지 이동 후 endYPos y값으로 이동
+    /// </summary>
+    /// <returns>목표지점 도착 여부 반환</returns>
     private bool MoveParabola()
     {
         if (transform.position.y > endYPos) check = true;
@@ -61,6 +65,9 @@ public class CheckParabolaHit : MonoBehaviour, IHitObjectCheckEvent
         return false;
     }
 
+    /// <summary>
+    /// 목표 지점으로 회전
+    /// </summary>
     private void Rotate()
     {
         if (targetPos.x - transform.position.x < 0) lookCamera.Flip(lookAtRight);

@@ -50,6 +50,9 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         }
     }
 
+    /// <summary>
+    /// 현재 위치와 목표 지점 갱신, splitCount로 나눠진 구간에 도달 시 OnTrigger 호출
+    /// </summary>
     private void Refresh()
     {
         nowDist = Vector3.Distance(transform.position, targetPos);
@@ -67,6 +70,9 @@ public class CheckLinearHit : MonoBehaviour, IHitObjectCheckEvent
         nowDist = Vector3.Distance(transform.position, targetPos);
     }
 
+    /// <summary>
+    /// 목표 지점으로 회전
+    /// </summary>
     private void Rotate()
     {
         if (targetPos.x - transform.position.x < 0) lookCamera.Flip(lookAtRight);

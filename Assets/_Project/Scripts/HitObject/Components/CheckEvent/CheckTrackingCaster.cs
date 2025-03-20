@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class CheckTrackingCaster : MonoBehaviour, IHitObjectCheckEvent
 {
-    public Unidad caster;
+    /// <summary>
+    /// 시전자 추적용, 사망 전까지 추적 후 사망 시 종료
+    /// </summary>
+    private Unidad caster;
 
     public void Init(Unidad caster)
     {
