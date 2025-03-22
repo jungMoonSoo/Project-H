@@ -17,6 +17,11 @@ public class TrackingManager : MonoBehaviour
 
     public void SetType(TrackingType type) => trackingType = type;
 
+    /// <summary>
+    /// 유닛이 현재 가져야 하는 상태 반환
+    /// </summary>
+    /// <param name="unidad">상태를 추론할 대상</param>
+    /// <returns>가져야 하는 상태</returns>
     public UnitState CheckState(Unidad unidad)
     {
         ITrackingSystem trackingSystem = TrackingTypeHub.GetSystem(trackingType);
@@ -34,6 +39,10 @@ public class TrackingManager : MonoBehaviour
         return UnitState.Idle;
     }
 
+    /// <summary>
+    /// 공격 시 HitObject 생성 함수
+    /// </summary>
+    /// <param name="unidad">시전자</param>
     public void CreateHitObject(Unidad unidad)
     {
         HitObject hitObject = hitObjectManager.HitObjectPool.Get();

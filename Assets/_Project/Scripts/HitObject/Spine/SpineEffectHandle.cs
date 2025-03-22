@@ -20,6 +20,10 @@ public class SpineEffectHandle : MonoBehaviour
 
     public SpineBoneData GetBoneInfo(int index) => bones[index];
 
+    /// <summary>
+    /// 특정 Bone 위치에 Effect 생성
+    /// </summary>
+    /// <param name="index">bones 배열 index</param>
     public void SpawnEffect(int index)
     {
         if (bones[index].effectManager == null) return;

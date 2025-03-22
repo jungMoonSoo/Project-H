@@ -10,6 +10,10 @@ public class SpineSkillHandle : MonoBehaviour
 
     public void SetTargetPos(Vector3 targetPos) => this.targetPos = targetPos;
 
+    /// <summary>
+    /// 스킬 사용 시 HitObject 생성
+    /// </summary>
+    /// <param name="unidad">시전자</param>
     public void Spawn(Unidad unidad)
     {
         HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab);
