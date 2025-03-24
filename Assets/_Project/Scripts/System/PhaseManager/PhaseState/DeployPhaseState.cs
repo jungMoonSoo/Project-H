@@ -21,7 +21,9 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     {
         spawnButtonPool = new ObjectPool<SpawnButtonHandle>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
     }
-
+    /// <summary>
+    /// Stage text 수정 및 UI 초기화
+    /// </summary>
     public void OnEnter()
     {
         deployUi.SetActive(true);
@@ -44,7 +46,9 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     public void OnUpdate()
     {
     }
-
+    /// <summary>
+    /// 스폰 버튼 제거
+    /// </summary>
     public void OnExit()
     {
         deployUi.SetActive(false);

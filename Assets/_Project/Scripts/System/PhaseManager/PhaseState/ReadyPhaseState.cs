@@ -46,7 +46,9 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         TestEmenySpanw(PhaseManager.Instance.Wave);
 
     }
-
+    /// <summary>
+    /// Touch 감지
+    /// </summary>
     public void OnUpdate()
     {
         TouchInfo touch = TouchSystem.GetTouch(0, unitLayerMask);
@@ -106,7 +108,10 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         UnitDeployManager.Instance.SetAllTileActive(false);
     }
 
-    private void HandleLongPress()//길게 눌렸을 때 적용되는 UI
+    /// <summary>
+    /// 길게 Hold 했을 때 나타나는 UI
+    /// </summary>
+    private void HandleLongPress()
     {
         if (targetUnit.GetComponent<Unidad>() != null)
         {
@@ -124,7 +129,12 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
             }
         }
     }
-    public void CloseInfoWindow() //설명창 비활성화
+
+
+    /// <summary>
+    /// 설명창 비활성화
+    /// </summary>
+    public void CloseInfoWindow() 
     {
         if (allyInfoObject.activeSelf)
         {
@@ -136,6 +146,10 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         }
     }
 
+    /// <summary>
+    /// 웨이브 정보 체인지
+    /// </summary>
+    /// <param name="wave"></param>
     public void WaveTextChange(int wave)
     {
         waveText.text = wave.ToString() + "Wave";

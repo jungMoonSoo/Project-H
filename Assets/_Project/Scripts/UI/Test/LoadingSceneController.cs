@@ -20,6 +20,9 @@ public class LoadingSceneController : Singleton<LoadingSceneController>
         SceneManager.LoadScene("LoadingTest");
     }
 
+    /// <summary>
+    /// 비동기화 Loading Scene => Bar 움직임
+    /// </summary>
     IEnumerator LoadSceneProcess()
     {
         AsyncOperation op = SceneManager.LoadSceneAsync(nextScene);

@@ -85,7 +85,10 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         StopTimer();
     }
 
-    //Timer 관련 함수 
+    /// <summary>
+    /// Timer 업데이트
+    /// </summary>
+    /// <param name="t"></param>
     private void UpdateTimerText(float t)
     {
         int minutes = Mathf.FloorToInt(t / 60); // 남은 분
@@ -94,12 +97,20 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         // "MM:SS" 형식으로 텍스트 업데이트
         txtCounter.text = $"{minutes:D2} : {seconds:D2}";
     }
-    private void StartTimer()// 타이머 시작
+
+    /// <summary>
+    /// Timer 시작
+    /// </summary>
+    private void StartTimer()
     {
         timerCount += Time.deltaTime;
         isTimerRunning = true;
     }
-    private void StopTimer()//타이머 멈추기
+
+    /// <summary>
+    /// Timer 멈추기
+    /// </summary>
+    private void StopTimer()
     {
         isTimerRunning = false;
     }
