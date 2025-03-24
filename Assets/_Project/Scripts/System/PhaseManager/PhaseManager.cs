@@ -6,17 +6,24 @@ using UnityEngine;
 public class PhaseManager : Singleton<PhaseManager>
 {
     [Header("PhaseStates")]
-    [SerializeField] private GameObject deployPhase;
-    [SerializeField] private GameObject readyPhase;
-    [SerializeField] private GameObject runPhase;
-    [SerializeField] private GameObject victoryPhase;
-    [SerializeField] private GameObject defeatPhase;
-    [SerializeField] private GameObject waveClearPhase;
+    // TODO: readyPhase와 runPhase 사이의 풀링 및 최적화 용 페이즈 필요 
+    [SerializeField] private GameObject deployPhase;    // 캐릭터 추가/제외 페이즈
+    [SerializeField] private GameObject readyPhase;     // 캐릭터 위치 변경 페이즈
+    [SerializeField] private GameObject runPhase;       // 실 전투 페이즈
+    [SerializeField] private GameObject victoryPhase;   // 웨이브 전부 승리 페이즈
+    [SerializeField] private GameObject defeatPhase;    // 웨이브 진행 중 패배 페이즈
+    [SerializeField] private GameObject waveClearPhase; // 웨이브 클리어 후 판정 페이즈
 
-    public int wave = 0;
+    /// <summary>
+    /// 현재 진행중인 웨이브
+    /// </summary>
+    [NonSerialized] public int Wave = 0;
+    
     private Dictionary<PhaseState, IPhaseState> states = null;
     private IPhaseState nowState = null;
 
+    
+    #region ◇ Unity Methods ◇
     void Start()
     {
         states = new()
@@ -35,7 +42,13 @@ public class PhaseManager : Singleton<PhaseManager>
     {
         nowState?.OnUpdate();
     }
+    #endregion
 
+    
+    /// <summary>
+    /// State 전환 메소드
+    /// </summary>
+    /// <param name="state">전환할 State</param>
     public void ChangeState(PhaseState state)
     {
         if (states.TryGetValue(state, out IPhaseState newState))
@@ -46,13 +59,18 @@ public class PhaseManager : Singleton<PhaseManager>
         }
     }
     
+    /// <summary>
+    /// ReadyPhase로 전환
+    /// </summary>
     public void ChangeReadyPhase()
     {
         ChangeState(PhaseState.Ready);
     }
+    /// <summary>
+    /// RunPhase로 전환
+    /// </summary>
     public void ChangeRunPhase()
     {
         ChangeState(PhaseState.Run);
     }
-
 }

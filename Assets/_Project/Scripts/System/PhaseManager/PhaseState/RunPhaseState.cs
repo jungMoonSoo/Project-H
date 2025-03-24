@@ -63,7 +63,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
         }
         else if(enemyGroup.transform.childCount == 0)
         {
-            if(PhaseManager.Instance.wave >= 3)
+            if(PhaseManager.Instance.Wave >= 3)
             {
                 PhaseManager.Instance.ChangeState(PhaseState.Victory);
             }
@@ -77,7 +77,7 @@ public class RunPhaseState : MonoBehaviour, IPhaseState
 
     public void OnExit()
     {
-        PhaseManager.Instance.wave++;
+        PhaseManager.Instance.Wave++;
         ActionSkillManager.Instance.OnCancel();
         ActionSkillManager.Instance.ClearSkillButtons();
         timerCount = 0f;

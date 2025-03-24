@@ -35,15 +35,15 @@ public class ReadyPhaseState : MonoBehaviour, IPhaseState
         startButtonObject.SetActive(true);
         timerObject.SetActive(false);
 
-        if(PhaseManager.Instance.wave > 1) //Wave clear 하고 다시 Ready로 돌아오면 해야할 작업
+        if(PhaseManager.Instance.Wave > 1) //Wave clear 하고 다시 Ready로 돌아오면 해야할 작업
         {
-            WaveTextChange(PhaseManager.Instance.wave);
+            WaveTextChange(PhaseManager.Instance.Wave);
             UnitDeployManager.Instance.SetAllTileActive(true);
             UnitDeployManager.Instance.ReturnUnits();
         }
 
         //TEST => 적군 소환 
-        TestEmenySpanw(PhaseManager.Instance.wave);
+        TestEmenySpanw(PhaseManager.Instance.Wave);
 
     }
 
