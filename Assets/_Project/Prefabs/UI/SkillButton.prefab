@@ -399,6 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imgIcon: {fileID: 1323236061078374564}
+  imgBackground: {fileID: 4540273273454821217}
   txtCost: {fileID: 2074842271065782927}
   imgCoolMask: {fileID: 2906959858231004736}
   txtTimer: {fileID: 9111809761704913612}

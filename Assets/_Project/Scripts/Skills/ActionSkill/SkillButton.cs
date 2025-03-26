@@ -8,6 +8,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 {
     [Header("Skill Info")]
     [SerializeField] private Image imgIcon;
+    [SerializeField] private Image imgBackground;
     [SerializeField] private TextMeshProUGUI txtCost;
     
     [Header("CoolTime UI")]
