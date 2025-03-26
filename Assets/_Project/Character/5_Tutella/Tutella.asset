@@ -19,7 +19,7 @@ MonoBehaviour:
   - normal:
       maxHp: 100
       moveSpeed: 2
-      attackSpeed: 0.5
+      attackSpeed: 1
     attack:
       physicalDamage: 10
       magicDamage: 15
@@ -49,7 +49,7 @@ MonoBehaviour:
   - normal:
       maxHp: 150
       moveSpeed: 2
-      attackSpeed: 0.5
+      attackSpeed: 1
     attack:
       physicalDamage: 15
       magicDamage: 15

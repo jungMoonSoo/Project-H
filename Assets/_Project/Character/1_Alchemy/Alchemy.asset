@@ -15,68 +15,11 @@ MonoBehaviour:
   id: 1
   unidadPrefab: {fileID: 5813261068209667863, guid: 03e374867fd3c7347b9358dc68581a0f, type: 3}
   skillInfo: {fileID: 11400000, guid: e5381019091a7804a85a89305ccb629d, type: 2}
-  normalStatus:
-  - maxHp: 100
-    moveSpeed: 2
-    attackSpeed: 0.5
-  - maxHp: 150
-    moveSpeed: 2
-    attackSpeed: 0.5
-  attackStatus:
-  - physicalDamage: 10
-    magicDamage: 15
-    physicalCriticalDamage: 150
-    magicCriticalDamage: 150
-    physicalCriticalProbability: 10
-    magicCriticalProbability: 10
-    accuracy: 100
-    fireDamageBonus: 80
-    waterDamageBonus: 80
-    airDamageBonus: 80
-    earthDamageBonus: 80
-    lightDamageBonus: 80
-    darkDamageBonus: 80
-  - physicalDamage: 15
-    magicDamage: 15
-    physicalCriticalDamage: 150
-    magicCriticalDamage: 150
-    physicalCriticalProbability: 10
-    magicCriticalProbability: 10
-    accuracy: 100
-    fireDamageBonus: 80
-    waterDamageBonus: 80
-    airDamageBonus: 80
-    earthDamageBonus: 80
-    lightDamageBonus: 80
-    darkDamageBonus: 80
-  defenceStatus:
-  - physicalDefence: 1
-    magicDefence: 1
-    physicalCriticalResistance: 0
-    magicCriticalResistance: 0
-    dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
-  - physicalDefence: 1
-    magicDefence: 1
-    physicalCriticalResistance: 0
-    magicCriticalResistance: 0
-    dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
   statuses:
   - normal:
       maxHp: 100
       moveSpeed: 2
-      attackSpeed: 0.5
+      attackSpeed: 1
     attack:
       physicalDamage: 10
       magicDamage: 15
@@ -106,7 +49,7 @@ MonoBehaviour:
   - normal:
       maxHp: 150
       moveSpeed: 2
-      attackSpeed: 0.5
+      attackSpeed: 1
     attack:
       physicalDamage: 15
       magicDamage: 15

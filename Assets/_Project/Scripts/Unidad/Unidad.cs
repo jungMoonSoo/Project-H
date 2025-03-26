@@ -168,7 +168,28 @@ public class Unidad : MonoBehaviour
             effect.transform.localPosition = pos;
         }
 
-        TextPopupManager.Instance.PopupDamage(damage.ToString(), DamageUiPosition.position);
+        string text;
+
+        switch (damageTypem)
+        {
+            case DamageType.Normal:
+                text = $"-{damage}";
+                break;
+
+            case DamageType.Critical:
+                text = $"<size=50%>Critical</size>\n-{damage}";
+                break;
+
+            case DamageType.Miss:
+                text = "Miss";
+                break;
+
+            default:
+                text = "";
+                break;
+        }
+
+        TextPopupManager.Instance.PopupDamage(text, DamageUiPosition.position);
 
         statusManager?.OnDamage(damage);
     }
