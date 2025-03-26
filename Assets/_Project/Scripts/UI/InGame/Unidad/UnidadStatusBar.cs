@@ -4,6 +4,9 @@ using UnityEngine.UI;
 public class UnidadStatusBar : MonoBehaviour
 {
     [SerializeField] private Slider statusBar;
+    [SerializeField] private Image fillImage;
+
+    [SerializeField] private Sprite[] fillSprites;
 
     private Transform barTrans;
 
@@ -13,7 +16,17 @@ public class UnidadStatusBar : MonoBehaviour
 
     private void Update() => FallowUnit();
 
-    public void Init(Transform barTrans) => this.barTrans = barTrans;
+    public void Init(Transform barTrans, UnitType type)
+    {
+        this.barTrans = barTrans;
+
+        fillImage.sprite = type switch
+        {
+            UnitType.Ally => fillSprites[0],
+            UnitType.Enemy => fillSprites[1],
+            _ => fillSprites[0],
+        };
+    }
 
     public void SetBar(float value) => statusBar.value = value;
 

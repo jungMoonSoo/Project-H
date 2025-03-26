@@ -18,7 +18,8 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
     [Header("Mana Settings")]
     [SerializeField] private float maxMana; // 플레이어의 최대 마나
     [SerializeField] private Slider sldMana; // 마나를 표시할 슬라이더 UI
-    [SerializeField] private TextMeshProUGUI txtMana; // 마나를 표시할 슬라이더 UI
+    [SerializeField] private TextMeshProUGUI txtNowMana; // 마나를 표시할 슬라이더 UI
+    [SerializeField] private TextMeshProUGUI txtMaxMana; // 마나를 표시할 슬라이더 UI
     
     
     public bool IsUsingSkill => CastingCaster is not null;
@@ -165,6 +166,7 @@ public class ActionSkillManager: Singleton<ActionSkillManager>
         
         sldMana.maxValue = maxMana;
         sldMana.value = currentValue;
-        txtMana.text = $"{currentValue} / {maxMana}";
+        txtNowMana.text = currentValue.ToString();
+        txtMaxMana.text = $"<color=blue>MP</color> {maxMana}";
     }
 }
