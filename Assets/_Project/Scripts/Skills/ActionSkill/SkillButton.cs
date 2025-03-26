@@ -11,7 +11,8 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     [SerializeField] private Image imgBackground;
     [SerializeField] private TextMeshProUGUI txtCost;
     
-    [Header("CoolTime UI")]
+    [Header("Fixed UI")]
+    [SerializeField] private GameObject objDeathMask;
     [SerializeField] private Image imgCoolMask;
     [SerializeField] private TextMeshProUGUI txtTimer;
 
@@ -85,7 +86,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
 
     private void OnCasterDie()
     {
-        imgIcon.color = Color.red;
+        objDeathMask.SetActive(true);
         if (ActionSkillManager.Instance.CastingCaster == Caster) ActionSkillManager.Instance.OnCancel();
     }
     
@@ -114,7 +115,7 @@ public class SkillButton : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             timeCount += Time.deltaTime;
             float leftTime = skillInfo.cooltime - timeCount;
             
-            txtTimer.text = $"{leftTime:00}";
+            txtTimer.text = $"{leftTime:0}";
             imgCoolMask.fillAmount = leftTime / skillInfo.cooltime;
             
             await Awaitable.NextFrameAsync();
