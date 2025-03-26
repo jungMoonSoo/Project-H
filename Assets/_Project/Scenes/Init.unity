@@ -2562,7 +2562,7 @@ MonoBehaviour:
     introClip: {fileID: 8300000, guid: 7877064e353ba1f42a5b5bb2a9bf7f10, type: 3}
     loopClip: {fileID: 8300000, guid: d1ed30ec43f1dd64b8db724542d08cc4, type: 3}
     loopStartTime: 32
-  selectedMusic: 1
+  selectedMusic: 0
 --- !u!1 &1384322271
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class InGameManager : Singleton<InGameManager>
 {
+    private InGameSpeed inGameSpeed = InGameSpeed.Default;
+    
     private readonly HashSet<PauseType> pauseList = new();
 
     private readonly Dictionary<PauseType, float> pauseSpeed = new()
@@ -14,7 +16,14 @@ public class InGameManager : Singleton<InGameManager>
         {PauseType.OpenMenu, 0f},
         {PauseType.OpenOption, 0f},
     };
-    
+
+
+    private float TimeScale => inGameSpeed switch
+    {
+        InGameSpeed.Default => 1f,
+        InGameSpeed.Double => 2f,
+    };
+
 
     /// <summary>
     /// 게임 일시정지 Method
@@ -47,6 +56,20 @@ public class InGameManager : Singleton<InGameManager>
         CheckPause();
     }
 
+    /// <summary>
+    /// 게임 배속 버튼 Method
+    /// </summary>
+    public void ToggleFastButton()
+    {
+        inGameSpeed = inGameSpeed switch
+        {
+            InGameSpeed.Default => InGameSpeed.Double,
+            InGameSpeed.Double => InGameSpeed.Default,
+            _ => inGameSpeed
+        };
+        CheckPause();
+    }
+
 
     /// <summary>
     /// 게임 일시정지 판단 Method
@@ -54,7 +77,7 @@ public class InGameManager : Singleton<InGameManager>
     /// </summary>
     private void CheckPause()
     {
-        float timeScale = 1f;
+        float timeScale = TimeScale;
         foreach (var pause in pauseList)
         {
             if (pauseSpeed.TryGetValue(pause, out float value))

@@ -17,7 +17,7 @@ public class PhaseManager : Singleton<PhaseManager>
     /// <summary>
     /// 현재 진행중인 웨이브
     /// </summary>
-    [NonSerialized] public int Wave = 0;
+    [NonSerialized] public int Wave = 1;
     
     private Dictionary<PhaseState, IPhaseState> states = null;
     private IPhaseState nowState = null;
