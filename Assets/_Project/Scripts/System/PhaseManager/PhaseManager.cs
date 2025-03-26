@@ -64,6 +64,8 @@ public class PhaseManager : Singleton<PhaseManager>
     /// </summary>
     public void ChangeReadyPhase()
     {
+        if (AllyUnitDeployment.Instance.CurrentUnitNumber == 0) return;
+
         ChangeState(PhaseState.Ready);
     }
     /// <summary>

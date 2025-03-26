@@ -15,71 +15,14 @@ MonoBehaviour:
   id: 10001
   unidadPrefab: {fileID: 5351865268343234963, guid: 4e6ae399d84a083499c5e87f65535273, type: 3}
   skillInfo: {fileID: 0}
-  normalStatus:
-  - maxHp: 100
-    moveSpeed: 2
-    attackSpeed: 0.5
-  - maxHp: 150
-    moveSpeed: 2
-    attackSpeed: 0.5
-  attackStatus:
-  - physicalDamage: 10
-    magicDamage: 15
-    physicalCriticalDamage: 150
-    magicCriticalDamage: 150
-    physicalCriticalProbability: 10
-    magicCriticalProbability: 10
-    accuracy: 100
-    fireDamageBonus: 80
-    waterDamageBonus: 80
-    airDamageBonus: 80
-    earthDamageBonus: 80
-    lightDamageBonus: 80
-    darkDamageBonus: 80
-  - physicalDamage: 15
-    magicDamage: 15
-    physicalCriticalDamage: 150
-    magicCriticalDamage: 150
-    physicalCriticalProbability: 10
-    magicCriticalProbability: 10
-    accuracy: 100
-    fireDamageBonus: 80
-    waterDamageBonus: 80
-    airDamageBonus: 80
-    earthDamageBonus: 80
-    lightDamageBonus: 80
-    darkDamageBonus: 80
-  defenceStatus:
-  - physicalDefence: 1
-    magicDefence: 1
-    physicalCriticalResistance: 0
-    magicCriticalResistance: 0
-    dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
-  - physicalDefence: 1
-    magicDefence: 1
-    physicalCriticalResistance: 0
-    magicCriticalResistance: 0
-    dodgeProbability: 5
-    fireResistanceBonus: 0
-    waterResistanceBonus: 0
-    airResistanceBonus: 0
-    earthResistanceBonus: 0
-    lightResistanceBonus: 0
-    darkResistanceBonus: 0
   statuses:
   - normal:
-      maxHp: 100
+      maxHp: 2000
       moveSpeed: 2
       attackSpeed: 0.5
     attack:
-      physicalDamage: 10
-      magicDamage: 15
+      physicalDamage: 150
+      magicDamage: 185
       physicalCriticalDamage: 150
       magicCriticalDamage: 150
       physicalCriticalProbability: 10
@@ -104,12 +47,12 @@ MonoBehaviour:
       lightResistanceBonus: 0
       darkResistanceBonus: 0
   - normal:
-      maxHp: 150
+      maxHp: 2200
       moveSpeed: 2
       attackSpeed: 0.5
     attack:
-      physicalDamage: 15
-      magicDamage: 15
+      physicalDamage: 180
+      magicDamage: 200
       physicalCriticalDamage: 150
       magicCriticalDamage: 150
       physicalCriticalProbability: 10

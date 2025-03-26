@@ -17,12 +17,12 @@ MonoBehaviour:
   skillInfo: {fileID: 11400000, guid: 724ec3d35bbd7634b994b313897e9be4, type: 2}
   statuses:
   - normal:
-      maxHp: 100
+      maxHp: 2000
       moveSpeed: 2
       attackSpeed: 1
     attack:
-      physicalDamage: 10
-      magicDamage: 15
+      physicalDamage: 150
+      magicDamage: 185
       physicalCriticalDamage: 150
       magicCriticalDamage: 150
       physicalCriticalProbability: 10
@@ -47,12 +47,12 @@ MonoBehaviour:
       lightResistanceBonus: 0
       darkResistanceBonus: 0
   - normal:
-      maxHp: 150
+      maxHp: 2200
       moveSpeed: 2
       attackSpeed: 1
     attack:
-      physicalDamage: 15
-      magicDamage: 15
+      physicalDamage: 180
+      magicDamage: 200
       physicalCriticalDamage: 150
       magicCriticalDamage: 150
       physicalCriticalProbability: 10
