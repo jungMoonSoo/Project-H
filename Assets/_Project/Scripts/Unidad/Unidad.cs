@@ -32,6 +32,10 @@ public class Unidad : MonoBehaviour
     [SerializeField] private Transform damageUiPosition; // 
     [SerializeField] private Transform statusUiPosition; // 
 
+    [Header("Pools")]
+    [SerializeField] private SpineEffectHandle spineEffectHandle;
+    [SerializeField] private HitObjectManager hitObjectManager;
+
     [Header("Other")]
     [SerializeField] private SpineSkillHandle skillHandle;
     [SerializeField] private Transform view;
@@ -200,6 +204,22 @@ public class Unidad : MonoBehaviour
 
         statusManager?.OnHeal(heal);
     }
+
+    #region ◇ Object Pool ◇
+    public void SetEffectPool(int index, int count)
+    {
+        if (spineEffectHandle == null) return;
+
+        spineEffectHandle.CreateDefaultEffect(index, count);
+    }
+
+    public void SetHitObectPool(int count)
+    {
+        if (hitObjectManager == null) return;
+
+        hitObjectManager.CreateDefault(count);
+    }
+    #endregion
 
     #region ◇ Modifier ◇
     public void SetLevel(int level) => ModifierManager.SetUnitDefaltStatus(level);

@@ -33,4 +33,16 @@ public class SpineEffectHandle : MonoBehaviour
         effect.transform.SetParent(transform);
         effect.transform.position = bones[index].bone.GetWorldPosition(view);
     }
+
+    /// <summary>
+    /// 특정 Bone Index의 EffectManager에서 미리 Effect 생성 (현재 공격, 피격, 스킬 Effect 순으로 기록되어 있음)
+    /// </summary>
+    /// <param name="index">bones Index</param>
+    /// <param name="count">생성할 Effect 수</param>
+    public void CreateDefaultEffect(int index, int count)
+    {
+        if (bones.Length <= index) return;
+
+        bones[index].effectManager.CreateDefault(count);
+    }
 }

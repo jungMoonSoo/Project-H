@@ -822,6 +822,8 @@ MonoBehaviour:
   boxCollider: {fileID: 7620397301410438379}
   damageUiPosition: {fileID: 952858709166677585}
   statusUiPosition: {fileID: 2266256906273583055}
+  spineEffectHandle: {fileID: 0}
+  hitObjectManager: {fileID: 6587440754603079762}
   skillHandle: {fileID: 5352160218399858840}
   view: {fileID: 6597715027046978405}
   body: {fileID: 2694466315687910921}

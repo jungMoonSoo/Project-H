@@ -9,6 +9,18 @@ public class HitObjectManager : MonoBehaviour
 
     private void Start() => HitObjectPool = new ObjectPool<HitObject>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
 
+    public void CreateDefault(int count)
+    {
+        HitObject effect;
+
+        for (int i = 0; i < count; i++)
+        {
+            effect = CreateObject();
+
+            HitObjectPool.Release(effect);
+        }
+    }
+
     private HitObject CreateObject()
     {
         HitObject hitObject = Instantiate(hitObjectPrefab);

@@ -9,6 +9,18 @@ public class EffectManager : MonoBehaviour
 
     private void Start() => EffectPool = new ObjectPool<EffectSystem>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
 
+    public void CreateDefault(int count)
+    {
+        EffectSystem effect;
+
+        for (int i = 0; i < count; i++)
+        {
+            effect = CreateObject();
+
+            EffectPool.Release(effect);
+        }
+    }
+
     private EffectSystem CreateObject()
     {
         EffectSystem effectSystem = Instantiate(effectPrefab);
