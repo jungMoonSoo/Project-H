@@ -6,6 +6,7 @@ using UnityEngine.UI;
 // TODO: 코드 정돈작업 필요
 public class DeployPhaseState : MonoBehaviour, IPhaseState
 {
+    [Header("Visible UI Group")]
     [SerializeField] private GameObject deployUi;
     [SerializeField] private Text stageText;
 
@@ -18,15 +19,18 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     private int frontStageNumber = 0;
     private int backStageNumber = 0;
 
+    
+    #region ◇ Unity Events ◇
     private void Awake()
     {
         spawnButtonPool = new ObjectPool<SpawnButtonHandle>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
     }
-    /// <summary>
-    /// Stage text 수정 및 UI 초기화
-    /// </summary>
+    #endregion
+    
+    
     public void OnEnter()
     {
+        // Stage text 수정 및 UI 초기화
         deployUi.SetActive(true);
         UnitDeployManager.Instance.SetAllTileActive(true);
 
@@ -47,17 +51,17 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     public void OnUpdate()
     {
     }
-    /// <summary>
-    /// 스폰 버튼 제거
-    /// </summary>
+    
     public void OnExit()
     {
+        // 스폰 버튼 제거
         deployUi.SetActive(false);
 
         foreach (SpawnButtonHandle button in spawnButtons) spawnButtonPool.Release(button);
 
         spawnButtons.Clear();
     }
+    
 
     public void BackWindowButton() => LoadingSceneController.LoadScene("Lobby");
 
