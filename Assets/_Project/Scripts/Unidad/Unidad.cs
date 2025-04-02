@@ -94,11 +94,7 @@ public class Unidad : MonoBehaviour
         Init();
     }
 
-    private void Update()
-    {
-        nowState?.OnUpdate();
-        ModifierManager.CheckCycle();
-    }
+    private void Update() => nowState?.OnUpdate();
 
     private void OnDestroy()
     {
@@ -223,11 +219,5 @@ public class Unidad : MonoBehaviour
 
     #region ◇ Modifier ◇
     public void SetLevel(int level) => ModifierManager.SetUnitDefaltStatus(level);
-
-    public void AddModifier(ModifierBase modifier) => ModifierManager.Add(modifier);
-
-    public void RemoveModifier(ModifierBase modifier) => ModifierManager.Remove(modifier);
-
-    public void ClearModifier() => ModifierManager.Clear();
     #endregion
 }
