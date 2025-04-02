@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeveClearPhaseWeState : MonoBehaviour, IPhaseState
+// TODO: 코드 정돈작업 필요
+public class WaveClearPhaseState : MonoBehaviour, IPhaseState
 {
     [SerializeField] private GameObject gameVictoryObject;
     [SerializeField] private GameObject gameDefeatObject;

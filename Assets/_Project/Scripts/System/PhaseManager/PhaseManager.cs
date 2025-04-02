@@ -9,6 +9,7 @@ public class PhaseManager : Singleton<PhaseManager>
     // TODO: readyPhase와 runPhase 사이의 풀링 및 최적화 용 페이즈 필요 
     [SerializeField] private GameObject deployPhase;    // 캐릭터 추가/제외 페이즈
     [SerializeField] private GameObject readyPhase;     // 캐릭터 위치 변경 페이즈
+    [SerializeField] private GameObject loadingPhase;   // Pooling 및 전투 준비용 페이즈
     [SerializeField] private GameObject runPhase;       // 실 전투 페이즈
     [SerializeField] private GameObject victoryPhase;   // 웨이브 전부 승리 페이즈
     [SerializeField] private GameObject defeatPhase;    // 웨이브 진행 중 패배 페이즈
@@ -31,6 +32,7 @@ public class PhaseManager : Singleton<PhaseManager>
             { PhaseState.Deploy, deployPhase.GetComponent<IPhaseState>() },
             { PhaseState.Ready, readyPhase.GetComponent<IPhaseState>() },
             { PhaseState.Run, runPhase.GetComponent<IPhaseState>() },
+            { PhaseState.Loading, loadingPhase.GetComponent<IPhaseState>() },
             { PhaseState.Victory, victoryPhase.GetComponent<IPhaseState>() },
             { PhaseState.Defeat, defeatPhase.GetComponent<IPhaseState>() },
             { PhaseState.WaveClear, waveClearPhase.GetComponent<IPhaseState>() }
@@ -51,11 +53,16 @@ public class PhaseManager : Singleton<PhaseManager>
     /// <param name="state">전환할 State</param>
     public void ChangeState(PhaseState state)
     {
+        Debug.Log(state.ToString());
         if (states.TryGetValue(state, out IPhaseState newState))
         {
             nowState?.OnExit();
             nowState = newState;
             nowState.OnEnter();
+        }
+        else
+        {
+            throw new Exception($"존재하지 않는 State: {state}");
         }
     }
     
@@ -73,6 +80,6 @@ public class PhaseManager : Singleton<PhaseManager>
     /// </summary>
     public void ChangeRunPhase()
     {
-        ChangeState(PhaseState.Run);
+        ChangeState(PhaseState.Loading);
     }
 }

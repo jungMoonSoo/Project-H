@@ -5,6 +5,9 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 
+/// </summary>
 public class RunPhaseState : MonoBehaviour, IPhaseState
 {
     //[Header("SetActive Objects")]

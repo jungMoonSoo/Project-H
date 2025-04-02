@@ -3,6 +3,7 @@ using UnityEngine.Pool;
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: 코드 정돈작업 필요
 public class DeployPhaseState : MonoBehaviour, IPhaseState
 {
     [SerializeField] private GameObject deployUi;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: 코드 정돈작업 필요
 public class ReadyPhaseState : MonoBehaviour, IPhaseState
 {
     [Header("GameObject 연결")]

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: 코드 정돈작업 필요
 public class DefeatPhaseState : MonoBehaviour, IPhaseState
 {
     [SerializeField] private GameObject gameVictoryObject;
