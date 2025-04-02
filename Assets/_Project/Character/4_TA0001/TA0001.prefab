@@ -576,6 +576,67 @@ Transform:
   - {fileID: 8121452152091632087}
   m_Father: {fileID: 3805329275954542736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3441909322423436760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5466126388190271636}
+  - component: {fileID: 5878320527153111482}
+  - component: {fileID: 1580619686969617386}
+  m_Layer: 6
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5466126388190271636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441909322423436760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1093898271233409457}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5878320527153111482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441909322423436760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObjectManager: {fileID: 1580619686969617386}
+  effectHandle: {fileID: 0}
+  effectIndex: 0
+--- !u!114 &1580619686969617386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441909322423436760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObjectPrefab: {fileID: 0}
 --- !u!1 &4930505331228810306
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,8 +702,10 @@ MonoBehaviour:
   damageUiPosition: {fileID: 4892709537515427125}
   statusUiPosition: {fileID: 9206378180646387357}
   spineEffectHandle: {fileID: 0}
-  hitObjectManager: {fileID: 4122390566406169492}
-  skillHandle: {fileID: 3389304418468235371}
+  hitObjectManagers:
+  - {fileID: 4122390566406169492}
+  - {fileID: 1580619686969617386}
+  skillHandle: {fileID: 5878320527153111482}
   view: {fileID: 7518822806216310010}
   body: {fileID: 1762683705657641075}
   audioHandle: {fileID: 4648712360873556466}
@@ -949,9 +1012,8 @@ GameObject:
   - component: {fileID: 5376440039889042837}
   - component: {fileID: 8466369064688922282}
   - component: {fileID: 4122390566406169492}
-  - component: {fileID: 3389304418468235371}
   m_Layer: 6
-  m_Name: Event
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -999,20 +1061,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 2077749959588913920, guid: b41dd3af9cdf8f14e94d521f43fba45f, type: 3}
---- !u!114 &3389304418468235371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6004814293672522744}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectHandle: {fileID: 0}
-  effectIndex: 0
 --- !u!1 &6612018800831520400
 GameObject:
   m_ObjectHideFlags: 0
@@ -1044,6 +1092,7 @@ Transform:
   m_Children:
   - {fileID: 6079354259179099654}
   - {fileID: 5376440039889042837}
+  - {fileID: 5466126388190271636}
   m_Father: {fileID: 3805329275954542736}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7381612810151601631

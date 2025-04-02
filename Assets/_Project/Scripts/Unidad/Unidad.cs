@@ -34,7 +34,7 @@ public class Unidad : MonoBehaviour
 
     [Header("Pools")]
     [SerializeField] private SpineEffectHandle spineEffectHandle;
-    [SerializeField] private HitObjectManager hitObjectManager;
+    [SerializeField] private HitObjectManager[] hitObjectManagers;
 
     [Header("Other")]
     [SerializeField] private SpineSkillHandle skillHandle;
@@ -209,11 +209,11 @@ public class Unidad : MonoBehaviour
         spineEffectHandle.CreateDefaultEffect(index, count);
     }
 
-    public void SetHitObectPool(int count)
+    public void SetHitObectPool(int index, int count)
     {
-        if (hitObjectManager == null) return;
+        if (hitObjectManagers.Length <= index) return;
 
-        hitObjectManager.CreateDefault(count);
+        hitObjectManagers[index].CreateDefault(count);
     }
     #endregion
 

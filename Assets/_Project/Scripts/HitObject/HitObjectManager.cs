@@ -9,6 +9,8 @@ public class HitObjectManager : MonoBehaviour
 
     private void Start() => HitObjectPool = new ObjectPool<HitObject>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
 
+    public void SetPrefab(HitObject hitObjectPrefab) => this.hitObjectPrefab = hitObjectPrefab;
+
     public void CreateDefault(int count)
     {
         HitObject effect;

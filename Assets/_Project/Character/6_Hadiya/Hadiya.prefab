@@ -241,6 +241,67 @@ MonoBehaviour:
   attackSoundPoint: 0.5
   trackingManager: {fileID: 1706487571459985532}
   attackEffect: {fileID: 0}
+--- !u!1 &2511896440749463428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7236429248127436924}
+  - component: {fileID: 6704009122976986012}
+  - component: {fileID: 5339189140870253803}
+  m_Layer: 6
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7236429248127436924
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511896440749463428}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2646625728065960136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6704009122976986012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511896440749463428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObjectManager: {fileID: 5339189140870253803}
+  effectHandle: {fileID: 0}
+  effectIndex: 0
+--- !u!114 &5339189140870253803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511896440749463428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObjectPrefab: {fileID: 0}
 --- !u!1 &2588610176421612611
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,8 +1092,10 @@ MonoBehaviour:
   damageUiPosition: {fileID: 1945676781002861287}
   statusUiPosition: {fileID: 3984195991756771338}
   spineEffectHandle: {fileID: 0}
-  hitObjectManager: {fileID: 6946498646291355558}
-  skillHandle: {fileID: 4271511513010201706}
+  hitObjectManagers:
+  - {fileID: 6946498646291355558}
+  - {fileID: 5339189140870253803}
+  skillHandle: {fileID: 6704009122976986012}
   view: {fileID: 631427363531939612}
   body: {fileID: 3495982395255915364}
   audioHandle: {fileID: 6604994404387091370}
@@ -1192,6 +1255,7 @@ Transform:
   m_Children:
   - {fileID: 5031205723670645443}
   - {fileID: 3382645806987501034}
+  - {fileID: 7236429248127436924}
   m_Father: {fileID: 5016539478356696857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8156880993226957303
@@ -1205,9 +1269,8 @@ GameObject:
   - component: {fileID: 3382645806987501034}
   - component: {fileID: 1706487571459985532}
   - component: {fileID: 6946498646291355558}
-  - component: {fileID: 4271511513010201706}
   m_Layer: 6
-  m_Name: Event
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1255,20 +1318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 690249846789167234, guid: 6f89dc9fe65ffde4eb8694229c1581c3, type: 3}
---- !u!114 &4271511513010201706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8156880993226957303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectHandle: {fileID: 0}
-  effectIndex: 0
 --- !u!1 &8267922737971991134
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class SpineSkillHandle : MonoBehaviour
 {
+    [SerializeField] private HitObjectManager hitObjectManager;
+
     [SerializeField] private SpineEffectHandle effectHandle;
     [SerializeField] private int effectIndex;
 
@@ -16,7 +18,11 @@ public class SpineSkillHandle : MonoBehaviour
     /// <param name="unidad">시전자</param>
     public void Spawn(Unidad unidad)
     {
-        HitObject hitObject = Instantiate(unidad.Status.skillInfo?.effectPrefab);
+        if (unidad.Status.skillInfo == null) return;
+
+        hitObjectManager.SetPrefab(unidad.Status.skillInfo.effectPrefab);
+
+        HitObject hitObject = hitObjectManager.HitObjectPool.Get();
 
         hitObject.SetTarget(targetPos);
 

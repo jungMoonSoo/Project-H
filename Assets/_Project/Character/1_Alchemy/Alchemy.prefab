@@ -337,7 +337,7 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 7762374898365806450}
+        - m_Target: {fileID: 221780811653948417}
           m_TargetAssemblyTypeName: SpineSkillHandle, Assembly-CSharp
           m_MethodName: Spawn
           m_Mode: 2
@@ -784,6 +784,67 @@ MonoBehaviour:
   _animationName: 
   loop: 1
   timeScale: 1
+--- !u!1 &4016011252155260465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 504452986492802138}
+  - component: {fileID: 221780811653948417}
+  - component: {fileID: 6589634339084923316}
+  m_Layer: 6
+  m_Name: Skill
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &504452986492802138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016011252155260465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2646625728065960136}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &221780811653948417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016011252155260465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObjectManager: {fileID: 6589634339084923316}
+  effectHandle: {fileID: 1309225607507979557}
+  effectIndex: 2
+--- !u!114 &6589634339084923316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4016011252155260465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e24e4abdeb1f6446ac28692946b334c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitObjectPrefab: {fileID: 0}
 --- !u!1 &4629116522868691169
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,8 +1254,10 @@ MonoBehaviour:
   damageUiPosition: {fileID: 1945676781002861287}
   statusUiPosition: {fileID: 3984195991756771338}
   spineEffectHandle: {fileID: 1309225607507979557}
-  hitObjectManager: {fileID: 6946498646291355558}
-  skillHandle: {fileID: 7762374898365806450}
+  hitObjectManagers:
+  - {fileID: 6946498646291355558}
+  - {fileID: 6589634339084923316}
+  skillHandle: {fileID: 221780811653948417}
   view: {fileID: 631427363531939612}
   body: {fileID: 6676714964731172734}
   audioHandle: {fileID: 6604994404387091370}
@@ -1385,6 +1448,7 @@ Transform:
   m_Children:
   - {fileID: 5031205723670645443}
   - {fileID: 3382645806987501034}
+  - {fileID: 504452986492802138}
   - {fileID: 7123879852153191005}
   m_Father: {fileID: 5016539478356696857}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1399,9 +1463,8 @@ GameObject:
   - component: {fileID: 3382645806987501034}
   - component: {fileID: 1706487571459985532}
   - component: {fileID: 6946498646291355558}
-  - component: {fileID: 7762374898365806450}
   m_Layer: 6
-  m_Name: Event
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1449,20 +1512,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 6836992869138537039, guid: d79b4a1807f7f8749be9d15c1ae16ffc, type: 3}
---- !u!114 &7762374898365806450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8156880993226957303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e69c86278747d8a478ab842e63d5ed0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  effectHandle: {fileID: 1309225607507979557}
-  effectIndex: 2
 --- !u!1 &8577016848715655282
 GameObject:
   m_ObjectHideFlags: 0
