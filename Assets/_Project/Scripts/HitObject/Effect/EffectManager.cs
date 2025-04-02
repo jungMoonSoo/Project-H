@@ -4,21 +4,17 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour
 {
     [SerializeField] private EffectSystem effectPrefab;
+    [SerializeField] private int defaultCreateCount = 0;
 
     public IObjectPool<EffectSystem> EffectPool { get; private set; }
 
     private void Start() => EffectPool = new ObjectPool<EffectSystem>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
 
-    public void CreateDefault(int count)
+    public void CreateDefault()
     {
-        EffectSystem effect;
+        if (effectPrefab == null) return;
 
-        for (int i = 0; i < count; i++)
-        {
-            effect = CreateObject();
-
-            EffectPool.Release(effect);
-        }
+        for (int i = 0; i < defaultCreateCount; i++) EffectPool.Release(CreateObject());
     }
 
     private EffectSystem CreateObject()

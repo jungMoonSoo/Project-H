@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 0}
+  defaultCreateCount: 1
 --- !u!1 &378126783935795442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,6 +1007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 690249846789167234, guid: 44e87e63b8de33f40a8464e432a061a3, type: 3}
+  defaultCreateCount: 1
 --- !u!1 &7898721274747308019
 GameObject:
   m_ObjectHideFlags: 0

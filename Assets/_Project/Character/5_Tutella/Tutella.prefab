@@ -1167,6 +1167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectPrefab: {fileID: 5455612723261389156, guid: 4fc1d371e856a344096758bb0ae703d4, type: 3}
+  defaultCreateCount: 5
 --- !u!1 &5813261068209667863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,6 +1285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectPrefab: {fileID: 8846903734216597095, guid: 7d2331a874e67a54da8429f3ab15b7f6, type: 3}
+  defaultCreateCount: 1
 --- !u!1 &6234352431916946155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,6 +1395,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 0}
+  defaultCreateCount: 1
 --- !u!1 &6864574925046251924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 2077749959588913920, guid: 29bad2abef7fe004896ebd034aad6a88, type: 3}
+  defaultCreateCount: 1
 --- !u!1 &8366226564108712757
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectPrefab: {fileID: 1931464129639069266, guid: 2ee7782206720294c8af45e8896d3290, type: 3}
+  defaultCreateCount: 1
 --- !u!1 &9102664180571692735
 GameObject:
   m_ObjectHideFlags: 0

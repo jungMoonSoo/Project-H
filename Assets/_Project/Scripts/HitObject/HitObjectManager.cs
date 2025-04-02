@@ -4,6 +4,7 @@ using UnityEngine;
 public class HitObjectManager : MonoBehaviour
 {
     [SerializeField] private HitObject hitObjectPrefab;
+    [SerializeField] private int defaultCreateCount = 0;
 
     public IObjectPool<HitObject> HitObjectPool { get; private set; }
 
@@ -11,16 +12,11 @@ public class HitObjectManager : MonoBehaviour
 
     public void SetPrefab(HitObject hitObjectPrefab) => this.hitObjectPrefab = hitObjectPrefab;
 
-    public void CreateDefault(int count)
+    public void CreateDefault()
     {
-        HitObject effect;
+        if (hitObjectPrefab == null) return;
 
-        for (int i = 0; i < count; i++)
-        {
-            effect = CreateObject();
-
-            HitObjectPool.Release(effect);
-        }
+        for (int i = 0; i < defaultCreateCount; i++) HitObjectPool.Release(CreateObject());
     }
 
     private HitObject CreateObject()

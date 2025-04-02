@@ -836,6 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 690249846789167234, guid: caa584e5f16f00742a3dcd3c752c6127, type: 3}
+  defaultCreateCount: 1
 --- !u!1 &7012972880007876563
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,3 +1334,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitObjectPrefab: {fileID: 0}
+  defaultCreateCount: 1

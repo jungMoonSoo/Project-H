@@ -35,14 +35,10 @@ public class SpineEffectHandle : MonoBehaviour
     }
 
     /// <summary>
-    /// 특정 Bone Index의 EffectManager에서 미리 Effect 생성 (현재 공격, 피격, 스킬 Effect 순으로 기록되어 있음)
+    /// 모든 Bone의 EffectManager에서 미리 Effect 생성
     /// </summary>
-    /// <param name="index">bones Index</param>
-    /// <param name="count">생성할 Effect 수</param>
-    public void CreateDefaultEffect(int index, int count)
+    public void CreateDefaultEffect()
     {
-        if (bones.Length <= index) return;
-
-        bones[index].effectManager.CreateDefault(count);
+        foreach (SpineBoneData bone in bones) bone.effectManager.CreateDefault();
     }
 }

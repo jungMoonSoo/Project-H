@@ -202,18 +202,18 @@ public class Unidad : MonoBehaviour
     }
 
     #region ◇ Object Pool ◇
-    public void SetEffectPool(int index, int count)
+    public void SetEffectPool()
     {
         if (spineEffectHandle == null) return;
 
-        spineEffectHandle.CreateDefaultEffect(index, count);
+        spineEffectHandle.CreateDefaultEffect();
     }
 
-    public void SetHitObectPool(int index, int count)
+    public void SetHitObjectPool()
     {
-        if (hitObjectManagers.Length <= index) return;
+        if (hitObjectManagers == null) return;
 
-        hitObjectManagers[index].CreateDefault(count);
+        foreach (HitObjectManager manager in hitObjectManagers) manager.CreateDefault();
     }
     #endregion
 
