@@ -3,17 +3,19 @@ using UnityEngine.Pool;
 using UnityEngine;
 using UnityEngine.UI;
 
-// TODO: 코드 정돈작업 필요
+// TODO: 코드 정돈작업 필요, BackWindowButton Method는 다른 Class로 옮겨야 함.
 public class DeployPhaseState : MonoBehaviour, IPhaseState
 {
     [Header("Visible UI Group")]
     [SerializeField] private GameObject deployUi;
-    [SerializeField] private Text stageText;
+    [SerializeField] private Text txtStage;
 
+    [Header("Spawn Button Settings")]
     [SerializeField] private SpawnButtonHandle spawnButtonPrefab;
     [SerializeField] private Transform spawnParent;
 
-    private List<SpawnButtonHandle> spawnButtons = new();
+    
+    private readonly List<SpawnButtonHandle> spawnButtons = new();
     private IObjectPool<SpawnButtonHandle> spawnButtonPool;
 
     private int frontStageNumber = 0;
@@ -36,6 +38,8 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         StageTextUpdate(1, 1);
 
+        
+        // 캐릭터 Button 생성
         foreach (uint id in PlayerManager.Instance.units)
         {
             SpawnButtonHandle button = spawnButtonPool.Get();
@@ -63,16 +67,27 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
     }
     
 
-    public void BackWindowButton() => LoadingSceneController.LoadScene("Lobby");
-
-    public void StageTextUpdate(int front, int back) //Stage 정보 업데이트 함수 
+    /// <summary>
+    /// 스테이지 텍스트 작성 Method<br/>
+    /// ex) "<b>{MainStage}</b>-<b>{SubStage}</b>"
+    /// </summary>
+    /// <param name="front">MainStage</param>
+    /// <param name="back">SubStage</param>
+    private void StageTextUpdate(int front, int back) //Stage 정보 업데이트 함수 
     {
         frontStageNumber = front;
         backStageNumber = back;
 
-        stageText.text = $"{frontStageNumber} - {backStageNumber}";
+        txtStage.text = $"{frontStageNumber} - {backStageNumber}";
     }
 
+    /// <summary>
+    /// 전 Scean으로 돌아가기 위한 Method
+    /// </summary>
+    public void BackWindowButton() => LoadingSceneController.LoadScene("Lobby");
+
+    
+    #region ◇ SpawnButton Events ◇
     private SpawnButtonHandle CreateObject()
     {
         SpawnButtonHandle spawnButtonHandle = Instantiate(spawnButtonPrefab, spawnParent);
@@ -81,10 +96,8 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         return spawnButtonHandle;
     }
-
     private void OnGetObject(SpawnButtonHandle spawnButtonHandle) => spawnButtonHandle.gameObject.SetActive(true);
-
     private void OnReleseObject(SpawnButtonHandle spawnButtonHandle) => spawnButtonHandle.gameObject.SetActive(false);
-
     private void OnDestroyObject(SpawnButtonHandle spawnButtonHandle) => Destroy(spawnButtonHandle.gameObject);
+    #endregion
 }
