@@ -10,7 +10,7 @@ public class LoadingPhaseState : MonoBehaviour, IPhaseState
         Unidad[] unidads = GameObject.FindObjectsOfType<Unidad>();
         foreach (Unidad unidad in unidads)
         {
-            unidad.SetEffectPool();
+            //unidad.SetEffectPool();
             unidad.SetHitObjectPool();
         }
         
