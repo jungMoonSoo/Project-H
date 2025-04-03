@@ -6,7 +6,7 @@ public class PresetManager : MonoBehaviour
     [SerializeField] private PresetButtonManager buttonManager;
     [SerializeField] private UnidadSpawnManager spawnManager;
 
-    private HashSet<uint> spawnedUnits = new();
+    private Dictionary<int, int> spawnedUnits = new();
 
     private int currentPreset;
 
@@ -24,37 +24,54 @@ public class PresetManager : MonoBehaviour
         LoadingSceneController.LoadScene("Lobby");
     }
 
+    /// <summary>
+    /// 신규 Preset 생성
+    /// </summary>
     public void CreatePreset()
     {
-        int[] units = new int[UnitDeployManager.Instance.GetTiles(UnitType.Ally).Count];
+        DoubleValue<int, int>[] units = new DoubleValue<int, int>[UnitDeployManager.Instance.GetTiles(UnitType.Ally).Count];
 
-        for (int i = 0; i < units.Length; i++) units[i] = -1;
+        for (int i = 0; i < units.Length; i++) units[i].Set(-1, -1);
 
         PlayerManager.Instance.presets.Add(units);
     }
 
-    public void DeployUnit(int index)
+    /// <summary>
+    /// Preset에 저장 된 Unit 배치
+    /// </summary>
+    /// <param name="index">Preset Index</param>
+    public void DeployPresetUnit(int index)
     {
         currentPreset = index;
 
-        foreach (int unitID in PlayerManager.Instance.presets[index])
+        foreach (DoubleValue<int, int> presetInfo in PlayerManager.Instance.presets[index])
         {
-            if (unitID == -1) continue;
+            if (presetInfo.first == -1) continue;
 
-            CreateUnit((uint)unitID);
+            CreateUnit(presetInfo.first, presetInfo.second);
         }
     }
 
+    /// <summary>
+    /// 배치된 Unit을 Preset에 기록
+    /// </summary>
     public void SetPreset()
     {
         List<TileHandle> tiles = UnitDeployManager.Instance.GetTiles(UnitType.Ally);
 
-        for (int i = 0; i < tiles.Count; i++) PlayerManager.Instance.presets[currentPreset][i] = (int)tiles[i].Unit.Status.id;
+        int unitID;
+
+        for (int i = 0; i < tiles.Count; i++)
+        {
+            unitID = (int)tiles[i].Unit.Status.id;
+
+            PlayerManager.Instance.presets[currentPreset][i].Set(unitID, spawnedUnits[unitID]);
+        }
     }
 
-    private void CreateUnit(uint id)
+    public void CreateUnit(int unitID, int skillIndex)
     {
-        spawnManager.Spawn(id);
-        spawnedUnits.Add(id);
+        spawnManager.Spawn((uint)unitID);
+        spawnedUnits.Add(unitID, skillIndex);
     }
 }

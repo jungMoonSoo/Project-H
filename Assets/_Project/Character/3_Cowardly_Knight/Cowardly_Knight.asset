@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cowardly_Knight
   m_EditorClassIdentifier: 
   id: 3
-  unidadPrefab: {fileID: 6670689217314585606, guid: 3a89e23cf540cce49a51a1025de7f1be, type: 3}
+  unidadPrefab: {fileID: 2477652697797851937, guid: 3a89e23cf540cce49a51a1025de7f1be, type: 3}
   skillInfo: {fileID: 11400000, guid: 09beb6f9db8527647b7ad303fee0c045, type: 2}
   statuses:
   - normal:

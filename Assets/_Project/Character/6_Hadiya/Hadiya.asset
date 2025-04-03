@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hadiya
   m_EditorClassIdentifier: 
   id: 6
-  unidadPrefab: {fileID: 5813261068209667863, guid: ba88fbd43eaf41049b9511c542d67766, type: 3}
+  unidadPrefab: {fileID: 2959052554162630870, guid: ba88fbd43eaf41049b9511c542d67766, type: 3}
   skillInfo: {fileID: 11400000, guid: e5381019091a7804a85a89305ccb629d, type: 2}
   statuses:
   - normal:

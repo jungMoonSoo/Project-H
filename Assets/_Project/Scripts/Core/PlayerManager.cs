@@ -11,7 +11,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public int energy = 100;
 
     public HashSet<uint> units = new();
-    public List<int[]> presets = new();
+    public List<DoubleValue<int, int>[]> presets = new();
 
     public void Start() => LoadData();
 
@@ -27,7 +27,7 @@ public class PlayerManager : Singleton<PlayerManager>
         PlayerPrefs.SetInt("Energy", energy);
 
         PlayerPrefs.SetString("Inventory", JsonUtility.ToJson(new Wrapper<uint>(units), true));
-        PlayerPrefs.SetString("Preset", JsonUtility.ToJson(new Wrapper<int[]>(presets), true));
+        PlayerPrefs.SetString("Preset", JsonUtility.ToJson(new Wrapper<DoubleValue<int, int>[]>(presets), true));
 
         PlayerPrefs.Save();
     }
@@ -42,6 +42,6 @@ public class PlayerManager : Singleton<PlayerManager>
         energy = PlayerPrefs.GetInt("Energy", 100);
 
         if (PlayerPrefs.HasKey("Inventory")) units = JsonUtility.FromJson<Wrapper<uint>>(PlayerPrefs.GetString("Inventory"));
-        if (PlayerPrefs.HasKey("Preset")) presets = JsonUtility.FromJson<Wrapper<int[]>>(PlayerPrefs.GetString("Preset"));
+        if (PlayerPrefs.HasKey("Preset")) presets = JsonUtility.FromJson<Wrapper<DoubleValue<int, int>[]>>(PlayerPrefs.GetString("Preset"));
     }
 }

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   id: 10001
-  unidadPrefab: {fileID: 5351865268343234963, guid: 4e6ae399d84a083499c5e87f65535273, type: 3}
+  unidadPrefab: {fileID: 8282001285945383421, guid: 4e6ae399d84a083499c5e87f65535273, type: 3}
   skillInfo: {fileID: 0}
   statuses:
   - normal:

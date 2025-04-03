@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tutella
   m_EditorClassIdentifier: 
   id: 5
-  unidadPrefab: {fileID: 5813261068209667863, guid: f4ddb4dc7c615304a8c666d39c05ff96, type: 3}
+  unidadPrefab: {fileID: 2959052554162630870, guid: f4ddb4dc7c615304a8c666d39c05ff96, type: 3}
   skillInfo: {fileID: 11400000, guid: 59747d040c1fc6b40abfdbe4aee1e62f, type: 2}
   statuses:
   - normal:

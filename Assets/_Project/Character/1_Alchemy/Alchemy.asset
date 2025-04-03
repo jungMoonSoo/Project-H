@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alchemy
   m_EditorClassIdentifier: 
   id: 1
-  unidadPrefab: {fileID: 5813261068209667863, guid: 03e374867fd3c7347b9358dc68581a0f, type: 3}
+  unidadPrefab: {fileID: 2959052554162630870, guid: 03e374867fd3c7347b9358dc68581a0f, type: 3}
   skillInfo: {fileID: 11400000, guid: e5381019091a7804a85a89305ccb629d, type: 2}
   statuses:
   - normal:

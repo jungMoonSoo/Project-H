@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TwohanSwordWarrior
   m_EditorClassIdentifier: 
   id: 10000
-  unidadPrefab: {fileID: 3749304971266017961, guid: bd0b431a57180eb4b9a11a7cdbe01524, type: 3}
+  unidadPrefab: {fileID: 1019320552927720922, guid: bd0b431a57180eb4b9a11a7cdbe01524, type: 3}
   skillInfo: {fileID: 0}
   statuses:
   - normal:
