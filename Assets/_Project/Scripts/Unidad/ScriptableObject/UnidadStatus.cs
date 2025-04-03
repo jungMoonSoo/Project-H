@@ -8,7 +8,7 @@ public class UnidadStatus : ScriptableObject
     public uint id;
         
     [Header("Prefabs")]
-    public GameObject unidadPrefab;
+    public Unidad unidadPrefab;
     
     [Header("Skill Info")]
     public ActionSkillInfo skillInfo;

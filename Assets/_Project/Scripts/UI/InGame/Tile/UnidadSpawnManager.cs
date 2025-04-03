@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,21 +40,20 @@ public class UnidadSpawnManager : MonoBehaviour
             _ => null,
         };
 
-        if (Instantiate(unidadStatus.unidadPrefab, parent).TryGetComponent(out Unidad unit))
-        {
-            unit.Owner = owner;
-            unit.transform.position = pos;
+        Unidad unit = Instantiate(unidadStatus.unidadPrefab, parent);
 
-            unit.Init();
+        unit.Owner = owner;
+        unit.transform.position = pos;
 
-            UnidadStatusBar statusBar = Instantiate(unidadHpBar, hpBarParent);
+        unit.Init();
 
-            unit.SetStatusBar(statusBar);
-            statusBar.Init(unit.StatusUiPosition, unit.Owner);
+        if (unidadHpBar == null) return unit;
 
-            return unit;
-        }
+        UnidadStatusBar statusBar = Instantiate(unidadHpBar, hpBarParent);
 
-        return null;
+        unit.SetStatusBar(statusBar);
+        statusBar.Init(unit.StatusUiPosition, unit.Owner);
+
+        return unit;
     }
 }

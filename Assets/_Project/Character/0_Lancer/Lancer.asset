@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Lancer
   m_EditorClassIdentifier: 
   id: 0
-  unidadPrefab: {fileID: 204960096591996738, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
+  unidadPrefab: {fileID: -2268433611331193402, guid: 14ec4b5db2b10e642a7f6fceb9e7608d, type: 3}
   skillInfo: {fileID: 11400000, guid: afd066ddfe7224846a5a6ddad04aeb32, type: 2}
   statuses:
   - normal:
