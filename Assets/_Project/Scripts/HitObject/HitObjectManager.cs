@@ -10,8 +10,15 @@ public class HitObjectManager : MonoBehaviour
 
     private void Start() => HitObjectPool = new ObjectPool<HitObject>(CreateObject, OnGetObject, OnReleseObject, OnDestroyObject);
 
+    /// <summary>
+    /// Spawn 될 오브젝트의 Prefab 변경
+    /// </summary>
+    /// <param name="hitObjectPrefab">변경 할 오브젝트</param>
     public void SetPrefab(HitObject hitObjectPrefab) => this.hitObjectPrefab = hitObjectPrefab;
 
+    /// <summary>
+    /// defaultCreateCount만큼 오브젝트 생성
+    /// </summary>
     public void CreateDefault()
     {
         if (hitObjectPrefab == null) return;

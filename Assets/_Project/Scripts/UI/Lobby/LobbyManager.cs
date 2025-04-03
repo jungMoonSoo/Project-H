@@ -7,17 +7,9 @@ public class LobbyManager : MonoBehaviour
     /// <summary>
     /// Game Scene 전환
     /// </summary>
-    public void ChangeScene()
+    public void ChangeScene(string name)
     {
-        LoadingSceneController.LoadScene("InGame");
-    }
-
-    /// <summary>
-    /// Game Scene 전환
-    /// </summary>
-    public void GoGacha()
-    {
-        LoadingSceneController.LoadScene("Gacha");
+        LoadingSceneController.LoadScene(name);
     }
 
     public void ToggleUnitStorage(bool active) => unitStorage.SetActive(active);

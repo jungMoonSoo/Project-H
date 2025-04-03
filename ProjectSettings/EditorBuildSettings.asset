@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/LoadingTest.unity
     guid: 1016efba24da7c84c9b710451f4bfa93
+  - enabled: 1
+    path: Assets/_Project/Scenes/Preset.unity
+    guid: 434fe7d4faf628b41a12250eb6ad8e76
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 3801f1802543d6c4d97a3f9423b1671e, type: 2}
     com.unity.localization.settings: {fileID: 11400000, guid: 829bb7008b5250647992819d996dc141, type: 2}
