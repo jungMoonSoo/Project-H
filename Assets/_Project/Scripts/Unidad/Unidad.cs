@@ -133,17 +133,21 @@ public class Unidad : MonoBehaviour
 
     public void SetStatusBar(UnidadStatusBar statusBar)
     {
-        if (statusBar == null && this.statusBar != null)
+        if (this.statusBar == null)
+        {
+            if (statusBar == null) return;
+            else
+            {
+                this.statusBar = statusBar;
+
+                Hp.SetCallback(BindHpStatusBar, SetCallbackType.Add);
+            }
+        }
+        else if (statusBar == null)
         {
             Hp.SetCallback(BindHpStatusBar, SetCallbackType.Remove);
 
             Destroy(this.statusBar.gameObject);
-        }
-        else
-        {
-            this.statusBar = statusBar;
-
-            Hp.SetCallback(BindHpStatusBar, SetCallbackType.Add);
         }
     }
 

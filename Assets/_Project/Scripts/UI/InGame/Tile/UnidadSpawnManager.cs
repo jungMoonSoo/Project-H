@@ -11,9 +11,9 @@ public class UnidadSpawnManager : MonoBehaviour
     [SerializeField] private UnidadStatusBar unidadHpBar;
     [SerializeField] private Transform hpBarParent;
 
-    public bool Spawn(uint unitId, UnitType owner = UnitType.Ally) => Spawn(unitId, 0, owner);
+    public int Spawn(uint unitId, UnitType owner = UnitType.Ally) => Spawn(unitId, 0, owner);
 
-    public bool Spawn(uint unitId, int tileId, UnitType owner)
+    public int Spawn(uint unitId, int tileId, UnitType owner)
     {
         List<TileHandle> tiles = UnitDeployManager.Instance.GetTiles(owner);
 
@@ -21,12 +21,12 @@ public class UnidadSpawnManager : MonoBehaviour
         {
             if (tiles.Count > tileId + 1) return Spawn(unitId, tileId + 1, owner);
 
-            return false;
+            return -1;
         }
 
         tiles[tileId].Unit = Spawn(unitId, tiles[tileId].transform.position, owner);
 
-        return tiles[tileId].Unit != null;
+        return tileId;
     }
 
     public Unidad Spawn(uint unitId, Vector3 pos, UnitType owner)

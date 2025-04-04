@@ -45,6 +45,19 @@ public class UnitDeployManager : Singleton<UnitDeployManager>
         }
     }
 
+    public void ClearUnits()
+    {
+        foreach (List<TileHandle> tiles in tiles.Values)
+        {
+            foreach (TileHandle tile in tiles)
+            {
+                if (tile.Unit == null) continue;
+
+                tile.RemoveUnit();
+            }
+        }
+    }
+
     public List<Unidad> GetSpawnUnits(UnitType type)
     {
         List<Unidad> units = new();
