@@ -39,6 +39,11 @@ public class SpineEffectHandle : MonoBehaviour
     /// </summary>
     public void CreateDefaultEffect()
     {
-        foreach (SpineBoneData bone in bones) bone.effectManager.CreateDefault();
+        foreach (SpineBoneData bone in bones)
+        {
+            if (bone.effectManager == null) continue;
+
+            bone.effectManager.CreateDefault();
+        }
     }
 }
