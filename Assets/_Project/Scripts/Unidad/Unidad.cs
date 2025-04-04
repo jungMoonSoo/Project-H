@@ -218,6 +218,6 @@ public class Unidad : MonoBehaviour
     #endregion
 
     #region ◇ Modifier ◇
-    public void SetLevel(int level) => ModifierManager.SetUnitDefaltStatus(level);
+    public void SetLevel(uint level) => ModifierManager.SetUnitDefaltStatus(level);
     #endregion
 }

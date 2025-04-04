@@ -40,7 +40,7 @@ public class DeployPhaseState : MonoBehaviour, IPhaseState
 
         
         // 캐릭터 Button 생성
-        foreach (uint id in PlayerManager.Instance.units)
+        foreach (uint id in PlayerManager.Instance.units.Keys)
         {
             SpawnButtonHandle button = spawnButtonPool.Get();
 

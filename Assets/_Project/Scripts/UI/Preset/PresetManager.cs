@@ -6,7 +6,7 @@ public class PresetManager : MonoBehaviour
     [SerializeField] private PresetButtonManager buttonManager;
     [SerializeField] private UnidadSpawnManager spawnManager;
 
-    private Dictionary<int, int> spawnedUnits = new();
+    private readonly Dictionary<int, int> spawnedUnits = new();
 
     private int currentPreset;
 
@@ -40,7 +40,7 @@ public class PresetManager : MonoBehaviour
     /// Preset에 저장 된 Unit 배치
     /// </summary>
     /// <param name="index">Preset Index</param>
-    public void DeployPresetUnit(int index)
+    public void DeployUnit(int index)
     {
         currentPreset = index;
 
@@ -55,7 +55,7 @@ public class PresetManager : MonoBehaviour
     /// <summary>
     /// 배치된 Unit을 Preset에 기록
     /// </summary>
-    public void SetPreset()
+    public void RecordPreset()
     {
         List<TileHandle> tiles = UnitDeployManager.Instance.GetTiles(UnitType.Ally);
 

@@ -27,7 +27,7 @@ public class UnitStorageManager : MonoBehaviour
 
         UnitStorageItem item;
 
-        foreach (uint id in PlayerManager.Instance.units)
+        foreach (uint id in PlayerManager.Instance.units.Keys)
         {
             item = ItemPool.Get();
             item.SetID(id.ToString());

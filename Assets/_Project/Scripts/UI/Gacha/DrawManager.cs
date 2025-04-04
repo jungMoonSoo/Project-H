@@ -36,7 +36,12 @@ public class DrawManager : MonoBehaviour
         CheckButton();
     }
 
-    private void AddUnit(uint id) => PlayerManager.Instance.units.Add(id);
+    private void AddUnit(uint id)
+    {
+        if (PlayerManager.Instance.units.ContainsKey(id)) return;
+
+        PlayerManager.Instance.units.Add(id, new PlayerUnitInfo(id, 0));
+    }
 
     private uint GetRandomUnitID(uint min, uint max) => (uint)RandomModule.GetSecurityRandom(min, max);
 }

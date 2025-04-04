@@ -10,7 +10,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public int diamonds = 100;
     public int energy = 100;
 
-    public HashSet<uint> units = new();
+    public Dictionary<uint, PlayerUnitInfo> units = new();
     public List<DoubleValue<int, int>[]> presets = new();
 
     public void Start() => LoadData();
@@ -26,7 +26,7 @@ public class PlayerManager : Singleton<PlayerManager>
         PlayerPrefs.SetInt("Diamonds", diamonds);
         PlayerPrefs.SetInt("Energy", energy);
 
-        PlayerPrefs.SetString("Inventory", JsonUtility.ToJson(new Wrapper<uint>(units), true));
+        PlayerPrefs.SetString("Units", JsonUtility.ToJson(new Wrapper<PlayerUnitInfo>(units.ConvertValues()), true));
         PlayerPrefs.SetString("Preset", JsonUtility.ToJson(new Wrapper<DoubleValue<int, int>[]>(presets), true));
 
         PlayerPrefs.Save();
@@ -41,7 +41,18 @@ public class PlayerManager : Singleton<PlayerManager>
         diamonds = PlayerPrefs.GetInt("Diamonds", 1000);
         energy = PlayerPrefs.GetInt("Energy", 100);
 
-        if (PlayerPrefs.HasKey("Inventory")) units = JsonUtility.FromJson<Wrapper<uint>>(PlayerPrefs.GetString("Inventory"));
+        if (PlayerPrefs.HasKey("Units"))
+        {
+            units.Clear();
+
+            foreach (PlayerUnitInfo info in (List<PlayerUnitInfo>)JsonUtility.FromJson<Wrapper<PlayerUnitInfo>>(PlayerPrefs.GetString("Units")))
+            {
+                if (units.ContainsKey(info.id)) continue;
+
+                units.Add(info.id, info);
+            }
+        }
+
         if (PlayerPrefs.HasKey("Preset")) presets = JsonUtility.FromJson<Wrapper<DoubleValue<int, int>[]>>(PlayerPrefs.GetString("Preset"));
     }
 }

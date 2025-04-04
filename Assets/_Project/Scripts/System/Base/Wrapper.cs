@@ -8,9 +8,18 @@ public class Wrapper<T>
     public Wrapper() { }
 
     #region List
-    public Wrapper(List<T> list) => this.list = list.ToArray();
+    public Wrapper(List<T> list)
+    {
+        if (list == null) this.list = new T[0];
+        else this.list = list.ToArray();
+    }
 
-    public static implicit operator List<T>(Wrapper<T> wrapper) => new(wrapper.list);
+    public static implicit operator List<T>(Wrapper<T> wrapper)
+    {
+        if (wrapper.list == null) return default;
+
+        return new(wrapper.list);
+    }
     #endregion
 
     #region HashSet
