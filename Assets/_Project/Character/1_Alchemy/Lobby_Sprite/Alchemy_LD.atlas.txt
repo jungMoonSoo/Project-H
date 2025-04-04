@@ -1,7 +1,6 @@
 Alchemy_LD.png
 size:2048,2040
 filter:Linear,Linear
-pma:true
 L_back_double_eyelid
 bounds:1735,2018,43,20
 L_bag_belt
@@ -251,7 +250,6 @@ bounds:1790,1806,33,40
 Alchemy_LD_2.png
 size:1510,1785
 filter:Linear,Linear
-pma:true
 L_belt
 bounds:362,560,541,1223
 R_side_hair_base

@@ -389,7 +389,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16f2670299360c5448b1d5498ff6ad16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  poolingCount: 2
 --- !u!1 &456233760
 GameObject:
   m_ObjectHideFlags: 0
@@ -6767,7 +6766,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deployUi: {fileID: 2040266764048107657}
-  stageText: {fileID: 5175808047226397024}
+  txtStage: {fileID: 5175808047226397024}
   spawnButtonPrefab: {fileID: 8892927961079169928, guid: 3923fe67f214bd849b1ac8349da3679d, type: 3}
   spawnParent: {fileID: 8313699858263859912}
 --- !u!224 &8861135611363502115
